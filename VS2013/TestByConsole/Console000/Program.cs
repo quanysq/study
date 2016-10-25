@@ -17,6 +17,7 @@ namespace Console000
       //Class2.Execute(args);
       //Class3.Execute(args);
       Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
+
       Console.ReadKey();
     }
   }
