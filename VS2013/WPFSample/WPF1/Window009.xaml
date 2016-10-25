@@ -1,0 +1,9 @@
+﻿<Window x:Class="WPF001.Window009"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPF001"
+        Title="Window009" Height="300" Width="300">
+    <StackPanel>
+        <local:MyButton Content="Show" UserWindowType="{x:Type TypeName=local:Window008}" Margin="5" />
+    </StackPanel>
+</Window>

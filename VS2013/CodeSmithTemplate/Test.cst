@@ -1,0 +1,60 @@
+﻿<%-- 
+Name:
+Author: 
+Description: 
+--%>
+<%@ Template Language="C#" TargetLanguage="Text" Src="" Inherits="" CompilerVersion="v4.0" Description="How to create a template." %>
+
+<%-- 加载访问数据库的组件SchemaExplorer,并声明其使用的命名空间 --%>
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Import Namespace="SchemaExplorer" %>
+
+<%-- 数据库 --%>
+<%@ Property Name="SourceDatabase" Type="SchemaExplorer.DatabaseSchema" DeepLoad="True" Optional="False" Category="01. GettingStarted - Required" Description="Database that the tables views, and storedprocedures should be based on. IMPORTANT!!! If SourceTables and SourceViews areleft blank, the Entire Database will then be generated."  %>
+
+<%-- 注册实体层Entity模板 --%>
+<%@ Register Name="EntityTemplate" Template="Entity.cst" MergeProperties="False" ExcludeProperties="" %>
+
+<script runat="template">
+    //解决方案输出路径
+    private string Directory = String.Empty;
+
+    [Editor(typeof(System.Windows.Forms.Design.FolderNameEditor), typeof(System.Drawing.Design.UITypeEditor))]
+    [Optional, NotChecked]
+    [DefaultValue("")]
+    public string OutputDirectory
+    {
+        get { return Directory; }
+        set 
+        {
+            if (value.EndsWith("\\")) value=value.Substring(0, value.Length-1);
+            Directory = value;
+        }
+    }
+</script>
+
+<script runat="template">
+    //生成实体类
+    private void GenerateEntityClasses() 
+    {
+        CodeTemplate Template = new EntityTemplate();
+        foreach (TableSchema table in this.SourceDatabase.Tables)
+        {
+            string FileDirectory = OutputDirectory + "\\" + table.Name + ".cs";
+            
+            //生成模板
+            Template.SetProperty("Table", table);
+            
+            //文件输出
+            Template.RenderToFile(FileDirectory, true);
+            Debug.WriteLine(FileDirectory + " OK");
+        }
+    }
+</script>
+
+<%
+    //创建实体层Entity类
+    this.GenerateEntityClasses();
+    
+    Debug.WriteLine("OK");
+%>

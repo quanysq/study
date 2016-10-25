@@ -1,0 +1,18 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="WpfForCrltemp.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+	<Window.Background>
+		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			<GradientStop Color="#FF1C555F" Offset="0"/>
+			<GradientStop Color="#FF73DBEC" Offset="0.918"/>
+		</LinearGradientBrush>
+	</Window.Background>
+	<Grid>
+		<TextBox HorizontalAlignment="Left" Height="23" Margin="35,25,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="245" Style="{DynamicResource RoundCornerTextBoxStyle}"/>
+		<TextBox HorizontalAlignment="Left" Height="23" Margin="35,67,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="245" Style="{DynamicResource RoundCornerTextBoxStyle}"/>
+		<Button Content="Button" HorizontalAlignment="Left" Margin="35,113.04,0,0" VerticalAlignment="Top" Width="90" Height="26.96"/>
+        
+	</Grid>
+</Window>

@@ -1,0 +1,8 @@
+﻿<Window x:Class="WPF004.Window05"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Attached Event" Height="200" Width="200">
+    <Grid x:Name="gridMain">
+        <Button x:Name="button1" Content="OK" Width="80" Height="80" Click="button1_Click" />
+    </Grid>
+</Window>

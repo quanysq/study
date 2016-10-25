@@ -1,0 +1,14 @@
+﻿<Window x:Class="WPF005.Window04"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Static v.s. Dynamic" FontSize="16" Width="200" Height="138">
+    <Window.Resources>
+        <TextBlock x:Key="res1" Text="海上生明月" />
+        <TextBlock x:Key="res2" Text="海上生明月" />
+    </Window.Resources>
+    <StackPanel>
+        <Button Margin="5,5,5,0" Content="{StaticResource res1}" />
+        <Button Margin="5,5,5,0" Content="{DynamicResource res2}" />
+        <Button Margin="5,5,5,0" Content="Update" Click="Button_Click" />
+    </StackPanel>
+</Window>

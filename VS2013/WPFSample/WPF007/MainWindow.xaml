@@ -1,0 +1,17 @@
+﻿<Window x:Class="WPF007.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="图书管理系统" Height="350" Width="525">
+    <Window.Resources>
+        <XmlDataProvider x:Key="ds" Source="Menu.xml" XPath="/Menus/Menu" />
+
+        <HierarchicalDataTemplate DataType="Menu" ItemsSource="{Binding XPath=Menu}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding XPath=@Name}" Height="30" FontSize="14" />
+            </StackPanel>
+        </HierarchicalDataTemplate>
+    </Window.Resources>
+    <StackPanel>
+        <Menu ItemsSource="{Binding Source={StaticResource ds}}" />
+    </StackPanel>
+</Window>

@@ -1,0 +1,9 @@
+﻿<Window x:Class="WPF002.Window02"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Control as Source" Height="110" Width="300">
+    <StackPanel>
+        <TextBox x:Name="textbox1" Text="{Binding Path=Value, ElementName=slider1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderBrush="Black" Margin="5" />
+        <Slider x:Name="slider1" Maximum="100" Minimum="0" Margin="5" />
+    </StackPanel>
+</Window>

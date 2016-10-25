@@ -1,0 +1,6 @@
+Category=Bomber, Name=B-1, State=Available
+Category=Bomber, Name=B-2, State=Available
+Category=Fighter, Name=F-22, State=Unknown
+Category=Fighter, Name=Su-47, State=Available
+Category=Bomber, Name=B-52, State=Unknown
+Category=Fighter, Name=J-10, State=Unknown

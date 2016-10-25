@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Menus xmlns="">
+    <Menu Name="维护读者信息">
+        <Menu Name="读者列表" />
+        <Menu Name="创建/维护读者" />
+    </Menu>
+    <Menu Name="查询图书信息" />
+    <Menu Name="维护读者信息">
+        <Menu Name="查询借阅信息" />
+        <Menu Name="查询预订信息" />
+    </Menu>
+    <Menu Name="退出系统" />
+</Menus>

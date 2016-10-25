@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data xmlns="">
+    <Operation Name="文件" Gesture="F">
+        <Operation Name="新建" Gesture="N">
+            <Operation Name="项目" Gesture="Ctrl + P" />
+            <Operation Name="网站" Gesture="Ctrl + W" />
+            <Operation Name="文档" Gesture="Ctrl + D" />
+        </Operation>
+        <Operation Name="保存" Gesture="S" />
+        <Operation Name="打印" Gesture="P" />
+        <Operation Name="退出" Gesture="X" />
+    </Operation>
+    <Operation Name="编辑" Gesture="F">
+        <Operation Name="拷贝" Gesture="Ctrl + C" />
+        <Operation Name="剪切" Gesture="Ctrl + X" />
+        <Operation Name="粘贴" Gesture="Ctrl + V" />
+    </Operation>
+</Data>

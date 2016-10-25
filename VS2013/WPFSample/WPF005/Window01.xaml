@@ -1,0 +1,10 @@
+﻿<Window x:Class="WPF005.Window01"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Command" Background="LightBlue"
+        Height="175" Width="260">
+    <StackPanel x:Name="stackPanel">
+        <Button x:Name="button1" Content="Send Command" Margin="5" />
+        <TextBox x:Name="textBoxA" Margin="5,0" Height="100" />
+    </StackPanel>
+</Window>

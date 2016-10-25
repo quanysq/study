@@ -1,0 +1,8 @@
+﻿<Window x:Class="WPF003.Window05"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Attach Property" Height="75" Width="200">
+    <StackPanel>
+        <Button Content="Test Attach Property" Height="25" Margin="5" Click="Button_Click" />
+    </StackPanel>
+</Window>

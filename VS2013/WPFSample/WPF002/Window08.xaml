@@ -1,0 +1,11 @@
+﻿<Window x:Class="WPF002.Window08"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Binding Source" Height="240" Width="300">
+    <StackPanel x:Name="stackPanel" Background="LightBlue">
+        <TextBlock Text="Student ID:" FontWeight="Bold" Margin="5" />
+        <TextBox x:Name="textBoxId" Margin="5" />
+        <TextBlock Text="Student List:" FontWeight="Bold" Margin="5" />
+        <ListBox x:Name="listBoxStudents" Height="110" Margin="5" />
+    </StackPanel>
+</Window>

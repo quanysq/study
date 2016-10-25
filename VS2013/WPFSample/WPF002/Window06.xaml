@@ -1,0 +1,16 @@
+﻿<Window x:Class="WPF002.Window06"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Window06" Height="95" Width="221">
+    <StackPanel>
+        <StackPanel.Resources>
+            <sys:String x:Key="myString">
+                菩提本无树，明镜亦非台。
+                本来无一物，何处惹尘埃。
+            </sys:String>
+        </StackPanel.Resources>
+        
+        <TextBlock x:Name="textblock1" TextWrapping="Wrap" Text="{Binding Path=., Source={StaticResource ResourceKey=myString}}" FontSize="16" Margin="5" />
+    </StackPanel>
+</Window>

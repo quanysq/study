@@ -1,0 +1,21 @@
+﻿<Window x:Class="WPF001.Window019"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window019" Height="240" Width="300">
+    <StackPanel x:Name="stackpanel1" Background="LightBlue">
+        <TextBlock Text="Student ID:" FontWeight="Bold" Margin="5" />
+        <TextBox x:Name="textbox1" Margin="5" />
+        <TextBlock Text="Student List:" FontWeight="Bold" Margin="5" />
+        <ListBox x:Name="listboxstudents" Height="110" Margin="5">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Id}" Width="30" />
+                        <TextBlock Text="{Binding Path=Name}" Width="60" />
+                        <TextBlock Text="{Binding Path=Age}" Width="30" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</Window>

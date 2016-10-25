@@ -1,0 +1,12 @@
+﻿<Window x:Class="WPF002.Window03"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window03" Height="132" Width="300">
+    <StackPanel>
+        <TextBox x:Name="textbox1" BorderBrush="Black" Margin="5" />
+        <!--属性：让一个TextBox显示另一个TextBox文本的长度-->
+        <TextBox x:Name="textbox2" Text="{Binding Path=Text.Length, ElementName=textbox1, Mode=OneWay}" BorderBrush="Black" Margin="5" />
+        <!--索引：让一个TextBox显示另一个TextBox文本的第四个字符-->
+        <TextBox x:Name="textbox3" Text="{Binding Path=Text.[3], ElementName=textbox1, Mode=OneWay}" BorderBrush="Black" Margin="5" />
+    </StackPanel>
+</Window>

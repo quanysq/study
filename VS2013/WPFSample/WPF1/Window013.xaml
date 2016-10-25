@@ -1,0 +1,25 @@
+﻿<Window x:Class="WPF001.Window013"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window013" Height="300" Width="300">
+    <Window.Resources>
+        <XmlDataProvider x:Key="InventoryData" XPath="/Supermarket">
+            <x:XData>
+                <Supermarket xmlns="">
+                    <Fruits>
+                        <Fruit Name="Peach1" />
+                        <Fruit Name="Peach2" />
+                        <Fruit Name="Peach3" />
+                    </Fruits>
+                    <Darks>
+                        <Dark Name="Coca1" />
+                        <Dark Name="Coca2" />
+                    </Darks>
+                </Supermarket>
+            </x:XData>
+        </XmlDataProvider>
+    </Window.Resources>
+    <Grid>
+        <ListBox Name="lisbXmlDoc" ItemsSource="{Binding Source={StaticResource InventoryData}, XPath=Fruits/Fruit}" />
+    </Grid>
+</Window>

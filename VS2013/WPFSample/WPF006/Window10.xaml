@@ -1,0 +1,19 @@
+﻿<Window x:Class="WPF006.Window10"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Style" Height="132" Width="300">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="FontStyle" Value="Italic" />
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="5">
+        <TextBlock Text="Hello WPF!" />
+        <TextBlock Text="This is s sample for Style!" />
+        <TextBlock Text="by Jacky 2015.12.4" Style="{x:Null}" />
+    </StackPanel>
+</Window>

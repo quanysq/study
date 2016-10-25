@@ -1,0 +1,8 @@
+﻿<Window x:Class="WPF002.Window16"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ObjectDataProvider" Height="73" Width="300">
+    <StackPanel Background="LightBlue">
+        <Button Content="了解ObjectDataProvider" Height="25" Margin="5" Click="Button_Click" />
+    </StackPanel>
+</Window>
