@@ -26,6 +26,7 @@ namespace DBHelper
           bool LoginStatus = userinfobll.Login(Usercode.Text, Pwd.Text);
           if (!LoginStatus)
           {
+
             DBHelperMessage.Alert("登录失败，请检查用户名和密码!");
           }
           else
