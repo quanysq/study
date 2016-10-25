@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" ?>
+<DBConnections>
+  <SerializableDictionary>
+    <key>
+      <string>Publish</string>
+    </key>
+    <value>
+      <DBConnectionBase d5p1:type="DBConnectionSQLServer" xmlns:d5p1="http://www.w3.org/2001/XMLSchema-instance">
+        <Name>Publish</Name>
+        <ConnectionType>MsSqlServer</ConnectionType>
+        <Host>192.168.10.48</Host>
+        <User>BPC6_1025</User>
+        <Password>li8ZeOp6XPw=</Password>
+        <Pooling>false</Pooling>
+        <MinPoolSize>0</MinPoolSize>
+        <MaxPoolSize>100</MaxPoolSize>
+        <ConnectionLifetime>30</ConnectionLifetime>
+        <Catalog>BPC6_1025</Catalog>
+        <WindowsAuthentication>false</WindowsAuthentication>
+        <UseCurrentUser>false</UseCurrentUser>
+        <ConnectAsUser />
+        <ConnectAsPassword />
+      </DBConnectionBase>
+    </value>
+  </SerializableDictionary>
+  <SerializableDictionary>
+    <key>
+      <string>NDW_User</string>
+    </key>
+    <value>
+      <DBConnectionBase d5p1:type="DBConnectionSQLServer" xmlns:d5p1="http://www.w3.org/2001/XMLSchema-instance">
+        <Name>NDW_User</Name>
+        <ConnectionType>MsSqlServer</ConnectionType>
+        <Host>192.168.10.48</Host>
+        <User>BPC6_1025</User>
+        <Password>li8ZeOp6XPw=</Password>
+        <Pooling>false</Pooling>
+        <MinPoolSize>0</MinPoolSize>
+        <MaxPoolSize>100</MaxPoolSize>
+        <ConnectionLifetime>30</ConnectionLifetime>
+        <Catalog>BPC6_1025</Catalog>
+        <WindowsAuthentication>false</WindowsAuthentication>
+        <UseCurrentUser>false</UseCurrentUser>
+        <ConnectAsUser />
+        <ConnectAsPassword />
+      </DBConnectionBase>
+    </value>
+  </SerializableDictionary>
+  <SerializableDictionary>
+    <key>
+      <string>NDW_DBA</string>
+    </key>
+    <value>
+      <DBConnectionBase d5p1:type="DBConnectionSQLServer" xmlns:d5p1="http://www.w3.org/2001/XMLSchema-instance">
+        <Name>NDW_DBA</Name>
+        <ConnectionType>MsSqlServer</ConnectionType>
+        <Host>192.168.10.48</Host>
+        <User>BPC6_1025</User>
+        <Password>li8ZeOp6XPw=</Password>
+        <Pooling>false</Pooling>
+        <MinPoolSize>0</MinPoolSize>
+        <MaxPoolSize>100</MaxPoolSize>
+        <ConnectionLifetime>30</ConnectionLifetime>
+        <Catalog>BPC6_1025</Catalog>
+        <WindowsAuthentication>false</WindowsAuthentication>
+        <UseCurrentUser>false</UseCurrentUser>
+        <ConnectAsUser />
+        <ConnectAsPassword />
+      </DBConnectionBase>
+    </value>
+  </SerializableDictionary>
+</DBConnections>

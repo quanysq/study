@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="T002.Data.Entities" assembly="Console033">
+    <class name="T001" table="[dbo].[T001]" >
+        <id name="Tid" column="[tid]" type="Int32" >
+            <generator class="native" />
+        </id>
+        <property name="Tname" column="[tname]" type="AnsiString" not-null="true" length="50" /> 
+    </class>
+</hibernate-mapping>

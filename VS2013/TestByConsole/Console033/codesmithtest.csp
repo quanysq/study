@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
+  <variables>
+    <add key="ConnectionString1" value="Data Source=OUAGA;Initial Catalog=T002;User ID=sa;Password=quanysq123" />
+  </variables>
+  <propertySets>
+    <propertySet name="FIrstTemp" template="C:\Users\yangsq\Documents\CodeSmith Generator\Samples\v7.1\Templates\Frameworks\PLINQO-NH\CSharp\Hbms.cst">
+      <property name="IgnoreList">
+        <stringList>
+          <string>sysdiagrams$</string>
+          <string>^dbo.aspnet</string>
+          <string>^dbo.vw_aspnet</string>
+        </stringList>
+      </property>
+      <property name="CleanExpression">
+        <stringList>
+          <string>^(sp|tbl|udf|vw)_</string>
+          <string>^\\w+_</string>
+        </stringList>
+      </property>
+      <property name="IncludeFunctions">False</property>
+      <property name="IncludeViews">False</property>
+      <property name="MapsDirectory">Maps</property>
+      <property name="SourceDatabase">
+        <connectionString>$(ConnectionString1)</connectionString>
+        <providerType>SchemaExplorer.SqlSchemaProvider,SchemaExplorer.SqlSchemaProvider</providerType>
+      </property>
+      <property name="EntityNamespace">T002.Data.Entities</property>
+    </propertySet>
+    <propertySet name="FirstTemp" template="C:\Users\yangsq\Documents\CodeSmith Generator\Samples\v7.1\Templates\Frameworks\PLINQO-NH\CSharp\Hbms.cst">
+      <property name="IgnoreList">
+        <stringList>
+          <string>sysdiagrams$</string>
+          <string>^dbo.aspnet</string>
+          <string>^dbo.vw_aspnet</string>
+        </stringList>
+      </property>
+      <property name="CleanExpression">
+        <stringList>
+          <string>^(sp|tbl|udf|vw)_</string>
+          <string>^\\w+_</string>
+        </stringList>
+      </property>
+      <property name="IncludeFunctions">False</property>
+      <property name="IncludeViews">False</property>
+      <property name="MapsDirectory">Maps</property>
+      <property name="SourceDatabase">
+        <connectionString>$(ConnectionString1)</connectionString>
+        <providerType>SchemaExplorer.SqlSchemaProvider,SchemaExplorer.SqlSchemaProvider</providerType>
+      </property>
+      <property name="AssemblyName">Console033</property>
+      <property name="EntityNamespace">T002.Data.Entities</property>
+    </propertySet>
+  </propertySets>
+</codeSmith>

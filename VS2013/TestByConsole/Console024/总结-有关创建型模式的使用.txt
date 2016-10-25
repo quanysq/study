@@ -1,0 +1,5 @@
+﻿Singleton模式解决的是实体对象个数的问题。除了Singleton之外，其他创建型模式解决的是都是new 所带来的耦合关系。
+
+Factory Method ,Abstract Factory,Builder都需要一个额外的工厂类来负责实例化“易变对象”，而Prototype则是通过原型（一个特殊的工厂类）来克隆“易变对象”。
+
+如果遇到“易变类”，起初的设计通常从Factory Mehtod开始，当遇到更多的复杂变化时，再考虑重重构为其他三种工厂模式（Abstract Factory,Builder,Prototype).

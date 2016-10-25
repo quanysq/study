@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="T002.Data.Entities" assembly="Console033">
+    <class name="T002" table="[dbo].[T002]" >
+        <id name="Studentid" column="[studentid]" type="Int32" >
+            <generator class="native" />
+        </id>
+        <property name="Stuname" column="[stuname]" type="AnsiString" not-null="false" length="50" /> 
+        <property name="Stusex" column="[stusex]" type="AnsiString" not-null="false" length="50" /> 
+        <property name="Stuage" column="[stuage]" type="Int32" not-null="false" /> 
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tables>
+  <Table  TemplateName="COMMON_CAT_FULL" Type="TCAT_APPS_COMPATIBILITY" Postfix="" PKID="CAT_APPS_COMPATIBILITY_ID">
+    <Field Name="BIT32_COMPATIBILITY_STATUS" DataType="VARCHAR2(10)" Nullable="1" DefaultValue="" Comment="" FileColumnName="BIT32_COMPATIBILITY_STATUS" />
+    <Field Name="BIT64_COMPATIBILITY_STATUS" DataType="VARCHAR2(10)" Nullable="1" DefaultValue="" Comment="" FileColumnName="BIT64_COMPATIBILITY_STATUS" />
+    <Field Name="CAT_APPCOMP_MANUFACTURER_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_APPCOMP_MANUFACTURER_ID" />
+    <Field Name="CAT_APPCOMP_SW_EDITION_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_APPCOMP_SW_EDITION_ID" />
+    <Field Name="CAT_APPCOMP_SW_PRODUCT_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_APPCOMP_SW_PRODUCT_ID" />
+    <Field Name="CAT_APPCOMP_SW_RELEASE_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_APPCOMP_SW_RELEASE_ID" />
+    <Field Name="CAT_APPCOMP_SW_VERSION_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_APPCOMP_SW_VERSION_ID" />
+    <Field Name="CAT_APPS_COMPATIBILITY_ID" DataType="NUMBER(18,0)" Nullable="0" DefaultValue="" Comment="" FileColumnName="CAT_APPS_COMPATIBILITY_ID" />
+    <Field Name="CAT_COMPATIBILITY_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_COMPATIBILITY_ID" />
+    <Field Name="CAT_MANUFACTURER_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_MANUFACTURER_ID" />
+    <Field Name="CAT_SW_EDITION_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_SW_EDITION_ID" />
+    <Field Name="CAT_SW_PRODUCT_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_SW_PRODUCT_ID" />
+    <Field Name="CAT_SW_RELEASE_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_SW_RELEASE_ID" />
+    <Field Name="CAT_SW_VERSION_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CAT_SW_VERSION_ID" />
+    <Field Name="CERTIFICATION" DataType="VARCHAR2(256)" Nullable="1" DefaultValue="" Comment="" FileColumnName="CERTIFICATION" />
+    <Field Name="COMMUNITY" DataType="NUMBER(22,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="COMMUNITY" />
+    <Field Name="COMPATIBILITY_STATUS" DataType="VARCHAR2(10)" Nullable="1" DefaultValue="" Comment="" FileColumnName="COMPATIBILITY_STATUS" />
+    <Field Name="CREATE_DATE" DataType="DATE" Nullable="1" DefaultValue="" Comment="" FileColumnName="CREATE_DATE" />
+    <Field Name="DELETE_REASON" DataType="VARCHAR2(500)" Nullable="1" DefaultValue="" Comment="" FileColumnName="DELETE_REASON" />
+    <Field Name="DESUPFLAG" DataType="VARCHAR2(10)" Nullable="1" DefaultValue="" Comment="" FileColumnName="DESUPFLAG" />
+    <Field Name="DIFFICULTY" DataType="VARCHAR2(30)" Nullable="1" DefaultValue="" Comment="" FileColumnName="DIFFICULTY" />
+    <Field Name="LAST_MODIFIED_DATE" DataType="DATE" Nullable="1" DefaultValue="" Comment="" FileColumnName="LAST_MODIFIED_DATE" />
+    <Field Name="OFFICIAL" DataType="VARCHAR2(10)" Nullable="1" DefaultValue="" Comment="" FileColumnName="OFFICIAL" />
+    <Field Name="REFERENCE" DataType="VARCHAR2(2000)" Nullable="1" DefaultValue="" Comment="" FileColumnName="REFERENCE" />
+    <Field Name="REPLACEMENT_ID" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="" Comment="" FileColumnName="REPLACEMENT_ID" />
+    <Field Name="TO_BE_DELETED" DataType="VARCHAR2(1)" Nullable="1" DefaultValue="" Comment="" FileColumnName="TO_BE_DELETED" />
+    <Field Name="TO_BE_DELETED_ON" DataType="DATE" Nullable="1" DefaultValue="" Comment="" FileColumnName="TO_BE_DELETED_ON" />
+    <Field Name="PRIVATE_FLAG" DataType="NUMBER(18,0)" Nullable="1" DefaultValue="0" Comment="" FileColumnName="PRIVATE_FLAG" />
+    <Field Name="IS_PRIVATE" DataType="VARCHAR2(1)" Nullable="1" DefaultValue="'n'" Comment="" FileColumnName="IS_PRIVATE" />
+    <Field Name="PRIVATE_TYPE" DataType="VARCHAR2(500)" Nullable="1" DefaultValue="'Not Modified'" Comment="" FileColumnName="PRIVATE_TYPE" />
+  </Table>
+</Tables>

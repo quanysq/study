@@ -1,0 +1,80 @@
+000. 临时
+	 Class0: 待整理
+	 Class1: Conditional
+	 Class2: List排序
+	 Class3: 比较两个相同类型的对象的差异
+001. StreamWriter/StreamRead/FileStream
+002. 文件路径
+003. BinaryFormatter序列化、反序列化
+004. 并发和并行 
+005. LDAP/AD
+006. Throw
+007. 查进程内存
+008. 自定义事件和委托
+009. This索引器
+010. Func<T,TResult>
+011. 三种委托写法对比
+012. 删除数组中的元素 
+013. Lock
+014. 序列化和反序列化
+015. HttpClient与NetworkCredential[Note: 有加密代码]
+	 Class1: HttpClient
+	 Class2: NetworkCredential
+	 EncryptUtil: 加密
+	 Class3: 获取本地证书信息
+	 Class4: 通过证书访问Https
+016. IIS and ApplicationPool
+017. 判断文件文件的编码
+018. 面向切面编程（AOP）[PostSharp]
+019. 特性
+020. 把委托作为一个方法的参数
+021. 泛型
+022. 反射
+023. 多线程
+024. 设计模式
+	 Class1:  单例
+	 Class2:  抽象工厂
+	 Class3:  建造者
+	 Class4:  工厂
+	 Class5:  原型
+	 Class6:  适配器
+	 Class7:  桥接
+	 Class8:  装饰
+	 Class9:  组合
+	 Class10: 外观
+	 Class11: 享元
+	 Class12: 代理
+	 Class13: 模板
+	 Class14: 命令
+	 Class15: 迭代器
+	 Class16: 观察者
+	 Class17: 解释器
+	 Class18: 中介者
+	 Class19: 职责链
+	 Class20: 备忘录
+	 Class21: 策略
+	 Class22: 访问者
+	 Class23: 状态
+025. 特殊字体处理
+026. do...while和thread
+027. NVelocity模板引擎
+028. XML 
+	 Class7 应用SerializableDictionary
+	 Class8 应用正则表达式替换
+	 Class9 Linq to Xml
+029. LINQ、BindingList、PLINQ
+030. DB2
+031. Linq: List之Union(),Intersect(),Except()
+032. 判断32/64位、安装组件、操作系统版本
+033. CodeSmith
+034. 命令行颜色
+035. 压缩工具（ICSharpCode.SharpZipLib）
+036. Linq to sql: 行转列， 去重复
+037. 设置指定目录的权限
+038. 动态调用WCF服务中的方法[反射]
+039. 深拷贝
+040. 扩展方法
+041. 动态编程[dynamic]
+042. 延迟加载
+043. 备份还原MSSQL
+044. 
