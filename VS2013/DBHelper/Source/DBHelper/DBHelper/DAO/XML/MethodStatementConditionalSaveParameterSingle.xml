@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+BEGIN
+	merge into MethodStatementConditional a 
+	using (
+		select @ConditionalID ConditionalID, @StatementID StatementID, @MethodID MethodID, @ConditionType ConditionType, 
+			   @ParameterName ParameterName, @ExpectBehavior ExpectBehavior, @CompareValue CompareValue
+	) b
+	on a.ConditionalID = b.ConditionalID
+	when matched then 
+		update set 
+		  a.ConditionType  	=b.ConditionType,
+		  a.ParameterName  	=b.ParameterName,
+		  a.ExpectBehavior 	=b.ExpectBehavior,
+		  a.CompareValue 	=b.CompareValue
+	when not matched then
+		insert (StatementID, MethodID, ConditionType, ParameterName, ExpectBehavior, CompareValue)
+		values (b.StatementID, b.MethodID, b.ConditionType, b.ParameterName, b.ExpectBehavior, b.CompareValue);
+	
+	if (@ConditionalID=0)
+	begin
+		SELECT @@IDENTITY AS ConditionalID
+	end
+	else
+	begin
+		SELECT @ConditionalID AS ConditionalID
+	end
+END
+	]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>2</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>1</paramtype> 
+  <sqlparames>
+    <sqlparame>
+      <name>@ConditionalID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@StatementID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@MethodID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@ConditionType</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@ParameterName</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@ExpectBehavior</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@CompareValue</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+  </sqlparames>
+  <formatdetails></formatdetails>
+</SQLSatement>

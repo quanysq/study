@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+SELECT count(1) AS total FROM UserInfo
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>2</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>0</paramtype>
+  <sqlparames></sqlparames>
+  <formatdetails>
+  </formatdetails>
+</SQLSatement>

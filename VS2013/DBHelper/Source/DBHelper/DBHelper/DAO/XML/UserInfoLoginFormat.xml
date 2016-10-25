@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+SELECT a.UserID,a.Usercode,a.UserName,a.Pwd,a.IsAddSelf,a.IsEditSelf,a.IsDeleteSelf,a.IsEditOther,a.IsDeleteOther  
+FROM UserInfo AS a 
+WHERE a.Usercode='{0}' 
+	    and a.Pwd='{1}'
+      and HasDeleted=0
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>0</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>2</paramtype> 
+  <sqlparames></sqlparames>
+  <formatdetails>
+    <formatinfo>
+      <key>0</key>
+      <desc>Usercode</desc>
+      <mockdata>Admin</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+    <formatinfo>
+      <key>1</key>
+      <desc>Pwd</desc>
+      <mockdata>123456</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+  </formatdetails>
+</SQLSatement>

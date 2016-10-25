@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AE60266-2BE3-4499-A030-6D15178CF6AC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DBHelper</RootNamespace>
+    <AssemblyName>DBHelper</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.112.3.60, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\BusinessMethodBLL.cs" />
+    <Compile Include="BLL\DatabaseInfoBLL.cs" />
+    <Compile Include="BLL\InternalMethodBLL.cs" />
+    <Compile Include="BLL\MethodClassifyBLL.cs" />
+    <Compile Include="BLL\UserInfoBLL.cs" />
+    <Compile Include="Common\OpenBusinessMethodSubForm.cs" />
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodBindIM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodBindIM.Designer.cs">
+      <DependentUpon>BusinessMethodBindIM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodEdit.Designer.cs">
+      <DependentUpon>BusinessMethodEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodParameter.Designer.cs">
+      <DependentUpon>BusinessMethodParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodParameterRelations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodParameterRelations.Designer.cs">
+      <DependentUpon>BusinessMethodParameterRelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\Template\BusinessMethodSubFormTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\Template\BusinessMethodSubFormTemplate.Designer.cs">
+      <DependentUpon>BusinessMethodSubFormTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\BusinessMethodDao.cs" />
+    <Compile Include="WinForm\BusinessMethod\BusinessMethodList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\BusinessMethod\BusinessMethodList.Designer.cs">
+      <DependentUpon>BusinessMethodList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\DataGridViewCommonOperate.cs" />
+    <Compile Include="Common\EventManager.cs" />
+    <Compile Include="Common\ListControlOperater.cs" />
+    <Compile Include="Common\OpenInternalMethodSubForm.cs" />
+    <Compile Include="DAO\InternalMethodDao.cs" />
+    <Compile Include="DAO\MethodClassifyDao.cs" />
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodParameter.Designer.cs">
+      <DependentUpon>InternalMethodParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSQLSt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSQLSt.Designer.cs">
+      <DependentUpon>InternalMethodSQLSt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BusinessMethodModel.cs" />
+    <Compile Include="Model\BusinessMethod_InternalMethodsModel.cs" />
+    <Compile Include="Model\BusinessMethod_ParameterModel.cs" />
+    <Compile Include="Model\BusinessMethod_ParameterRelationsModel.cs" />
+    <Compile Include="Model\MethodParameterModel.cs" />
+    <Compile Include="Model\MethodStatementConditionalModel.cs" />
+    <Compile Include="Model\MethodStatementModel.cs" />
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSQL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSQL.Designer.cs">
+      <DependentUpon>InternalMethodSQL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodDDL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodDDL.Designer.cs">
+      <DependentUpon>InternalMethodDDL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodQuery.Designer.cs">
+      <DependentUpon>InternalMethodQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSP.Designer.cs">
+      <DependentUpon>InternalMethodSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\Template\InternalMethodStatementTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\Template\InternalMethodTemplete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Model\InternalMethodModel.cs" />
+    <Compile Include="WinForm\UserControl\MethodClassifyList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\UserControl\MethodClassifyList.Designer.cs">
+      <DependentUpon>MethodClassifyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\InternalMethodList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\InternalMethod\InternalMethodList.Designer.cs">
+      <DependentUpon>InternalMethodList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\DeveloperMgr\DeveloperMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\DeveloperMgr\DeveloperMgr.Designer.cs">
+      <DependentUpon>DeveloperMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MethodClassifyModel.cs" />
+    <Compile Include="WinForm\DeveloperMgr\ModifyPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\DeveloperMgr\ModifyPwd.Designer.cs">
+      <DependentUpon>ModifyPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\CommonForm\AddMethodClassify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\CommonForm\AddMethodClassify.Designer.cs">
+      <DependentUpon>AddMethodClassify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\CommonForm\ChooseDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\CommonForm\ChooseDatabase.Designer.cs">
+      <DependentUpon>ChooseDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\DBHelperMessage.cs" />
+    <Compile Include="Common\EnumManager.cs" />
+    <Compile Include="DAO\DAOModel\SQLSatement.cs" />
+    <Compile Include="DAO\DAOHelper\DaoXmlHelper.cs" />
+    <Compile Include="DAO\DAOHelper\SQLHelper.cs" />
+    <Compile Include="DAO\DatabaseInfoDao.cs" />
+    <Compile Include="DAO\UserInfoDao.cs" />
+    <Compile Include="Enum\DBHelperEnum.cs" />
+    <Compile Include="WinForm\CommonForm\Error.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\CommonForm\Error.Designer.cs">
+      <DependentUpon>Error.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ComboBoxItemModel.cs" />
+    <Compile Include="Model\DataBaseInfoModel.cs" />
+    <Compile Include="Model\UserInfoModel.cs" />
+    <Compile Include="WinForm\UserControl\DataBaseDetailInfoUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\UserControl\OracleDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\UserControl\OracleDetail.Designer.cs">
+      <DependentUpon>OracleDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinForm\UserControl\MSSQLDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinForm\UserControl\MSSQLDetail.Designer.cs">
+      <DependentUpon>MSSQLDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\CommonUtil.cs" />
+    <EmbeddedResource Include="WinForm\BusinessMethod\SubForm\BusinessMethodBindIM.resx">
+      <DependentUpon>BusinessMethodBindIM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\BusinessMethod\SubForm\BusinessMethodEdit.resx">
+      <DependentUpon>BusinessMethodEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\BusinessMethod\SubForm\BusinessMethodParameter.resx">
+      <DependentUpon>BusinessMethodParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\BusinessMethod\SubForm\BusinessMethodParameterRelations.resx">
+      <DependentUpon>BusinessMethodParameterRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\BusinessMethod\Template\BusinessMethodSubFormTemplate.resx">
+      <DependentUpon>BusinessMethodSubFormTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\BusinessMethod\BusinessMethodList.resx">
+      <DependentUpon>BusinessMethodList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\SubForm\InternalMethodParameter.resx">
+      <DependentUpon>InternalMethodParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\SubForm\InternalMethodSQLSt.resx">
+      <DependentUpon>InternalMethodSQLSt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\SubForm\InternalMethodDDL.resx">
+      <DependentUpon>InternalMethodDDL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\SubForm\InternalMethodQuery.resx">
+      <DependentUpon>InternalMethodQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\SubForm\InternalMethodSP.resx">
+      <DependentUpon>InternalMethodSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\SubForm\InternalMethodSQL.resx">
+      <DependentUpon>InternalMethodSQL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\Template\InternalMethodTemplete.resx">
+      <DependentUpon>InternalMethodTemplete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\UserControl\MethodClassifyList.resx">
+      <DependentUpon>MethodClassifyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\InternalMethod\InternalMethodList.resx">
+      <DependentUpon>InternalMethodList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\DeveloperMgr\DeveloperMgr.resx">
+      <DependentUpon>DeveloperMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\DeveloperMgr\ModifyPwd.resx">
+      <DependentUpon>ModifyPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\CommonForm\AddMethodClassify.resx">
+      <DependentUpon>AddMethodClassify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\CommonForm\ChooseDatabase.resx">
+      <DependentUpon>ChooseDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\CommonForm\Error.resx">
+      <DependentUpon>Error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="WinForm\UserControl\OracleDetail.resx">
+      <DependentUpon>OracleDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinForm\UserControl\MSSQLDetail.resx">
+      <DependentUpon>MSSQLDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAO\XML\BusinessMethodCodeNormal.xml" />
+    <Content Include="DAO\XML\BusinessMethodAllIMFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\BusinessMethodPMSaveFormat.xml" />
+    <Content Include="DAO\XML\BusinessMethodPRUpdateFormat.xml" />
+    <Content Include="DAO\XML\BusinessMethodIMDeleteParameter.xml" />
+    <Content Include="DAO\XML\BusinessMethodPRSaveFormat.xml" />
+    <Content Include="DAO\XML\BusinessMethodIMSelectedFormat.xml" />
+    <Content Include="DAO\XML\BusinessMethodQueryFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\BusinessMethodIMSaveFormat.xml" />
+    <Content Include="DAO\XML\DatabaseInfoChooseGetParameter.xml" />
+    <Content Include="DAO\XML\InternalMethodDDLSPFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\BusinessMethodListFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\BusinessMethodDeleteParameter.xml" />
+    <Content Include="DAO\XML\BusinessMethodSaveFormatSingle.xml" />
+    <Content Include="DAO\XML\BusinessMethodPMListFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodParameterMainFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\InternalMethodQueryFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodParameterSPFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\BusinessMethodPMUpdateFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodParameterUpdateFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodStatementConditionalDisplayFormat.xml" />
+    <Content Include="DAO\XML\MethodParameterSaveMainParameter.xml" />
+    <Content Include="DAO\XML\MethodStatementConditionalSaveParameterSingle.xml" />
+    <Content Include="DAO\XML\MethodParameterAllStatementFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodParameterListFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodParameterDeleteParameter.xml" />
+    <Content Include="DAO\XML\BusinessMethodIMMoveFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodStatementMoveFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodStatementDisplayFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\MethodStatementDeleteParameter.xml" />
+    <Content Include="DAO\XML\MethodStatementUpdateStatusFormat.xml" />
+    <Content Include="DAO\XML\MethodStatementUpdateStatementParameter.xml" />
+    <Content Include="DAO\XML\MethodStatementSaveMainFormatSingle.xml" />
+    <Content Include="DAO\XML\MethodStatementListFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\InternalMethodSaveParameterSingle.xml" />
+    <Content Include="DAO\XML\MethodClassifyListFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\UserInfoAddParameter.xml" />
+    <Content Include="DAO\XML\MethodClassifyDeleteFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\UserInfoEditFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\InternalMethodListFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\UserInfoListNormal.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\UserInfoModifyPwdParameter.xml" />
+    <Content Include="DAO\XML\MethodClassifyAddParameter.xml" />
+    <Content Include="DAO\XML\UserInfoLoginFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\DatabaseInfoAddParameter.xml" />
+    <Content Include="DAO\XML\DatabaseInfoChooseCheckSingle.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+SELECT MethodID, MethodName, MethodDesc, MethodType, FunctionType, 
+		   CreateUser, Convert(varchar(30),CreateDate,120) CreateDate
+FROM dbo.InternalMethod
+WHERE DatabaseID={0}
+		   AND ClassifyID={1}
+		   AND (MethodName LIKE '%{2}%' OR MethodDesc LIKE '%{2}%' OR MethodType LIKE '{2}%' OR FunctionType LIKE '{2}%' OR CreateUser='{2}')
+ORDER BY MethodID desc
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>0</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>2</paramtype> 
+  <sqlparames></sqlparames>
+  <formatdetails>
+    <formatinfo>
+      <key>0</key>
+      <desc>DatabaseID</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+    <formatinfo>
+      <key>1</key>
+      <desc>ClassifyID</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+	<formatinfo>
+      <key>2</key>
+      <desc>Keyword</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+  </formatdetails>
+</SQLSatement>

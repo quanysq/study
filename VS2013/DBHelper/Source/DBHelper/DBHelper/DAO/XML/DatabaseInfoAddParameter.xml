@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+DECLARE @DatabaseID INT
+BEGIN
+	SET xact_abort ON
+	BEGIN TRANSACTION
+  
+	UPDATE dbo.DatabaseInfo SET IsDefault=0 WHERE UserID=@userid;
+	
+	INSERT INTO dbo.DatabaseInfo (UserID, DBType, ConnectionName, ConnectionStr, IsDefault)
+	VALUES (@userid, @dbtype, @connectionname, @connectionstr, 1);
+	
+	SELECT @DatabaseID=ident_current('DatabaseInfo');
+	
+	INSERT INTO dbo.DatabaseDetailInfo (DatabaseID, DBHost, DBUser, DBPwd, Pooling, MinPoolSize, MaxPoolSize, ConnectionLifetime, Catalog, Port, Service_Name)
+	VALUES (@DatabaseID, @dbhost, @dbuser, @dbpwd, @pooling, @minpoolsize, @maxpoolsize, @connectionlifetime, @catalog, @port, @service_name);
+	
+	INSERT INTO dbo.MethodClassify (ClassifyName, DatabaseID, ClassifyType) VALUES ('Default', @DatabaseID, 1);
+	INSERT INTO dbo.MethodClassify (ClassifyName, DatabaseID, ClassifyType) VALUES ('Default', @DatabaseID, 2);
+  
+	if @@error != 0
+	begin
+		rollback transaction
+	end	
+	else
+	begin
+		commit transaction
+	end
+END
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>1</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>1</paramtype> 
+  <sqlparames>
+    <sqlparame>
+      <name>@userid</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@dbtype</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@connectionname</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@connectionstr</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@dbhost</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@dbuser</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@dbpwd</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@pooling</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@minpoolsize</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@maxpoolsize</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@connectionlifetime</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@catalog</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@port</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@service_name</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+  </sqlparames>
+  <formatdetails></formatdetails>
+</SQLSatement>

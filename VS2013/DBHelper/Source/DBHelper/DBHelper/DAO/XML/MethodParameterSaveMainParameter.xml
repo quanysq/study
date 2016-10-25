@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+BEGIN
+	merge into MethodParameter a 
+	using (
+		select @ParameterID ParameterID, @MethodID MethodID, @ParameterName ParameterName, 
+			   '' ParameterDesc, @ParameterDataType ParameterDataType, 
+			   @ParameterDirection ParameterDirection, 
+			   @ParameterValidateType ParameterValidateType, '' ValidateValue
+	) b
+	on (a.ParameterName = b.ParameterName and a.MethodID = b.MethodID)
+	when not matched then
+		insert (MethodID, ParameterName, ParameterDesc, ParameterDataType, ParameterDirection, ParameterValidateType, ValidateValue)
+		values (b.MethodID, b.ParameterName, b.ParameterDesc, b.ParameterDataType, b.ParameterDirection, b.ParameterValidateType, b.ValidateValue);
+END
+	]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>1</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>1</paramtype> 
+  <sqlparames>
+    <sqlparame>
+      <name>@ParameterID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@MethodID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@ParameterName</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@ParameterDataType</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@ParameterDirection</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@ParameterValidateType</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+  </sqlparames>
+  <formatdetails></formatdetails>
+</SQLSatement>

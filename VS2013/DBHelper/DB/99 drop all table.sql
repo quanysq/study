@@ -1,0 +1,13 @@
+DROP TABLE BusinessMethod_Code;
+DROP TABLE BusinessMethod_ParameterRelations;
+DROP TABLE BusinessMethod_Parameter;
+DROP TABLE BusinessMethod_InternalMethods;
+DROP TABLE BusinessMethod;
+DROP TABLE MethodParameter;
+DROP TABLE MethodStatementConditional;
+DROP TABLE MethodStatement;
+DROP TABLE InternalMethod;
+DROP TABLE MethodClassify;
+DROP TABLE DatabaseDetailInfo;
+DROP TABLE DatabaseInfo;
+DROP TABLE UserInfo;

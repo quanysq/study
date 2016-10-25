@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+SELECT a.BMCode, a.BMDesc, a.FunctionType, count(b.MethodID) MethodNum, a.CreateUser,
+		   CreateUser, Convert(varchar(30),CreateDate,120) CreateDate
+FROM dbo.BusinessMethod a LEFT JOIN BusinessMethod_InternalMethods b ON a.BMCode=b.BMCode
+WHERE a.DatabaseID={0}
+		   AND a.ClassifyID={1}
+		   AND (a.BMCode LIKE '{2}%' OR a.BMDesc LIKE '%{2}%' OR a.FunctionType='{2}' OR a.CreateUser='{2}')
+GROUP BY a.BMCode, a.BMDesc, a.FunctionType, a.CreateUser, a.CreateDate
+ORDER BY a.BMCode DESC
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>0</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>2</paramtype> 
+  <sqlparames></sqlparames>
+  <formatdetails>
+    <formatinfo>
+      <key>0</key>
+      <desc>DatabaseID</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+    <formatinfo>
+      <key>1</key>
+      <desc>ClassifyID</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+	<formatinfo>
+      <key>2</key>
+      <desc>Keyword</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+  </formatdetails>
+</SQLSatement>

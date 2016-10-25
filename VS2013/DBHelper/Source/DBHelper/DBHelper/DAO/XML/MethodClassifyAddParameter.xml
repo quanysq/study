@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+INSERT INTO dbo.MethodClassify (DatabaseID, ClassifyName, ClassifyType)
+VALUES (@databaseid, @classifyname, @classifytype)
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>1</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>1</paramtype> 
+  <sqlparames>
+    <sqlparame>
+      <name>@databaseid</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@classifyname</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@classifytype</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+  </sqlparames>
+  <formatdetails></formatdetails>
+</SQLSatement>

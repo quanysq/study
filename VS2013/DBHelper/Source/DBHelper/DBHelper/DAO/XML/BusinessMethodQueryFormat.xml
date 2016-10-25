@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+SELECT BMCode, BMDesc, FunctionType FROM dbo.BusinessMethod WHERE BMCode='{0}'
+    ]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>0</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>2</paramtype> 
+  <sqlparames></sqlparames>
+  <formatdetails>
+    <formatinfo>
+      <key>0</key>
+      <desc>BMCode</desc>
+      <mockdata>1</mockdata>
+      <realdata></realdata>
+    </formatinfo>
+  </formatdetails>
+</SQLSatement>

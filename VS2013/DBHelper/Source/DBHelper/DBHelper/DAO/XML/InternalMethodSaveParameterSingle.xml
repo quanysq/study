@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SQLSatement>
+  <sql>
+    <![CDATA[
+BEGIN
+	merge into InternalMethod a 
+	using (
+		select @MethodID MethodID, @DatabaseID DatabaseID, @ClassifyID ClassifyID, @MethodName MethodName, @MethodDesc MethodDesc, 
+			   @MethodType MethodType, @FunctionType FunctionType, @SuccessMsg SuccessMsg, @FailMsg FailMsg, 
+			   @Usercode CreateUser, getdate() CreateDate, @Usercode UpdateUser, getdate() UpdateDate, @UpdateReson UpdateReson 
+	) b
+	on a.MethodID = b.MethodID
+	when matched then 
+		update set 
+		  a.MethodName	=b.MethodName,
+		  a.MethodDesc	=b.MethodDesc, 
+		  a.MethodType	=b.MethodType, 
+		  a.FunctionType=b.FunctionType, 
+		  a.SuccessMsg	=b.SuccessMsg, 
+		  a.FailMsg		=b.FailMsg, 
+		  a.UpdateUser	=b.UpdateUser, 
+		  a.UpdateDate	=b.UpdateDate, 
+		  a.UpdateReson	=b.UpdateReson
+	when not matched then
+		insert (DatabaseID, ClassifyID, MethodName, MethodDesc, MethodType, FunctionType, SuccessMsg, FailMsg, CreateUser, CreateDate)
+		values (b.DatabaseID, b.ClassifyID, b.MethodName, b.MethodDesc, b.MethodType, b.FunctionType, b.SuccessMsg, b.FailMsg, b.CreateUser, b.CreateDate);
+	
+	if (@MethodID=0)
+	begin
+		SELECT @@IDENTITY AS MethodID
+	end
+	else
+	begin
+		SELECT @MethodID AS MethodID
+	end
+END
+	]]>
+  </sql>
+  <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
+  <operatetype>2</operatetype>
+  <!--paramtype: 0 Normal; 1 Parames; 2 Format-->
+  <paramtype>1</paramtype> 
+  <sqlparames>
+    <sqlparame>
+      <name>@MethodID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@DatabaseID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+    <sqlparame>
+      <name>@ClassifyID</name>
+      <dbtype>int</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@MethodName</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@MethodDesc</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@MethodType</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@FunctionType</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@SuccessMsg</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@FailMsg</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@Usercode</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+	<sqlparame>
+      <name>@UpdateReson</name>
+      <dbtype>string</dbtype>
+      <paramevalue></paramevalue>
+    </sqlparame>
+  </sqlparames>
+  <formatdetails></formatdetails>
+</SQLSatement>
