@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBHelper.Model
 {
-  public class InternalMethodXmlModel
+  public class XmlBusinessMethodModel
   {
   }
 }
