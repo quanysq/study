@@ -42,14 +42,14 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Enum\DBHelperEnum.cs" />
     <Compile Include="Model\BusinessMethodModel.cs" />
-    <Compile Include="Model\BusinessMethodXmlModel.cs" />
+    <Compile Include="Model\XmlBusinessMethodModel.cs" />
     <Compile Include="Model\BusinessMethod_InternalMethodsModel.cs" />
     <Compile Include="Model\BusinessMethod_ParameterModel.cs" />
     <Compile Include="Model\BusinessMethod_ParameterRelationsModel.cs" />
     <Compile Include="Model\ComboBoxItemModel.cs" />
     <Compile Include="Model\DataBaseInfoModel.cs" />
     <Compile Include="Model\InternalMethodModel.cs" />
-    <Compile Include="Model\InternalMethodXmlModel.cs" />
+    <Compile Include="Model\XmlInternalMethodModel.cs" />
     <Compile Include="Model\MethodClassifyModel.cs" />
     <Compile Include="Model\MethodParameterModel.cs" />
     <Compile Include="Model\MethodStatementConditionalModel.cs" />
