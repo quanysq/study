@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBHelper.Model
 {
-  class MethodClassifyModel
+  public class MethodClassifyModel
   {
     public int ClassifyID { get; set; }
     public int DatabaseID { get; set; }

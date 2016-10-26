@@ -116,13 +116,6 @@
     <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSQLSt.Designer.cs">
       <DependentUpon>InternalMethodSQLSt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\BusinessMethodModel.cs" />
-    <Compile Include="Model\BusinessMethod_InternalMethodsModel.cs" />
-    <Compile Include="Model\BusinessMethod_ParameterModel.cs" />
-    <Compile Include="Model\BusinessMethod_ParameterRelationsModel.cs" />
-    <Compile Include="Model\MethodParameterModel.cs" />
-    <Compile Include="Model\MethodStatementConditionalModel.cs" />
-    <Compile Include="Model\MethodStatementModel.cs" />
     <Compile Include="WinForm\InternalMethod\SubForm\InternalMethodSQL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,7 +146,6 @@
     <Compile Include="WinForm\InternalMethod\Template\InternalMethodTemplete.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Model\InternalMethodModel.cs" />
     <Compile Include="WinForm\UserControl\MethodClassifyList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -172,7 +164,6 @@
     <Compile Include="WinForm\DeveloperMgr\DeveloperMgr.Designer.cs">
       <DependentUpon>DeveloperMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\MethodClassifyModel.cs" />
     <Compile Include="WinForm\DeveloperMgr\ModifyPwd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,7 +190,6 @@
     <Compile Include="DAO\DAOHelper\SQLHelper.cs" />
     <Compile Include="DAO\DatabaseInfoDao.cs" />
     <Compile Include="DAO\UserInfoDao.cs" />
-    <Compile Include="Enum\DBHelperEnum.cs" />
     <Compile Include="WinForm\CommonForm\Error.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,9 +208,6 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\ComboBoxItemModel.cs" />
-    <Compile Include="Model\DataBaseInfoModel.cs" />
-    <Compile Include="Model\UserInfoModel.cs" />
     <Compile Include="WinForm\UserControl\DataBaseDetailInfoUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -335,7 +322,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Enum\" />
     <Folder Include="Interface\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DAO\XML\BusinessMethodCodeNormal.xml" />
@@ -428,6 +417,12 @@
     </Content>
     <Content Include="DAO\XML\DatabaseInfoAddParameter.xml" />
     <Content Include="DAO\XML\DatabaseInfoChooseCheckSingle.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBHelper.Generate\DBHelper.Generate.csproj">
+      <Project>{598cf13d-4818-4cf7-b253-c4f4c33d14f7}</Project>
+      <Name>DBHelper.Generate</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

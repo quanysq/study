@@ -79,6 +79,7 @@
     <Compile Include="OtherMain\Class1.cs" />
     <Compile Include="OtherMain\Class2.cs" />
     <Compile Include="OtherMain\Class3.cs" />
+    <Compile Include="OtherMain\Class4.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

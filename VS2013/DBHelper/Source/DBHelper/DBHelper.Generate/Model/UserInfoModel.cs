@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBHelper.Model
 {
-  class UserInfoModel
+  public class UserInfoModel
   {
     public int UserID { get; set; }
     public string Usercode { get; set; }

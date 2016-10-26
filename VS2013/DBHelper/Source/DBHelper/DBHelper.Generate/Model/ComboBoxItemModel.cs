@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBHelper.Model
 {
-  class ComboBoxItemModel
+  public class ComboBoxItemModel
   {
     public string Key { get; set; }
     public object Value { get; set; }
