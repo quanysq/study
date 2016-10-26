@@ -3,6 +3,7 @@
 	 Class1: Conditional
 	 Class2: List排序
 	 Class3: 比较两个相同类型的对象的差异
+	 Class4: 模拟拷贝占用文件三次
 001. StreamWriter/StreamRead/FileStream
 002. 文件路径
 003. BinaryFormatter序列化、反序列化

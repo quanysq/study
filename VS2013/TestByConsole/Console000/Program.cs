@@ -16,10 +16,13 @@ namespace Console000
       //Class1.Execute(args);
       //Class2.Execute(args);
       //Class3.Execute(args);
-      Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
-
+      //Console.WriteLine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase);
+      Class4.Execute(args);
+      
       Console.ReadKey();
     }
+
+    
   }
 
 
