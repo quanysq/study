@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DBHelper.Generate
+namespace DBHelper.Execute
 {
     public class Class1
     {

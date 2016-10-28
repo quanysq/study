@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{598CF13D-4818-4CF7-B253-C4F4C33D14F7}</ProjectGuid>
+    <ProjectGuid>{FCFCA760-EF14-401B-B6AE-1491F21205C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DBHelper</RootNamespace>
-    <AssemblyName>DBHelper.Generate</AssemblyName>
+    <RootNamespace>DBHelper.Execute</RootNamespace>
+    <AssemblyName>DBHelper.Execute</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,29 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Const\Common.cs" />
-    <Compile Include="XmlHelper.cs" />
-    <Compile Include="Enum\DBHelperEnum.cs" />
-    <Compile Include="Model\BusinessMethodModel.cs" />
-    <Compile Include="XmlModel\XmlBusinessMethodModel.cs" />
-    <Compile Include="Model\BusinessMethod_InternalMethodsModel.cs" />
-    <Compile Include="Model\BusinessMethod_ParameterModel.cs" />
-    <Compile Include="Model\BusinessMethod_ParameterRelationsModel.cs" />
-    <Compile Include="Model\ComboBoxItemModel.cs" />
-    <Compile Include="Model\DataBaseInfoModel.cs" />
-    <Compile Include="Model\InternalMethodModel.cs" />
-    <Compile Include="XmlModel\XmlInternalMethodModel.cs" />
-    <Compile Include="Model\MethodClassifyModel.cs" />
-    <Compile Include="Model\MethodParameterModel.cs" />
-    <Compile Include="Model\MethodStatementConditionalModel.cs" />
-    <Compile Include="Model\MethodStatementModel.cs" />
-    <Compile Include="Model\UserInfoModel.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -15,7 +15,8 @@ namespace DBHelper.Model
     public string ParameterDataType { get; set; }
     public string ParameterDirection { get; set; }
     public string ParameterValidateType { get; set; }
-    public string ValidateValue { get; set; }
+    public string ConstValue { get; set; }
+    public string DefaultValue { get; set; }
 
   }
 }

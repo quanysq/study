@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<XmlInternalMethodModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <MethodID>1</MethodID>
+  <ConnectionStr>ABC</ConnectionStr>
+  <MethodName>BCD</MethodName>
+  <MethodDesc>BCD</MethodDesc>
+  <MethodType>SQLStatement</MethodType>
+  <FunctionType>Select_Paging</FunctionType>
+  <SuccessMsg />
+  <FailMsg />
+  <MethodStatementList>
+    <XmlMethodStatementModel>
+      <OrderID>1</OrderID>
+      <Tag>AS1</Tag>
+      <Statement>AAAAAAAAA</Statement>
+      <IsOrderby>false</IsOrderby>
+      <HasConditional>true</HasConditional>
+      <StatementConditionalList>
+        <XmlMethodStatementConditionalModel>
+          <ConditionType>AD1</ConditionType>
+          <ParameterName>ABCD</ParameterName>
+          <ExpectBehavior>Equal</ExpectBehavior>
+          <CompareValue />
+        </XmlMethodStatementConditionalModel>
+        <XmlMethodStatementConditionalModel>
+          <ConditionType>OR</ConditionType>
+          <ParameterName>BCDE</ParameterName>
+          <ExpectBehavior>GreaterThan_Equal</ExpectBehavior>
+          <CompareValue>11</CompareValue>
+        </XmlMethodStatementConditionalModel>
+      </StatementConditionalList>
+    </XmlMethodStatementModel>
+    <XmlMethodStatementModel>
+      <OrderID>2</OrderID>
+      <Tag>AS2</Tag>
+      <Statement>BBBBBBB</Statement>
+      <IsOrderby>false</IsOrderby>
+      <HasConditional>false</HasConditional>
+      <StatementConditionalList />
+    </XmlMethodStatementModel>
+  </MethodStatementList>
+  <MethodParameterList>
+    <XmlMethodParameterModel>
+      <ParameterName>A1</ParameterName>
+      <ParameterDesc>ABCDE#</ParameterDesc>
+      <ParameterDataType>Varchar</ParameterDataType>
+      <ParameterDirection>In</ParameterDirection>
+      <ParameterValidateType>Required</ParameterValidateType>
+      <ValidateValue />
+    </XmlMethodParameterModel>
+    <XmlMethodParameterModel>
+      <ParameterName>A2</ParameterName>
+      <ParameterDesc>ABCDES</ParameterDesc>
+      <ParameterDataType>Nvarchar</ParameterDataType>
+      <ParameterDirection>In</ParameterDirection>
+      <ParameterValidateType>InList</ParameterValidateType>
+      <ValidateValue>1,100</ValidateValue>
+    </XmlMethodParameterModel>
+  </MethodParameterList>
+</XmlInternalMethodModel>
