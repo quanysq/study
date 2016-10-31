@@ -20,6 +20,7 @@ namespace DBHelper.Generate.Tests
     {
       XmlInternalMethodModel XIMM = new XmlInternalMethodModel();
       XIMM.MethodID = 1;
+      XIMM.DBType = DBType.MsSqlServer;
       XIMM.ConnectionStr = "ABC";
       XIMM.MethodName = "BCD";
       XIMM.MethodDesc = "BCD";

@@ -12,6 +12,7 @@ namespace DBHelper.Generate
     public XmlInternalMethodModel() { }
 
     public int MethodID { get; set; }
+    public DBType DBType { get; set; }
     public string ConnectionStr { get; set; }
     public string MethodName { get; set; }
     public string MethodDesc { get; set; }

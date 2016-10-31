@@ -10,6 +10,7 @@ namespace DBHelper.Generate
   public class XmlBusinessMethodModel
   {
     public string BMCode { get; set; }
+    public DBType DBType { get; set; }
     public string ConnectionStr { get; set; }
     public string BMDesc { get; set; }
     public FunctionType FunctionType { get; set; }

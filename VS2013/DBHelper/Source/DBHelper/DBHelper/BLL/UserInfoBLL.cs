@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using DBHelper.DAO;
 using DBHelper.Model;
 using DBHelper.Util;
+using DBHelper.Enums;
+using DBHelper.Common;
 
 namespace DBHelper.BLL
 {
@@ -90,6 +92,7 @@ namespace DBHelper.BLL
       if (dt.Rows.Count == 0) return;
       Common.Common.OperateDbID         = CommonUtil.TranNull<int>(dt.Rows[0]["DatabaseID"]);
       Common.Common.OperateDbConnection = CommonUtil.TranNull<string>(dt.Rows[0]["ConnectionStr"]);
+      Common.Common.OperateDbType       = EnumManager<DBType>.EnumName2Enum(dt.Rows[0]["DBType"]);
     }
 
     public DataTable UserInfoList()

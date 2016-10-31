@@ -2,7 +2,7 @@
 <SQLSatement>
   <sql>
     <![CDATA[
-SELECT ClassifyID, MethodName, MethodDesc, MethodType, FunctionType, SuccessMsg, FailMsg 
+SELECT MethodName, MethodDesc, MethodType, FunctionType, SuccessMsg, FailMsg 
 FROM InternalMethod 
 WHERE MethodID = {0}
     ]]>

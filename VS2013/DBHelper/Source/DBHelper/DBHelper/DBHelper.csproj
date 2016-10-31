@@ -61,6 +61,9 @@
     <Compile Include="BLL\MethodClassifyBLL.cs" />
     <Compile Include="BLL\UserInfoBLL.cs" />
     <Compile Include="Common\OpenBusinessMethodSubForm.cs" />
+    <Compile Include="DAO\OperationDB\OracleDAO.cs" />
+    <Compile Include="DAO\OperationDB\SQLDAO.cs" />
+    <Compile Include="Interface\IOperationDBCommon.cs" />
     <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodBindIM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,9 +324,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DAO\XML\BusinessMethodCodeNormal.xml" />
     <Content Include="DAO\XML\BusinessMethodAllIMFormat.xml">

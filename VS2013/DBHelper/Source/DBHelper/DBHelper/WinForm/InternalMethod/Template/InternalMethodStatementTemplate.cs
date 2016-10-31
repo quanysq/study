@@ -8,6 +8,8 @@ using DBHelper.Enums;
 using DBHelper.Model;
 using System.Text.RegularExpressions;
 using DBHelper.BLL;
+using DBHelper.Interface;
+using DBHelper.DAO;
 
 namespace DBHelper
 {
@@ -30,7 +32,7 @@ namespace DBHelper
     private static List<string> ExtractParamerFromSqlStatement(string strsql)
     { 
       List<string> ParamerList = new List<string>();
-      string pattern           = @"@([A-Za-z0-9_-]+)";
+      string pattern           = string.Format(@"{0}([A-Za-z0-9_-]+)", (Common.Common.OperateDbType == DBType.MsSqlServer ? "@" : ":"));
       Regex reg                = new Regex(pattern);
       var MatcheList           = reg.Matches(strsql);
       foreach (Match item in MatcheList)
@@ -42,8 +44,23 @@ namespace DBHelper
 
     private static List<string> ExtractParamerFromStoredProcedure(string StoredProcedureName)
     { 
-      InternalMethodBLL internalmethodbll = new InternalMethodBLL();
-      List<string> ParamerList            = internalmethodbll.MethodParameterSP(StoredProcedureName);
+      //InternalMethodBLL internalmethodbll = new InternalMethodBLL();
+      //List<string> ParamerList            = internalmethodbll.MethodParameterSP(StoredProcedureName);
+      //return ParamerList;
+      if (string.IsNullOrWhiteSpace(Common.Common.OperateDbConnection))
+      {
+        throw new NullReferenceException("[Common.OperateDbConnection]是空值！");
+      }
+      IOperationDBCommon Opc = null;
+      if (Common.Common.OperateDbType == DBType.MsSqlServer)
+      {
+        Opc = new SQLDAO();
+      }
+      else
+      {
+        Opc = new OracleDAO();
+      }
+      List<string> ParamerList = Opc.ExtractParamerFromStoredProcedure(StoredProcedureName);
       return ParamerList;
     }
   }

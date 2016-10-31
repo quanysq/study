@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <XmlInternalMethodModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <MethodID>1</MethodID>
+  <DBType>MsSqlServer</DBType>
   <ConnectionStr>ABC</ConnectionStr>
   <MethodName>BCD</MethodName>
   <MethodDesc>BCD</MethodDesc>
