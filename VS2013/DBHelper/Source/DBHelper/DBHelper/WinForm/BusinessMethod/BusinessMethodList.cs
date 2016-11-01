@@ -61,12 +61,45 @@ namespace DBHelper
 
     private void btnMove_Click(object sender, EventArgs e)
     {
-      //TODO
+      List<string> MethodIDByCheckedList = DataGridViewCommonOperate.FindByChecked<string>(gvBusinessMethod, "BMCode");
+      if (MethodIDByCheckedList.Count == 0)
+      {
+        DBHelperMessage.Alert("请先选择业务方法！");
+        return;
+      }
+      MethodClassifyMove MethodClassifyMoveFrm = new MethodClassifyMove();
+      MethodClassifyMoveFrm.ClassifyType       = 2;
+      MethodClassifyMoveFrm.MethodListJoin     = string.Format("'{0}'", string.Join("','", MethodIDByCheckedList));
+      MethodClassifyMoveFrm.ShowDialog();
+      if (MethodClassifyMoveFrm.DialogResult == DialogResult.OK)
+      {
+        BusinessMethodListLoad();
+        DBHelperMessage.Info("选择的业务方法已经被移动指定的分类中！");
+      }
     }
 
     private void btnGenerateXml_Click(object sender, EventArgs e)
     {
-      //TODO
+      try
+      {
+        List<string> MethodIDByCheckedList = DataGridViewCommonOperate.FindByChecked<string>(gvBusinessMethod, "BMCode");
+        if (MethodIDByCheckedList.Count == 0)
+        {
+          DBHelperMessage.Alert("请先选择业务方法！");
+          return;
+        }
+
+        GenerateXml generatexml = new GenerateXml();
+        foreach (string BMCode in MethodIDByCheckedList)
+        {
+          generatexml.GenerateBusinessMethod(BMCode);
+        }
+        DBHelperMessage.Info("选择的业务方法已经生成了XML文件！");
+      }
+      catch (Exception ex)
+      {
+        DBHelperMessage.Error(ex);
+      }
     }
 
     private void BusinessMethodList_FormClosed(object sender, FormClosedEventArgs e)

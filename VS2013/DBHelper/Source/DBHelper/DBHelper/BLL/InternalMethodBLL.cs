@@ -287,5 +287,26 @@ namespace DBHelper.BLL
       MethodType                          = EnumManager<MethodType>.EnumName2Enum(dt.Rows[0]["MethodType"]);
       FunctionType                        = EnumManager<FunctionType>.EnumName2Enum(dt.Rows[0]["FunctionType"]);
     }
+
+    public bool InternalMethodMoveClassify(string ClassifyID, string MethodIDListJoin)
+    {
+      try
+      {
+        InternalMethodDao internalmethoddao = new InternalMethodDao();
+        int result                          = internalmethoddao.InternalMethodMoveClassify(ClassifyID, MethodIDListJoin);
+        if (result == 0)
+        {
+          return false;
+        }
+        else
+        {
+          return true;
+        }
+      }
+      catch
+      {
+        throw;
+      }
+    }
   }
 }

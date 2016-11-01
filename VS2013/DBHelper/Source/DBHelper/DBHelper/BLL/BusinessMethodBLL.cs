@@ -235,5 +235,26 @@ namespace DBHelper.BLL
         throw;
       }
     }
+
+    public bool BusinessMethodMoveClassify(string ClassifyID, string BMCodeListJoin)
+    {
+      try
+      {
+        BusinessMethodDao businessmethoddao = new BusinessMethodDao();
+        int result                          = businessmethoddao.BusinessMethodMoveClassify(ClassifyID, BMCodeListJoin);
+        if (result == 0)
+        {
+          return false;
+        }
+        else
+        {
+          return true;
+        }
+      }
+      catch
+      {
+        throw;
+      }
+    }
   }
 }

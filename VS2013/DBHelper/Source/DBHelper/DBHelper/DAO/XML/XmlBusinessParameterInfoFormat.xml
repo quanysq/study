@@ -2,10 +2,10 @@
 <SQLSatement>
   <sql>
     <![CDATA[
-SELECT StatementID, OrderID, Tag, Statement, IsOrderby, HasConditional 
-FROM dbo.MethodStatement 
-WHERE MethodID={0} 
-ORDER BY OrderID
+SELECT ParameterName, ParameterDesc, ParameterDataType, ParameterDirection, 
+		    ParameterValidateType, ConstValue, DefaultValue
+FROM BusinessMethod_Parameter
+WHERE BMCode='{0}'
     ]]>
   </sql>
   <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->
@@ -16,7 +16,7 @@ ORDER BY OrderID
   <formatdetails>
     <formatinfo>
       <key>0</key>
-      <desc>MethodID</desc>
+      <desc>BMCode</desc>
       <mockdata>1</mockdata>
       <realdata></realdata>
     </formatinfo>

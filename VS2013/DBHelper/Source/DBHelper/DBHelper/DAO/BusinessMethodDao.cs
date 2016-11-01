@@ -223,5 +223,23 @@ namespace DBHelper.DAO
         throw;
       }
     }
+
+    public int BusinessMethodMoveClassify(string ClassifyID, string BMCodeListJoin)
+    {
+      try
+      {
+        string[] PramerValues = 
+        { 
+          ClassifyID,
+          BMCodeListJoin
+        };
+        int result = DaoXmlHelper.ExecuteSQLSatement<int>("BusinessMethodMoveClassifyFormat.xml", PramerValues, ParameType.Format);
+        return result;
+      }
+      catch
+      {
+        throw;
+      }
+    }
   }
 }

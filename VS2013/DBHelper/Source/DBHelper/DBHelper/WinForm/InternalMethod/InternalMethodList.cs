@@ -100,12 +100,45 @@ namespace DBHelper
 
     private void btnMove_Click(object sender, EventArgs e)
     {
-      //TODO
+      List<int> MethodIDByCheckedList = DataGridViewCommonOperate.FindByChecked<int>(gvInternalMethod, "MethodID");
+      if (MethodIDByCheckedList.Count == 0)
+      {
+        DBHelperMessage.Alert("请先选择元素方法！");
+        return;
+      }
+      MethodClassifyMove MethodClassifyMoveFrm = new MethodClassifyMove();
+      MethodClassifyMoveFrm.ClassifyType       = 1;
+      MethodClassifyMoveFrm.MethodListJoin     = string.Join(",", MethodIDByCheckedList);
+      MethodClassifyMoveFrm.ShowDialog();
+      if (MethodClassifyMoveFrm.DialogResult == DialogResult.OK)
+      {
+        InternalMethodListLoad();
+        DBHelperMessage.Info("选择的元素方法已经被移动指定的分类中！");
+      }
     }
 
     private void btnGenerateXml_Click(object sender, EventArgs e)
     {
-      //TODO
+      try
+      {
+        List<int> MethodIDByCheckedList = DataGridViewCommonOperate.FindByChecked<int>(gvInternalMethod, "MethodID");
+        if (MethodIDByCheckedList.Count == 0)
+        {
+          DBHelperMessage.Alert("请先选择元素方法！");
+          return;
+        }
+
+        GenerateXml generatexml = new GenerateXml();
+        foreach (int MethodID in MethodIDByCheckedList)
+        {
+          generatexml.GenerateInternalMothod(MethodID);
+        }
+        DBHelperMessage.Info("选择的元素方法已经生成了XML文件！");
+      }
+      catch (Exception ex)
+      {
+        DBHelperMessage.Error(ex);
+      }
     }
   }
 }

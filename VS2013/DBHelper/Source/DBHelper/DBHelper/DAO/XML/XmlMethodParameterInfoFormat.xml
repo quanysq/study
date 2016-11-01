@@ -2,10 +2,9 @@
 <SQLSatement>
   <sql>
     <![CDATA[
-SELECT StatementID, OrderID, Tag, Statement, IsOrderby, HasConditional 
-FROM dbo.MethodStatement 
-WHERE MethodID={0} 
-ORDER BY OrderID
+SELECT ParameterName, ParameterDesc, ParameterDataType, ParameterDirection, ParameterValidateType, ValidateValue
+FROM dbo.MethodParameter
+WHERE MethodID={0}
     ]]>
   </sql>
   <!--operatetype: 0 Query(multi-records); 1 DDL(insert update etc); 2 Single(single record)-->

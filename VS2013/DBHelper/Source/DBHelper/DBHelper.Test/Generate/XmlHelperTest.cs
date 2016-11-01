@@ -7,6 +7,7 @@ using DBHelper.Generate;
 using DBHelper.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
+using DBHelper.Util;
 
 namespace DBHelper.Generate.Tests
 {
@@ -36,19 +37,19 @@ namespace DBHelper.Generate.Tests
       XMSM1.OrderID = 1;
       XMSM1.Tag = "AS1";
       XMSM1.Statement = "AAAAAAAAA";
-      XMSM1.IsOrderby = false;
-      XMSM1.HasConditional = true;
+      XMSM1.IsOrderby = CommonUtil.TranNull<bool>(0);
+      XMSM1.HasConditional = CommonUtil.TranNull<bool>(1);
       XMSM1.StatementConditionalList = new List<XmlMethodStatementConditionalModel>();
 
       XmlMethodStatementConditionalModel XMSCM1 = new XmlMethodStatementConditionalModel();
-      XMSCM1.ConditionType = "AD1";
+      XMSCM1.ConditionType = ConditionType.And;
       XMSCM1.ParameterName = "ABCD";
       XMSCM1.ExpectBehavior = BehaviorType.Equal;
       XMSCM1.CompareValue = "";
       XMSM1.StatementConditionalList.Add(XMSCM1);
 
       XmlMethodStatementConditionalModel XMSCM2 = new XmlMethodStatementConditionalModel();
-      XMSCM2.ConditionType = "OR";
+      XMSCM2.ConditionType = ConditionType.Or;
       XMSCM2.ParameterName = "BCDE";
       XMSCM2.ExpectBehavior = BehaviorType.GreaterThan_Equal;
       XMSCM2.CompareValue = "11";
@@ -99,5 +100,57 @@ namespace DBHelper.Generate.Tests
       var val = XmlHelper.DeSerialize<XmlInternalMethodModel>(XmlFilePath);
       Assert.IsTrue(val != null);
     }
+
+    [TestMethod()]
+    public void SerializeForBusinessMethodTest()
+    {
+      XmlBusinessMethodModel XBMM = new XmlBusinessMethodModel();
+      XBMM.BMCode = "A00001";
+      XBMM.DBType = DBType.MsSqlServer;
+      XBMM.ConnectionStr = "ABABABAB";
+      XBMM.BMDesc = "AABBCCDDEEFF";
+      XBMM.FunctionType = FunctionType.Select_Paging;
+      XBMM.InternalMethodList = new List<XmlBusinessInternalMethodModel>();
+      XBMM.BusinessParameterList = new List<XmlBusinessParameterModel>();
+
+      #region InternalMethodList
+      XmlBusinessInternalMethodModel XBIMM = new XmlBusinessInternalMethodModel();
+      XBIMM.MethodOrder = 1;
+      XBIMM.MethodID = 1;
+      XBIMM.ParameterRelationList = new List<XmlParameterRelationModel>();
+
+      XmlParameterRelationModel XPRM = new XmlParameterRelationModel();
+      XPRM.BMParameterName = "A";
+      XPRM.MethodParameterName = "B";
+      XBIMM.ParameterRelationList.Add(XPRM);
+
+      XBMM.InternalMethodList.Add(XBIMM);
+      #endregion
+
+      #region BusinessParameterList
+      XmlBusinessParameterModel XBPM = new XmlBusinessParameterModel();
+      XBPM.ParameterName = "AAA";
+      XBPM.ParameterDesc = "BBB";
+      XBPM.ParameterDataType = ParameterDataType.Int;
+      XBPM.ParameterDirection = ParameterDirection.InOut;
+      XBPM.ParameterValidateType = ParameterValidateType.LessThan;
+      XBPM.ConstValue = "1";
+      XBPM.DefaultValue = "";
+
+      XBMM.BusinessParameterList.Add(XBPM);
+      #endregion
+
+      XmlHelper.Serialize<XmlBusinessMethodModel>(XBMM, XmlFilePath);
+
+      Assert.IsTrue(File.Exists(XmlFilePath));
+    }
+
+    [TestMethod()]
+    public void DeSerializeForBusinessMethodTest()
+    {
+      var val = XmlHelper.DeSerialize<XmlBusinessMethodModel>(XmlFilePath);
+      Assert.IsTrue(val != null);
+    }
+
   }
 }

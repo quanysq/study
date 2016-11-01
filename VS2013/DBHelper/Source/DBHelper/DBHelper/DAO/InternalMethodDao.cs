@@ -259,5 +259,23 @@ namespace DBHelper.DAO
       DataTable dt = DaoXmlHelper.ExecuteSQLSatement<DataTable>("MethodParameterMainFormat.xml", PramerValues, ParameType.Format);
       return dt;
     }
+
+    public int InternalMethodMoveClassify(string ClassifyID, string MethodIDListJoin)
+    {
+      try
+      {
+        string[] PramerValues = 
+        { 
+          ClassifyID,
+          MethodIDListJoin
+        };
+        int result = DaoXmlHelper.ExecuteSQLSatement<int>("InternalMethodMoveClassifyFormat.xml", PramerValues, ParameType.Format);
+        return result;
+      }
+      catch
+      {
+        throw;
+      }
+    }
   }
 }

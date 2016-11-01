@@ -21,6 +21,7 @@ namespace DBHelper.Generate
 
   public class XmlBusinessInternalMethodModel
   {
+    public int MethodOrder { get; set; }
     public int MethodID { get; set; }
     public List<XmlParameterRelationModel> ParameterRelationList { get; set; }
   }

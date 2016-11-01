@@ -102,5 +102,20 @@ namespace DBHelper.Common
         }
       }
     }
+
+    public static List<T> FindByChecked<T>(DataGridView gv, string ValueColumnName)
+    {
+      List<T> ValueByCheckedList = new List<T>();
+      for (int i = 0; i < gv.Rows.Count; i++)
+      {
+        bool isChecked = CommonUtil.TranNull<bool>(gv.Rows[i].Cells[0].EditedFormattedValue);
+        if (isChecked)
+        {
+          T t = GetIdentilyVal<T>(gv, i, ValueColumnName);
+          ValueByCheckedList.Add(t);
+        }
+      }
+      return ValueByCheckedList;
+    }
   }
 }

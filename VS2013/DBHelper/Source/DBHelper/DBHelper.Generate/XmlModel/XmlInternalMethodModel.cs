@@ -36,7 +36,7 @@ namespace DBHelper.Generate
 
   public class XmlMethodStatementConditionalModel
   {
-    public string ConditionType { get; set; }
+    public ConditionType ConditionType { get; set; }
     public string ParameterName { get; set; }
     public BehaviorType ExpectBehavior { get; set; }
     public string CompareValue { get; set; }

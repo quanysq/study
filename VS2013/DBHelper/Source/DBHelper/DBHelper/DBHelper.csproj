@@ -60,10 +60,22 @@
     <Compile Include="BLL\InternalMethodBLL.cs" />
     <Compile Include="BLL\MethodClassifyBLL.cs" />
     <Compile Include="BLL\UserInfoBLL.cs" />
+    <Compile Include="BLL\XmlBusinessMethodBLL.cs" />
+    <Compile Include="BLL\XmlInternalMothodBLL.cs" />
+    <Compile Include="Common\GenerateXml.cs" />
     <Compile Include="Common\OpenBusinessMethodSubForm.cs" />
     <Compile Include="DAO\OperationDB\OracleDAO.cs" />
     <Compile Include="DAO\OperationDB\SQLDAO.cs" />
+    <Compile Include="DAO\XmlBusinessMethodDao.cs" />
+    <Compile Include="DAO\XmlInternalMothodDao.cs" />
+    <Compile Include="Interface\IMoveClassify.cs" />
     <Compile Include="Interface\IOperationDBCommon.cs" />
+    <Compile Include="WinForm\CommonForm\MethodClassifyMove.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinForm\CommonForm\MethodClassifyMove.Designer.cs">
+      <DependentUpon>MethodClassifyMove.cs</DependentUpon>
+    </Compile>
     <Compile Include="WinForm\BusinessMethod\SubForm\BusinessMethodBindIM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,6 +241,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CommonUtil.cs" />
+    <EmbeddedResource Include="WinForm\CommonForm\MethodClassifyMove.resx">
+      <DependentUpon>MethodClassifyMove.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WinForm\BusinessMethod\SubForm\BusinessMethodBindIM.resx">
       <DependentUpon>BusinessMethodBindIM.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,16 +345,42 @@
     <Content Include="DAO\XML\BusinessMethodAllIMFormat.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DAO\XML\BusinessMethodMoveClassifyFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\InternalMethodMoveClassifyFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\XmlBusinessParameterInfoFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\XmlBusinessParameterRelationInfoFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\XmlBusinessInternalMethodInfoFormat.xml" />
     <Content Include="DAO\XML\BusinessMethodPMSaveFormat.xml" />
     <Content Include="DAO\XML\BusinessMethodPRUpdateFormat.xml" />
     <Content Include="DAO\XML\BusinessMethodIMDeleteParameter.xml" />
     <Content Include="DAO\XML\BusinessMethodPRSaveFormat.xml" />
     <Content Include="DAO\XML\BusinessMethodIMSelectedFormat.xml" />
+    <Content Include="DAO\XML\XmlBusinessMethodBaseInfoFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DAO\XML\BusinessMethodQueryFormat.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DAO\XML\BusinessMethodIMSaveFormat.xml" />
     <Content Include="DAO\XML\DatabaseInfoChooseGetParameter.xml" />
+    <Content Include="DAO\XML\XmlMethodParameterInfoFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\XmlMethodStatementConditionalInfoFormat.xml" />
+    <Content Include="DAO\XML\XmlMethodStatementInfoFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DAO\XML\XmlInternalMethodBaseInfoFormat.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DAO\XML\InternalMethodDDLSPFormat.xml">
       <SubType>Designer</SubType>
     </Content>
