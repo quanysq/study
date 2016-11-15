@@ -141,7 +141,7 @@ namespace Console014
       －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
       XmlAttribute                    [XmlAttribute] 加到属性上           
       －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-      InnerText                       [InnerText] 加到属性上              一个类型只能使用一次
+      InnerText                       [XmlText] 加到属性上               一个类型只能使用一次
       －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
       节点重命名                       根节点：[XmlType("testClass")] 
                                       元素节点：[XmlElement("name")] 

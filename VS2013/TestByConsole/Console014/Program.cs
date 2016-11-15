@@ -17,9 +17,10 @@ namespace Console014
     {
       //C1.Execute();     //二进制
       //C2.Execute();     //SOAP
-      C3.Execute();     //XML
+      //C3.Execute();     //XML
       //C4.Execute();     //JSON(DataContractJsonSerializer)
       //C5.Execute();     //JSON(Newtonsoft.Json)
+      C6.Execute();     //XML
     }
   }
 
