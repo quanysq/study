@@ -15,9 +15,9 @@ namespace Console023
     static void Main(string[] args)
     {
       //C1.Execute();     //单线程
+      //C2.Execute();     //多线程
+      C3.Execute();       //Task
       
-      C2.Execute();     //多线程
-
       Console.ReadKey();
     }
   }
