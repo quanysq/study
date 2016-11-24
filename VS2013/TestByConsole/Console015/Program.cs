@@ -36,8 +36,18 @@ namespace Console015
       //Class3.ReadLocalCert();
       //Class4.AccessHttps();
 
-      string s = "E0JJRErAmEw=";
-      Console.WriteLine(EncryptUtil.SafeDecode(s));
+      //string s = "E0JJRErAmEw=";
+      //Console.WriteLine(EncryptUtil.SafeDecode(s));
+
+      Class5.Execute();
+
+      //Console.WriteLine("[{0}] Downloading...", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+      //Task.Run(async () =>
+      //{
+      //  await Class5.HttpGetForLargeFileInRightWay();
+
+      //  Console.WriteLine("[{0}] Downloaded.", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+      //});
 
       Console.ReadKey();
     }

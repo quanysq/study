@@ -24,6 +24,7 @@
 	 EncryptUtil: 加密
 	 Class3: 获取本地证书信息
 	 Class4: 通过证书访问Https
+	 Class4: 下载文件
 016. IIS and ApplicationPool
 017. 判断文件文件的编码
 018. 面向切面编程（AOP）[PostSharp]
