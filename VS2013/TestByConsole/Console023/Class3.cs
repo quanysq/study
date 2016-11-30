@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Console023
 {
+  /// <summary>
+  /// 取消任务
+  /// </summary>
   class C3
   {
     public static void Execute()
