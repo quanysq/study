@@ -10,7 +10,7 @@ namespace Console028
   {
     static void Main(string[] args)
     {
-      C10.Execute();
+      C11.Execute();
 
       Console.ReadKey();
     }

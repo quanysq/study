@@ -8,7 +8,7 @@ namespace Console023
 {
   public class C5
   {
-    public static event EventHandler<AggregateExceptionArgs> AggregateExceptionCatched;
+    private static event EventHandler<AggregateExceptionArgs> AggregateExceptionCatched;
 
     public static void Execute()
     {

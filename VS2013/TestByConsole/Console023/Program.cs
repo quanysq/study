@@ -18,10 +18,10 @@ namespace Console023
       //C2.Execute();       //多线程
       //C3.Execute();       //Task
       //C4.Execute();       //Task
-      //C5.Execute();       //Task Error
+      C5.Execute();       //Task Error
       //C6.Execute();       //Task Number
       //C7.Execute();
-      C8.Execute();
+      //C8.Execute();
       //C9.Execute();
 
       Console.ReadKey();
