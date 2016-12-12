@@ -39,7 +39,7 @@ namespace Console015
       //string s = "E0JJRErAmEw=";
       //Console.WriteLine(EncryptUtil.SafeDecode(s));
 
-      Class5.Execute();
+      //Class5.Execute();
 
       //Console.WriteLine("[{0}] Downloading...", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
       //Task.Run(async () =>
@@ -48,6 +48,8 @@ namespace Console015
 
       //  Console.WriteLine("[{0}] Downloaded.", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
       //});
+
+      Class6.Execute();
 
       Console.ReadKey();
     }
