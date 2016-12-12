@@ -4,6 +4,8 @@
 	 Class2: List排序
 	 Class3: 比较两个相同类型的对象的差异
 	 Class4: 模拟拷贝占用文件三次
+	 Class5: 接口、继承、具体类型
+	 Class6: Unity
 001. StreamWriter/StreamRead/FileStream
 002. 文件路径
 003. BinaryFormatter序列化、反序列化
