@@ -64,7 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Class01.cs" />
     <Compile Include="Class10.cs" />
     <Compile Include="Class11.cs" />
     <Compile Include="Class12.cs" />
@@ -78,18 +78,18 @@
     <Compile Include="Class17.cs" />
     <Compile Include="Class18.cs" />
     <Compile Include="Class19.cs" />
-    <Compile Include="Class2.cs" />
+    <Compile Include="Class02.cs" />
     <Compile Include="Class20.cs" />
     <Compile Include="Class21.cs" />
     <Compile Include="Class22.cs" />
     <Compile Include="Class23.cs" />
-    <Compile Include="Class3.cs" />
-    <Compile Include="Class4.cs" />
-    <Compile Include="Class5.cs" />
-    <Compile Include="Class6.cs" />
-    <Compile Include="Class7.cs" />
-    <Compile Include="Class8.cs" />
-    <Compile Include="Class9.cs" />
+    <Compile Include="Class03.cs" />
+    <Compile Include="Class04.cs" />
+    <Compile Include="Class05.cs" />
+    <Compile Include="Class06.cs" />
+    <Compile Include="Class07.cs" />
+    <Compile Include="Class08.cs" />
+    <Compile Include="Class09.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -54,8 +54,14 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +69,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class02.cs" />
+    <Compile Include="Class03.cs" />
+    <Compile Include="Class04.cs" />
+    <Compile Include="Class05.cs" />
+    <Compile Include="Class06.cs" />
+    <Compile Include="Class07.cs" />
+    <Compile Include="Class\Book.cs" />
+    <Compile Include="Class01.cs" />
+    <Compile Include="Class\ExConfigXmlObj.cs" />
+    <Compile Include="Class\JsonHelper.cs" />
+    <Compile Include="Class\Person.cs" />
+    <Compile Include="Class\PersonXmlObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

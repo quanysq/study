@@ -63,13 +63,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Class01.cs" />
+    <Compile Include="Class02.cs" />
+    <Compile Include="Class03.cs" />
+    <Compile Include="Class04.cs" />
+    <Compile Include="Class05.cs" />
+    <Compile Include="Class06.cs" />
+    <Compile Include="Class07.cs" />
+    <Compile Include="Class08.cs" />
+    <Compile Include="Class09.cs" />
+    <Compile Include="Class10.cs" />
+    <Compile Include="Class11.cs" />
+    <Compile Include="Class12.cs" />
+    <Compile Include="Class13.cs" />
+    <Compile Include="Class14.cs" />
+    <Compile Include="Class15.cs" />
+    <Compile Include="Class16.cs" />
+    <Compile Include="Class17.cs" />
+    <Compile Include="Class18.cs" />
+    <Compile Include="Class19.cs" />
+    <Compile Include="Class20.cs" />
+    <Compile Include="DirectoryInfoEquality.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

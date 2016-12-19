@@ -63,6 +63,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class01.cs" />
+    <Compile Include="Class02.cs" />
+    <Compile Include="Class03.cs" />
+    <Compile Include="Class04.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

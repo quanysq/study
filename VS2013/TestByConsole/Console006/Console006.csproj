@@ -55,7 +55,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,11 +66,113 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeFunc\Class01.cs" />
+    <Compile Include="AttributeFunc\Class02.cs" />
+    <Compile Include="AttributeFunc\Class03.cs" />
+    <Compile Include="Class\Comp.cs" />
+    <Compile Include="Class\Course.cs" />
+    <Compile Include="Class\FuncObj.cs" />
+    <Compile Include="Class\LockObj.cs" />
+    <Compile Include="Class\StudentCloneObj.cs" />
+    <Compile Include="Class\TestEventSource.cs" />
+    <Compile Include="CollectionsFunc\Class15.cs" />
+    <Compile Include="CollectionsFunc\Class16.cs" />
+    <Compile Include="DelegateFunc\Class01.cs" />
+    <Compile Include="DelegateFunc\Class02.cs" />
+    <Compile Include="DelegateFunc\Class03.cs" />
+    <Compile Include="DelegateFunc\Class04.cs" />
+    <Compile Include="LockFunc\Class01.cs" />
+    <Compile Include="NetFunc\Class01.cs" />
+    <Compile Include="NetFunc\Class02.cs" />
+    <Compile Include="NetFunc\Class03.cs" />
+    <Compile Include="NetFunc\Class04.cs" />
+    <Compile Include="NetFunc\Class05.cs" />
+    <Compile Include="NetFunc\Class06.cs" />
+    <Compile Include="RandomFunc\Class05.cs" />
+    <Compile Include="RandomFunc\Class06.cs" />
+    <Compile Include="RandomFunc\Class07.cs" />
+    <Compile Include="RandomFunc\Class08.cs" />
+    <Compile Include="RandomFunc\Class09.cs" />
+    <Compile Include="RandomFunc\Class10.cs" />
+    <Compile Include="ReflectFunc\Class02.cs" />
+    <Compile Include="ReflectFunc\Class03.cs" />
+    <Compile Include="ReflectFunc\Class04.cs" />
+    <Compile Include="ReflectFunc\generatedProxy.cs" />
+    <Compile Include="Class\Student.cs" />
+    <Compile Include="Class\Student2.cs" />
+    <Compile Include="Class\TabCol.cs" />
+    <Compile Include="Class\TestStatic.cs" />
+    <Compile Include="Class\WalletThingBase.cs" />
+    <Compile Include="CollectionsFunc\Class01.cs" />
+    <Compile Include="CollectionsFunc\Class02.cs" />
+    <Compile Include="CollectionsFunc\Class03.cs" />
+    <Compile Include="CollectionsFunc\Class04.cs" />
+    <Compile Include="CollectionsFunc\Class05.cs" />
+    <Compile Include="CollectionsFunc\Class06.cs" />
+    <Compile Include="CollectionsFunc\Class07.cs" />
+    <Compile Include="CollectionsFunc\Class08.cs" />
+    <Compile Include="CollectionsFunc\Class09.cs" />
+    <Compile Include="CollectionsFunc\Class10.cs" />
+    <Compile Include="CollectionsFunc\Class11.cs" />
+    <Compile Include="CollectionsFunc\Class12.cs" />
+    <Compile Include="CollectionsFunc\Class13.cs" />
+    <Compile Include="CollectionsFunc\Class14.cs" />
+    <Compile Include="ConsoleFunc\Class01.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomFunc\Class01.cs" />
+    <Compile Include="RandomFunc\Class02.cs" />
+    <Compile Include="RandomFunc\Class03.cs" />
+    <Compile Include="RandomFunc\Class04.cs" />
+    <Compile Include="ReflectFunc\Class01.cs" />
+    <Compile Include="StaticFunc\Class01.cs" />
+    <Compile Include="StringFunc\Class01.cs" />
+    <Compile Include="StringFunc\Class02.cs" />
+    <Compile Include="StringFunc\Class03.cs" />
+    <Compile Include="StringFunc\Class04.cs" />
+    <Compile Include="StringFunc\Class05.cs" />
+    <Compile Include="StringFunc\Class06.cs" />
+    <Compile Include="StringFunc\Class07.cs" />
+    <Compile Include="StringFunc\Class08.cs" />
+    <Compile Include="StringFunc\Class09.cs" />
+    <Compile Include="StringFunc\Class10.cs" />
+    <Compile Include="StringFunc\Class11.cs" />
+    <Compile Include="StringFunc\Class12.cs" />
+    <Compile Include="StringFunc\Class13.cs" />
+    <Compile Include="StringFunc\Class14.cs" />
+    <Compile Include="StringFunc\Class15.cs" />
+    <Compile Include="StringFunc\Class16.cs" />
+    <Compile Include="StringFunc\Class17.cs" />
+    <Compile Include="ThrowFunc\Class01.cs" />
+    <Compile Include="LoopFunc\Class01.cs" />
+    <Compile Include="XMLFunc\Class01.cs" />
+    <Compile Include="XMLFunc\Class02.cs" />
+    <Compile Include="XMLFunc\Class10.cs" />
+    <Compile Include="XMLFunc\Class11.cs" />
+    <Compile Include="XMLFunc\Class03.cs" />
+    <Compile Include="XMLFunc\Class04.cs" />
+    <Compile Include="XMLFunc\Class05.cs" />
+    <Compile Include="XMLFunc\Class06.cs" />
+    <Compile Include="XMLFunc\Class07.cs" />
+    <Compile Include="XMLFunc\Class08.cs" />
+    <Compile Include="XMLFunc\Class09.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="XMLFunc\XMLFile\NBI.Configuration.config" />
+    <None Include="XMLFunc\XMLFile\UpdaterSchedule.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XMLFunc\XMLFile\NBIConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="XMLFunc\XMLFile\XmlForSelectNodes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{7b26c79c-eb8d-4cde-94ba-a7fa540e1a9f}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

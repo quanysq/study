@@ -54,10 +54,28 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\..\Library\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EnterpriseLibrary\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\..\EnterpriseLibrary\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
     <Reference Include="Novell.Directory.Ldap">
       <HintPath>..\..\Library\Novell.Directory.Ldap.dll</HintPath>
     </Reference>
+    <Reference Include="NVelocity">
+      <HintPath>..\..\..\Library\NVelocity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -67,14 +85,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADHelper.cs" />
-    <Compile Include="LDAPHelper.cs" />
+    <Compile Include="SharpZipLib\Class01.cs" />
+    <Compile Include="IIS\Class01.cs" />
+    <Compile Include="IIS\Class02.cs" />
+    <Compile Include="LDAP\Class02.cs" />
+    <Compile Include="LDAP\Class\ADHelper.cs" />
+    <Compile Include="LDAP\Class01.cs" />
+    <Compile Include="LDAP\Class\LDAPHelper.cs" />
+    <Compile Include="NVelocity\Class01.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unity\Class01.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Unity\ConfigFile\Unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
