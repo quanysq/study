@@ -14,7 +14,7 @@ namespace Console001
   {
     static void Main(string[] args)
     {
-      C10.Execute3();
+      C21.Execute();
       
       Console.ReadKey();
     }

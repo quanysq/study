@@ -83,6 +83,7 @@
     <Compile Include="Class18.cs" />
     <Compile Include="Class19.cs" />
     <Compile Include="Class20.cs" />
+    <Compile Include="Class21.cs" />
     <Compile Include="DirectoryInfoEquality.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
