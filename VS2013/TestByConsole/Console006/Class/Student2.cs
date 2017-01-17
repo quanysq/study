@@ -28,7 +28,7 @@ namespace Console006.Class
       return x.StudentId == y.StudentId;
     }
 
-    public int GetHashCode(Student obj)
+    public int GetHashCode(Student2 obj)
     {
       if (obj == null)
       {
@@ -39,5 +39,6 @@ namespace Console006.Class
         return obj.ToString().GetHashCode();
       }
     }
+
   } 
 }

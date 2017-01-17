@@ -74,6 +74,7 @@
     <Compile Include="MSSQL\BackupRestoreHelp.cs" />
     <Compile Include="MSSQL\Class01.cs" />
     <Compile Include="MSSQL\Class02.cs" />
+    <Compile Include="MSSQL\Class03.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

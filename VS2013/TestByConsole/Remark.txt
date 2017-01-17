@@ -64,4 +64,5 @@
 	 MSSQL: SQL Server操作
 		Class01: 特殊字体处理
 		Class02: 备份还原MSSQL
+		Class03: 使用Windows Authentication连接数据库
 	 DB2: DB2数据库操作

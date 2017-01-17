@@ -10,7 +10,7 @@ namespace Console006
   {
     static void Main(string[] args)
     {
-      ThrowFunc.C1.Execute();
+      StringFunc.C18.Execute();
 
       Console.ReadKey();
     }

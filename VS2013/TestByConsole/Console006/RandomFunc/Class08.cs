@@ -11,7 +11,7 @@ namespace Console006.RandomFunc
   /// </summary>
   class C8
   {
-    static void Main(string[] args)
+    public static void Execute()
     {
       Lazy<Big> lazyBig = new Lazy<Big>();
       lazyBig.Value.ID = 20;

@@ -143,6 +143,7 @@
     <Compile Include="StringFunc\Class15.cs" />
     <Compile Include="StringFunc\Class16.cs" />
     <Compile Include="StringFunc\Class17.cs" />
+    <Compile Include="StringFunc\Class18.cs" />
     <Compile Include="ThrowFunc\Class01.cs" />
     <Compile Include="LoopFunc\Class01.cs" />
     <Compile Include="XMLFunc\Class01.cs" />

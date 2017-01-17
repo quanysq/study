@@ -13,7 +13,7 @@ namespace Console025
   {
     static void Main(string[] args)
     {
-      MSSQL.C1.Execute();
+      MSSQL.C3.Execute();
       
       Console.ReadKey();
     }
