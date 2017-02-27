@@ -41,5 +41,15 @@ namespace Console001
         Console.WriteLine(fi.FullName);
       }
     }
+
+    public static void Execute3()
+    {
+      string dir = @"D:\VS2013\Updateset\Patch";
+      List<string> filelist = Directory.GetFiles(dir, "*.*").ToList();    //返回文件的全路径
+      foreach (string filename in filelist)
+      {
+        Console.WriteLine(filename);
+      }
+    }
   }
 }

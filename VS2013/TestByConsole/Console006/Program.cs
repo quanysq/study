@@ -10,7 +10,7 @@ namespace Console006
   {
     static void Main(string[] args)
     {
-      StringFunc.C19.Execute();
+      XMLFunc.C3.Execute2();
 
       Console.ReadKey();
     }

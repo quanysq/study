@@ -22,5 +22,16 @@ namespace Console006.XMLFunc
       XmlNodeList xlist = xml.SelectNodes("//configuration/runtime");
       Console.WriteLine(xlist[0].InnerXml);
     }
+
+    public static void Execute2()
+    {
+      string xmlpath = @"D:\PatchSetControl.conf";
+
+      XmlDocument xml = new XmlDocument();
+      xml.Load(xmlpath);
+
+      string xdoc = xml.InnerXml;
+      Console.WriteLine(xdoc);
+    }
   }
 }

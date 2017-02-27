@@ -18,7 +18,7 @@ namespace Console002
       string fipsSetting = "0";
       try
       {
-        rk = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy_");
+        rk = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Lsa\FipsAlgorithmPolicy");
         fipsSetting = rk.GetValue("Enabled").ToString();
       }
       catch

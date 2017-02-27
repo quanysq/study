@@ -13,8 +13,8 @@ using System.Xml.Serialization;
 namespace Console006.XMLFunc
 {
   /// <summary>
-  /// read NBI.Configuration.config
-  /// 应用SerializableDictionary
+  /// 1. read NBI.Configuration.config
+  /// 2. 应用SerializableDictionary
   /// </summary>
   public class C7
   {

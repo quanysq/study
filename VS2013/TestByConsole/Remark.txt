@@ -2,7 +2,28 @@
 
 一、操作磁盘
 001. 文件操作（Stream）、路径等
-
+Class01: StreamReader
+Class02: StreamWriter
+Class03: GetDirectories("*.*")
+Class04: 排除指定的目录/ 比较两个对象是否相等
+Class05: SearchOption/ AddRange
+Class06: GetDirectories返回值
+Class07: 寻找非空的目录
+Class08: 获取环境变量值
+Class09: 环境变量相关
+Class10: 相对路径
+Class11: 获取父目录
+Class12: 
+Class13: Base64字符串转成二进制
+Class14: FileStream/ 二进制数据转成Base64字符串
+Class15: 创建嵌套目录
+Class16: 获取扩展名
+Class17: Path.Combine
+Class18: 去除目录最后的\
+Class19: 获取文件名
+Class20: 模拟拷贝占用文件三次
+Class21: MD5加密 
+   
 二、引用操作系统API
 002. 查看内存、OS版本、文件编码等
 
@@ -15,6 +36,17 @@
 	 StringFunc： 基础数据类型，如string, int等
 	 ThrowFunc： Throw
 	 XMLFunc： XML
+		Class01: OuterXml
+		Class02: SelectNodes
+		Class03: read xmlnode date
+		Class04: write date to xmlnode
+		Class05: delete xmlnode
+		Class06: only delete xmlnode name
+		Class07: 应用SerializableDictionary
+		Class08: 更新UpdaterSchedule.config指定节点的值/ 应用正则表达式替换
+		Class09: Linq to Xml
+		Class10: 读取线上的xml
+		Class11: 处理XML里的中文
 	 RandomFunc： 随机数，正则，索引器等
 	 ConsoleFunc： 控制台内置功能
 	 ReflectFunc： 反射
@@ -65,4 +97,5 @@
 		Class01: 特殊字体处理
 		Class02: 备份还原MSSQL
 		Class03: 使用Windows Authentication连接数据库
+		Class04: 判断DataReader已经到了结尾
 	 DB2: DB2数据库操作

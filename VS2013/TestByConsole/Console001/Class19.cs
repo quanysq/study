@@ -26,5 +26,14 @@ namespace Console001
       string filename = @filepath.Substring(kyesindex + 1);
       Console.WriteLine(filename);
     }
+
+    public static void Execute3()
+    {
+      string filepath  = "/UserReports/test1.xanalyzer";
+      string filename1 = Path.GetFileName(filepath);
+      string filename2 = Path.GetFileNameWithoutExtension(filepath);
+      Console.WriteLine(filename1);
+      Console.WriteLine(filename2);
+    }
   }
 }
