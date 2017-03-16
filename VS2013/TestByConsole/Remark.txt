@@ -32,6 +32,23 @@ Class21: MD5加密
 004. 多线程、并发、并行和异步
 006. Base Funcion
 	 CollectionsFunc： 集合、泛型、LINQ、Lambda等
+		Class01: Except
+		Class02: 验证List是否按顺序输出
+		Class03: 自定义排序
+		Class04: 判断两个相同类型的List是否相等
+		Class05: List转字符串
+		Class06: 测试List增加10000000要多久 /Stopwatch
+		Class07: 泛型
+		Class08: 单个Select
+		Class09: 联合查询
+		Class10: BindingList
+		Class11: PLINQ
+		Class12: 行转列
+		Class13: List之Union(),Intersect(),Except()
+		Class14: Linq to sql: 行转列， 去重复
+		Class15: 删除数组中的元素
+		Class16: List排序
+		Class17: HashSet 
 	 LoopFunc： 循环
 	 StringFunc： 基础数据类型，如string, int等
 	 ThrowFunc： Throw
@@ -54,6 +71,10 @@ Class21: MD5加密
 	 DelegateFunc： 事件、委托
 	 AttributeFunc： 特性
 	 NetFunc： 网络
+	 ClassFunc：类/接口研究
+		Class01: 测试子类能否重写父类的protected方法
+	 LocalFunc：本地化
+		Class01: 本地化（包括T4模板的使用）
 
 四、设计模式 
 018. 面向切面编程（AOP）[PostSharp]

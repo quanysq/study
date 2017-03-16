@@ -34,6 +34,28 @@ namespace Console001
       string filename2 = Path.GetFileNameWithoutExtension(filepath);
       Console.WriteLine(filename1);
       Console.WriteLine(filename2);
+
+      /*
+       * Result:
+       * test1.xanalyzer
+       * test1
+       */ 
+    }
+
+    public static void Execute4()
+    {
+      string filepath  = @"/UserReports/"; //same as \UserReports
+      //Console.WriteLine(filepath.Substring(0, filepath.Length - 1));
+      string filename1 = Path.GetFileName(filepath);
+      string filename2 = Path.GetFileNameWithoutExtension(filepath);
+      Console.WriteLine(filename1);
+      Console.WriteLine(filename2);
+
+      /*
+       * Result:
+       * UserReports
+       * UserReports
+       */ 
     }
   }
 }

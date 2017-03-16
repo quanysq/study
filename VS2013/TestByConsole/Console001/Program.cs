@@ -7,14 +7,11 @@ using System.IO;
 
 namespace Console001
 {
-  /// <summary>
-  /// StreamWriter
-  /// </summary>
   class Program
   {
     static void Main(string[] args)
     {
-      C19.Execute3();
+      C19.Execute4();
       
       Console.ReadKey();
     }

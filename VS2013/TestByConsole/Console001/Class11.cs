@@ -23,6 +23,10 @@ namespace Console001
     public static void Execute2()
     {
       Console.WriteLine(Path.GetDirectoryName(@"c:\a\c\b.txt"));
+      /*
+       * Result:
+       * c:\a\c
+       */ 
     }
 
     public static void Execute3()
@@ -34,6 +38,16 @@ namespace Console001
       Console.WriteLine(aaa);
       string bbb = @"d:\aa" + aaa.Replace("/","\\");
       Console.WriteLine(bbb);
+    }
+
+    public static void Execute4()
+    {
+      Console.WriteLine(Path.GetDirectoryName(@"/UserReports"));
+
+      /*
+       * Result:
+       * \
+       */ 
     }
   }
 }

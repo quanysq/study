@@ -17,6 +17,8 @@ namespace Console001
       string filepath = @"d:\1\2\3\4\1.TXT";
       string ext      = Path.GetExtension(filepath);
       Console.WriteLine(ext);
+
+      //Result: .TXT
     }
   }
 }

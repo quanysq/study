@@ -69,6 +69,7 @@
     <Compile Include="AttributeFunc\Class01.cs" />
     <Compile Include="AttributeFunc\Class02.cs" />
     <Compile Include="AttributeFunc\Class03.cs" />
+    <Compile Include="ClassFunc\Class01.cs" />
     <Compile Include="Class\Comp.cs" />
     <Compile Include="Class\Course.cs" />
     <Compile Include="Class\FuncObj.cs" />
@@ -77,10 +78,27 @@
     <Compile Include="Class\TestEventSource.cs" />
     <Compile Include="CollectionsFunc\Class15.cs" />
     <Compile Include="CollectionsFunc\Class16.cs" />
+    <Compile Include="CollectionsFunc\Class17.cs" />
     <Compile Include="DelegateFunc\Class01.cs" />
     <Compile Include="DelegateFunc\Class02.cs" />
     <Compile Include="DelegateFunc\Class03.cs" />
     <Compile Include="DelegateFunc\Class04.cs" />
+    <Compile Include="LocalFunc\Class01.cs" />
+    <Compile Include="LocalFunc\I18N\en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LocalFunc\I18N\zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LocalFunc\Template\I18NRes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>I18NRes.tt</DependentUpon>
+    </Compile>
     <Compile Include="LockFunc\Class01.cs" />
     <Compile Include="NetFunc\Class01.cs" />
     <Compile Include="NetFunc\Class02.cs" />
@@ -165,6 +183,10 @@
     <None Include="XMLFunc\XMLFile\UpdaterSchedule.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LocalFunc\Template\I18NRes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>I18NRes.cs</LastGenOutput>
+    </Content>
     <Content Include="XMLFunc\XMLFile\NBIConfig.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -175,6 +197,20 @@
       <Project>{7b26c79c-eb8d-4cde-94ba-a7fa540e1a9f}</Project>
       <Name>CommonLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalFunc\I18N\en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocalFunc\I18N\zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>zh-CN.Designer.cs</LastGenOutput>
+      <RunCustomToolOn>../Template/I18NRes.tt</RunCustomToolOn>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

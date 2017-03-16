@@ -17,7 +17,7 @@ namespace Console006.CollectionsFunc
       l1.Add("1");
       l1.Add("2");
       List<string> l2 = new List<string>();
-      l2.Add("3");
+      l2.Add("1");
       l2.Add("2");
       Console.WriteLine(l1.All(l2.Contains) && l1.Count == l2.Count);
     }

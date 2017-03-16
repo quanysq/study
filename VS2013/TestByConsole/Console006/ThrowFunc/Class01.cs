@@ -13,7 +13,7 @@ namespace Console006.ThrowFunc
   {
     public static void Execute()
     {
-      string t = TestThrow(1);
+      string t = TestThrow(0);
       Console.WriteLine(t);
     }
 
@@ -23,6 +23,7 @@ namespace Console006.ThrowFunc
       {
         throw new Exception("数字不能是0");
       }
+      Console.WriteLine("i is [{0}]", i);
       return "Y";
     }
   }
