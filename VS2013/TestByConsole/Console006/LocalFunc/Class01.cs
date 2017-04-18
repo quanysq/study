@@ -55,5 +55,10 @@ namespace Console006.LocalFunc
       var ci = new CultureInfo(language);
       return rm.GetString(key, ci);
     }
+
+    /*
+     * 如果语言编号不正确，返回System.Globalization.CultureNotFoundException
+     * 如果没有对应的资源文件，返回System.Resources.MissingManifestResourceException
+     */ 
   }
 }

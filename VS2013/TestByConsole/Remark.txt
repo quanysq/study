@@ -120,3 +120,5 @@ Class21: MD5加密
 		Class03: 使用Windows Authentication连接数据库
 		Class04: 判断DataReader已经到了结尾
 	 DB2: DB2数据库操作
+	 SQLite: SQLite数据库操作
+		Class01: SQLite数据库基础操作（连接，增删修查）
