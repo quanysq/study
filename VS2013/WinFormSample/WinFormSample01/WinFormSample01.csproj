@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BCDD6225-07B5-4A3B-8BA8-A5E45B826B4D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinFormSample01</RootNamespace>
+    <AssemblyName>WinFormSample01</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BackgroundWorkerSample\BackgroundWorkerFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackgroundWorkerSample\BackgroundWorkerFrm.Designer.cs">
+      <DependentUpon>BackgroundWorkerFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComBoBoxSample\ItemToolTipFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComBoBoxSample\ItemToolTipFrm.Designer.cs">
+      <DependentUpon>ItemToolTipFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewSample\Customer.cs" />
+    <Compile Include="DataGridViewSample\FullSelectedFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGridViewSample\FullSelectedFrm.Designer.cs">
+      <DependentUpon>FullSelectedFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewSample\NestedDatagridviewFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGridViewSample\NestedDatagridviewFrm.Designer.cs">
+      <DependentUpon>NestedDatagridviewFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewSample\SpanHeaderDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridViewSample\SpanHeaderFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataGridViewSample\SpanHeaderFrm.Designer.cs">
+      <DependentUpon>SpanHeaderFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LineSample\LineFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineSample\LineFrm.Designer.cs">
+      <DependentUpon>LineFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolTipSample\ToolTipStyleFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolTipSample\ToolTipStyleFrm.Designer.cs">
+      <DependentUpon>ToolTipStyleFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardSample\WizardClass\CommonUtil.cs" />
+    <Compile Include="WizardSample\WizardClass\ConfigEntity.cs" />
+    <Compile Include="WizardSample\WizardClass\ConfigOperator.cs" />
+    <Compile Include="WizardSample\WizardClass\XmlUtil.cs" />
+    <Compile Include="WizardSample\WizardMainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WizardSample\WizardMainFrm.Designer.cs">
+      <DependentUpon>WizardMainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageTemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageTemplate.Designer.cs">
+      <DependentUpon>WizardPageTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageUc01.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageUc01.Designer.cs">
+      <DependentUpon>WizardPageUc01.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageUc02.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageUc02.Designer.cs">
+      <DependentUpon>WizardPageUc02.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageUc03.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WizardSample\WizardPageUc03.Designer.cs">
+      <DependentUpon>WizardPageUc03.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BackgroundWorkerSample\BackgroundWorkerFrm.resx">
+      <DependentUpon>BackgroundWorkerFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComBoBoxSample\ItemToolTipFrm.resx">
+      <DependentUpon>ItemToolTipFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewSample\FullSelectedFrm.resx">
+      <DependentUpon>FullSelectedFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewSample\NestedDatagridviewFrm.resx">
+      <DependentUpon>NestedDatagridviewFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewSample\SpanHeaderDataGridView.resx">
+      <DependentUpon>SpanHeaderDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataGridViewSample\SpanHeaderFrm.resx">
+      <DependentUpon>SpanHeaderFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LineSample\LineFrm.resx">
+      <DependentUpon>LineFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ToolTipSample\ToolTipStyleFrm.resx">
+      <DependentUpon>ToolTipStyleFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSample\WizardMainFrm.resx">
+      <DependentUpon>WizardMainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSample\WizardPageTemplate.resx">
+      <DependentUpon>WizardPageTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSample\WizardPageUc01.resx">
+      <DependentUpon>WizardPageUc01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSample\WizardPageUc02.resx">
+      <DependentUpon>WizardPageUc02.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WizardSample\WizardPageUc03.resx">
+      <DependentUpon>WizardPageUc03.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="WizardSample\WizardConfig.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataGridViewSample\Images\icon_add_16x16.png" />
+    <Content Include="DataGridViewSample\Images\icon_minus_16x16.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

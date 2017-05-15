@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{29F94C82-003D-411D-841F-018048CD722C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinFormSample02</RootNamespace>
+    <AssemblyName>WinFormSample02</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\TXTextBox\TXTextBox.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\TXTextBox\TXTextBox.resx">
+      <DependentUpon>TXTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Config\Skin.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Skin.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Skin\BlueSea.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Skin\KissOfAngel.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Skin\NoFlower.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Skin\SunsetRed.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\Skin\bg\bg01.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Skin\bg\bg02.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Skin\bg\bg03.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Skin\bg\bg04.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Skin\bg\bg05.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\Skin\bg\bg06.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\1312941478_old-view-refresh.png" />
+    <Content Include="Resources\1312954756_Search.png" />
+    <Content Include="Resources\1347776853_attention3_16x16.gif" />
+    <Content Include="Resources\1347777508_16-message-warn.png" />
+    <Content Include="Resources\1348579722_download.png" />
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\bg01.jpg" />
+    <Content Include="Resources\bg02.jpg" />
+    <Content Include="Resources\bg03.jpg" />
+    <Content Include="Resources\bg04.jpg" />
+    <Content Include="Resources\bg05.jpg" />
+    <Content Include="Resources\bg06.jpg" />
+    <Content Include="Resources\BM_dropdown.bmp" />
+    <Content Include="Resources\calendar_blue.png" />
+    <Content Include="Resources\check.png" />
+    <Content Include="Resources\chevrondown.png" />
+    <Content Include="Resources\chevronleft.png" />
+    <Content Include="Resources\chevronright.png" />
+    <Content Include="Resources\chevronup.png" />
+    <Content Include="Resources\closepanel.png" />
+    <Content Include="Resources\code.png" />
+    <Content Include="Resources\collapse.jpg" />
+    <Content Include="Resources\Collapse.png" />
+    <Content Include="Resources\collapse_h.jpg" />
+    <Content Include="Resources\delete.gif" />
+    <Content Include="Resources\document_preview_archive.png" />
+    <Content Include="Resources\edit.png" />
+    <Content Include="Resources\error.png" />
+    <Content Include="Resources\excel.png" />
+    <Content Include="Resources\expand.jpg" />
+    <Content Include="Resources\Expand.png" />
+    <Content Include="Resources\expand_h.jpg" />
+    <Content Include="Resources\goto.png" />
+    <Content Include="Resources\help.png" />
+    <Content Include="Resources\info.png" />
+    <Content Include="Resources\load2 %281%29.gif" />
+    <Content Include="Resources\load2 %282%29.gif" />
+    <Content Include="Resources\load2 %284%29.gif" />
+    <Content Include="Resources\load2.gif" />
+    <Content Include="Resources\loader %281%29.gif" />
+    <Content Include="Resources\loader %2810%29.gif" />
+    <Content Include="Resources\loader %2811%29.gif" />
+    <Content Include="Resources\loader %2812%29.gif" />
+    <Content Include="Resources\loader %2813%29.gif" />
+    <Content Include="Resources\loader %282%29.gif" />
+    <Content Include="Resources\loader %283%29.gif" />
+    <Content Include="Resources\loader %284%29.gif" />
+    <Content Include="Resources\loader %285%29.gif" />
+    <Content Include="Resources\loader %286%29.gif" />
+    <Content Include="Resources\loader %287%29.gif" />
+    <Content Include="Resources\loader %288%29.gif" />
+    <Content Include="Resources\loader %289%29.gif" />
+    <Content Include="Resources\loader%280%29.gif" />
+    <Content Include="Resources\logo.ico" />
+    <Content Include="Resources\logo1.png" />
+    <Content Include="Resources\logo2.png" />
+    <Content Include="Resources\logo3.png" />
+    <Content Include="Resources\logos.png" />
+    <Content Include="Resources\naruto.png" />
+    <Content Include="Resources\question.png" />
+    <Content Include="Resources\refresh.png" />
+    <Content Include="Resources\shape_group.png" />
+    <Content Include="Resources\skin.png" />
+    <Content Include="Resources\the_pictures_icon.png" />
+    <Content Include="Resources\warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AppCode\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
