@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\TXTextBox\TXTextBox.cs" />
+    <Compile Include="AppCode\Model\Enums.cs" />
+    <Compile Include="Controls\TXTextBox\TXTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,7 +186,8 @@
     <Content Include="Resources\warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppCode\" />
+    <Folder Include="AppCode\SKin\" />
+    <Folder Include="AppCode\{Win32}\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

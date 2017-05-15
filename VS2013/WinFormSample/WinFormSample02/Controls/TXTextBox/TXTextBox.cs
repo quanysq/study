@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WinFormSample02;
 
 namespace WinFormSample02.Controls
 {
@@ -31,12 +32,12 @@ namespace WinFormSample02.Controls
         /// <summary>
         /// 边框颜色
         /// </summary>
-        private Color _BorderColor = SkinManager.CurrentSkin.BorderColor;
+        private Color _BorderColor = Color.Red; //SkinManager.CurrentSkin.BorderColor;
 
         /// <summary>
         /// 控件激活时的高亮边框色
         /// </summary>
-        private Color _HeightLightBolorColor = SkinManager.CurrentSkin.HeightLightControlColor.First;
+        private Color _HeightLightBolorColor = Color.Blue; //SkinManager.CurrentSkin.HeightLightControlColor.First;
 
         /// <summary>
         /// 控件内文本和图片的排列位置
