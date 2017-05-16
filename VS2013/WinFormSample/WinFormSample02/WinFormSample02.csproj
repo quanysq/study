@@ -46,6 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCode\Model\Enums.cs" />
+    <Compile Include="AppCode\Model\RoundRectangle.cs" />
+    <Compile Include="AppCode\Model\Structs.cs" />
+    <Compile Include="AppCode\SKin\ColorScheme.cs" />
+    <Compile Include="AppCode\Utility\GDIHelper.cs" />
+    <Compile Include="Controls\TXButton\TXButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TXListView\TXListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\TXTextBox\TXTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,6 +70,9 @@
     <EmbeddedResource Include="Controls\TXTextBox\TXTextBox.resx">
       <DependentUpon>TXTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,6 +81,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Config\Skin.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -185,10 +199,7 @@
     <Content Include="Resources\the_pictures_icon.png" />
     <Content Include="Resources\warning.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AppCode\SKin\" />
-    <Folder Include="AppCode\{Win32}\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
