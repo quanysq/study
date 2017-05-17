@@ -305,7 +305,7 @@ namespace WinFormSample02.Controls
                  bounds.X + 3,
                  bounds.Y,
                  bounds.Width - 6,
-                 bounds.Height); ;
+                 bounds.Height);
       Image image = null;
       Size imgSize = new System.Drawing.Size(16, 16);
       Rectangle imageRect = Rectangle.Empty;
@@ -348,10 +348,10 @@ namespace WinFormSample02.Controls
         c1 = this._SelectedBeginColor;
         c2 = this._SelectedEndColor;
         //使用全局皮肤色彩，注意选择文字需要反色处理
-        c1 = SkinManager.CurrentSkin.HeightLightControlColor.First;
-        c2 = SkinManager.CurrentSkin.HeightLightControlColor.Second;
-        blen.Factors = SkinManager.CurrentSkin.HeightLightControlColor.Factors;
-        blen.Positions = SkinManager.CurrentSkin.HeightLightControlColor.Positions;
+        c1 = Color.Red;   // TODO //SkinManager.CurrentSkin.HeightLightControlColor.First;
+        c2 = Color.Blue;  // TODO //SkinManager.CurrentSkin.HeightLightControlColor.Second;
+        blen.Factors = new float[] { 0f, 0.5f, 0.8f, 1f }; //TODO //SkinManager.CurrentSkin.HeightLightControlColor.Factors;
+        blen.Positions = new float[] { 0f, 0.4f, 0.9f, 0.3f }; //TODO //SkinManager.CurrentSkin.HeightLightControlColor.Positions;
         GDIHelper.FillPath(g, new RoundRectangle(bounds, 0), c1, c2, blen);
       }
       else

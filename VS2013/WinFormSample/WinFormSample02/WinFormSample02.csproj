@@ -50,6 +50,7 @@
     <Compile Include="AppCode\Model\Structs.cs" />
     <Compile Include="AppCode\SKin\ColorScheme.cs" />
     <Compile Include="AppCode\Utility\GDIHelper.cs" />
+    <Compile Include="AppCode\{Win32}\Win32.cs" />
     <Compile Include="Controls\TXButton\TXButton.cs">
       <SubType>Component</SubType>
     </Compile>
