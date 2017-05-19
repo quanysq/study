@@ -2,5 +2,5 @@
 	01 WebForm1.aspx: 测试下载tus50上的组件
 	02 WebForm2.aspx: AJAX
 	03 WebForm3.aspx: jQuery国际化
-	04 HtmlPage1.html: jQuery国际化, 本地打开
+	04 HtmlPage1.html: jQuery国际化, 本地打开 (未成功)
 002. Forms Authentication

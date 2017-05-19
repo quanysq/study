@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>显示一个列表</title>
+  <script type="text/javascript" src="/Web001/Scripts/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-table :data="tableDatas"></my-table>
+  </div>
+
+  <script type="text/x-template" id="grid-tmpl">
+    <table style="width: 100%; border: 1px solid #ccc;">
+      <thead>
+        <tr>
+          <th style="width: 180px; border: 1px solid #ccc;">date</th>
+          <th style="width: 180px; border: 1px solid #ccc;">name</th>
+          <th style="border: 1px solid #ccc;">address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in data">
+          <td style="border: 1px solid #ccc;">{{ item.date }}</td>
+          <td style="border: 1px solid #ccc;">{{ item.name }}</td>
+          <td style="border: 1px solid #ccc;">{{ item.address }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </script>
+
+  <script type="text/javascript">
+    Vue.component("my-table", {
+      props: { data: Array },
+      template: '#grid-tmpl'
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        tableDatas: [
+          { date: '2017-01-01', name: '张三', address: '广州天河区员村一横路11号' },
+          { date: '2017-01-02', name: '李四', address: '广州天河区员村一横路12号' },
+          { date: '2017-01-03', name: '赵五', address: '广州天河区员村一横路13号' },
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
