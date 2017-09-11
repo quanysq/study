@@ -169,6 +169,11 @@
     <Content Include="Account\Web.config" />
     <Content Include="Scripts\jquery.i18n.properties-1.0.9.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\vue.js" />
+    <Content Include="Vue\Vue01.html" />
+    <Content Include="Vue\Vue02.html" />
+    <Content Include="Vue\Vue03.html" />
+    <Content Include="Vue\Vue04.html" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="WebForm3.aspx" />

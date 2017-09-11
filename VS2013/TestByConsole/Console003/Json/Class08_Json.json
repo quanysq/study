@@ -1,0 +1,45 @@
+﻿{
+	"code" : 0, 
+	"data" : 
+	{
+		"basepackageName": "basepackage1",
+		"basepackageType": "Base",
+		"basepackageDesc": "This is basepackage1.",
+		"basepackageProp": 
+		[
+			{  
+				"driverPackageName": "onboard_driver_win2k8r2sp1.iso",
+				"supportOS": "ubuntu14.04",
+				"releaseDate": " 2017-2-16 ",
+				"driverPackageProp":
+				[
+					{
+						"firmwareType": "RAID",
+						"version": "2.00.76.00",
+						"supportModel":"MZ111;SM210;MZ110"
+					},
+					{
+						"firmwareType": "CNA",
+						"version": "4.0.3",
+						"supportModel":"MZ510;MZ512"
+					}
+				]
+			},
+			{  
+				"firmwarePackageName": "RH2288 V2-BIOS-V516.zip",
+				"supportDevice": "RH2288 V2",
+				"releaseDate": " 2017-2-16 ",
+				"firmwarePackageProp":
+				[
+					{
+						"firmwareType": "iBMC",
+						"version": "2.30",
+						"activeMode": " ResetBMC ",
+						"supportModel":"XH628 V3"
+					}
+				]
+			}
+		]
+	},
+	"description" : "Get template detail success."
+}

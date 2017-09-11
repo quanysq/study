@@ -29,6 +29,14 @@ Class21: MD5加密
 
 三、调试.NET内置功能
 003. 序列化和反序列化
+Class01: 二进制 
+Class02: 二进制 
+Class03: SOAP
+Class04: XML
+Class05: JSON（DataContractJsonSerializer）
+Class06: JSON(Newtonsoft.Json)
+Class07: XML (处理多个相同结构的节点)
+
 004. 多线程、并发、并行和异步
 006. Base Funcion
 	 CollectionsFunc： 集合、泛型、LINQ、Lambda等

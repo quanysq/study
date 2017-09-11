@@ -75,6 +75,7 @@
     <Compile Include="Class05.cs" />
     <Compile Include="Class06.cs" />
     <Compile Include="Class07.cs" />
+    <Compile Include="Class08.cs" />
     <Compile Include="Class\Book.cs" />
     <Compile Include="Class01.cs" />
     <Compile Include="Class\ExConfigXmlObj.cs" />
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Json\Class08_Json.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
