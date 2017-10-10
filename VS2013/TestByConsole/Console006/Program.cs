@@ -11,7 +11,7 @@ namespace Console006
     static void Main(string[] args)
     {
       //LocalFunc.C1.Execute();
-      StringFunc.C21.Execute();
+      StringFunc.C22.Execute();
 
       Console.ReadKey();
     }
