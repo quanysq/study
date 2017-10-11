@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login to Activiti UI</title>
+	<link href="../activitiui/css/element.css" rel="stylesheet" />
+    <link href="../activitiui/css/style.css" rel="stylesheet" />
+    <link href="../activitiui/css/login.css" rel="stylesheet" />
+    <script src="../activitiui/js/vue.js"></script>
+    <script src="../activitiui/js/element.js"></script>
+    <script src="../activitiui/js/axios.min.js"></script>
+    <script src="../activitiui/js/i18n/en.js"></script>
+    <script src="../activitiui/js/i18n/zh-CN.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template>
+		  <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-container">
+		    <h3 class="title">Login</h3>
+		    <el-form-item prop="account">
+		      <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="account"></el-input>
+		    </el-form-item>
+		    <el-form-item prop="checkPass">
+		      <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off" placeholder="password"></el-input>
+		    </el-form-item>
+		    <el-form-item style="width:100%;">
+		      <el-button type="primary" style="width:100%;" @click.native.prevent="handleSubmit2" :loading="logining">Sign in</el-button>
+		    </el-form-item>
+		  </el-form>
+		</template>
+  	</div>
+</body>
+<script type="text/javascript">
+ELEMENT.locale(ELEMENT.lang.en);
+
+var app = new Vue({
+	el: '#app',
+    data: {
+    logining: false,
+      	ruleForm2: {
+        	account: '',
+        	checkPass: ''
+      	},
+      	rules2: {
+        	account: [
+          		{ required: true, message: 'Please enter your account', trigger: 'blur' },
+        	],
+        	checkPass: [
+          		{ required: true, message: 'Please enter your password', trigger: 'blur' },
+        	]
+      	},
+		checked: true
+	},
+	methods: {
+		handleSubmit2(ev) {
+         	var _this = this;
+         	this.$refs.ruleForm2.validate((valid) => {
+           		if (valid) {
+           			this.logining = true;
+             		var loginParams = { userName: this.ruleForm2.account, userPwd: this.ruleForm2.checkPass };
+             		var url = "/activitiui/login.json";
+     				console.log(url);
+		     		axios.get(url, { "params": loginParams })
+		     		.then(function (response) {
+		     			this.logining = false;
+		     			console.log(response);
+		     			var data = response.data;
+		     			console.log(data);
+		     			sessionStorage.setItem('user', JSON.stringify(data));
+		     			location.href = "index.html";
+		     	  	})
+		     		.catch(function (error){
+		     			alert(error);
+		     		});
+           		} else {
+	             console.log('error submit!!');
+	             return false;
+	           }
+         });
+       }
+	}
+})
+</script>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Activiti UI</title>
+	<link href="../activitiui/css/element.css" rel="stylesheet" />
+    <link href="../activitiui/css/style.css" rel="stylesheet" />
+    <link href="../activitiui/css/home.css" rel="stylesheet" />
+    <script src="../activitiui/js/vue.js"></script>
+    <script src="../activitiui/js/element.js"></script>
+    <script src="../activitiui/js/axios.min.js"></script>
+    <script src="../activitiui/js/i18n/en.js"></script>
+    <script src="../activitiui/js/i18n/zh-CN.js"></script>
+</head>
+<body>
+	<div id="app">
+		<template>
+			<el-row class="container">
+			  <el-col :span="24" class="header">
+					<el-col :span="10" class="logo logo-width">
+						{{ sysName }}
+					</el-col>
+					<el-col :span="4" class="userinfo">
+						<el-dropdown trigger="hover">
+							<span class="el-dropdown-link userinfo-inner">{{sysUserName}}</span>
+							<el-dropdown-menu slot="dropdown">
+								<el-dropdown-item divided @click.native="logout">Sign out</el-dropdown-item>
+							</el-dropdown-menu>
+						</el-dropdown>
+					</el-col>
+				</el-col>
+				<el-col :span="24" class="main">
+					<aside class="menu-expanded">
+						<el-menu default-active="1" class="el-menu-vertical-demo">
+					      <el-menu-item index="1"><i class="el-icon-time"></i>Process</el-menu-item>
+					      <el-menu-item index="2"><i class="el-icon-share"></i>Activiti App</el-menu-item>
+					      <el-menu-item index="3"><i class="el-icon-document"></i>HPFS</el-menu-item>
+					      <el-menu-item index="4"><i class="el-icon-upload2"></i>MongoDB</el-menu-item>
+					    </el-menu>
+					</aside>
+					<section class="content-container">
+						<template>
+						  <el-table :data="processData.data" border style="width: 100%">
+						    <el-table-column label="Process Name">
+						    	<template scope="scope">
+						    		<el-button type="text" @click="showProcessImage(scope.row.diagramResource)" >{{scope.row.id}}</el-button>
+						    	</template>
+						    </el-table-column>
+						    <el-table-column prop="description" label="Process Description">
+						    </el-table-column>
+						    <el-table-column label="Operation">
+						      <template scope="scope">
+						        <el-button size="small" @click="handleEdit(scope.$index, scope.row)">Start Process</el-button>
+						      </template>
+						    </el-table-column>
+						  </el-table>
+						</template>
+						<el-pagination
+					      @size-change="handleSizeChange"
+					      @current-change="handleCurrentChange"
+					      :current-page="currentPage"
+					      :page-sizes="pageSizes"
+					      :page-size="pageSize"
+					      layout="total, sizes, prev, pager, next, jumper"
+					      :total="dataTotal">
+					    </el-pagination>
+					</section>
+				</el-col>
+			</el-row>
+			
+			<el-dialog
+			  title="Process image"
+			  :visible.sync="dialogVisible"
+			  size="large">
+			  <img :src="processImage" />
+			</el-dialog>
+		</template>
+	</div>
+</body>
+<script type="text/javascript">
+ELEMENT.locale(ELEMENT.lang.en);
+
+var app = new Vue({
+    el: '#app',
+    data: {
+    	logining: false,
+    	sysName:'Activiti UI',
+		sysUserName: '',
+		sysUserAvatar: '',
+		user: {},
+		processData: {},
+		currentPage: 1,
+		pageSizes: [10, 20, 30, 50, 100],
+		pageSize: 10,
+		dataTotal: 0,
+		dialogVisible: false,
+		processImage: ""
+	},
+	methods: {
+		loadProcessDefinitions: function() {
+			this.logining = true;
+     		var params = { "basicAuth": user.basicAuth, "currentPage": this.currentPage, "size": this.pageSize  };
+     		var url = "/activitiui/process-definitions.json";
+			axios.get(url, { "params": params })
+     		.then(function (response) {
+     			this.logining = false;
+     			//console.log(response);
+     			app.processData = response.data;
+     			//console.log(app.processData);
+     			app.dataTotal = app.processData.total;
+     	  	})
+     		.catch(function (error){
+     			alert(error);
+     		});
+		},
+		logout: function() {
+			var _this = this;
+			this.$confirm('Are you sure you want to quit?', 'Prompt', {
+				//type: 'warning'
+			}).then(() => {
+				sessionStorage.removeItem('user');
+				location.href="login.html";
+			}).catch(() => {
+
+			});
+		},
+		showProcessImage: function(processDiagramUrl) {
+			if (processDiagramUrl == null) {
+				this.$alert("No process diagram has been generated", "Prompt");
+			} else {
+				this.logining = true;
+	     		var params = { "url": processDiagramUrl, "basicAuth": user.basicAuth };
+	     		var url = "/activitiui/process-diagram.json";
+				axios.get(url, { "params": params })
+	     		.then(function (response) {
+	     			this.logining = false;
+	     			app.processImage = response.data.contentUrl;
+	     			app.dialogVisible = true;
+	     	  	})
+	     		.catch(function (error){
+	     			alert(error);
+	     		});
+			} 
+		},
+		handleEdit: function(a, b) {
+			
+		},
+		handleSizeChange: function(val) {
+			this.pageSize = val;
+			this.loadProcessDefinitions();
+		},
+		handleCurrentChange: function(val) {
+			this.currentPage = val;
+			this.loadProcessDefinitions();
+		}
+	},
+	mounted: function() {
+		var userStr = sessionStorage.getItem('user');
+		console.log(userStr);
+		if (userStr) {
+			user = JSON.parse(userStr);
+			console.log(user);
+			this.sysUserName = user.lastName || user.firstName;
+			this.sysUserAvatar = user.pictureUrl || '';
+			
+			this.loadProcessDefinitions();
+		} else {
+			location.href="login.html";
+		}
+	}
+});
+</script>
+</html>
