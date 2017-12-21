@@ -22,6 +22,7 @@ public class ProcessAPI {
 		logger.info("Starting to get process diagram info...");
 		DiagramResourceBean diagramResourceBean = HttpClientUtil.httpGet(url, basicAuth, DiagramResourceBean.class, false);
 		logger.info("Get process diagram info successfully...");
+		logger.info(diagramResourceBean.getContentUrl());
 		return diagramResourceBean;
 	}
 }

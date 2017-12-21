@@ -130,6 +130,7 @@ var app = new Vue({
 			} else {
 				this.logining = true;
 	     		var params = { "url": processDiagramUrl, "basicAuth": user.basicAuth };
+	     		console.log(params);
 	     		var url = "/activitiui/process-diagram.json";
 				axios.get(url, { "params": params })
 	     		.then(function (response) {
