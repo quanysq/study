@@ -79,6 +79,13 @@ Class07: XML (处理多个相同结构的节点)
 	 DelegateFunc： 事件、委托
 	 AttributeFunc： 特性
 	 NetFunc： 网络
+		Class01: HttpClient
+		Class02: HttpWebResponse and NetworkCredential
+		Class03: Read Local Certificates
+		Class04: 使用特定的证书去访问HTTPS and 跳过https
+		Class05: 下载文件
+		Class06: 使用代理服务器连接网络
+		Class07: Uri
 	 ClassFunc：类/接口研究
 		Class01: 测试子类能否重写父类的protected方法
 	 LocalFunc：本地化
