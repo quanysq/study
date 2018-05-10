@@ -41,5 +41,15 @@ namespace GeneratorLogAnalyze
       frm.Show();
     }
 
+    private void MenuItemEncrypt_Click(object sender, EventArgs e)
+    {
+      var frm = new FrmEncrypt();
+      frm.MdiParent = this;
+      frm.MinimizeBox = false;
+      frm.MaximizeBox = false;
+      frm.StartPosition = FormStartPosition.CenterScreen;
+      frm.Show();
+    }
+
   }
 }

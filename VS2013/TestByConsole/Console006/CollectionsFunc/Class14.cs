@@ -29,5 +29,52 @@ namespace Console006.CollectionsFunc
         Console.WriteLine(sll.Tname + "|" + sll.Cname);
       }
     }
+	
+	  /* 行转列，并取各细项
+    [TestMethod]
+    public void ArrangeTechnopediaTableSqlListWithDuplicationData()
+    {
+      var filePath2 = Path.Combine(Upgrader.Server.Common.FileUtil.GetGeneratorInstallPath(), "SerializerFiles", "TechnopediaTableSqlListWithDuplicationData.json");
+      var tablesqlList = SerializerUtil.Deserialize<List<ExtractorConfigTableSql>>(filePath2);
+      BDNALogger.DEFAULT.InfoFormat("tablesqlList count: [{0}]", tablesqlList.Count);
+
+      BDNALogger.DEFAULT.InfoFormat("Start to arrange tablesql list...");
+      var list = (from x in tablesqlList
+                  group x by new { x.SubscriptionHash, x.Vertical } into g
+                  select new
+                  {
+                    xKey1 = g.Key.SubscriptionHash,
+                    xKey2 = g.Key.Vertical,
+                    cMy = g.ToList(),
+                    cLong = g.LongCount(),
+                    cName = string.Join("#", g.Select(n => n.CsvFileName))
+                  }).ToList();
+      BDNALogger.DEFAULT.InfoFormat("list.Count: [{0}]", list.Count);
+
+      foreach (var item in list)
+      {
+        BDNALogger.DEFAULT.InfoFormat("[{0}], [{1}]", item.cName, item.cLong);
+        foreach (var item1 in item.cMy)
+        {
+          BDNALogger.DEFAULT.InfoFormat(item1.CsvFileName);
+        } 
+      }
+      Assert.IsTrue(true);
+    }
+	  */
+
+    /* 高效率去重复
+    public List<ExtractorConfigTableSql> TableSqlList
+    {
+      get
+      {
+        if (_tablesqlListWithDuplicationData.Count > 0)
+        {
+          _tablesqlList = _tablesqlListWithDuplicationData.GroupBy(x => x.Key).Select(x => x.First()).ToList();
+        }
+        return _tablesqlList;
+      }
+    }
+    */
   }
 }

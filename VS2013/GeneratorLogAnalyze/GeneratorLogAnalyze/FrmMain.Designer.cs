@@ -34,6 +34,7 @@
       this.MenuItemAnalyze = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuSimpleTools = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemDateSubtract = new System.Windows.Forms.ToolStripMenuItem();
+      this.MenuItemEncrypt = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -60,21 +61,22 @@
       // MenuItemExtractor
       // 
       this.MenuItemExtractor.Name = "MenuItemExtractor";
-      this.MenuItemExtractor.Size = new System.Drawing.Size(152, 22);
+      this.MenuItemExtractor.Size = new System.Drawing.Size(126, 22);
       this.MenuItemExtractor.Text = "日志提取";
       this.MenuItemExtractor.Click += new System.EventHandler(this.MenuItemExtractor_Click);
       // 
       // MenuItemAnalyze
       // 
       this.MenuItemAnalyze.Name = "MenuItemAnalyze";
-      this.MenuItemAnalyze.Size = new System.Drawing.Size(152, 22);
+      this.MenuItemAnalyze.Size = new System.Drawing.Size(126, 22);
       this.MenuItemAnalyze.Text = "日志分析";
       this.MenuItemAnalyze.Click += new System.EventHandler(this.MenuItemAnalyze_Click);
       // 
       // MenuSimpleTools
       // 
       this.MenuSimpleTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItemDateSubtract});
+            this.MenuItemDateSubtract,
+            this.MenuItemEncrypt});
       this.MenuSimpleTools.Name = "MenuSimpleTools";
       this.MenuSimpleTools.Size = new System.Drawing.Size(84, 20);
       this.MenuSimpleTools.Text = "简便小工具";
@@ -85,6 +87,13 @@
       this.MenuItemDateSubtract.Size = new System.Drawing.Size(152, 22);
       this.MenuItemDateSubtract.Text = "日期相减";
       this.MenuItemDateSubtract.Click += new System.EventHandler(this.MenuItemDateSubtract_Click);
+      // 
+      // MenuItemEncrypt
+      // 
+      this.MenuItemEncrypt.Name = "MenuItemEncrypt";
+      this.MenuItemEncrypt.Size = new System.Drawing.Size(152, 22);
+      this.MenuItemEncrypt.Text = "BDNA加解密";
+      this.MenuItemEncrypt.Click += new System.EventHandler(this.MenuItemEncrypt_Click);
       // 
       // FrmMain
       // 
@@ -112,5 +121,6 @@
     private System.Windows.Forms.ToolStripMenuItem MenuItemAnalyze;
     private System.Windows.Forms.ToolStripMenuItem MenuSimpleTools;
     private System.Windows.Forms.ToolStripMenuItem MenuItemDateSubtract;
+    private System.Windows.Forms.ToolStripMenuItem MenuItemEncrypt;
   }
 }

@@ -128,7 +128,13 @@ namespace LMSViewer
           return;
         }
 
-        string parametervalue = ParameterList.Rows[i].Cells["ParameterValue"].Value.ToString();
+        var parametervalue = ParameterList.Rows[i].Cells["ParameterValue"].Value;
+        var parameterType = ParameterList.Rows[i].Cells["ParameterType"].Value.ToString();
+        if (parameterType.Equals("System.Int32", StringComparison.OrdinalIgnoreCase))
+        {
+          parametervalue = Common.GetObjTranNull<int>(parametervalue);
+        }
+        
         args[i] = parametervalue;
       }
       object o                                = Common.ExecuteMethod<ILMSService>(lmsurl, methodname, args);
