@@ -22,6 +22,8 @@ namespace Console005.LDAP
     public string LoginPassword { get; set; }
     public string SearchBase { get; set; }
     public string SearchFilter { get; set; }
+    public bool IsSSL { get; set; }
+    public bool EnableTLS { get; set; }
 
     public LDAPHelper()
     {
@@ -41,8 +43,17 @@ namespace Console005.LDAP
     {
       try
       {
-        conn = new LdapConnection();
+        if (conn == null) conn = new LdapConnection();
+        conn.SecureSocketLayer = IsSSL;
+        if (IsSSL || EnableTLS)
+        {
+          conn.UserDefinedServerCertValidationDelegate += delegate { return true; };
+        }
         conn.Connect(LdapHost, LdapPort);
+        if (EnableTLS)
+        {
+          conn.startTLS();
+        }
         conn.Bind(LoginDN, LoginPassword);
         Console.WriteLine("Connect LDAP/AD Server Successfull!");
         Console.WriteLine("=======================");
@@ -96,4 +107,9 @@ namespace Console005.LDAP
       }
     }
   }
+
+  /*
+   * NOTE:
+   * Novell.Directory.Ldap.dll 依赖于 Mono.Security.dll
+   */
 }

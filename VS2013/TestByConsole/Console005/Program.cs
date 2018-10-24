@@ -14,7 +14,7 @@ namespace Console005
   {
     static void Main(string[] args)
     {
-      LDAP.C1.Execute();
+      LDAP.C3.Execute();
 
       Console.ReadKey();
     }
