@@ -5,15 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Xml;
 
 namespace Console003
 {
   /// <summary>
   /// XML
   /// </summary>
-  class Class04
+  class C4
   {
     public static void Execute()
+    {
+      //Example();
+      DeserializeXmlElement();
+    }
+
+    // test successful
+    private static void Example()
     {
       //创建Programmer列表，并添加对象
 
@@ -52,6 +60,22 @@ namespace Console003
       foreach (ProgrammerXmlObj p in list)
       {
         Console.WriteLine(p);
+      }
+    }
+
+    private static void DeserializeXmlElement()
+    {
+      string xmlFile = @"D:\Work\TestData\Conf\xml\updater_xmlaction.config";
+      //string xmlFile = @"D:\Work\TestData\Conf\xml\updater_xmlaction_part.config";
+      XmlDocument doc = new XmlDocument();
+      doc.Load(xmlFile);
+      XmlElement root = doc.DocumentElement;
+      XmlNodeList actionList = root.SelectSingleNode("Actions").ChildNodes;
+      XmlElement xmlElem = actionList[0] as XmlElement;
+      using (XmlReader xmlReader = xmlElem.CreateNavigator().ReadSubtree())
+      {
+        XmlSerializer xmlFormat = new XmlSerializer(typeof(XmlActionModel));
+        var model = (XmlActionModel)xmlFormat.Deserialize(xmlReader);
       }
     }
   }

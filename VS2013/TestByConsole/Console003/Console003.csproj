@@ -82,6 +82,7 @@
     <Compile Include="Class\JsonHelper.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonXmlObj.cs" />
+    <Compile Include="Class\XmlActionModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

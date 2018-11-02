@@ -31,7 +31,7 @@ namespace Console005.LDAP
 
       //ConnectADWithBigData(); 
 
-      // ConnectADWithBigDataAsync(); 
+      //ConnectADWithBigDataAsync(); 
 
       SplitDN();
     }
@@ -298,8 +298,9 @@ namespace Console005.LDAP
     private static void SplitDN()
     {
       string dn = @"CN=Ait service account 2\, QZ1081394\, ACD\, BDC,OU=Engineering,DC=User,DC=com";
+      //string dn = @"uid=NBIAdministrator,ou=People,dc=dsee7-ldap,dc=com";
       //string dn = @"CN=QZ1081394,OU=Engineering,DC=User,DC=com";
-      string cnPattern = @"^CN=(?<cn>.+?)(?<!\\),";
+      string cnPattern = @"^(?<cn>.+?)(?<!\\),";
 
       //Regex re = new Regex(cnPattern);
       //Match m = re.Match(dn);
@@ -309,7 +310,7 @@ namespace Console005.LDAP
         // Item with index 1 returns the first group match.
         string cn = m.Groups[1].Value;
         cn = cn.Replace(@"\", "");
-        Console.WriteLine("CN={0}", cn);
+        Console.WriteLine(cn);
       }
     }
   }
