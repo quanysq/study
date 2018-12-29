@@ -107,6 +107,7 @@
     <Compile Include="NetFunc\Class05.cs" />
     <Compile Include="NetFunc\Class06.cs" />
     <Compile Include="NetFunc\Class07.cs" />
+    <Compile Include="NetFunc\Class08.cs" />
     <Compile Include="RandomFunc\Class05.cs" />
     <Compile Include="RandomFunc\Class06.cs" />
     <Compile Include="RandomFunc\Class07.cs" />

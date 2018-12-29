@@ -160,7 +160,7 @@ namespace Console005.LDAP
       using (LdapConnection ldapConnection = new LdapConnection(ldapPath))
       {
         //connect
-        var networkCredential = new NetworkCredential("CN=T1,CN=Users,DC=adssl,DC=com", "Simple.0");
+        var networkCredential = new NetworkCredential("sa01.flexadmin", "Tryg@1234");
         ldapConnection.SessionOptions.SecureSocketLayer = false;
         //ldapConnection.SessionOptions.VerifyServerCertificate += delegate { return true; };
         //ldapConnection.SessionOptions.StartTransportLayerSecurity(new DirectoryControlCollection()); // 必须放在 VerifyServerCertificate 事件之后
@@ -297,9 +297,11 @@ namespace Console005.LDAP
 
     private static void SplitDN()
     {
-      string dn = @"CN=Ait service account 2\, QZ1081394\, ACD\, BDC,OU=Engineering,DC=User,DC=com";
-      //string dn = @"uid=NBIAdministrator,ou=People,dc=dsee7-ldap,dc=com";
+      //string dn = @"CN=Ait service account 2\, QZ1081394\, ACD\, BDC,OU=Engineering,DC=User,DC=com";
+      string dn = @"uid=NBIAdministrator,ou=People,dc=dsee7-ldap,dc=com";
       //string dn = @"CN=QZ1081394,OU=Engineering,DC=User,DC=com";
+      
+      //string cnPattern = @"^CN=(?<cn>.+?)(?<!\\),";
       string cnPattern = @"^(?<cn>.+?)(?<!\\),";
 
       //Regex re = new Regex(cnPattern);
@@ -311,6 +313,15 @@ namespace Console005.LDAP
         string cn = m.Groups[1].Value;
         cn = cn.Replace(@"\", "");
         Console.WriteLine(cn);
+        Console.WriteLine("==============");
+        foreach (Group group in m.Groups)
+        {
+          Console.WriteLine(group.Value);
+        }
+        Console.WriteLine("==============");
+        string userPart = m.Groups[0].Value;
+        string baseDN = dn.Replace(userPart, "");
+        Console.WriteLine(baseDN);
       }
     }
   }

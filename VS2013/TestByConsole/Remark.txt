@@ -86,6 +86,7 @@ Class07: XML (处理多个相同结构的节点)
 		Class05: 下载文件
 		Class06: 使用代理服务器连接网络
 		Class07: Uri
+		Class08: 访问带 SoapHeader 验证或集成验证的 webservice
 	 ClassFunc：类/接口研究
 		Class01: 测试子类能否重写父类的protected方法
 	 LocalFunc：本地化

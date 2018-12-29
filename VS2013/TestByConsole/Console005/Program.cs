@@ -15,6 +15,7 @@ namespace Console005
     static void Main(string[] args)
     {
       LDAP.C3.Execute();
+      //SharpZipLib.C1.Execute();
 
       Console.ReadKey();
     }
