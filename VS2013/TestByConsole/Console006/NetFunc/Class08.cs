@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,8 +21,9 @@ namespace Console006.NetFunc
     {
       //CallWebServiceWithSOAPAuth();
       //CallWebServiceWithBasicAuth();
-      CallWebServiceWithFromsAuth();
-      //CallWebServiceWithWindowsAuth();
+      //CallWebServiceWithFromsAuth();
+      CallWebServiceWithWindowsAuth();
+      //CheckAuthType();
     }
 
     // test successful
@@ -119,8 +122,8 @@ namespace Console006.NetFunc
       String result = "";
       try
       {
-        string loginUrl = "http://127.0.0.1:8081/Login.aspx";
-        string apiUrl = "http://127.0.0.1:8081/services/FromsAuthService.asmx/HelloWorld";
+        string loginUrl = "http://192.168.8.93:8081/Login.aspx";
+        string apiUrl = "http://192.168.8.93:8081/services/FromsAuthService.asmx/HelloWorld";
         httpClient = new HttpClient();
         httpClient.MaxResponseContentBufferSize = 1024 * 1024 * 10;
         List<KeyValuePair<String, String>> paramList = new List<KeyValuePair<String, String>>();
@@ -165,10 +168,8 @@ namespace Console006.NetFunc
         var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.None };
         handler.Credentials = new NetworkCredential("bdnacn", "quanysq123");
         string retString = string.Empty;
-        string url = "http://127.0.0.1:8081/services/WindowsAuthService.asmx/HelloWorld";
+        string url = "http://192.168.8.93:8081/services/WindowsAuthService.asmx/HelloWorld";
         httpclient = new HttpClient(handler);
-        var byteArray = Encoding.ASCII.GetBytes("Admin:123654");
-        httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         response = httpclient.PostAsync(new Uri(url), null).Result;
         response.EnsureSuccessStatusCode();
         ResponseStream = response.Content.ReadAsStreamAsync().Result;
@@ -188,5 +189,67 @@ namespace Console006.NetFunc
         if (httpclient != null) httpclient.Dispose();
       }
     }
+
+    private static void CheckAuthType()
+    {
+      HttpClient httpClient = null;
+      Stream ResponseStream = null;
+      StreamReader sr = null;
+      HttpResponseMessage response = null;
+      String result = "";
+      try
+      {
+
+        //string indexUrl = "http://192.168.8.93:8081/index.aspx";
+        string indexUrl = "http://192.168.11.24/bdna-admin/admin.aspx"; //Windows Auth
+        //string indexUrl = "https://192.168.11.25/bdna-admin/admin.aspx"; //Forms Auth
+        SetCertPass(indexUrl);
+        httpClient = new HttpClient();
+        response = httpClient.GetAsync(new Uri(indexUrl)).Result;
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+          result = "Windows Authentication";
+        }
+        else
+        {
+          string nextRequestUri = response.RequestMessage.RequestUri.ToString();
+          bool LoginStatus = nextRequestUri.IndexOf("Login.aspx", StringComparison.OrdinalIgnoreCase) > -1;
+          if (response.StatusCode == HttpStatusCode.OK && LoginStatus)
+          {
+            result = "Forms Authentication";
+          }
+          else
+          {
+            result = "Unknow Authentication";
+          }
+        }
+        Console.WriteLine(result);
+      }
+      catch
+      {
+        throw;
+      }
+      finally
+      {
+        if (response != null) response.Dispose();
+        if (sr != null) sr.Close();
+        if (ResponseStream != null) ResponseStream.Close();
+        if (httpClient != null) httpClient.Dispose();
+      }
+    }
+    #region Cert verfiy
+    private static void SetCertPass(string url)
+    {
+      if (url.StartsWith("https"))
+      {
+        ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+      }
+    }
+    private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+    {
+      return true;// Always accept
+    }
+    #endregion
   }
 }

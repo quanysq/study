@@ -20,7 +20,11 @@ namespace Web003.Services
     [WebMethod]
     public string HelloWorld()
     {
-      return "Hello Forms authentication";
+      return string.Format("Hello Forms authentication, By [{0}, {1}, {2}, {3}]", 
+        HttpContext.Current.Request.UserHostAddress, 
+        HttpContext.Current.Request.UserHostName, 
+        HttpContext.Current.Request.ServerVariables["REMOTE_HOST"],
+        HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
     }
   }
 }
