@@ -57,5 +57,27 @@ namespace Console001
        * UserReports
        */ 
     }
+
+    public static void Execute5()
+    {
+      string filepath1 = @"../../../../Praetorian.zip"; 
+      string filename1 = Path.GetFileName(filepath1);
+      Console.WriteLine(filename1);
+
+      string filepath2 = @"Praetorian.zip";
+      string filename2 = Path.GetFileName(filepath2);
+      Console.WriteLine(filename2);
+
+      string filepath3 = @"";
+      string filename3 = Path.GetFileName(filepath3);
+      Console.WriteLine(filename3);
+
+      /*
+       * Result:
+       * Praetorian.zip
+       * Praetorian.zip
+       * <NULL>
+       */
+    }
   }
 }

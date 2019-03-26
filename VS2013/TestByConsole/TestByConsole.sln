@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E1CB20D-9DDB-463D-93D0-DB4CEE6D7CAB}"
 	ProjectSection(SolutionItems) = preProject
 		Remark.txt = Remark.txt
+		RemarkForLibrary.txt = RemarkForLibrary.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console018", "Console018\Console018.csproj", "{482F19EE-3AF5-48AE-8E76-0A99FD3149BB}"
@@ -31,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console033", "Console033\Console033.csproj", "{B43A94E0-DCF6-418D-9B1F-2ADFA98476CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLib\CommonLib.csproj", "{7B26C79C-EB8D-4CDE-94BA-A7FA540E1A9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library001", "Library001\Library001.csproj", "{8909CB75-D90F-4122-B710-1FB9A2C86C95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -160,6 +163,14 @@ Global
 		{7B26C79C-EB8D-4CDE-94BA-A7FA540E1A9F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7B26C79C-EB8D-4CDE-94BA-A7FA540E1A9F}.Release|x64.ActiveCfg = Release|Any CPU
 		{7B26C79C-EB8D-4CDE-94BA-A7FA540E1A9F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Release|x64.ActiveCfg = Release|Any CPU
+		{8909CB75-D90F-4122-B710-1FB9A2C86C95}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

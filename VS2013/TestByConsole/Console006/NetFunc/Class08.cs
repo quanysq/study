@@ -22,8 +22,8 @@ namespace Console006.NetFunc
       //CallWebServiceWithSOAPAuth();
       //CallWebServiceWithBasicAuth();
       //CallWebServiceWithFromsAuth();
-      CallWebServiceWithWindowsAuth();
-      //CheckAuthType();
+      //CallWebServiceWithWindowsAuth();
+      CheckAuthType();
     }
 
     // test successful
@@ -166,9 +166,11 @@ namespace Console006.NetFunc
       try
       {
         var handler = new HttpClientHandler() { AutomaticDecompression = DecompressionMethods.None };
-        handler.Credentials = new NetworkCredential("bdnacn", "quanysq123");
+        //handler.Credentials = new NetworkCredential("bdnacn", "quanysq123");
+        handler.Credentials = new NetworkCredential("administrator", "Simple.0");
         string retString = string.Empty;
-        string url = "http://192.168.8.93:8081/services/WindowsAuthService.asmx/HelloWorld";
+        //string url = "http://192.168.8.93:8081/services/WindowsAuthService.asmx/HelloWorld";
+        string url = "http://192.168.11.24/bdna-admin/Services/UserRightService.asmx/GetLicenseInfo";
         httpclient = new HttpClient(handler);
         response = httpclient.PostAsync(new Uri(url), null).Result;
         response.EnsureSuccessStatusCode();
@@ -193,16 +195,14 @@ namespace Console006.NetFunc
     private static void CheckAuthType()
     {
       HttpClient httpClient = null;
-      Stream ResponseStream = null;
-      StreamReader sr = null;
       HttpResponseMessage response = null;
       String result = "";
       try
       {
 
         //string indexUrl = "http://192.168.8.93:8081/index.aspx";
-        string indexUrl = "http://192.168.11.24/bdna-admin/admin.aspx"; //Windows Auth
-        //string indexUrl = "https://192.168.11.25/bdna-admin/admin.aspx"; //Forms Auth
+        //string indexUrl = "http://192.168.11.24/bdna-admin/admin.aspx"; //Windows Auth
+        string indexUrl = "https://192.168.11.25/bdna-admin/admin.aspx"; //Forms Auth
         SetCertPass(indexUrl);
         httpClient = new HttpClient();
         response = httpClient.GetAsync(new Uri(indexUrl)).Result;
@@ -232,8 +232,6 @@ namespace Console006.NetFunc
       finally
       {
         if (response != null) response.Dispose();
-        if (sr != null) sr.Close();
-        if (ResponseStream != null) ResponseStream.Close();
         if (httpClient != null) httpClient.Dispose();
       }
     }
@@ -242,7 +240,8 @@ namespace Console006.NetFunc
     {
       if (url.StartsWith("https"))
       {
-        ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+        //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+        ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback((obj, certificate, chain, sslPolicyErrors) => { return true; });
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
       }
     }

@@ -57,6 +57,12 @@
     <Compile Include="FrmAnalyze.Designer.cs">
       <DependentUpon>FrmAnalyze.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmConvert2Base64.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConvert2Base64.Designer.cs">
+      <DependentUpon>FrmConvert2Base64.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDateSubtract.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAnalyze.resx">
       <DependentUpon>FrmAnalyze.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConvert2Base64.resx">
+      <DependentUpon>FrmConvert2Base64.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDateSubtract.resx">
       <DependentUpon>FrmDateSubtract.cs</DependentUpon>

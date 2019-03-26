@@ -127,6 +127,7 @@ Class07: XML (处理多个相同结构的节点)
 	 IIS: IIS and ApplicationPool
 	 NVelocity: NVelocity模板引擎
 	 SharpZipLib: 压缩工具（ICSharpCode.SharpZipLib）
+007. Log4net
 
 六、数据库相关
 025. 数据库操作

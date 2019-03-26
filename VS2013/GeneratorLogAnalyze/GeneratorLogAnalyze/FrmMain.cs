@@ -51,5 +51,15 @@ namespace GeneratorLogAnalyze
       frm.Show();
     }
 
+    private void MenuItemConver2Base64_Click(object sender, EventArgs e)
+    {
+      var frm = new FrmConvert2Base64();
+      frm.MdiParent = this;
+      frm.MinimizeBox = false;
+      frm.MaximizeBox = false;
+      frm.StartPosition = FormStartPosition.CenterScreen;
+      frm.Show();
+    }
+
   }
 }

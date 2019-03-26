@@ -35,6 +35,7 @@
       this.MenuSimpleTools = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemDateSubtract = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemEncrypt = new System.Windows.Forms.ToolStripMenuItem();
+      this.MenuItemConver2Base64 = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -76,7 +77,8 @@
       // 
       this.MenuSimpleTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemDateSubtract,
-            this.MenuItemEncrypt});
+            this.MenuItemEncrypt,
+            this.MenuItemConver2Base64});
       this.MenuSimpleTools.Name = "MenuSimpleTools";
       this.MenuSimpleTools.Size = new System.Drawing.Size(84, 20);
       this.MenuSimpleTools.Text = "简便小工具";
@@ -94,6 +96,13 @@
       this.MenuItemEncrypt.Size = new System.Drawing.Size(152, 22);
       this.MenuItemEncrypt.Text = "BDNA加解密";
       this.MenuItemEncrypt.Click += new System.EventHandler(this.MenuItemEncrypt_Click);
+      // 
+      // MenuItemConver2Base64
+      // 
+      this.MenuItemConver2Base64.Name = "MenuItemConver2Base64";
+      this.MenuItemConver2Base64.Size = new System.Drawing.Size(152, 22);
+      this.MenuItemConver2Base64.Text = "Covert2Base64";
+      this.MenuItemConver2Base64.Click += new System.EventHandler(this.MenuItemConver2Base64_Click);
       // 
       // FrmMain
       // 
@@ -122,5 +131,6 @@
     private System.Windows.Forms.ToolStripMenuItem MenuSimpleTools;
     private System.Windows.Forms.ToolStripMenuItem MenuItemDateSubtract;
     private System.Windows.Forms.ToolStripMenuItem MenuItemEncrypt;
+    private System.Windows.Forms.ToolStripMenuItem MenuItemConver2Base64;
   }
 }
