@@ -11,5 +11,5 @@
 	03 SoapAuthService.asmx: 使用 soap 验证
 	04 BaseAuthService.asmx: 使用 Basic Auth 验证
 	05 WindowsAuthService.asmx: Windows authentication
-004. Web API Example
+004. Web API Example / Event Center Client Example
 	

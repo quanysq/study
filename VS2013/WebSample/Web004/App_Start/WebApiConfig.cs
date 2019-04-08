@@ -9,6 +9,9 @@ namespace Web004
   {
     public static void Register(HttpConfiguration config)
     {
+      // 设置特性路由
+      config.MapHttpAttributeRoutes();
+
       config.Routes.MapHttpRoute(
           name: "DefaultApi",
           routeTemplate: "api/{controller}/{id}",
@@ -20,6 +23,12 @@ namespace Web004
         routeTemplate: "actionapi/{controller}/{action}/{id}",
         defaults: new { id=RouteParameter.Optional }
       );
+
+      /*config.Routes.MapHttpRoute(
+        name: "Rest",
+        routeTemplate: "rest/openapi/client/v1/{controller}/{action}/{id}",
+        defaults: new { id = RouteParameter.Optional }
+      );*/
 
       // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
       // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
