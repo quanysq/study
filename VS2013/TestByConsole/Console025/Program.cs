@@ -14,7 +14,8 @@ namespace Console025
     static void Main(string[] args)
     {
       //MSSQL.C4.Execute();
-      SQLite.C1.Execute();
+      //SQLite.C1.Execute();
+      MSSQL.C5.Execute();
       
       Console.ReadKey();
     }

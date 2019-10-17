@@ -26,6 +26,12 @@ Class21: MD5加密
    
 二、引用操作系统API
 002. 查看内存、OS版本、文件编码等
+Class01: 查进程内存
+Class02: 判断文件文件的编码
+Class03: 判断32/64位、安装组件、操作系统版本
+Class04: 设置指定目录的权限
+Class05: 检查FipsAlgorithmPolicy的设置
+Class06: 获取CPU、内存、磁盘、进程信息
 
 三、调试.NET内置功能
 003. 序列化和反序列化
@@ -36,6 +42,7 @@ Class04: XML
 Class05: JSON（DataContractJsonSerializer）
 Class06: JSON(Newtonsoft.Json)
 Class07: XML (处理多个相同结构的节点)
+Class08: 判断 IP 地址是否正确
 
 004. 多线程、并发、并行和异步
 006. Base Funcion
@@ -136,6 +143,7 @@ Class07: XML (处理多个相同结构的节点)
 		Class02: 备份还原MSSQL
 		Class03: 使用Windows Authentication连接数据库
 		Class04: 判断DataReader已经到了结尾
+		Class05: 使用 AD account 连接 MSSQL/模拟登录（Non-Interactive user）
 	 DB2: DB2数据库操作
 	 SQLite: SQLite数据库操作
 		Class01: SQLite数据库基础操作（连接，增删修查）

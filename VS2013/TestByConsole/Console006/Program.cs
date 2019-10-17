@@ -14,9 +14,10 @@ namespace Console006
       //StringFunc.C22.Execute();
       //NetFunc.C7.Execute();
       //XMLFunc.C9.Execute();
-      NetFunc.C8.Execute();
+      //NetFunc.C8.Execute();
       //CollectionsFunc.C17.Execute();
       //CollectionsFunc.C5.Execute();
+      StringFunc.Class23.Execute();
 
       Console.ReadKey();
     }

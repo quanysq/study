@@ -16,7 +16,8 @@ namespace Console005
     {
       //LDAP.C3.Execute();
       //SharpZipLib.C1.Execute();
-      CustomLog.C01.Execute();
+      //CustomLog.C01.Execute();
+      IIS.C3.Execute(args);
 
       Console.ReadKey();
     }

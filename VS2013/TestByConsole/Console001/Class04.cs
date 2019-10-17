@@ -15,6 +15,13 @@ namespace Console001
   {
     public static void Execute()
     {
+      // ExcludeSpecificDirectoryUsingDirectoryInfoEquality();
+      // ExcludeSpecificDirectoryUsingEnDirectoryEquality();
+      ExcludeSpecificDirectoryUsingWhere();
+    }
+
+    private static void ExcludeSpecificDirectoryUsingDirectoryInfoEquality()
+    {
       Console.WriteLine("start: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ffffff"));
       DirectoryInfo dir = new DirectoryInfo(@"D:\4.3\Patch");
       List<DirectoryInfo> dirlist = dir.GetDirectories("*").ToList();
@@ -29,7 +36,7 @@ namespace Console001
       }
     }
 
-    public static void Execute2()
+    private static void ExcludeSpecificDirectoryUsingEnDirectoryEquality()
     {
       Console.WriteLine("============");
       Console.WriteLine("start: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss ffffff"));
@@ -43,6 +50,20 @@ namespace Console001
       foreach (EnDirectory d in dirlist)
       {
         Console.WriteLine(d.FullName);
+      }
+    }
+
+    private static void ExcludeSpecificDirectoryUsingWhere()
+    {
+      string currentTempOutputPath = @"D:\Temp\CurrentTempTest";
+      string folderPrefix = DateTime.Now.ToString("yyyyMMdd");
+      DirectoryInfo dirCurrentTempOutput = new DirectoryInfo(currentTempOutputPath);
+      if (!dirCurrentTempOutput.Exists) return;
+      var subDirectories = dirCurrentTempOutput.GetDirectories().Where(x => !x.Name.StartsWith(folderPrefix));
+      foreach (DirectoryInfo dir in subDirectories)
+      {
+        Console.WriteLine("Delete temp folder: [{1}, {0}]", dir.FullName, dir.Name);
+        dir.Delete(true);
       }
     }
   }

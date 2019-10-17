@@ -61,5 +61,15 @@ namespace GeneratorLogAnalyze
       frm.Show();
     }
 
+    private void MenuItemIP_Click(object sender, EventArgs e)
+    {
+      var frm = new FrmIPByHostname();
+      frm.MdiParent = this;
+      frm.MinimizeBox = false;
+      frm.MaximizeBox = false;
+      frm.StartPosition = FormStartPosition.CenterScreen;
+      frm.Show();
+    }
+
   }
 }

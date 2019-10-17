@@ -185,6 +185,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\NodeFilesMode.cs" />
+    <Compile Include="Models\NodeMode.cs" />
     <Compile Include="Models\RestfulResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
