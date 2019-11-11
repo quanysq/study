@@ -21,11 +21,11 @@ namespace Console005.SharpZipLib
   {
     public static void Execute()
     {
-      ZipFileExec();
+      //ZipFileExec();
       //FastZipExec();
       //FindEntryExec();
       //GetInputStreamExec();
-      //FastUnZipExec();
+      FastUnZipExec();
       //UnzipStreamExec();
       //UpdateZipStreamEntryExec();
       //DeleteZipStreamEntryExec();

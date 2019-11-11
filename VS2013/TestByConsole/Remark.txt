@@ -94,6 +94,7 @@ Class08: 判断 IP 地址是否正确
 		Class06: 使用代理服务器连接网络
 		Class07: Uri
 		Class08: 访问带 SoapHeader 验证或集成验证的 webservice
+		Class09: 使用 WebClient 访问 TUS
 	 ClassFunc：类/接口研究
 		Class01: 测试子类能否重写父类的protected方法
 	 LocalFunc：本地化
