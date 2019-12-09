@@ -114,6 +114,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unity\Class01.cs" />
+    <Compile Include="ZipStorer\Class01.cs" />
+    <Compile Include="ZipStorer\CustomCRC32.cs" />
+    <Compile Include="ZipStorer\ZipStorer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -130,7 +133,11 @@
       <Name>Library001</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)Console005\7-zip" "$(TargetDir)7-zip" /y /i /e /d</PostBuildEvent>
+  </PropertyGroup>
   <!--<Import Project="..\packages\Mono.Security.5.4.0.201\build\net45\Mono.Security.targets" Condition="Exists('..\packages\Mono.Security.5.4.0.201\build\net45\Mono.Security.targets')" />-->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,6 +14,7 @@ namespace Console002
     static void Main(string[] args)
     {
       C5.Execute();
+      C7.Execute();
 
       Console.ReadKey();
     }

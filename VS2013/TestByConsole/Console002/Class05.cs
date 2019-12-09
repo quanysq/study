@@ -29,7 +29,7 @@ namespace Console002
       {
         if (rk != null) rk.Close();
       }
-      Console.WriteLine(fipsSetting);
+      Console.WriteLine("FipsAlgorithmPolicy: [{0}]", fipsSetting);
     }
   }
 }

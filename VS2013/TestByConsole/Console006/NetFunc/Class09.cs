@@ -85,6 +85,10 @@ namespace Console006.NetFunc
         if (isPost)
         {
           byRemoteInfo = webClientObj.UploadValues(uri, postType, postVars);
+          //byRemoteInfo = webClientObj.UploadValues(uri, "GET", postVars);
+          //byRemoteInfo = webClientObj.UploadValues(uri, "GET", null);
+          //NameValueCollection myPostVars = new NameValueCollection();
+          //byRemoteInfo = webClientObj.UploadValues(uri, "GET", myPostVars);
         }
         else
         {

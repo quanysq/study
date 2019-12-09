@@ -32,6 +32,7 @@ Class03: 判断32/64位、安装组件、操作系统版本
 Class04: 设置指定目录的权限
 Class05: 检查FipsAlgorithmPolicy的设置
 Class06: 获取CPU、内存、磁盘、进程信息
+Class07: 判断机器是否加入 domain, 并获取 domain name
 
 三、调试.NET内置功能
 003. 序列化和反序列化
@@ -135,6 +136,7 @@ Class08: 判断 IP 地址是否正确
 	 IIS: IIS and ApplicationPool
 	 NVelocity: NVelocity模板引擎
 	 SharpZipLib: 压缩工具（ICSharpCode.SharpZipLib）
+	 ZipStorer / 7-zip
 007. Log4net
 
 六、数据库相关

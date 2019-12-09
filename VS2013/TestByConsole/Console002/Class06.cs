@@ -12,7 +12,7 @@ namespace Console002
   /// <summary>
   /// 获取CPU、内存、磁盘、进程信息
   /// </summary>
-  public class Class06
+  public class C6
   {
     private static ScanResult ScanCore()
     {

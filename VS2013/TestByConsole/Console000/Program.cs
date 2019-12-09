@@ -12,7 +12,9 @@ namespace Console000
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Hello, world.");
+      Console.WriteLine(0xFFFFFFFF);
+      UInt32 crc = 0 ^ 0xFFFFFFFF;
+      Console.WriteLine(crc);
     }
   }
 
