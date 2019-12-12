@@ -1,0 +1,104 @@
+001. for 
+002. for / if / 列表
+003. for / if / 取余
+004. if / 元组
+005. for / 列表排序
+006. function / 递归：斐波那契数列
+007. 列表：复制
+008. for
+009. for / time：延迟
+010. time：延迟
+011. for / print：格式
+012. for / range / sqrt / stdout
+013. for
+014. function / while / isinstance /  print：format
+015. int / input / if
+016. datetime
+017. string：isalpha isspace isdigit
+018. reduce / lambda
+019. stdout
+020. 列表：append
+021. for：逆向思维
+022. ord / chr
+023. 两个数据交换
+024. stdout：write / for
+025. sum / map
+026. function / 递归
+027. len / 反向
+028. 递归：回推 递推
+029. int / 分解出每一位数
+030. 列表：反向
+031. if 
+032. 分解出每一位数
+033. join / for：特殊写法
+034. function
+035. class / 颜色的写法
+036. for / int / input / if / 取余
+037. 排序
+038. float
+039. 列表：append 排序
+040. 列表：反向 交换
+041. 静态变量
+042. 模仿 auto 定义变量 / 变量作用域
+043. 静态变量
+044. 多维列表：矩阵
+045. for
+046. while：退出机制
+047. 两个变量值互换
+048. 数字比较
+049. 使用 lambda 创建匿名函数
+050. 随机数
+051. 按位与 & 
+052. 按位或 | 
+053. 按位异或 ^ 
+054. 左右移：取一个整数a从右端开始的4~7位
+055. 按位取反~
+056. tkinter：画圆形
+057. tkinter：画直线
+058. tkinter：画方形
+059. tkinter：画复杂图形
+060. len
+061. for：打印杨辉三角形
+062. find：查找字符串
+063. tkinter：画椭圆
+064. tkinter：画复杂图形
+065. tkinter：画一个最优美的图案
+066. 排序 / return：特殊返回
+067. 列表：找出最大和最小
+068. 列表：移动数据
+069. while
+070. len
+071. function / 2维列表
+072. 列表：append
+073. 列表：reverse[反向输出]
+074. 列表：排序(sort)及连接(extend)
+075. for / if
+076. function / 判断奇偶数 / 浮数运算
+077. 循环输出列表
+078. 字典：循环 找出最大
+079. 字符串排序
+080. while：break
+081. for / if：and
+082. ord：八进制转换为十进制
+083. for：求0—7所能组成的奇数个数
+084. 连接字符串
+085. 判断一个奇数最少几个 9 除于该数的结果为整数
+086. +：两个字符串连接
+087. 结构体变量传递
+088. while
+089. 分离出每个数位
+090. 列表使用实例大全
+091. time：ctime asctime localtime gmtime
+092. time：time
+093. time：clock
+094. time 复杂例子
+095. dateutil：字符串日期转换为易读的日期格式
+096. count：计算字符串中子串出现的次数
+097. 文件操作
+098. 文件操作
+099. 文件操作
+100. 列表转换为字典
+
+ 
+
+
