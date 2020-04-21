@@ -27,10 +27,17 @@ namespace Web001.Webservice
 
     // Add more operations here and mark them with [OperationContract]
     [OperationContract]
-    [WebInvoke(Method = "POST")]
+    [WebGet(ResponseFormat = WebMessageFormat.Xml)]
     public string TestCall()
     {
       return "Hello world!";
+    }
+
+    [OperationContract]
+    [WebInvoke(Method = "POST")]
+    public string MemeryTest()
+    {
+      return "The reason for this bug may be because the number of log is too much, it is relatively slow that read and write data to the page";
     }
   }
 }

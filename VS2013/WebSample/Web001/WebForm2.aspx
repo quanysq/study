@@ -16,11 +16,11 @@
     <script type="text/javascript">
       $("#CallAPIBtn").click(function () {
         alert("I will call http://124.42.240.97:11000/job-rest-service/job/");
-
+          
         $.ajax({
           type: "POST",
           url: "/Webservice/Service1.svc/TestCall",
-          dataType: "json",
+          dataType: "xml",
           data: { },
           headers: {
             "license": "e202b6dfc1ba5b3d1ea8f75fb69e3a3019e84658",

@@ -34,6 +34,12 @@ namespace Console006.NetFunc
       {
         ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;
         WebRequest w = base.GetWebRequest(uri);
+        if (w is HttpWebRequest)
+        {
+          (w as HttpWebRequest).AllowAutoRedirect = false;
+          var allowAutoRedirect = (w as HttpWebRequest).AllowAutoRedirect;
+          Console.WriteLine("The AllowAutoRedirect status of Web Request is [{0}]", allowAutoRedirect);
+        }
         w.Timeout = timeout;
         return w;
       }
@@ -52,6 +58,8 @@ namespace Console006.NetFunc
       webCredentials = webCredentials ?? CredentialCache.DefaultCredentials;
       using (CustomWebClient webClientObj = new CustomWebClient())
       {
+        webClientObj.Headers.Set("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36");
+
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
 
         webClientObj.Credentials = webCredentials;
@@ -78,6 +86,11 @@ namespace Console006.NetFunc
         if (webProxy != null)
         {
           webClientObj.Proxy = webProxy;
+        }
+
+        foreach (var header in webClientObj.Headers)
+        {
+          Console.WriteLine("Header: [{0}]", header);
         }
 
         string sRemoteInfo = "";

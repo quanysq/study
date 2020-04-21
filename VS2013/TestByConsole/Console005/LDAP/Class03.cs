@@ -27,13 +27,13 @@ namespace Console005.LDAP
 
       //ConnectTLSOnlyADWithSSL();      
 
-      //ConnectNormalAD(); 
+      ConnectNormalAD(); 
 
       //ConnectADWithBigData(); 
 
       //ConnectADWithBigDataAsync(); 
 
-      SplitDN();
+      //SplitDN();
     }
 
     // test successed
@@ -135,21 +135,28 @@ namespace Console005.LDAP
     // test successed
     private static void ConnectNormalAD()
     {
-      string ldapPath = "192.168.8.18:389";
+      Console.WriteLine("Binding. [{0}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
+      //string ldapPath = "10.88.151.239:389";
+      string ldapPath = "vm235w.bdnacorp.com:389";
       using (LdapConnection ldapConnection = new LdapConnection(ldapPath))
       {
+        //ldapConnection.Timeout = TimeSpan.FromSeconds(1);
+
         //connect
-        var networkCredential = new NetworkCredential("cn=DemoAdmin,ou=nbi,ou=bdna_engineerteam,dc=bdnacn,dc=com", "bdna");
+        //var networkCredential = new NetworkCredential("CN=Administrator,CN=Users,DC=adssl,DC=com", "Simple.0");
+        var networkCredential = new NetworkCredential("CN=Pan CTR Luangphinith,CN=Users,DC=qa-nbi,DC=com", "ABC:123*456$");
         ldapConnection.SessionOptions.SecureSocketLayer = false;
         ldapConnection.SessionOptions.ProtocolVersion = 3;
         ldapConnection.AuthType = AuthType.Basic;
         ldapConnection.Credential = networkCredential;
         ldapConnection.Bind();
+        Console.WriteLine("Binded. [{0}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
 
+        /*Console.WriteLine("Start to search... [{0}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
         //search
-        string distinguishedName = "ou=nbi,ou=bdna_engineerteam,dc=bdnacn,dc=com";
-        string filter = "(&(objectClass=Person)(cn=Demo*))";
-        Search(ldapConnection, 0, distinguishedName, filter);
+        string distinguishedName = "DC=adssl,DC=com"; //"ou=nbi,ou=bdna_engineerteam,dc=bdnacn,dc=com";
+        string filter = "(|(cn=*))"; //"(&(objectClass=Person)(cn=Demo*))";
+        Search(ldapConnection, 0, distinguishedName, filter);*/
       }
     }
 
@@ -208,10 +215,12 @@ namespace Console005.LDAP
       {
         SearchRequest request = new SearchRequest(distinguishedName, filter, SearchScope.Subtree, showAttributes);
         if (sizeLimit > 0) request.SizeLimit = sizeLimit; // 如果没有限制，可能最多可以搜索 10000 条数据，测试搜索 6000 多条没有问题
+        //SearchResponse response = (SearchResponse)ldapConnection.SendRequest(request, ldapConnection.Timeout);
+        //SearchResponse response = (SearchResponse)ldapConnection.SendRequest(request, TimeSpan.FromSeconds(1));
         SearchResponse response = (SearchResponse)ldapConnection.SendRequest(request);
 
-        Console.WriteLine("Entries Count: [{0}]", response.Entries.Count);
-        Console.WriteLine("==============");
+        Console.WriteLine("Entries Count: [{0}] [{1}]", response.Entries.Count, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
+        /*Console.WriteLine("==============");
         foreach (SearchResultEntry entry in response.Entries)
         {
           //var t1 = entry.Attributes["abcd"]; // 如果不存在的属性返回 null
@@ -229,19 +238,21 @@ namespace Console005.LDAP
               Console.WriteLine("        Attribute Value: [{0}]", attributeValue);
             }
           }
-        }
+        }*/
       }
       catch (DirectoryOperationException e)
       {
         // 在这里处理受大小限制返回的数据，最多只能返回 1000 条限制
         SearchResponse response = (SearchResponse)e.Response;
-        foreach (SearchResultEntry entry in response.Entries)
+        Console.WriteLine("Entries Count: [{0}] [{1}]", response.Entries.Count, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
+        /*foreach (SearchResultEntry entry in response.Entries)
         {
           Console.WriteLine("[{0}]: {1}", response.Entries.IndexOf(entry), entry.DistinguishedName);
-        }
+        }*/
       }
       catch
       {
+        Console.WriteLine("LDAP serach failed. [{0}]", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff"));
         throw;
       }
     }

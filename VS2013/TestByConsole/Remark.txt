@@ -100,6 +100,8 @@ Class08: 判断 IP 地址是否正确
 		Class01: 测试子类能否重写父类的protected方法
 	 LocalFunc：本地化
 		Class01: 本地化（包括T4模板的使用）
+	 CacheFunc: 缓存
+		Class01: MemoryCache
 
 四、设计模式 
 018. 面向切面编程（AOP）[PostSharp]

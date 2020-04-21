@@ -58,6 +58,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,6 +70,7 @@
     <Compile Include="AttributeFunc\Class01.cs" />
     <Compile Include="AttributeFunc\Class02.cs" />
     <Compile Include="AttributeFunc\Class03.cs" />
+    <Compile Include="CacheFunc\Class01.cs" />
     <Compile Include="ClassFunc\Class01.cs" />
     <Compile Include="Class\Comp.cs" />
     <Compile Include="Class\Course.cs" />

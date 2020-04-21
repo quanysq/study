@@ -12,6 +12,9 @@ using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Runtime.ConstrainedExecution;
+using System.Security;
 
 namespace Console025.MSSQL
 {
@@ -28,13 +31,30 @@ namespace Console025.MSSQL
     const int LOGON32_PROVIDER_DEFAULT = 0;
     const int LOGON32_PROVIDER_WINNT50 = 3;
 
-    public static void Execute()
+    private static object _lockObj = new object();
+
+    public static void Execute(string[] args)
     {
-      // UseConnectString();
-      // UseImpersonation();
-      // UseSmo();
-      UseSmoWithImpersonate();
-      // LogonStatus();
+      if (args.Length == 0)
+      {
+        UseConnectString();
+      }
+      else
+      {
+        string arg = args[0];
+        Console.WriteLine("arg=[{0}]", arg);
+        switch (arg)
+        {
+          case "UseConnectString": UseConnectString(); break;
+          case "UseImpersonation": UseImpersonation(); break;
+          case "UseSmo": UseSmo(); break;
+          case "UseSmoWithImpersonate": UseSmoWithImpersonate(); break;
+          case "LogonStatus": LogonStatus(); break;
+          case "IsNonInteractiveUserTest": IsNonInteractiveUserTest(); break;
+          case "ImpersonateLogonForMemoryLeakTest": ImpersonateLogonForMemoryLeakTest(); break;
+          default: UseConnectString(); break;
+        }
+      }
     }
 
     // Will Success
@@ -203,33 +223,28 @@ namespace Console025.MSSQL
 
     private static void ImpersonateLogon(Action<string, string, string> action)
     {
-      using (StreamReader sr = new StreamReader("WindowNTUser.txt"))
-      {
-        // format: domain,username,password. e.g: FV5,DPTest,Simple.0
-        string user = sr.ReadToEnd();
-        string[] userInfo = user.Split(',');
-        string domain = userInfo[0];
-        string username = userInfo[1];
-        string password = userInfo[2];
+      string domain; 
+      string username; 
+      string password;
+      GetAccountInfo(out domain, out username, out password);
 
-        IntPtr admin_token = default(IntPtr);
-        WindowsIdentity wid_admin = null;
-        WindowsImpersonationContext wic = null;
+      IntPtr admin_token = default(IntPtr);
+      WindowsIdentity wid_admin = null;
+      WindowsImpersonationContext wic = null;
 
-        LogonByInteractive(username, domain, password);
-        LogonByNetwork(username, domain, password);
-        LogonByNewCredentialsWithWinnt50(username, domain, password);
+      LogonByInteractive(username, domain, password);
+      LogonByNetwork(username, domain, password);
+      LogonByNewCredentialsWithWinnt50(username, domain, password);
         
-        //在程序中模拟域帐户登录
-        if (WinLogonHelper.LogonUser(username, domain, password, LOGON32_LOGON_NEW_CREDENTIALS, 0, ref admin_token) != 0)
+      //在程序中模拟域帐户登录
+      if (WinLogonHelper.LogonUser(username, domain, password, LOGON32_LOGON_NEW_CREDENTIALS, 0, ref admin_token) != 0)
+      {
+        Console.WriteLine("Logon successful with LOGON32_LOGON_NEW_CREDENTIALS + LOGON32_PROVIDER_DEFAULT. [{0}]", username);
+        using (wid_admin = new WindowsIdentity(admin_token))
         {
-          Console.WriteLine("Logon successful with LOGON32_LOGON_NEW_CREDENTIALS + LOGON32_PROVIDER_DEFAULT. [{0}]", username);
-          using (wid_admin = new WindowsIdentity(admin_token))
+          using (wic = wid_admin.Impersonate())
           {
-            using (wic = wid_admin.Impersonate())
-            {
-              action(domain, username, password);
-            }
+            action(domain, username, password);
           }
         }
       }
@@ -283,6 +298,20 @@ namespace Console025.MSSQL
       }
     }
 
+    private static void GetAccountInfo(out string domain, out string username, out string password)
+    {
+      domain = ""; username = ""; password = "";
+      using (StreamReader sr = new StreamReader("WindowNTUser.txt"))
+      {
+        // format: domain,username,password. e.g: FV5,DPTest,Simple.0
+        string user = sr.ReadToEnd();
+        string[] userInfo = user.Split(',');
+        domain = userInfo[0];
+        username = userInfo[1];
+        password = userInfo[2];
+      }
+    }
+
     private static string GetConnection()
     {
       using (StreamReader sr = new StreamReader("DBConnection.txt"))
@@ -292,9 +321,80 @@ namespace Console025.MSSQL
         return strConn;
       }
     }
-  }
 
-  
+    private static void IsNonInteractiveUser(int i)
+    {
+      IntPtr token = default(IntPtr);
+
+      string ntUser;
+      string domain;
+      string password;
+      GetAccountInfo(out domain, out ntUser, out password);
+
+      int logonType = LOGON32_LOGON_INTERACTIVE;
+      int result = WinLogonHelper.LogonUser(ntUser, domain, password, logonType, LOGON32_PROVIDER_DEFAULT, ref token);
+      int errCode = Marshal.GetLastWin32Error();
+      if (errCode == 1326)
+      {
+        Console.WriteLine("Error Code: [{0}]", errCode);
+      }
+      bool isNonInteractiveUser = false;
+      if (result == 0)
+      {
+        isNonInteractiveUser = true;
+      }
+      string logon = string.Format(@"{1}\{0}", ntUser, domain);
+      Console.WriteLine("[{2}] [{0}] is the non-interactive account? [{1}]", logon, isNonInteractiveUser, i);
+    }
+
+    private static void IsNonInteractiveUserTest()
+    {
+      for (var i = 0; i < 40000; i++)
+      {
+        IsNonInteractiveUser(i);
+        Thread.Sleep(85);
+      }
+    }
+
+    private static void ImpersonateLogonForMemoryLeak(int i)
+    {
+      lock (_lockObj)
+      {
+        string domain;
+        string username;
+        string password;
+        GetAccountInfo(out domain, out username, out password);
+
+        IntPtr admin_token = default(IntPtr);
+        WindowsIdentity wid_admin = null;
+        WindowsImpersonationContext wic = null;
+
+        //在程序中模拟域帐户登录
+        if (WinLogonHelper.LogonUser(username, domain, password, LOGON32_LOGON_NEW_CREDENTIALS, LOGON32_PROVIDER_DEFAULT, ref admin_token) != 0)
+        {
+          using (wid_admin = new WindowsIdentity(admin_token))
+          {
+            using (wic = wid_admin.Impersonate())
+            {
+              Console.WriteLine("[{1}] Logon successful with LOGON32_LOGON_NEW_CREDENTIALS + LOGON32_PROVIDER_DEFAULT. [{0}]", username, i);
+            }
+          }
+        }
+        WinLogonHelper.CloseHandle(admin_token);
+        System.GC.SuppressFinalize(wic);
+        System.GC.SuppressFinalize(wid_admin);
+      }
+    }
+
+    private static void ImpersonateLogonForMemoryLeakTest()
+    {
+      for (var i = 0; i < 40000; i++)
+      {
+        ImpersonateLogonForMemoryLeak(i);
+        Thread.Sleep(85);
+      }
+    }
+  }
 
   internal static class WinLogonHelper
   {
@@ -304,6 +404,12 @@ namespace Console025.MSSQL
     /// </summary>
     [DllImport("advapi32.DLL", SetLastError = true)]
     public static extern int LogonUser(string lpszUsername, string lpszDomain, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
+
+    [DllImport("kernel32.dll")]
+    [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+    [SuppressUnmanagedCodeSecurity]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool CloseHandle(IntPtr handle);
   }
 
 }

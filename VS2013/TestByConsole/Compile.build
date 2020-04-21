@@ -1,0 +1,23 @@
+<?xml version="1.0"?>  
+<project name="Server" default="all" basedir="."> 
+	<property name="SolutionName" value="D:\Learn\study\VS2013\TestByConsole\TestByConsole.sln" />
+	<!--
+	The following variables are defined by TestByConsoleCompile.bat
+	<property name="ProjectName" value="Console006" />
+	<property name="ConfigurationType" value="release|debug" />
+	<property name="PlatformType" value="x64|x86|any cpu" />
+	-->
+	
+	<target name="Build">
+		<msbuild project="${SolutionName}">
+			<arg value="/t:${ProjectName}:Rebuild" />
+			<arg value="/p:Configuration=${ConfigurationType}" />
+			<arg value="/p:Platform=${PlatformType}" />
+			<!--<arg value="/p:OutputPath=${SourceDir}" />-->
+		</msbuild>
+	</target>
+	
+	<target name="all" >
+		<call target="Build" />
+	</target>
+</project>
