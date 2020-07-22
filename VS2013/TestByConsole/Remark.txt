@@ -33,6 +33,8 @@ Class04: 设置指定目录的权限
 Class05: 检查FipsAlgorithmPolicy的设置
 Class06: 获取CPU、内存、磁盘、进程信息
 Class07: 判断机器是否加入 domain, 并获取 domain name
+Class08: 获取 Windows Service 状态，启动/停止 Windows Service
+Class09: WMI
 
 三、调试.NET内置功能
 003. 序列化和反序列化

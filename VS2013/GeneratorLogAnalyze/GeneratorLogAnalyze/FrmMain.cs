@@ -71,5 +71,25 @@ namespace GeneratorLogAnalyze
       frm.Show();
     }
 
+    private void MenuItemADCert_Click(object sender, EventArgs e)
+    {
+      var frm = new FrmVerifyADCert();
+      frm.MdiParent = this;
+      frm.MinimizeBox = false;
+      frm.MaximizeBox = false;
+      frm.StartPosition = FormStartPosition.CenterScreen;
+      frm.Show();
+    }
+
+    private void MenuItemSpecificCert_Click(object sender, EventArgs e)
+    {
+      var frm = new FrmVerifySpecificCert();
+      frm.MdiParent = this;
+      frm.MinimizeBox = false;
+      frm.MaximizeBox = false;
+      frm.StartPosition = FormStartPosition.CenterScreen;
+      frm.Show();
+    }
+
   }
 }

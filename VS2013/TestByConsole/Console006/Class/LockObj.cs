@@ -52,5 +52,21 @@ namespace Console006.Class
     {
       Console.WriteLine("I am not locked :)");
     }
+
+    public void LockCode(object o)
+    {
+      int i = 0;
+      while (i < 1000)
+      {
+        i++;
+        lock (locker)
+        {
+          Console.WriteLine("[Thread: {0}] 1 Foo: I am locked :(", Thread.CurrentThread.Name);
+        }
+
+        Console.WriteLine("[Thread: {0}] 2 Foo: I am not locked :)", Thread.CurrentThread.Name);
+        Thread.Sleep(1000);
+      }
+    }
   }
 }

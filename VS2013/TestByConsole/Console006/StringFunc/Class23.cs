@@ -14,11 +14,12 @@ namespace Console006.StringFunc
   {
     public static void Execute()
     {
-      string text = @"data source=zothos.argonath.com;initial catalog=BDNA_PUBLISH;persist security info=True;uid=fv5\DBATest;pwd=Simple.0;MultipleActiveResultSets=True;App=EntityFramework;Integrated Security=True";
-      string pattern1 = @"uid=(?<uid>.+?)(?<!\\);pwd=";
+      //string text = @"data source=zothos.argonath.com;initial catalog=BDNA_PUBLISH;persist security info=True;uid=fv5\DBATest;pwd=Simple.0;MultipleActiveResultSets=True;App=EntityFramework;Integrated Security=True";
+      string text = @"data source=localhost\mssql2016;initial catalog=BDNA_PUBLISH;persist security info=True;uid='JACKYDS\SRVC-MON-BDNA-PRD';pwd='ybDc6m%8`MCG;&ps6';MultipleActiveResultSets=True;App=EntityFramework;Integrated Security=True";
+      string pattern1 = @"uid='(?<uid>.+?)(?<!\\)';pwd=";
       ExtractUsingRegex(text, pattern1);
       Console.WriteLine("############################");
-      string pattern2 = @"pwd=(?<uid>.+?)(?<!\\);MultipleActiveResultSets=";
+      string pattern2 = @"pwd='(?<uid>.+?)(?<!\\)';MultipleActiveResultSets=";
       ExtractUsingRegex(text, pattern2);
     }
 

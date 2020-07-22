@@ -19,7 +19,8 @@ namespace Console006
       //CollectionsFunc.C17.Execute();
       //CollectionsFunc.C5.Execute();
       //StringFunc.Class23.Execute();
-      CacheFunc.C1.Execute(args);
+      //CacheFunc.C1.Execute(args);
+      LockFunc.C1.Execute();
 
       Console.ReadKey();
     }

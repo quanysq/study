@@ -12,9 +12,14 @@ namespace Console000
   {
     static void Main(string[] args)
     {
-      Console.WriteLine(0xFFFFFFFF);
+      /*Console.WriteLine(0xFFFFFFFF);
       UInt32 crc = 0 ^ 0xFFFFFFFF;
-      Console.WriteLine(crc);
+      Console.WriteLine(crc);*/
+
+      var dir = args[0];
+      DirectoryInfo DirInfo = new DirectoryInfo(dir);
+      DirInfo.Attributes = FileAttributes.Normal & FileAttributes.Directory;
+      Console.WriteLine("OK");
     }
   }
 

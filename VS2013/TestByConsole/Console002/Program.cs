@@ -13,8 +13,10 @@ namespace Console002
   {
     static void Main(string[] args)
     {
-      C5.Execute();
-      C7.Execute();
+      //C5.Execute();
+      //C7.Execute();
+      //C8.Execute(args);
+      C9.Execute(args);
 
       Console.ReadKey();
     }

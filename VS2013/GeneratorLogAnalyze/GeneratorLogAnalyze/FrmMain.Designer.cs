@@ -37,6 +37,9 @@
       this.MenuItemEncrypt = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemConver2Base64 = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemIP = new System.Windows.Forms.ToolStripMenuItem();
+      this.MenuCertificate = new System.Windows.Forms.ToolStripMenuItem();
+      this.MenuItemADCert = new System.Windows.Forms.ToolStripMenuItem();
+      this.MenuItemSpecificCert = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -44,7 +47,8 @@
       // 
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuMain,
-            this.MenuSimpleTools});
+            this.MenuSimpleTools,
+            this.MenuCertificate});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
       this.menuStrip1.Size = new System.Drawing.Size(1352, 24);
@@ -113,6 +117,29 @@
       this.MenuItemIP.Text = "Get IP";
       this.MenuItemIP.Click += new System.EventHandler(this.MenuItemIP_Click);
       // 
+      // MenuCertificate
+      // 
+      this.MenuCertificate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemADCert,
+            this.MenuItemSpecificCert});
+      this.MenuCertificate.Name = "MenuCertificate";
+      this.MenuCertificate.Size = new System.Drawing.Size(45, 20);
+      this.MenuCertificate.Text = "证书";
+      // 
+      // MenuItemADCert
+      // 
+      this.MenuItemADCert.Name = "MenuItemADCert";
+      this.MenuItemADCert.Size = new System.Drawing.Size(217, 22);
+      this.MenuItemADCert.Text = "验证 LDAP/AD Server 证书";
+      this.MenuItemADCert.Click += new System.EventHandler(this.MenuItemADCert_Click);
+      // 
+      // MenuItemSpecificCert
+      // 
+      this.MenuItemSpecificCert.Name = "MenuItemSpecificCert";
+      this.MenuItemSpecificCert.Size = new System.Drawing.Size(217, 22);
+      this.MenuItemSpecificCert.Text = "验证指定证书";
+      this.MenuItemSpecificCert.Click += new System.EventHandler(this.MenuItemSpecificCert_Click);
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,5 +169,8 @@
     private System.Windows.Forms.ToolStripMenuItem MenuItemEncrypt;
     private System.Windows.Forms.ToolStripMenuItem MenuItemConver2Base64;
     private System.Windows.Forms.ToolStripMenuItem MenuItemIP;
+    private System.Windows.Forms.ToolStripMenuItem MenuCertificate;
+    private System.Windows.Forms.ToolStripMenuItem MenuItemADCert;
+    private System.Windows.Forms.ToolStripMenuItem MenuItemSpecificCert;
   }
 }

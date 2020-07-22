@@ -15,6 +15,11 @@ namespace Console006.LockFunc
   {
     public static void Execute()
     {
+      LockObjOnCode();
+    }
+
+    public static void LockThis()
+    {
       LockObj1 LockObj1 = new LockObj1();
       //在t1线程中调用LockMe，并将deadlock设为true（将出现死锁）
       Thread t1 = new Thread(LockObj1.LockMe);
@@ -35,7 +40,7 @@ namespace Console006.LockFunc
        */
     }
 
-    public static void Execute2()
+    public static void LockObjOnWholeMethod()
     {
       LockObj2 LockObj2 = new LockObj2();
       //在t2线程中调用LockMe，并将deadlock设为true（将出现死锁）
@@ -55,6 +60,18 @@ namespace Console006.LockFunc
        * 而不是整个对象。这时候重新运行程序，可以看到虽然t1出现了死锁，DoNotLockMe()仍然可以由主线程访问；
        * LockMe()依然不能访问，原因是其中锁定的locker还没有被t1释放。
        */
+    }
+
+    public static void LockObjOnCode()
+    {
+      LockObj2 LockObj2 = new LockObj2();
+      Thread t1 = new Thread(LockObj2.LockCode);
+      t1.Name = "T1";
+      t1.Start(true);
+
+      Thread t2 = new Thread(LockObj2.LockCode);
+      t2.Name = "T2";
+      t2.Start(true);
     }
   }
   /*
