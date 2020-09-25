@@ -16,7 +16,8 @@ namespace Console002
       //C5.Execute();
       //C7.Execute();
       //C8.Execute(args);
-      C9.Execute(args);
+      //C9.Execute(args);
+      C2.Execute(args);
 
       Console.ReadKey();
     }

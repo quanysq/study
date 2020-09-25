@@ -69,6 +69,31 @@ Class08: 判断 IP 地址是否正确
 		Class17: HashSet 
 	 LoopFunc： 循环
 	 StringFunc： 基础数据类型，如string, int等
+		Class01: 验证空字符串/空数组
+		Class02: Substring/LastIndexOf
+		Class03: 字符串转成二进制（转换编码）
+		Class04: ? 和 ?? 操作符
+		Class05: 对字符串补充空格
+		Class06: \"
+		Class07: 验证数组是否按顺序输出
+		Class08: default关键字
+		Class09: bool转成int
+		Class10: 验证null+""
+		Class11: is 和 类型转换
+		Class12: params参数
+		Class13: bool?
+		Class14: 方法参数值被改变
+		Class15: TrimEnd
+		Class16: System.Globalization.CultureInfo.CreateSpecificCulture("en-US")
+		Class17: 不区分大小写比较
+		Class18: 比较版本号
+		Class19: IndexOf
+		Class20: 按位或，按位与
+		Class21: 正则表达式修改字符串中的密码
+		Class22: 左右补位
+		Class23: 正则表达式提取指定的数据
+		Class24: ?
+		Class25: ?
 	 ThrowFunc： Throw
 	 XMLFunc： XML
 		Class01: OuterXml
@@ -154,3 +179,5 @@ Class08: 判断 IP 地址是否正确
 	 DB2: DB2数据库操作
 	 SQLite: SQLite数据库操作
 		Class01: SQLite数据库基础操作（连接，增删修查）
+	 MongoDB
+	 Redis

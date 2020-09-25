@@ -8,18 +8,21 @@ using System.Threading.Tasks;
 namespace Console002
 {
   /// <summary>
-  /// 判断文件文件的编码
+  /// 判断/转换文件文件的编码
   /// </summary>
   class C2
   {
-    public static void Execute()
+    public static void Execute(string[] args)
     {
-      Encoding en1 = GetFileEncodeType(@"D:\临时\RestoreReport\analyzer_report_upgrade_test.good.xanalyzer");
-      Console.WriteLine("analyzer_report_upgrade_test.good.xanalyzer Encoding: " + en1.ToString());
+      //Encoding en1 = GetFileEncodeType(@"D:\临时\RestoreReport\analyzer_report_upgrade_test.good.xanalyzer");
+      //Console.WriteLine("analyzer_report_upgrade_test.good.xanalyzer Encoding: " + en1.ToString());
 
-      Encoding en2 = GetFileEncodeType(@"D:\临时\RestoreReport\analyzer_report_upgrade_test.xanalyzer");
-      Console.WriteLine("analyzer_report_upgrade_test.xanalyzer Encoding: " + en2.ToString());
+      //Encoding en2 = GetFileEncodeType(@"D:\临时\RestoreReport\analyzer_report_upgrade_test.xanalyzer");
+      //Console.WriteLine("analyzer_report_upgrade_test.xanalyzer Encoding: " + en2.ToString());
 
+      String sourcePath = args[0];
+      String destPath = args[1];
+      ConvertFileEncoding(sourcePath, destPath);
     }
 
     static Encoding GetFileEncodeType(string filename)
@@ -192,6 +195,53 @@ namespace Console002
       else
       {
         return 0;
+      }
+    }
+
+    /// <summary>
+    /// Conver file's encoding
+    /// </summary>
+    /// <param name="sourcePath"></param>
+    /// <param name="destPath"></param>
+    /// <param name="sourceEncoding"></param>
+    /// <param name="destEncoding"></param>
+    private static void ConvertFileEncoding(String sourcePath, String destPath)
+    {
+      String tempName = null;
+      try
+      {
+        Encoding sourceEncoding = GetFileEncodeType(sourcePath);
+        Console.WriteLine("The [{0}] encoding is [{1}]", sourcePath, sourceEncoding);
+        if (sourceEncoding.Equals(Encoding.UTF8))
+        {
+          Console.WriteLine("Stop converting");
+          return;
+        }
+        Encoding destEncoding = Encoding.UTF8;
+        tempName = Path.GetTempFileName();
+        using (StreamReader sr = new StreamReader(sourcePath, sourceEncoding, false))
+        {
+          using (StreamWriter sw = new StreamWriter(tempName, false, destEncoding))
+          {
+            int charsRead;
+            char[] buffer = new char[128 * 1024];
+            int i = 0;
+            while ((charsRead = sr.ReadBlock(buffer, 0, buffer.Length)) > 0)
+            {
+              sw.Write(buffer, 0, charsRead);
+              Console.WriteLine("[{1}] Writing [{0}] chars", charsRead, i);
+              i++;
+            }
+            sw.Flush();
+            Console.WriteLine("End Writing. The [{0}] encoding is [{1}]", sourcePath, sourceEncoding);
+          }
+        }
+        File.Delete(destPath);
+        File.Move(tempName, destPath);
+      }
+      finally
+      {
+        File.Delete(tempName);
       }
     }
   }

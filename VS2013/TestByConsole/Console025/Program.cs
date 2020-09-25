@@ -15,7 +15,9 @@ namespace Console025
     {
       //MSSQL.C4.Execute();
       //SQLite.C1.Execute();
-      MSSQL.C5.Execute(args);
+      //MSSQL.C5.Execute(args);
+      //MongoDBTest.C1.Execute(args);
+      Redis.C1.Execute(args);
       
       Console.ReadKey();
     }

@@ -25,6 +25,18 @@ namespace GeneratorLogAnalyze.Common
       sb.AppendLine(string.Format("Thumbprint: [{0}]", certificate2.Thumbprint));
       sb.AppendLine(string.Format("Expiry Date: [{0}]", certificate2.NotAfter));
       sb.AppendLine(string.Format("Signature Algorithm: [{0}]", certificate2.SignatureAlgorithm.FriendlyName));
+
+      string simpleName = certificate2.GetNameInfo(X509NameType.SimpleName, false);
+      string dnsName = certificate2.GetNameInfo(X509NameType.DnsName, false);
+      string upnName = certificate2.GetNameInfo(X509NameType.UpnName, false);
+      string emailName = certificate2.GetNameInfo(X509NameType.EmailName, false);
+      string urlName = certificate2.GetNameInfo(X509NameType.UrlName, false);
+      sb.AppendFormat("SimpleName is [{0}]\r\n", simpleName);
+      sb.AppendFormat("DnsName is [{0}]\r\n", dnsName);
+      sb.AppendFormat("UpnName is [{0}]\r\n", upnName);
+      sb.AppendFormat("EmailName is [{0}]\r\n", emailName);
+      sb.AppendFormat("UrlName is [{0}]\r\n", urlName);
+
       if (action != null) action();
       bool isVerified = certificate2.Verify();
       sb.AppendLine(string.Format("Initial certificate validation passed? [{0}]", isVerified));
@@ -39,6 +51,20 @@ namespace GeneratorLogAnalyze.Common
         chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
         isVerified = chain.Build(certificate2);
         sb.AppendLine(string.Format("Build LDAP/AD server certificate chain with no flags? [{0}]", isVerified));
+        if (!isVerified)
+        {
+          string[] errors = chain.ChainStatus
+            .Select(x => String.Format("{0} ({1})", x.StatusInformation.Trim(), x.Status))
+            .ToArray();
+          string certificateErrorsString = "Unknown errors.";
+
+          if (errors != null && errors.Length > 0)
+          {
+              certificateErrorsString = String.Join(", ", errors);
+          }
+
+          sb.AppendLine("Trust chain did not complete to the known authority anchor. Errors: " + certificateErrorsString);
+        }
         if (chain.ChainElements.Count == 1)
         {
           sb.AppendLine("No found LDAP/AD server certificate chain.");
