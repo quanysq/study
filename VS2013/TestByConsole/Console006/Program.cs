@@ -18,10 +18,10 @@ namespace Console006
       //NetFunc.C8.Execute();
       //CollectionsFunc.C17.Execute();
       //CollectionsFunc.C5.Execute();
-      //StringFunc.Class23.Execute();
+      StringFunc.Class23.Execute();
       //CacheFunc.C1.Execute(args);
       //LockFunc.C1.Execute();
-      StringFunc.C3.Execute();
+      //StringFunc.C3.Execute();
 
       Console.ReadKey();
     }

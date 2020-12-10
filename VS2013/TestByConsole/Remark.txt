@@ -163,6 +163,10 @@ Class08: 判断 IP 地址是否正确
 	 LDAP: LDAP/AD等
 	 Unity: Unity
 	 IIS: IIS and ApplicationPool
+		Class01: 遍历查看IIS和应用连接池信息
+		Class02: 设置本地IIS应用连接池的闲置时间为120分钟
+		Class03: Get Application Pool Identity programmatically
+		Class04: 修改 Default Web Site 站点的 UploadReadAheadSize 值
 	 NVelocity: NVelocity模板引擎
 	 SharpZipLib: 压缩工具（ICSharpCode.SharpZipLib）
 	 ZipStorer / 7-zip

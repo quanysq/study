@@ -1,0 +1,133 @@
+chapter02 Python 机器学习的生态圈
+    confirm_scikit.py       查看 scikit 版本
+    confirm_scipy.py        查看 scipy/numpy/matplotlib/pandas 版本
+
+chapter03 第一个机器学习项目
+    iris_demo.py            第一个整体例子，包括数据导入，理解，分离，可视化，算法比较等基本概念
+
+chapter04 Python 和 Scipy 速成
+    boolean.py              布尔类型
+    dictionary.py           字典
+    for_loop.py             For 循环语句
+    function.py             定义函数
+    if_condition.py         条件控制语句
+    list.py                 列表
+    matplotlib_lineplot.py  绘制线条图
+    matplotlib_scatter.py   绘制散点图
+    multi_assignment.py     多变量同时赋值运算
+    none.py                 空值
+    numbers_test.py         数值
+    numpy_accessdata.py     numpy 访问数据
+    numpy_aritmetic.py      numpy 数组算数运算
+    numpy_createarry.py     numpy 创建数组
+    pandas_dataframe.py     pandas DataFrame 二维的表格型数据结构
+    pandas_series.py        pandas 访问一维数组
+    strings.py              字符串
+    tuple.py                元组
+    while_loop.py           While 条件循环语句
+    with.py                 with 语句
+
+chapter05 数据导入
+    numpy_load.py           使用 NumPy 导入 CSV 数据 loadtxt
+    pandas_load.py          使用 Pandas 导入 CSV 数据 read_csv
+    pythonlib_load.py       使用标准的 Python 类库导入 CSV 数据 reader
+
+chapter06 数据理解
+    attribute_data.py       显示数据的类型 dtypes
+    classdis_data.py        数据分类分布统计 groupby
+    correlations_data.py    显示数据的相关性 corr
+    described_data.py       描述性统计 describe
+    dimensions_data.py      显示数据的行和列数据 shape
+    peek_data.py            显示数据的前 10 行 head
+    skew_data.py            计算数据的高斯偏离 skew
+
+chapter07 数据可视化
+    box.py                  箱线图 plot-kind='box'
+    correlations_matrix.py  相关矩阵图 matshow
+    density.py              密度图 plot-kind='density'
+    histograms.py           直方图 hist
+    scatter_matrix.py       散点矩阵图 scatter_matrix
+
+chapter08 数据预处理
+    binarize_data.py        二值数据 Binarizer
+    normalize_data.py       正则化数据 Normalizer
+    rescal_data.py          调整数据尺度（0..） MinMaxScaler
+    standardize_data.py     正态化（标准化）数据 StandardScaler
+
+chapter09 数据特征选定
+    pca_selection.py        通过主要成分分析选定数据特征 PCA
+    rfe_selection.py        通过递归消除来选定特征 RFE
+    trees_selection.py      通过决策树计算特征的重要性 ExtraTreesClassifier
+    univariate_selection.py 通过卡方检验选定数据特征 SelectKBest
+
+chapter10 评估算法
+    kflod.py                K 折交叉验证 KFold > cross_val_score
+    leaveone.py             弃一交叉验证 LeaveOneOut
+    repeated.py             重复随机分离评估数据集与训练数据集 ShuffleSplit
+    split_data.py           分离数据集 train_test_split
+
+chapter11 算法评估矩阵
+    accuracy.py             分类准确度 cross_val_score-scoring=默认 [以下用于分类数据]
+    auc.py                  AUC 图 cross_val_score-scoring = 'roc_auc'
+    classification_report.py    分类报告 classification_report【需要分离数据，结果包含精度、召回率、F1值等】
+    confusion.py            混淆矩阵 confusion_matrix【需要分离数据】
+    logloss.py              对数损失函数 cross_val_score-scoring = 'neg_log_loss'
+    mae.py                  平均绝对误差 MAE cross_val_score-scoring = 'neg_mean_absolute_error'[以下用于回归数据]
+    MSE.py                  均方误差 MSE cross_val_score-scoring = 'neg_mean_squared_error' 【常用】
+    R2.py                   决定系数 R2 cross_val_score-scoring = 'r2'
+
+chapter12 审查分类算法
+    bayes.py                贝斯叶分类器 GaussianNB
+    cart.py                 分类与回归树 DecisionTreeClassifier
+    knn.py                  K 近邻 KNN KNeighborsClassifier
+    lda.py                  线性差别分析 LDA LinearDiscriminantAnalysis
+    logistic.py             逻辑回归 y=f(x) LogisticRegression
+    svm.py                  支持向量机 SVC
+
+chapter13 审查回归算法
+    cart.py                 分类与回归树算法 DecisionTreeRegressor
+    elastic.py              弹性网络回归算法 ElasticNet
+    knn.py                  K 近邻算法 KNeighborsRegressor
+    lasso.py                套索回归算法 Lasso
+    linear.py               线性回归算法 LinearRegression
+    ridge.py                岭回归算法 Ridge
+    svm.py                  支持向量机算法 SVR
+
+chapter14 算法比较
+    classification.py       对同一个数据比较 6 种分类算法，并以箱线图显示
+
+chapter15 自动流程
+    pipeline_lda.py         数据准备和生成模型的 Pipeline ----自动正态化数据
+    pipeline_logistic.py    特征选择和生成模型的 Pipeline
+
+chapter16 集成算法
+    adaboost.py             提升算法 - AdaBoost AdaBoostClassifier
+    bagged_cart.py          袋装决策树 BaggingClassifier+DecisionTreeClassifier
+    bagged_et.py            极端随机数 ExtraTreesClassifier
+    bagged_random_forest.py 随机森林 RandomForestClassifier
+    sgb.py                  提升算法 - 随机梯度提升 GradientBoostingClassifier
+    voting.py               投票算法 VotingClassifier+LogisticRegression+DecisionTreeClassifier+SVC
+
+chapter17 算法调参
+    grid_search.py          网络搜索优化参数 GridSearchCV
+    random_search.py        随机搜索优化参数 RandomizedSearchCV
+
+chapter18 持久化加载模型
+    joblib_model.py         通过 joblib 序列化和反序列化机器学习的模型
+    pickle_model.py         通过 pickle 序列化和反序列化机器学习的模型
+
+chapter19 预测模型项目模板
+    project_template.py     Python 机器学习项目的模板
+
+chapter20 回归项目实例
+    boston_house_price_demo.py  回归项目实例
+
+chapter21 二分类实例
+    binary.py               分类项目实例 【Note: 分类有最简单的二分类，也有多分类】
+
+chapter22 文本分类实例
+    textanalyze.py          文本分类实例
+
+chapter23 附加
+    visualtree.py           决策树结果可视化
+    cluster.py              聚类

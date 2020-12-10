@@ -104,6 +104,7 @@
   <ItemGroup>
     <Compile Include="CustomLog\Class01.cs" />
     <Compile Include="IIS\Class03.cs" />
+    <Compile Include="IIS\Class04.cs" />
     <Compile Include="LDAP\Class03.cs" />
     <Compile Include="SharpZipLib\Class01.cs" />
     <Compile Include="IIS\Class01.cs" />
