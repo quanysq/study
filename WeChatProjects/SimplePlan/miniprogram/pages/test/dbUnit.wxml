@@ -1,0 +1,10 @@
+<!--pages/test/dbUnit.wxml-->
+<view>
+    <text>{{openid}}</text>
+</view>
+<view>
+    <button type="primary" bindtap="btnGetData">获取数据</button>
+    <button type="primary" bindtap="btnAddData">添加数据</button>
+    <button type="primary" bindtap="btnUpdateData">更新数据</button>
+    <button type="primary" bindtap="btnRemoveData">删除数据</button>
+</view>

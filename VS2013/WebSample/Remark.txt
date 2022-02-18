@@ -4,6 +4,7 @@
 	03 WebForm3.aspx: jQuery国际化
 	04 HtmlPage1.html: jQuery国际化, 本地打开 (未成功)
 	05 AntiXssTest.aspx: 使用 AntiXssLibrary 防止 XSS
+	06 WebForm7.aspx: 抽取同花顺网站数据
 002. Forms Authentication
 003. Webservice Example
 	01 FromsAuthService.asmx: Forms authentication

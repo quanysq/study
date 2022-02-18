@@ -18,7 +18,7 @@ Y = array[:, 8]
 model = Ridge()
 
 # 设置要遍历的参数
-param_grid = { 'alpha': uniform() }
+param_grid = {'alpha': uniform()}
 
 # 通过随机搜索查询最优参数
 grid = RandomizedSearchCV(estimator=model, param_distributions=param_grid, n_iter=100, random_state=7)

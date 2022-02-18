@@ -19,6 +19,10 @@ namespace Console006.StringFunc
       s = s.Substring(0, 27) + "_" + DateTime.Now.ToString("ff");
       Console.WriteLine(s);
       Console.WriteLine(s.Length);
+
+      Test("the VDI environment will include the full development workflow.  Downloading from GIT in the VDI will be very fast because VDI is in the US network.  Of course we'll need to test that to confirm");
+      Test("the VDI environment");
+      Test(null);
     }
 
     public static void Execute2()
@@ -33,6 +37,13 @@ namespace Console006.StringFunc
     {
       string s = "5.0.0.1050";
       Console.WriteLine(s.Substring(6, 4));
+    }
+
+    static void Test(string message)
+    {
+      Console.WriteLine(message);
+      if (!string.IsNullOrWhiteSpace(message) && message.Length > 50) message = message.Substring(0, 50);
+      Console.WriteLine(message);
     }
   }
 }

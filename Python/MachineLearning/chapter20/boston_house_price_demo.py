@@ -32,12 +32,14 @@ dataset = read_csv(filename, names=names, delim_whitespace=True)
 # 2 理解数据
 # 2.1 描述性统计 - 数据维度
 print(dataset.shape)
+set_option('display.width', 120)
+set_option('display.max_rows', 31)
+set_option('display.max_columns', 15)
 
 # 2.1 描述性统计 - 特征属性的字段类型
 print(dataset.dtypes)
 
 # 2.1 描述性统计 - 查看最开始的 30 条记录
-set_option('display.width', 120)
 print(dataset.head(30))
 
 # 2.1 描述性统计 - 描述性统计信息
@@ -99,7 +101,6 @@ for key in models:
     results.append(cv_result)
     print('%s: %f (%f)' % (key, cv_result.mean(), cv_result.std()))
 
-'''
 # 4.3 算法审查|4.4 算法比较 - baseline 基准线 【原始数据】 - 箱线图
 fig = pyplot.figure()
 fig.suptitle('Algorithm Comparison')
@@ -107,7 +108,6 @@ ax = fig.add_subplot(111)
 pyplot.boxplot(results)
 ax.set_xticklabels(models.keys())
 pyplot.show()
-'''
 
 # 4.3 算法审查|4.4 算法比较 - 正态化数据
 pipelines = {}
@@ -123,7 +123,7 @@ for key in pipelines:
     cv_result = cross_val_score(pipelines[key], X_train, Y_train, cv=kfold, scoring=scoring)
     results.append(cv_result)
     print('%s: %f (%f)' % (key, cv_result.mean(), cv_result.std()))
-'''
+
 # 4.3 算法审查|4.4 算法比较 - 正态化数据 - 箱线图
 fig = pyplot.figure()
 fig.suptitle('Algorithm Comparison')
@@ -131,7 +131,7 @@ ax = fig.add_subplot(111)
 pyplot.boxplot(results)
 ax.set_xticklabels(pipelines.keys())
 pyplot.show()
-'''
+
 # 5 优化模型
 # 5.1 算法调参 - 调参改善算法 - KNN
 scaler = StandardScaler().fit(X_train)
@@ -162,7 +162,7 @@ for key in ensembles:
     cv_result = cross_val_score(ensembles[key], X_train, Y_train, cv=kfold, scoring=scoring)
     results.append(cv_result)
     print('%s: %f (%f)' % (key, cv_result.mean(), cv_result.std()))
-'''
+
 # 5.2 集成算法 - 箱线图
 fig = pyplot.figure()
 fig.suptitle('Algorithm Comparison')
@@ -170,7 +170,7 @@ ax = fig.add_subplot(111)
 pyplot.boxplot(results)
 ax.set_xticklabels(ensembles.keys())
 pyplot.show()
-'''
+
 # 5.2 集成算法 - 调参 - GradientBoostingRegressor
 scaler = StandardScaler().fit(X_train)
 rescaledX = scaler.transform(X_train)

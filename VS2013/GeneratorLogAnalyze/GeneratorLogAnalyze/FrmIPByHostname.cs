@@ -30,6 +30,10 @@ namespace GeneratorLogAnalyze
         string hostName = txtHostname.Text.Trim();
         IPHostEntry host = Dns.GetHostEntry(hostName);
         var ips = new StringBuilder(1024);
+        ips.AppendLine(string.Format("Host Address Length: [{0}]", host.AddressList.Length));
+        ips.AppendLine(string.Format("Host Name: [{0}]", host.HostName));
+        ips.AppendLine("The following is IP list: ");
+        ips.AppendLine("===============");
         foreach (var ipInfo in host.AddressList)
         {
           ips.AppendLine(ipInfo.ToString());

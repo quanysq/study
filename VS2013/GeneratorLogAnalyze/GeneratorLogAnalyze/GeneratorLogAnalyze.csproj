@@ -45,6 +45,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="zlib.net">
+      <HintPath>..\Lib\zlib.net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CertUtil.cs" />
@@ -91,6 +94,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTUSParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTUSParameter.Designer.cs">
+      <DependentUpon>FrmTUSParameter.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmVerifyADCert.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTUSParameter.resx">
+      <DependentUpon>FrmTUSParameter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmVerifyADCert.resx">
       <DependentUpon>FrmVerifyADCert.cs</DependentUpon>

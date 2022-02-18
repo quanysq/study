@@ -32,3 +32,9 @@ print(newX.head())
 
 newX = fit.transform(X)
 print(newX)
+
+'''
+chi2: 适合分类数据，Y 只能是 int 类型
+f_regression: 适合回归数据，Y 可以是 float 类型
+from sklearn.feature_selection import f_regression
+'''

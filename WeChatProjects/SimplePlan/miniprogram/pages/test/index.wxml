@@ -1,0 +1,52 @@
+<view class="page-body">
+    <view class="page-section">
+        <!--Full Day-->
+        <view class="view_content">
+            <label id="lblToday" data-content="{{today}}">{{today.fullDay}}</label>
+        </view>
+        <!--Week-->
+        <view class="view_content">
+            <label class="weekday">一</label>
+            <label class="weekday">二</label>
+            <label class="weekday">三</label>
+            <label class="weekday">四</label>
+            <label class="weekday">五</label>
+            <label class="weekday">六</label>
+            <label class="weekday">日</label>
+        </view>
+        <!--Day-->
+        <view class="view_content">
+            <text user-select="True" data-content="{{item}}" class="{{item.day == today.day ? 'weektoday' : 'weekday'}}" wx:for="{{dayArr}}" bindtap="textclick">{{item.day}}</text>
+        </view>
+    </view>
+
+    <view class="goal-panel">
+        <view>英语学习</view>
+    </view>
+
+    <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <input class="weui-input" focus="true" value="{{plan}}" maxlength="120" placeholder="目标总名称，如：001 期目标" />
+            </view>
+        </view>
+    </view>
+
+    <view class="page-section">
+        <view class="weui-cell weui-cell_input">
+            <picker mode="date" value="{{startDate}}" start="2019-01-01" end="2030-12-31" bindchange="bindStartDateChange">
+                <view class="picker">{{startDate}} </view>
+            </picker>
+
+            <picker mode="date" value="{{endDate}}" start="2019-01-01" end="2030-12-31" bindchange="bindEndDateChange">
+                <view class="picker">{{endDate}} </view>
+            </picker>
+        </view>
+    </view>
+
+    <view class="page-section">
+        <navigator url="dbUnit" open-type="navigate" class="uploader-text">
+            <text>数据库操作</text>
+        </navigator>
+    </view>
+</view>

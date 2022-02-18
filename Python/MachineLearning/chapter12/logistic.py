@@ -19,3 +19,7 @@ kfole = KFold(n_splits=num_folds, random_state=seed, shuffle=True)
 model = LogisticRegression(max_iter=200)
 result = cross_val_score(model, X, Y, cv=kfole)
 print(result.mean())
+
+# My
+model.fit(X, Y)
+print(model.n_iter_)

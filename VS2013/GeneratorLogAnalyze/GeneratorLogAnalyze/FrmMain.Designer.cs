@@ -40,6 +40,7 @@
       this.MenuCertificate = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemADCert = new System.Windows.Forms.ToolStripMenuItem();
       this.MenuItemSpecificCert = new System.Windows.Forms.ToolStripMenuItem();
+      this.MenuItemTUS = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -84,7 +85,8 @@
             this.MenuItemDateSubtract,
             this.MenuItemEncrypt,
             this.MenuItemConver2Base64,
-            this.MenuItemIP});
+            this.MenuItemIP,
+            this.MenuItemTUS});
       this.MenuSimpleTools.Name = "MenuSimpleTools";
       this.MenuSimpleTools.Size = new System.Drawing.Size(84, 20);
       this.MenuSimpleTools.Text = "简便小工具";
@@ -140,6 +142,13 @@
       this.MenuItemSpecificCert.Text = "验证指定证书";
       this.MenuItemSpecificCert.Click += new System.EventHandler(this.MenuItemSpecificCert_Click);
       // 
+      // MenuItemTUS
+      // 
+      this.MenuItemTUS.Name = "MenuItemTUS";
+      this.MenuItemTUS.Size = new System.Drawing.Size(152, 22);
+      this.MenuItemTUS.Text = "解密 TUS 参数";
+      this.MenuItemTUS.Click += new System.EventHandler(this.MenuItemTUS_Click);
+      // 
       // FrmMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,5 +181,6 @@
     private System.Windows.Forms.ToolStripMenuItem MenuCertificate;
     private System.Windows.Forms.ToolStripMenuItem MenuItemADCert;
     private System.Windows.Forms.ToolStripMenuItem MenuItemSpecificCert;
+    private System.Windows.Forms.ToolStripMenuItem MenuItemTUS;
   }
 }

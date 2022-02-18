@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/test/index",
+    "pages/test/dbUnit",
+    "pages/index/index",
+    
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "useExtendedLib": {
+    "kbone": true, 
+    "weui": true
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#f10b2e",
+    "backgroundColor": "#99CC66",
+    "list": [
+      {
+        "pagePath": "pages/test/index",
+        "text": "打卡",
+        "iconPath": "images/daqia.png",
+        "selectedIconPath": "images/daqia.png"
+      },
+      {
+        "pagePath": "pages/test/dbUnit",
+        "text": "当前计划",
+        "iconPath": "images/jihua.png",
+        "selectedIconPath": "images/jihua.png"
+      },
+      {
+        "pagePath": "pages/test/dbUnit",
+        "text": "历史计划",
+        "iconPath": "images/lishi.png",
+        "selectedIconPath": "images/lishi.png"
+      }
+    ]
+  }
+}

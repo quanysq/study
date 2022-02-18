@@ -23,7 +23,7 @@ num_folds = 10
 seed = 7
 kfold = KFold(n_splits=num_folds, random_state=seed, shuffle=True)
 models = {}
-models['LR'] = LogisticRegression()
+models['LR'] = LogisticRegression(max_iter=200)
 models['LDA'] = LinearDiscriminantAnalysis()
 models['KNN'] = KNeighborsClassifier()
 models['CART'] = DecisionTreeClassifier()
@@ -33,7 +33,7 @@ results = []
 for name in models:
     result = cross_val_score(models[name], X, Y, cv=kfold)
     results.append(result)
-    msg = '%s: %.3f (%.3f)' % (name, result.mean(), result.std())
+    msg = '%s: %.3f (+/- %.3f)' % (name, result.mean(), result.std())
     print(msg)
 
 # 图表显示

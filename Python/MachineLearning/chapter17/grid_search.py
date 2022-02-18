@@ -17,7 +17,7 @@ Y = array[:, 8]
 model = Ridge()
 
 # 设置要遍历的参数
-param_grid = { 'alpha': [1, 0.1, 0.01, 0.001, 0] }
+param_grid = {'alpha': [20, 15, 10, 3, 2, 1, 0.1, 0.01, 0.001, 0]}
 
 # 通过网格搜索查询最优参数
 grid = GridSearchCV(estimator=model, param_grid=param_grid)

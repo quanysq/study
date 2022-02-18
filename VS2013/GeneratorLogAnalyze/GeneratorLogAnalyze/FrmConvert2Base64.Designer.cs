@@ -35,6 +35,7 @@
       this.txtStartBlock = new System.Windows.Forms.TextBox();
       this.txtEndBlock = new System.Windows.Forms.TextBox();
       this.txtBlockSize = new System.Windows.Forms.TextBox();
+      this.btnBase = new System.Windows.Forms.Button();
       this.SuspendLayout();
       // 
       // btnString
@@ -99,11 +100,22 @@
       this.txtBlockSize.TabIndex = 25;
       this.txtBlockSize.Text = "Block Size";
       // 
+      // btnBase
+      // 
+      this.btnBase.Location = new System.Drawing.Point(269, 118);
+      this.btnBase.Name = "btnBase";
+      this.btnBase.Size = new System.Drawing.Size(123, 23);
+      this.btnBase.TabIndex = 26;
+      this.btnBase.Text = "Base64 -> 字符串";
+      this.btnBase.UseVisualStyleBackColor = true;
+      this.btnBase.Click += new System.EventHandler(this.btnBase_Click);
+      // 
       // FrmConvert2Base64
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(733, 457);
+      this.Controls.Add(this.btnBase);
       this.Controls.Add(this.txtBlockSize);
       this.Controls.Add(this.txtEndBlock);
       this.Controls.Add(this.txtStartBlock);
@@ -127,5 +139,6 @@
     private System.Windows.Forms.TextBox txtStartBlock;
     private System.Windows.Forms.TextBox txtEndBlock;
     private System.Windows.Forms.TextBox txtBlockSize;
+    private System.Windows.Forms.Button btnBase;
   }
 }

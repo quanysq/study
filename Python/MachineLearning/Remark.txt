@@ -58,7 +58,7 @@ chapter09 数据特征选定
     pca_selection.py        通过主要成分分析选定数据特征 PCA
     rfe_selection.py        通过递归消除来选定特征 RFE
     trees_selection.py      通过决策树计算特征的重要性 ExtraTreesClassifier
-    univariate_selection.py 通过卡方检验选定数据特征 SelectKBest
+    univariate_selection.py 通过卡方检验选定数据特征 SelectKBest 【适合分类数据】
 
 chapter10 评估算法
     kflod.py                K 折交叉验证 KFold > cross_val_score
@@ -131,3 +131,10 @@ chapter22 文本分类实例
 chapter23 附加
     visualtree.py           决策树结果可视化
     cluster.py              聚类
+
+chapter23 个人-数据可视化
+    line.py                 展示某种趋势可以使用线图
+    line_.py
+    bar.py                  展示某些离散的项目的集合的数量变化，可以使用条形图
+    bar_1.py
+    scatter.py              散点图显示成对数据集的可视化关系是比较好的

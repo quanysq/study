@@ -65,7 +65,16 @@ namespace GeneratorLogAnalyze
 
     private void btnString_Click(object sender, EventArgs e)
     {
-      MessageBox.Show("未实现");
+      string text = txtFile.Text.Trim();
+      byte[] b = Encoding.UTF8.GetBytes(text);
+      txtResult.Text = Convert.ToBase64String(b);
+    }
+
+    private void btnBase_Click(object sender, EventArgs e)
+    {
+      string baseString = txtFile.Text.Trim();
+      byte[] b = Convert.FromBase64String(baseString);
+      txtResult.Text = Encoding.UTF8.GetString(b);
     }
   }
 }

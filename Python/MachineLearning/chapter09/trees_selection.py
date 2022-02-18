@@ -17,3 +17,16 @@ model = ExtraTreesClassifier()
 fit = model.fit(X, Y)
 print(fit.feature_importances_)
 print(fit.n_features_)
+
+# My
+# 结合 SelectFromModel 选特征
+from sklearn.feature_selection import SelectFromModel
+feature = SelectFromModel(model, prefit=True)
+X_new = feature.transform(X)
+print(X_new.shape)
+'''
+X_new[:5, :] # 5 行数据
+X_new[5:, :] # (总行数 - 5) 行数据
+'''
+print(X_new[:5, :])
+

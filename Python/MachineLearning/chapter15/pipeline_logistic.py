@@ -24,12 +24,12 @@ kfold = KFold(n_splits=num_folds, random_state=seed, shuffle=True)
 # 生成 FeatureUnion
 features = []
 features.append(('pca', PCA()))
-features.append(('select_best', SelectKBest(k=6)))
+features.append(('select_best', SelectKBest(k=6))) # 特征选定并行更好？
 
 # 生成 Pipeline
 steps = []
 steps.append(('feature_union', FeatureUnion(features)))
-steps.append(('logistic', LogisticRegression()))
+steps.append(('logistic', LogisticRegression(max_iter=200)))
 model = Pipeline(steps=steps)
 result = cross_val_score(model, X, Y, cv=kfold)
 print(result.mean())

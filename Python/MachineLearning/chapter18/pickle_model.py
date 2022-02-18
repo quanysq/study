@@ -21,7 +21,7 @@ seed = 4
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=test_size, random_state=seed)
 
 # 训练模型
-model = LogisticRegression()
+model = LogisticRegression(max_iter=200)
 model.fit(X_train, Y_train)
 
 # 保存模型

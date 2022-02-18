@@ -104,6 +104,7 @@
       <DependentUpon>I18NRes.tt</DependentUpon>
     </Compile>
     <Compile Include="LockFunc\Class01.cs" />
+    <Compile Include="LoopFunc\Class02.cs" />
     <Compile Include="NetFunc\Class01.cs" />
     <Compile Include="NetFunc\Class02.cs" />
     <Compile Include="NetFunc\Class03.cs" />

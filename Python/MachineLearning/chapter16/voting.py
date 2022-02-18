@@ -24,7 +24,7 @@ cart_result = cross_val_score(cart_model, X, Y, cv=kfold)
 print('CART: %.3f' % cart_result.mean())
 
 models = []
-model_logistic = LogisticRegression()
+model_logistic = LogisticRegression(max_iter=200)
 models.append(('logistic', model_logistic))
 model_cart = DecisionTreeClassifier()
 models.append(('cart', model_cart))

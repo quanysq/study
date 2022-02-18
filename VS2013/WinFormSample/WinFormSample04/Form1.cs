@@ -26,7 +26,7 @@ namespace WinFormSample04
       var setting = new CefSettings();
       Cef.Initialize(setting, true, false);
 
-      string url = "https://www.baidu.com";
+      string url = "http://stockpage.10jqka.com.cn/HQ_v4.html#hs_600537";
       var webView = new ChromiumWebBrowser(url);
 
       this.tableLayoutPanel1.Controls.Add(webView, 0, 1);
