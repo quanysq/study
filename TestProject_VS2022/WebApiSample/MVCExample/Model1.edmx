@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ERPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HTFP14">
+          <Key>
+            <PropertyRef Name="COMPHT14" />
+            <PropertyRef Name="ACDEHT14" />
+            <PropertyRef Name="PGRPHT14" />
+            <PropertyRef Name="PKEYHT14" />
+          </Key>
+          <Property Name="COMPHT14" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="ACDEHT14" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PGRPHT14" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="PKEYHT14" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="DESCHT14" Type="nvarchar" MaxLength="100" />
+          <Property Name="PVALHT14" Type="decimal" Precision="15" Scale="4" />
+          <Property Name="PSTRHT14" Type="nvarchar" MaxLength="300" />
+          <Property Name="GLNOHT14" Type="char" MaxLength="15" />
+          <Property Name="PCDEHT14" Type="char" MaxLength="2" />
+          <Property Name="ATLVHT14" Type="char" MaxLength="2" />
+          <Property Name="USERHT14" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="LMDTMHT14" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="ERPModelStoreContainer">
+          <EntitySet Name="HTFP14" EntityType="Self.HTFP14" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HTFP14">
+          <Key>
+            <PropertyRef Name="COMPHT14" />
+            <PropertyRef Name="ACDEHT14" />
+            <PropertyRef Name="PGRPHT14" />
+            <PropertyRef Name="PKEYHT14" />
+          </Key>
+          <Property Name="COMPHT14" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ACDEHT14" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PGRPHT14" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PKEYHT14" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DESCHT14" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PVALHT14" Type="Decimal" Precision="15" Scale="4" />
+          <Property Name="PSTRHT14" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="GLNOHT14" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="PCDEHT14" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="ATLVHT14" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="USERHT14" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LMDTMHT14" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="ERPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HTFP14" EntityType="Self.HTFP14" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERPModelStoreContainer" CdmEntityContainer="ERPEntities">
+          <EntitySetMapping Name="HTFP14">
+            <EntityTypeMapping TypeName="ERPModel.HTFP14">
+              <MappingFragment StoreEntitySet="HTFP14">
+                <ScalarProperty Name="COMPHT14" ColumnName="COMPHT14" />
+                <ScalarProperty Name="ACDEHT14" ColumnName="ACDEHT14" />
+                <ScalarProperty Name="PGRPHT14" ColumnName="PGRPHT14" />
+                <ScalarProperty Name="PKEYHT14" ColumnName="PKEYHT14" />
+                <ScalarProperty Name="DESCHT14" ColumnName="DESCHT14" />
+                <ScalarProperty Name="PVALHT14" ColumnName="PVALHT14" />
+                <ScalarProperty Name="PSTRHT14" ColumnName="PSTRHT14" />
+                <ScalarProperty Name="GLNOHT14" ColumnName="GLNOHT14" />
+                <ScalarProperty Name="PCDEHT14" ColumnName="PCDEHT14" />
+                <ScalarProperty Name="ATLVHT14" ColumnName="ATLVHT14" />
+                <ScalarProperty Name="USERHT14" ColumnName="USERHT14" />
+                <ScalarProperty Name="LMDTMHT14" ColumnName="LMDTMHT14" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
