@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="css/element.css" rel="stylesheet" />
+    <script src="js/vue.js"></script>
+    <script src="js/element.js"></script>
+    
+    <style>
+        [v-cloak] {
+            display: none !important;
+        }
+
+        form input {
+            max-width: 230px;
+        }
+		
+		.content {
+            width: 100%;
+            padding-top: 50px;
+            text-align: center;
+            font-size: 12px;
+        }
+        
+        .content .aglin-div {
+            margin: 0 auto;
+            width: 500px;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #dfe6ec;
+        }
+		
+		.div-left { float:left; }
+    </style>
+</head>
+
+<body>
+    <div class="content" id="app">
+		<el-form :model="ruleForm" ref="ruleForm" label-width="180px" class="aglin-div">
+			<el-row>
+				<el-form-item label="User Name:" prop="loginAccount">
+					<div class="div-left">
+						<el-input v-model="ruleForm.loginAccount" :disabled="false" auto-complete="off" @change="onVlaueChange()"></el-input>
+					</div>
+				</el-form-item>
+				<el-form-item label="Password" prop="loginPwd">
+					<div class="div-left">
+						<el-input type="password" v-model="ruleForm.loginPwd" :disabled="false" auto-complete="off" @change="onVlaueChange()"></el-input>
+					</div>
+				</el-form-item>
+				<el-form-item label="" >
+					<div class="div-left">
+						<el-button type="primary">Login</el-button>
+					</div>
+                </el-form-item>
+			</el-row>
+		</el-form>
+    </div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+			msg: "Hello Vue!",
+			ruleForm: {
+                loginAccount: '',
+                loginPwd: ''
+            }
+        },
+        
+        methods: {
+		
+        }
+    })
+</script>
+
+</html>
