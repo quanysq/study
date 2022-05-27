@@ -37,6 +37,6 @@ foreach (var item in model.GeneratorFiles.GeneratorFileList)
 /*
  * 新加一个文件模板流程：
  * 1. 添加 tt 文件（T4模板）并填充相应的模板内容和创建部分类
- * 2. 修改 CustomConfig.config，在 GeneratorFiles 处添加新的 GeneratorFile 节点
- * 3. 添加一个新的 FileBuilder 具体实现类
+ * 2. 添加一个新的 FileBuilder 具体实现类
+ * 3. 修改 CustomConfig.config，在 GeneratorFiles 处添加新的 GeneratorFile 节点
  */ 
