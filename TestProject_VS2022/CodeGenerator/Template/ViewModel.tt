@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +16,12 @@ namespace Ando.ERP.BLL.Model.ViewModels
     /// <summary>
     /// <#= model.TableName #> <#= model.TableDesc #>表视图模型
     /// </summary>
-    public class <#= model.TableName #>ViewModel
+    public class <#= model.TableName #>ViewModel : BaseViewModel
     {
-        
+        public <#= model.TableName #>ViewModel()
+        {
+            /*LMDTMHT03 = UpdateTime;
+            USERHT03 = UpdateUser;*/
+        }
     }
 }

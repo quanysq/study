@@ -15,6 +15,11 @@ namespace CodeGenerator
     {
         protected CodeGeneratorModel model;
 
+        protected CodeGeneratorParameter Parameter
+        {
+            get { return model.CodeGeneratorParameter; }
+        }
+
         public FileBuilder(CodeGeneratorModel model)
         {
             this.model = model;
@@ -25,16 +30,21 @@ namespace CodeGenerator
         protected void Build(dynamic objTemplate, string filePath, string fileName)
         {
             string fileContent = objTemplate.TransformText();
-            fileName = string.Format(fileName, model.TableName);
-            filePath = Path.Combine(filePath, fileName);
+            fileName = fileName.Replace("{Parameter.TableName}", Parameter.TableName)
+                               .Replace("{Parameter.ControllerName}", Parameter.ControllerName)
+                               .Replace("{Parameter.ControllerNameLower}", Parameter.ControllerNameLower);
+            filePath = filePath.Replace("{Parameter.ControllerName}", Parameter.ControllerName);
+            var fileDir = Path.Combine(model.GeneratorFiles.BasePath, filePath);
+            if (!Directory.Exists(fileDir)) Directory.CreateDirectory(fileDir);
+            filePath = Path.Combine(fileDir, fileName);
             if (!File.Exists(filePath))
             {
                 File.WriteAllText(filePath, fileContent);
-                Console.WriteLine($"已创建表 [{model.TableName}] 文件：[{filePath}]");
+                Console.WriteLine($"已创建文件：[{filePath}]");
             }
             else
             {
-                Console.WriteLine($"已存在表 [{model.TableName}] 文件：[{filePath}]");
+                Console.WriteLine($"已存在文件：[{filePath}]");
             }
         }
     }
@@ -51,7 +61,7 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
-            var page = new ViewModel(model);
+            var page = new ViewModel(Parameter);
             Build(page, filePath, fileName);
         }
     }
@@ -68,7 +78,7 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
-            var page = new IRepository(model);
+            var page = new IRepository(Parameter);
             Build(page, filePath, fileName);
         }
     }
@@ -85,7 +95,7 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
-            var page = new Repository(model);
+            var page = new Repository(Parameter);
             Build(page, filePath, fileName);
         }
     }
@@ -102,7 +112,7 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
-            var page = new IService(model);
+            var page = new IService(Parameter);
             Build(page, filePath, fileName);
         }
     }
@@ -119,7 +129,75 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
-            var page = new Service(model);
+            var page = new Service(Parameter);
+            Build(page, filePath, fileName);
+        }
+    }
+
+    /// <summary>
+    /// 具体产品类 ControllerFileBuilder，生成 Controller 文件
+    /// </summary>
+    public class ControllerFileBuilder : FileBuilder
+    {
+        public ControllerFileBuilder(CodeGeneratorModel model) : base(model)
+        {
+
+        }
+
+        public override void BuildFile(string filePath, string fileName)
+        {
+            var page = new Controller(Parameter);
+            Build(page, filePath, fileName);
+        }
+    }
+
+    /// <summary>
+    /// 具体产品类 ServiceFileBuilder，生成 Service 文件
+    /// </summary>
+    public class ViewFileBuilder : FileBuilder
+    {
+        public ViewFileBuilder(CodeGeneratorModel model) : base(model)
+        {
+
+        }
+
+        public override void BuildFile(string filePath, string fileName)
+        {
+            var page = new View(Parameter);
+            Build(page, filePath, fileName);
+        }
+    }
+
+    /// <summary>
+    /// 具体产品类 ServiceFileBuilder，生成 Service 文件
+    /// </summary>
+    public class JSControllerFileBuilder : FileBuilder
+    {
+        public JSControllerFileBuilder(CodeGeneratorModel model) : base(model)
+        {
+
+        }
+
+        public override void BuildFile(string filePath, string fileName)
+        {
+            var page = new JSController(Parameter);
+            Build(page, filePath, fileName);
+        }
+    }
+
+    /// <summary>
+    /// 具体产品类 ServiceFileBuilder，生成 Service 文件
+    /// </summary>
+    public class JSVueFileBuilder : FileBuilder
+    {
+        public JSVueFileBuilder(CodeGeneratorModel model) : base(model)
+        {
+
+        }
+
+        public override void BuildFile(string filePath, string fileName)
+        {
+            var page = new JSVue(Parameter);
             Build(page, filePath, fileName);
         }
     }

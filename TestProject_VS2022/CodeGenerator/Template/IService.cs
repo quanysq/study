@@ -28,8 +28,7 @@ namespace CodeGenerator.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"
-using Ando.ERP.BLL.Model;
+            this.Write(@"using Ando.ERP.BLL.Model;
 using Ando.ERP.BLL.Model.ViewModels;
 using Ando.ERP.DAL.Repository;
 using System;
@@ -43,28 +42,28 @@ namespace Ando.ERP.BLL.IService
     /// <summary>
     /// ");
             
-            #line 20 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 19 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 20 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 19 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableDesc));
             
             #line default
             #line hidden
             this.Write("表服务层接口\r\n    /// </summary>\r\n    public interface I");
             
-            #line 22 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 21 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("Service : IBaseService<");
             
-            #line 22 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 21 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
@@ -72,21 +71,21 @@ namespace Ando.ERP.BLL.IService
             this.Write(">\r\n    {\r\n        /// <summary>\r\n        /// 添加数据\r\n        /// </summary>\r\n      " +
                     "  /// <param name=\"");
             
-            #line 27 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 26 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel\"></param>\r\n        /// <returns></returns>\r\n        bool Add(");
             
-            #line 29 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 28 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("ViewModel ");
             
-            #line 29 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 28 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
@@ -94,21 +93,21 @@ namespace Ando.ERP.BLL.IService
             this.Write("ViewModel);\r\n\r\n        /// <summary>\r\n        /// 更新数据\r\n        /// </summary>\r\n " +
                     "       /// <param name=\"");
             
-            #line 34 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 33 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel\"></param>\r\n        /// <returns></returns>\r\n        bool Update(");
             
-            #line 36 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("ViewModel ");
             
-            #line 36 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
@@ -116,21 +115,21 @@ namespace Ando.ERP.BLL.IService
             this.Write("ViewModel);\r\n\r\n        /// <summary>\r\n        /// 删除数据\r\n        /// </summary>\r\n " +
                     "       /// <param name=\"");
             
-            #line 41 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel\"></param>\r\n        /// <returns></returns>\r\n        bool Delete(");
             
-            #line 43 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 42 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("ViewModel ");
             
-            #line 43 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 42 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
@@ -139,7 +138,7 @@ namespace Ando.ERP.BLL.IService
                     ">\r\n        /// <param name=\"queryPageParams\"></param>\r\n        /// <param name=\"" +
                     "total\"></param>\r\n        /// <returns></returns>\r\n        List<");
             
-            #line 51 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
+            #line 50 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IService.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default

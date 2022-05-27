@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
 using Ando.ERP.BLL.Model;
 using Ando.ERP.BLL.Model.ViewModels;
 using Ando.ERP.DAL.Repository;

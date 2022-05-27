@@ -4,7 +4,6 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-
 using Ando.ERP.BLL.IService;
 using Ando.ERP.BLL.Model;
 using Ando.ERP.BLL.Model.ViewModels;
@@ -31,7 +30,7 @@ namespace Ando.ERP.BLL.Service
         /// Autofac 通过构造方法参数注入 I<#= model.TableName #>Reposition 并实例化
         /// </summary>
         /// <param name="<#= model.TablePara #>Reposition"></param>
-        public HTFP02Service(I<#= model.TableName #>Reposition <#= model.TablePara #>Reposition) : base(<#= model.TablePara #>Reposition)
+        public <#= model.TableName #>Service(I<#= model.TableName #>Reposition <#= model.TablePara #>Reposition) : base(<#= model.TablePara #>Reposition)
         {
             this.<#= model.TablePara #>Reposition = <#= model.TablePara #>Reposition;
         }

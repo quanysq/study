@@ -8,20 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Template\IRepository.tt" />
-    <None Remove="Template\IService.tt" />
-    <None Remove="Template\Repository.tt" />
-    <None Remove="Template\Service.tt" />
-    <None Remove="Template\ViewModel.tt" />
+    <None Remove="Template\ViewModel - 复制(2)\ViewModel.tt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Template\JSController.tt">
+      <LastGenOutput>JSController.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </Content>
+    <Content Include="Template\JSVue.tt">
+      <LastGenOutput>JSVue.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </Content>
+    <Content Include="Template\View.tt">
+      <LastGenOutput>View.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </Content>
     <Content Include="Template\IService.tt">
       <LastGenOutput>IService.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </Content>
     <Content Include="Template\Service.tt">
       <LastGenOutput>Service.cs</LastGenOutput>
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+    </Content>
+    <Content Include="Template\Controller.tt">
+      <LastGenOutput>Controller.cs</LastGenOutput>
       <Generator>TextTemplatingFilePreprocessor</Generator>
     </Content>
     <Content Include="Template\ViewModel.tt">
@@ -48,10 +60,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Model\CodeGeneratorModel.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Template\JSController.cs">
+      <DependentUpon>JSController.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Template\JSVue.cs">
+      <DependentUpon>JSVue.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Template\View.cs">
+      <DependentUpon>View.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="Template\IService.cs">
       <DependentUpon>IService.tt</DependentUpon>
@@ -62,6 +92,11 @@
       <DependentUpon>Service.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Template\Controller.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Update="Template\ViewModel.cs">
       <DependentUpon>ViewModel.tt</DependentUpon>
@@ -85,6 +120,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CustomConfig.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

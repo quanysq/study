@@ -1,0 +1,109 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+var app = new Vue({
+    el: '#app',
+    data: {
+        // List
+        currentPage: 1,
+        pageSize: 10,
+        pageSizes: [1, 10, 20, 50, 100],
+        total: 0,
+        keyword: '',
+        listData: [],
+        loading: false,
+
+        // Add | Edit
+        isAdmin: JSON.parse(sessionStorage["IsAdmin"]),
+        fullscreenLoading: false,
+        isFalseVisible: false,
+        isFalseWhatDescription: '',
+        isUpdate: false,
+    },
+    computed: {    
+    
+    },
+    created: function () {
+        
+    },
+    mounted: function () {
+        this.getListData("");
+    },
+    watch: {
+        
+    },
+    methods: {
+        handleSizeChange: function (val) {
+            //console.log(val);
+            this.pageSize = val;
+            this.getListData('');
+        },
+        handleCurrentChange: function (val) {
+            //console.log(val);
+            this.currentPage = val;
+            this.getListData('');
+        },
+        search: function (keyword) {
+            this.getListData(keyword);
+        },
+        getListData: function (keyword) {
+            this.loading = true;
+            var queryParam = {
+                queryPageParams: {
+                    PageIndex: this.currentPage,
+                    PageSize: this.pageSize,
+                    SearchKeyword: keyword,
+                    IsAsc: true
+                }
+            }
+            MenuContoller.getList(queryParam, this.bindList);
+        },
+        bindList: function (ret) {
+            this.loading = true;
+            this.listData = [];
+            if (ret.code === 1) {
+                this.listData = ret.data;
+                this.total = ret.totalNum || 0;
+            } 
+            this.fullscreenLoading = false;
+            this.loading = false;
+        },
+        add: function () {
+            
+        },
+        edit: function (index, row) {
+            
+        },
+        save: function () {
+            
+        },
+        del: function (index, row) {
+            
+        },
+        formCallBack: function (ret) {
+            var msg = ret.msg;
+            app.isFalseWhatDescription = msg;
+            app.isFalseVisible = !(ret.code === 1);
+            app.fullscreenLoading = false;
+            if (ret.code === 1) {
+                app.alertMsg(msg, function () {
+                    app.dialogFormVisible = false;
+                    app.getListData('');
+                });
+            } else {
+                this.alertMsg(msg);
+            }
+        },
+        alertMsg: function (msg, callback) {
+            this.$alert(msg, "提示", {
+                confirmButtonText: "确定",
+                callback: function () {
+                    callback && callback()
+                }
+            });
+        },
+    }
+});

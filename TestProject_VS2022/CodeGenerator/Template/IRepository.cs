@@ -28,9 +28,18 @@ namespace CodeGenerator.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nusing Ando.ERP.DAL.Repository.Dal;\r\nusing System;\r\nusing System.Collections.Gen" +
-                    "eric;\r\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\n\r\n" +
-                    "namespace Ando.ERP.DAL.Repository.IRepositories\r\n{\r\n    /// <summary>\r\n    /// ");
+            this.Write(@"using Ando.ERP.BLL.Model.ViewModels;
+using Ando.ERP.DAL.Repository.Dal;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ando.ERP.DAL.Repository.IRepositories
+{
+    /// <summary>
+    /// ");
             
             #line 18 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\IRepository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));

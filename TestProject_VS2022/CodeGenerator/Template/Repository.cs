@@ -28,8 +28,7 @@ namespace CodeGenerator.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write(@"
-using Ando.ERP.BLL.Model.ViewModels;
+            this.Write(@"using Ando.ERP.BLL.Model.ViewModels;
 using Ando.ERP.DAL.Repository.Dal;
 using Ando.ERP.DAL.Repository.IRepositories;
 using System;
@@ -45,35 +44,35 @@ namespace Ando.ERP.DAL.Repository.Repositories
     /// <summary>
     /// 实现 ");
             
-            #line 22 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
+            #line 21 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 22 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
+            #line 21 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableDesc));
             
             #line default
             #line hidden
             this.Write("表数据层接口\r\n    /// </summary>\r\n    public class ");
             
-            #line 24 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
+            #line 23 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("Reposition : BaseRepository<");
             
-            #line 24 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
+            #line 23 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(">, I");
             
-            #line 24 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
+            #line 23 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
@@ -82,7 +81,7 @@ namespace Ando.ERP.DAL.Repository.Repositories
                     "t\r\n        /// </summary>\r\n        /// <param name=\"dbContext\"></param>\r\n       " +
                     " public ");
             
-            #line 30 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
+            #line 29 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Repository.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default

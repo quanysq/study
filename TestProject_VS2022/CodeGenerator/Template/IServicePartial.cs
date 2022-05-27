@@ -9,9 +9,9 @@ namespace CodeGenerator.Template
 {
     public partial class IService
     {
-        private CodeGeneratorModel model;
+        private CodeGeneratorParameter model;
 
-        public IService(CodeGeneratorModel model)
+        public IService(CodeGeneratorParameter model)
         {
             this.model = model;
         }

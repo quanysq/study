@@ -4,48 +4,39 @@
 using CodeGenerator;
 using CodeGenerator.Model;
 using CodeGenerator.Template;
+using CodeGenerator.Util;
 using System.Configuration;
+using System.Reflection;
 
+var configFile = "";
 if (args.Length == 0)
 {
-    Console.WriteLine("Pls input the table name");
+    configFile = "./CustomConfig.config";
 }
 else
 {
-    var model = new CodeGeneratorModel();
-    model.TableName = args[0];
-    model.TableDesc = args[1];
-
-    string viewModelPath        = ConfigurationManager.AppSettings["ViewModelPath"];
-    string iRepositoryPath      = ConfigurationManager.AppSettings["IRepositoryPath"];
-    string repositoryPath       = ConfigurationManager.AppSettings["RepositoryPath"];
-    string iServicePath         = ConfigurationManager.AppSettings["IServicePath"];
-    string servicePath          = ConfigurationManager.AppSettings["ServicePath"];
-
-    string viewModelFileName    = ConfigurationManager.AppSettings["ViewModelFileName"];
-    string iRepositoryFileName  = ConfigurationManager.AppSettings["IRepositoryFileName"];
-    string repositoryFileName   = ConfigurationManager.AppSettings["RepositoryFileName"];
-    string iServiceFileName     = ConfigurationManager.AppSettings["IServiceFileName"];
-    string serviceFileName      = ConfigurationManager.AppSettings["ServiceFileName"];
-
-
-    // 生成 ViewModel 文件
-    var viewModeBuilder = new ViewModelFileBuilder(model);
-    viewModeBuilder.BuildFile(viewModelPath, viewModelFileName);
-
-    // 生成 IRepository 文件
-    var irepositoryBuilder = new IRepositoryFileBuilder(model);
-    irepositoryBuilder.BuildFile(iRepositoryPath, iRepositoryFileName);
-    
-    // 生成 Repository 文件
-    var repositoryBuilder = new RepositoryFileBuilder(model);
-    repositoryBuilder.BuildFile(repositoryPath, repositoryFileName);
-
-    // 生成 IService 文件
-    var iserviceBuilder = new IServiceFileBuilder(model);
-    iserviceBuilder.BuildFile(iServicePath, iServiceFileName);
-
-    // 生成 Service 文件
-    var serviceBuilder = new ServiceFileBuilder(model);
-    serviceBuilder.BuildFile(servicePath, serviceFileName);
+    configFile = args[0];
 }
+
+var model = ConfigUtil.Deserialize<CodeGeneratorModel>(configFile);
+object[] parameters = new object[1];
+parameters[0] = model;
+foreach (var item in model.GeneratorFiles.GeneratorFileList)
+{
+    FileBuilder factory = Assembly.Load("CodeGenerator")
+                                  .CreateInstance("CodeGenerator." + item.FileBuilder, 
+                                                    true, 
+                                                    BindingFlags.Default, 
+                                                    null, 
+                                                    parameters, 
+                                                    null, 
+                                                    null) as FileBuilder;
+    if (factory != null) factory.BuildFile(item.FilePath, item.FileName);
+}
+
+/*
+ * 新加一个文件模板流程：
+ * 1. 添加 tt 文件（T4模板）并填充相应的模板内容和创建部分类
+ * 2. 修改 CustomConfig.config，在 GeneratorFiles 处添加新的 GeneratorFile 节点
+ * 3. 添加一个新的 FileBuilder 具体实现类
+ */ 

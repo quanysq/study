@@ -28,30 +28,38 @@ namespace CodeGenerator.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel;\r" +
-                    "\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\n\r\nnamesp" +
-                    "ace Ando.ERP.BLL.Model.ViewModels\r\n{\r\n    /// <summary>\r\n    /// ");
+            this.Write("using System;\r\nusing System.Collections.Generic;\r\nusing System.ComponentModel;\r\nu" +
+                    "sing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\n\r\nnamespac" +
+                    "e Ando.ERP.BLL.Model.ViewModels\r\n{\r\n    /// <summary>\r\n    /// ");
             
-            #line 18 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+            #line 17 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 18 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+            #line 17 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableDesc));
             
             #line default
             #line hidden
             this.Write("表视图模型\r\n    /// </summary>\r\n    public class ");
             
-            #line 20 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+            #line 19 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
-            this.Write("ViewModel\r\n    {\r\n        \r\n    }\r\n}\r\n");
+            this.Write("ViewModel : BaseViewModel\r\n    {\r\n        public ");
+            
+            #line 21 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel()\r\n        {\r\n            /*LMDTMHT03 = UpdateTime;\r\n            USERHT" +
+                    "03 = UpdateUser;*/\r\n        }\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

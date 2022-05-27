@@ -1,0 +1,24 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+var <#= model.ControllerName #>Contoller = {
+    getList: function (param, callback) {
+        var url = "/<#= model.ControllerName #>/GetList";
+        DatabaseHandler.getListWithPage(url, param, callback);
+    },
+    add: function (param, callback) {
+        var url = "/<#= model.ControllerName #>/Add";
+        DatabaseHandler.dueEntity(url, param, callback);
+    },
+    edit: function (param, callback) {
+        var url = "/<#= model.ControllerName #>/Edit";
+        DatabaseHandler.dueEntity(url, param, callback);
+    },
+    delete: function (param, callback) {
+        var url = "/<#= model.ControllerName #>/Delete";
+        DatabaseHandler.dueEntity(url, param, callback);
+    }
+}

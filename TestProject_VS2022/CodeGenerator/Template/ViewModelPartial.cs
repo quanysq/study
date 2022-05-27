@@ -9,9 +9,9 @@ namespace CodeGenerator.Template
 {
     public partial class ViewModel
     {
-        private CodeGeneratorModel model;
+        private CodeGeneratorParameter model;
 
-        public ViewModel(CodeGeneratorModel model)
+        public ViewModel(CodeGeneratorParameter model)
         {
             this.model = model;
         }
