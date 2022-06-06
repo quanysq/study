@@ -146,13 +146,17 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
+            if (string.IsNullOrWhiteSpace(Parameter.ControllerName))
+            {
+                return;
+            }
             var page = new Controller(Parameter);
             Build(page, filePath, fileName);
         }
     }
 
     /// <summary>
-    /// 具体产品类 ServiceFileBuilder，生成 Service 文件
+    /// 具体产品类 ViewFileBuilder，生成 View 文件
     /// </summary>
     public class ViewFileBuilder : FileBuilder
     {
@@ -163,13 +167,18 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
+            if (string.IsNullOrWhiteSpace(Parameter.ControllerName))
+            {
+                return;
+            }
+
             var page = new View(Parameter);
             Build(page, filePath, fileName);
         }
     }
 
     /// <summary>
-    /// 具体产品类 ServiceFileBuilder，生成 Service 文件
+    /// 具体产品类 JSControllerFileBuilder，生成 Javascript Controller 文件
     /// </summary>
     public class JSControllerFileBuilder : FileBuilder
     {
@@ -180,13 +189,18 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
+            if (string.IsNullOrWhiteSpace(Parameter.ControllerName))
+            {
+                return;
+            }
+
             var page = new JSController(Parameter);
             Build(page, filePath, fileName);
         }
     }
 
     /// <summary>
-    /// 具体产品类 ServiceFileBuilder，生成 Service 文件
+    /// 具体产品类 JSVueFileBuilder，生成 Javascript Vue 文件
     /// </summary>
     public class JSVueFileBuilder : FileBuilder
     {
@@ -197,6 +211,11 @@ namespace CodeGenerator
 
         public override void BuildFile(string filePath, string fileName)
         {
+            if (string.IsNullOrWhiteSpace(Parameter.ControllerName))
+            {
+                return;
+            }
+
             var page = new JSVue(Parameter);
             Build(page, filePath, fileName);
         }
