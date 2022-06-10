@@ -23,5 +23,12 @@ namespace Ando.ERP.BLL.Model.ViewModels
             /*LMDTMHT03 = UpdateTime;
             USERHT03 = UpdateUser;*/
         }
+
+<# 
+    if (!string.IsNullOrWhiteSpace(model.EntityContent)) 
+    { 
+#>
+        <#= model.EntityContent #>
+<# } #>
     }
 }

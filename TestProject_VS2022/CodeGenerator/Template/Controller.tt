@@ -45,7 +45,7 @@ namespace Ando.ERP.Client.Mvc.Controllers
         }
 
         /// <summary>
-        /// 获取列表数据
+        /// 获取<#= model.ControllerDesc #>列表数据
         /// </summary>
         /// <param name="QueryPageParams"></param>
         /// <returns></returns>
@@ -59,13 +59,13 @@ namespace Ando.ERP.Client.Mvc.Controllers
             }
             catch (Exception ex)
             {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfGetDataList, "menu", "MenuController"), ex);
-                return Json(new { code = 0, totalNum = 0, data = "", msg = string.Format(ErrorMessage.ErrorMsgOfGetDataListCN, "菜单") }, JsonRequestBehavior.AllowGet);
+                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfGetDataList, "menu", "<#= model.ControllerName #>Controller"), ex);
+                return Json(new { code = 0, totalNum = 0, data = "", msg = string.Format(ErrorMessage.ErrorMsgOfGetDataListCN, "<#= model.ControllerDesc #>") }, JsonRequestBehavior.AllowGet);
             }
         }
 
         /// <summary>
-        /// 添加数据
+        /// 添加<#= model.ControllerDesc #>数据
         /// </summary>
         /// <param name="<#= model.TablePara #>ViewModel"></param>
         /// <returns></returns>
@@ -74,18 +74,18 @@ namespace Ando.ERP.Client.Mvc.Controllers
         {
             try
             {
-                <#= model.TablePara #>Service.Add(hTFP02ViewModel);
-                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfAddDataCN, "菜单") });
+                <#= model.TablePara #>Service.Add(<#= model.TablePara #>ViewModel);
+                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfAddDataCN, "<#= model.ControllerDesc #>") });
             }
             catch (Exception ex)
             {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfAddData, "menu", "MenuController"), ex);
-                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfAddDataCN, "菜单") });
+                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfAddData, "menu", "<#= model.ControllerName #>Controller"), ex);
+                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfAddDataCN, "<#= model.ControllerDesc #>") });
             }
         }
 
         /// <summary>
-        /// 编辑菜单数据
+        /// 编辑<#= model.ControllerDesc #>数据
         /// </summary>
         /// <param name="<#= model.TablePara #>ViewModel"></param>
         /// <returns></returns>
@@ -95,17 +95,17 @@ namespace Ando.ERP.Client.Mvc.Controllers
             try
             {
                 <#= model.TablePara #>Service.Update(<#= model.TablePara #>ViewModel);
-                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfUpdateDataCN, "菜单") });
+                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfUpdateDataCN, "<#= model.ControllerDesc #>") });
             }
             catch (Exception ex)
             {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfUpdateData, "menu", "MenuController"), ex);
-                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfUpdateDataCN, "菜单") });
+                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfUpdateData, "menu", "<#= model.ControllerName #>Controller"), ex);
+                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfUpdateDataCN, "<#= model.ControllerDesc #>") });
             }
         }
 
         /// <summary>
-        /// 删除菜单数据
+        /// 删除<#= model.ControllerDesc #>数据
         /// </summary>
         /// <param name="<#= model.TablePara #>ViewModel"></param>
         /// <returns></returns>
@@ -115,12 +115,12 @@ namespace Ando.ERP.Client.Mvc.Controllers
             try
             {
                 <#= model.TablePara #>Service.Delete(<#= model.TablePara #>ViewModel);
-                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfDeleteDataCN, "菜单") });
+                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfDeleteDataCN, "<#= model.ControllerDesc #>") });
             }
             catch (Exception ex)
             {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfDeleteData, "menu", "MenuController"), ex);
-                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfDeleteDataCN, "菜单") });
+                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfDeleteData, "menu", "<#= model.ControllerName #>Controller"), ex);
+                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfDeleteDataCN, "<#= model.ControllerDesc #>") });
             }
         }
     }

@@ -59,7 +59,31 @@ namespace CodeGenerator.Template
             #line default
             #line hidden
             this.Write("ViewModel()\r\n        {\r\n            /*LMDTMHT03 = UpdateTime;\r\n            USERHT" +
-                    "03 = UpdateUser;*/\r\n        }\r\n    }\r\n}\r\n");
+                    "03 = UpdateUser;*/\r\n        }\r\n\r\n");
+            
+            #line 27 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+ 
+    if (!string.IsNullOrWhiteSpace(model.EntityContent)) 
+    { 
+
+            
+            #line default
+            #line hidden
+            this.Write("        ");
+            
+            #line 31 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.EntityContent));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n");
+            
+            #line 32 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\ViewModel.tt"
+ } 
+            
+            #line default
+            #line hidden
+            this.Write("    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

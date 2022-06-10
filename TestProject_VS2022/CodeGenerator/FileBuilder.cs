@@ -54,13 +54,57 @@ namespace CodeGenerator
     /// </summary>
     public class ViewModelFileBuilder : FileBuilder
     {
+        private readonly string entityPath;
         public ViewModelFileBuilder(CodeGeneratorModel model) : base(model)
         {
+            var entityFileName = $"{Parameter.TableName}.cs";
+            entityPath = Path.Combine(model.GeneratorFiles.BasePath,
+                                      model.GeneratorFiles.EntityPath,
+                                      entityFileName);
+        }
 
+        /// <summary>
+        /// 获取实体类内容
+        /// </summary>
+        private void GetEntityContent()
+        {
+            if (!File.Exists(entityPath)) return;
+            using (var sr = new StreamReader(entityPath))
+            {
+                var fileContent = new StringBuilder(16);
+                string line;
+                var compareTxt = "public partial class";
+                var compareRet = false;
+                var startTxt = "{";
+                var endTxt = "}";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    var lineNote = line.Trim();
+                    if (!compareRet)
+                    {
+                        if (lineNote.StartsWith(compareTxt, StringComparison.OrdinalIgnoreCase))
+                        {
+                            // 如果读取到 class 声明行，设置 compareRet=true
+                            // 表示从下一行开始存储内容
+                            compareRet = true; 
+                        }
+                    }
+                    else
+                    {
+                        // 读取到 class 块最后一行，跳出循环 
+                        if (lineNote == endTxt) break;
+                        if (lineNote == startTxt) continue;
+                        fileContent.AppendLine(line);
+                    }
+                }
+                Parameter.EntityContent = fileContent.ToString();
+            }
         }
 
         public override void BuildFile(string filePath, string fileName)
         {
+            GetEntityContent();
+
             var page = new ViewModel(Parameter);
             Build(page, filePath, fileName);
         }

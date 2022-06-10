@@ -18,7 +18,7 @@ namespace CodeGenerator.Template
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\JSVue\JSVue.tt"
+    #line 1 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\JSVue.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "17.0.0.0")]
     public partial class JSVue : JSVueBase
     {
@@ -28,42 +28,117 @@ namespace CodeGenerator.Template
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("var app = new Vue({\r\n    el: \'#app\',\r\n    data: {\r\n        // List\r\n        curre" +
-                    "ntPage: 1,\r\n        pageSize: 10,\r\n        pageSizes: [1, 10, 20, 50, 100],\r\n   " +
-                    "     total: 0,\r\n        keyword: \'\',\r\n        listData: [],\r\n        loading: fa" +
-                    "lse,\r\n\r\n        // Add | Edit\r\n        isAdmin: JSON.parse(sessionStorage[\"IsAdm" +
-                    "in\"]),\r\n        fullscreenLoading: false,\r\n        isFalseVisible: false,\r\n     " +
-                    "   isFalseWhatDescription: \'\',\r\n        isUpdate: false,\r\n    },\r\n    computed: " +
-                    "{    \r\n    \r\n    },\r\n    created: function () {\r\n        \r\n    },\r\n    mounted: " +
-                    "function () {\r\n        this.getListData(\"\");\r\n    },\r\n    watch: {\r\n        \r\n  " +
-                    "  },\r\n    methods: {\r\n        handleSizeChange: function (val) {\r\n            //" +
-                    "console.log(val);\r\n            this.pageSize = val;\r\n            this.getListDat" +
-                    "a(\'\');\r\n        },\r\n        handleCurrentChange: function (val) {\r\n            /" +
-                    "/console.log(val);\r\n            this.currentPage = val;\r\n            this.getLis" +
-                    "tData(\'\');\r\n        },\r\n        search: function (keyword) {\r\n            this.g" +
-                    "etListData(keyword);\r\n        },\r\n        getListData: function (keyword) {\r\n   " +
-                    "         this.loading = true;\r\n            var queryParam = {\r\n                q" +
-                    "ueryPageParams: {\r\n                    PageIndex: this.currentPage,\r\n           " +
-                    "         PageSize: this.pageSize,\r\n                    SearchKeyword: keyword,\r\n" +
-                    "                    IsAsc: true\r\n                }\r\n            }\r\n            M" +
-                    "enuContoller.getList(queryParam, this.bindList);\r\n        },\r\n        bindList: " +
-                    "function (ret) {\r\n            this.loading = true;\r\n            this.listData = " +
-                    "[];\r\n            if (ret.code === 1) {\r\n                this.listData = ret.data" +
-                    ";\r\n                this.total = ret.totalNum || 0;\r\n            } \r\n            " +
-                    "this.fullscreenLoading = false;\r\n            this.loading = false;\r\n        },\r\n" +
-                    "        add: function () {\r\n            \r\n        },\r\n        edit: function (in" +
-                    "dex, row) {\r\n            \r\n        },\r\n        save: function () {\r\n            " +
-                    "\r\n        },\r\n        del: function (index, row) {\r\n            \r\n        },\r\n  " +
-                    "      formCallBack: function (ret) {\r\n            var msg = ret.msg;\r\n          " +
-                    "  app.isFalseWhatDescription = msg;\r\n            app.isFalseVisible = !(ret.code" +
-                    " === 1);\r\n            app.fullscreenLoading = false;\r\n            if (ret.code =" +
-                    "== 1) {\r\n                app.alertMsg(msg, function () {\r\n                    ap" +
-                    "p.dialogFormVisible = false;\r\n                    app.getListData(\'\');\r\n        " +
-                    "        });\r\n            } else {\r\n                this.alertMsg(msg);\r\n        " +
-                    "    }\r\n        },\r\n        alertMsg: function (msg, callback) {\r\n            thi" +
-                    "s.$alert(msg, \"提示\", {\r\n                confirmButtonText: \"确定\",\r\n               " +
-                    " callback: function () {\r\n                    callback && callback()\r\n          " +
-                    "      }\r\n            });\r\n        },\r\n    }\r\n});\r\n");
+            this.Write(@"var app = new Vue({
+    el: '#app',
+    data: {
+        // List
+        currentPage: 1,
+        pageSize: 10,
+        pageSizes: [1, 10, 20, 50, 100],
+        total: 0,
+        keyword: '',
+        listData: [],
+        loading: false,
+
+        // Add | Edit
+        isAdmin: JSON.parse(sessionStorage[""IsAdmin""]),
+        fullscreenLoading: false,
+        isFalseVisible: false,
+        isFalseWhatDescription: '',
+        isUpdate: false,
+    },
+    computed: {    
+    
+    },
+    created: function () {
+        
+    },
+    mounted: function () {
+        this.getListData("""");
+    },
+    watch: {
+        
+    },
+    methods: {
+        handleSizeChange: function (val) {
+            //console.log(val);
+            this.pageSize = val;
+            this.getListData('');
+        },
+        handleCurrentChange: function (val) {
+            //console.log(val);
+            this.currentPage = val;
+            this.getListData('');
+        },
+        search: function (keyword) {
+            this.getListData(keyword);
+        },
+        getListData: function (keyword) {
+            this.loading = true;
+            var queryParam = {
+                queryPageParams: {
+                    PageIndex: this.currentPage,
+                    PageSize: this.pageSize,
+                    SearchKeyword: keyword,
+                    IsAsc: true
+                }
+            }
+            ");
+            
+            #line 62 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\JSVue.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerName));
+            
+            #line default
+            #line hidden
+            this.Write(@"Contoller.getList(queryParam, this.bindList);
+        },
+        bindList: function (ret) {
+            this.loading = true;
+            this.listData = [];
+            if (ret.code === 1) {
+                this.listData = ret.data;
+                this.total = ret.totalNum || 0;
+            } 
+            this.fullscreenLoading = false;
+            this.loading = false;
+        },
+        add: function () {
+            
+        },
+        edit: function (index, row) {
+            
+        },
+        save: function () {
+            
+        },
+        del: function (index, row) {
+            
+        },
+        formCallBack: function (ret) {
+            var msg = ret.msg;
+            app.isFalseWhatDescription = msg;
+            app.isFalseVisible = !(ret.code === 1);
+            app.fullscreenLoading = false;
+            if (ret.code === 1) {
+                app.alertMsg(msg, function () {
+                    app.dialogFormVisible = false;
+                    app.getListData('');
+                });
+            } else {
+                this.alertMsg(msg);
+            }
+        },
+        alertMsg: function (msg, callback) {
+            this.$alert(msg, ""提示"", {
+                confirmButtonText: ""确定"",
+                callback: function () {
+                    callback && callback()
+                }
+            });
+        },
+    }
+});
+");
             return this.GenerationEnvironment.ToString();
         }
     }

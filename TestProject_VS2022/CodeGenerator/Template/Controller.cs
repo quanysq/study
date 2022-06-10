@@ -120,20 +120,17 @@ namespace Ando.ERP.Client.Mvc.Controllers
             
             #line default
             #line hidden
-            this.Write(@"Service;
-        }
-
-        /// <summary>
-        /// 数据列表 UI
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 获取列表数据
+            this.Write("Service;\r\n        }\r\n\r\n        /// <summary>\r\n        /// 数据列表 UI\r\n        /// </" +
+                    "summary>\r\n        /// <returns></returns>\r\n        public ActionResult Index()\r\n" +
+                    "        {\r\n            return View();\r\n        }\r\n\r\n        /// <summary>\r\n     " +
+                    "   /// 获取");
+            
+            #line 48 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write(@"列表数据
         /// </summary>
         /// <param name=""QueryPageParams""></param>
         /// <returns></returns>
@@ -154,15 +151,30 @@ namespace Ando.ERP.Client.Mvc.Controllers
             }
             catch (Exception ex)
             {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfGetDataList, ""menu"", ""MenuController""), ex);
-                return Json(new { code = 0, totalNum = 0, data = """", msg = string.Format(ErrorMessage.ErrorMsgOfGetDataListCN, ""菜单"") }, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        /// <summary>
-        /// 添加数据
-        /// </summary>
-        /// <param name=""");
+                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfGetDataList, ""menu"", """);
+            
+            #line 62 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerName));
+            
+            #line default
+            #line hidden
+            this.Write("Controller\"), ex);\r\n                return Json(new { code = 0, totalNum = 0, dat" +
+                    "a = \"\", msg = string.Format(ErrorMessage.ErrorMsgOfGetDataListCN, \"");
+            
+            #line 63 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") }, JsonRequestBehavior.AllowGet);\r\n            }\r\n        }\r\n\r\n        /// <su" +
+                    "mmary>\r\n        /// 添加");
+            
+            #line 68 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("数据\r\n        /// </summary>\r\n        /// <param name=\"");
             
             #line 70 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
@@ -191,20 +203,46 @@ namespace Ando.ERP.Client.Mvc.Controllers
             
             #line default
             #line hidden
-            this.Write(@"Service.Add(hTFP02ViewModel);
-                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfAddDataCN, ""菜单"") });
-            }
-            catch (Exception ex)
-            {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfAddData, ""menu"", ""MenuController""), ex);
-                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfAddDataCN, ""菜单"") });
-            }
-        }
-
-        /// <summary>
-        /// 编辑菜单数据
-        /// </summary>
-        /// <param name=""");
+            this.Write("Service.Add(");
+            
+            #line 77 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
+            
+            #line default
+            #line hidden
+            this.Write("ViewModel);\r\n                return Json(new { code = 1, msg = string.Format(Succ" +
+                    "essMessage.SuccessMsgOfAddDataCN, \"");
+            
+            #line 78 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") });\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n         " +
+                    "       AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfAddData, " +
+                    "\"menu\", \"");
+            
+            #line 82 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerName));
+            
+            #line default
+            #line hidden
+            this.Write("Controller\"), ex);\r\n                return Json(new { code = 0, msg = string.Form" +
+                    "at(ErrorMessage.ErrorMsgOfAddDataCN, \"");
+            
+            #line 83 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") });\r\n            }\r\n        }\r\n\r\n        /// <summary>\r\n        /// 编辑");
+            
+            #line 88 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("数据\r\n        /// </summary>\r\n        /// <param name=\"");
             
             #line 90 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
@@ -240,20 +278,39 @@ namespace Ando.ERP.Client.Mvc.Controllers
             
             #line default
             #line hidden
-            this.Write(@"ViewModel);
-                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfUpdateDataCN, ""菜单"") });
-            }
-            catch (Exception ex)
-            {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfUpdateData, ""menu"", ""MenuController""), ex);
-                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfUpdateDataCN, ""菜单"") });
-            }
-        }
-
-        /// <summary>
-        /// 删除菜单数据
-        /// </summary>
-        /// <param name=""");
+            this.Write("ViewModel);\r\n                return Json(new { code = 1, msg = string.Format(Succ" +
+                    "essMessage.SuccessMsgOfUpdateDataCN, \"");
+            
+            #line 98 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") });\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n         " +
+                    "       AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfUpdateDat" +
+                    "a, \"menu\", \"");
+            
+            #line 102 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerName));
+            
+            #line default
+            #line hidden
+            this.Write("Controller\"), ex);\r\n                return Json(new { code = 0, msg = string.Form" +
+                    "at(ErrorMessage.ErrorMsgOfUpdateDataCN, \"");
+            
+            #line 103 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") });\r\n            }\r\n        }\r\n\r\n        /// <summary>\r\n        /// 删除");
+            
+            #line 108 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("数据\r\n        /// </summary>\r\n        /// <param name=\"");
             
             #line 110 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
@@ -289,18 +346,32 @@ namespace Ando.ERP.Client.Mvc.Controllers
             
             #line default
             #line hidden
-            this.Write(@"ViewModel);
-                return Json(new { code = 1, msg = string.Format(SuccessMessage.SuccessMsgOfDeleteDataCN, ""菜单"") });
-            }
-            catch (Exception ex)
-            {
-                AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfDeleteData, ""menu"", ""MenuController""), ex);
-                return Json(new { code = 0, msg = string.Format(ErrorMessage.ErrorMsgOfDeleteDataCN, ""菜单"") });
-            }
-        }
-    }
-}
-");
+            this.Write("ViewModel);\r\n                return Json(new { code = 1, msg = string.Format(Succ" +
+                    "essMessage.SuccessMsgOfDeleteDataCN, \"");
+            
+            #line 118 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") });\r\n            }\r\n            catch (Exception ex)\r\n            {\r\n         " +
+                    "       AndoErpLogger.WEBLOG.Error(string.Format(ErrorMessage.ErrorMsgOfDeleteDat" +
+                    "a, \"menu\", \"");
+            
+            #line 122 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerName));
+            
+            #line default
+            #line hidden
+            this.Write("Controller\"), ex);\r\n                return Json(new { code = 0, msg = string.Form" +
+                    "at(ErrorMessage.ErrorMsgOfDeleteDataCN, \"");
+            
+            #line 123 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Controller.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(model.ControllerDesc));
+            
+            #line default
+            #line hidden
+            this.Write("\") });\r\n            }\r\n        }\r\n    }\r\n}\r\n");
             return this.GenerationEnvironment.ToString();
         }
     }

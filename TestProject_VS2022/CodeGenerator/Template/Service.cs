@@ -93,212 +93,213 @@ namespace Ando.ERP.BLL.Service
             
             #line default
             #line hidden
-            this.Write("Reposition;\r\n\r\n        /// <summary>\r\n        /// Autofac 通过构造方法参数注入 I");
+            this.Write("Reposition;\r\n\r\n        /// <summary>\r\n        /// Autofac 通过构造方法参数注入 \r\n        //" +
+                    "/ I");
             
-            #line 30 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 31 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
-            this.Write("Reposition 并实例化\r\n        /// </summary>\r\n        /// <param name=\"");
+            this.Write("Reposition \r\n        /// 并实例化\r\n        /// </summary>\r\n        /// <param name=\"");
             
-            #line 32 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 34 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("Reposition\"></param>\r\n        public ");
             
-            #line 33 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("Service(I");
             
-            #line 33 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("Reposition ");
             
-            #line 33 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("Reposition) : base(");
             
-            #line 33 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("Reposition)\r\n        {\r\n            this.");
             
-            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 37 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("Reposition = ");
             
-            #line 35 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 37 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("Reposition;\r\n        }\r\n\r\n        public bool Add(");
             
-            #line 38 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("ViewModel ");
             
-            #line 38 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel)\r\n        {\r\n            ");
             
-            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 42 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 42 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write(" = CommonUtil.TranObject2OtherType<");
             
-            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 42 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(">(");
             
-            #line 40 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 42 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel);\r\n            return Add(");
             
-            #line 41 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 43 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write(", false);\r\n        }\r\n\r\n        public bool Update(");
             
-            #line 44 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 46 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("ViewModel ");
             
-            #line 44 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 46 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel)\r\n        {\r\n            ");
             
-            #line 46 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 48 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 46 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 48 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write(" = CommonUtil.TranObject2OtherType<");
             
-            #line 46 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 48 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(">(");
             
-            #line 46 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 48 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel);\r\n            return Update(");
             
-            #line 47 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 49 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write(", false);\r\n        }\r\n\r\n        public bool Delete(");
             
-            #line 50 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 52 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write("ViewModel ");
             
-            #line 50 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 52 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel)\r\n        {\r\n            ");
             
-            #line 52 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 54 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 52 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 54 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write(" = CommonUtil.TranObject2OtherType<");
             
-            #line 52 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 54 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
             #line hidden
             this.Write(">(");
             
-            #line 52 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 54 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write("ViewModel);\r\n            return Delete(");
             
-            #line 53 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 55 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TablePara));
             
             #line default
             #line hidden
             this.Write(", false);\r\n        }\r\n\r\n        public List<");
             
-            #line 56 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 58 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
@@ -306,7 +307,7 @@ namespace Ando.ERP.BLL.Service
             this.Write("ViewModel> QueryPageList(QueryPageParams queryPageParams, out int total)\r\n       " +
                     " {\r\n            /*\r\n            Expression<Func<");
             
-            #line 59 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 61 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default
@@ -319,7 +320,7 @@ namespace Ando.ERP.BLL.Service
             var list = QueryPageList(queryPageParams.PageIndex, queryPageParams.PageSize, whereLambda, (a => new { a.COMPHT02, a.MNUCDHT02 }), out total, queryPageParams.IsAsc);
             var result = CommonUtil.TranObject2OtherType<List<");
             
-            #line 65 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
+            #line 67 "D:\Work\study\TestProject_VS2022\CodeGenerator\Template\Service.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(model.TableName));
             
             #line default

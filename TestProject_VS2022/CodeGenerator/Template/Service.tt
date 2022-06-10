@@ -27,7 +27,9 @@ namespace Ando.ERP.BLL.Service
         private I<#= model.TableName #>Reposition <#= model.TablePara #>Reposition;
 
         /// <summary>
-        /// Autofac 通过构造方法参数注入 I<#= model.TableName #>Reposition 并实例化
+        /// Autofac 通过构造方法参数注入 
+        /// I<#= model.TableName #>Reposition 
+        /// 并实例化
         /// </summary>
         /// <param name="<#= model.TablePara #>Reposition"></param>
         public <#= model.TableName #>Service(I<#= model.TableName #>Reposition <#= model.TablePara #>Reposition) : base(<#= model.TablePara #>Reposition)
