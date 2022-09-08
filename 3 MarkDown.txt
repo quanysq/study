@@ -1,0 +1,104 @@
+Asp.Net Core 【未上传，未完成】
+# 代码 & 步骤
+1. 创建入门级 asp.net core 项目
+	1. 创建 Web 应用项目
+		1. 创建目录 D:\Work\study\TestProject_VS2022\NetCore
+		2. 打开 CMD 
+		3. 进行以上目录
+		4. 运行以下命令创建一个 mvc core 项目
+			```
+			D:\Work\study\TestProject_VS2022\NetCore>dotnet new webapp -o aspnetcoreapp
+			
+			说明：
+			1. dotnet new 根据指定的模板，创建新的项目、配置文件或解决方案
+			2. webapp: ASP.NET Core Web 应用程序
+			3. -o aspnetcoreapp 用于放置生成的输出的位置。 默认为当前目录。
+			
+			参考：
+			https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-new
+			```
+	2. 信任开发证书，CMD 运行以下命令
+		```
+		D:\Work\study\TestProject_VS2022\NetCore>dotnet dev-certs https --trust
+		
+		说明：
+		1. dotnet dev-certs：生成自签名证书，以便在开发中使用 HTTPS。
+		2. https：唯一命令
+		3. --trust：信任本地计算机上的证书。如果未指定此选项，则会将证书添加到证书存储中，但不会添加到受信任的列表中。
+		
+		参考：
+		https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-dev-certs
+		```
+	3. 运行应用，运行以下命令
+		```
+		cd aspnetcoreapp
+		dotnet watch run
+		
+		说明：
+		1. dotnet watch：在检测到源代码中的更改时重启或热重载指定的应用程序。
+		2. run：无需任何显式编译或启动命令即可运行源代码
+		
+		参考：
+		https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-watch
+		https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-run
+		```
+	4. 保持 watch run 的状态，修改内容，刷新即可显示
+	5. 按 Ctrl + C 停止 dotnet watch run
+2. 创建 ASP.NET Core Razor Pages 项目
+	- Razor Pages 是一个基于页面的模型
+	- UI 和业务逻辑关注点保持分离状态，但都在页面内
+	- 入门比 ASP.NET Core MVC 要简单一些
+	- 使用 Razor Pages 创建项目（VS2022）
+		1. 选择 VS2022 - 创建新项目 - ASP.NET Core Web 应用
+		2. 在“配置新项目”对话框中，输入项目名称、解决方案名称和存储位置，其它默认
+		3. 在“其他信息”对话框中，选择“.NET 6.0 (长期支持)”，其它默认，然后选择“创建”，即可创建一个 ASP.NET Core Razor Pages 项目
+		4. 运行项目（Ctrl+F5，不使用调试程序）
+			- 如果尚未将项目配置为使用 SSL，VS2022 将旨意信任 ASP.NET Core SSL Certificate 提示，选择 是
+		5. 项目文件：
+			- Pages 文件夹：
+				- 包含 Razor 页面和支持文件
+				- 每个 Razor 页面都是一对文件
+					- 一个 .cshtml 文件，其中包含使用 Razor 语法的 C# 代码的 HTML 标记。（类似于 .aspx）
+					- 一个 .cshtml.cs 文件，其中包含处理页面事件的 C# 代码（类似于 .aspx.cs）
+				- 支持文件的名称以下划线开头
+			- wwwroot 文件夹
+				包含静态资产，如 HTML 文件、JavaScript 文件和 CSS 文件
+			- appsettings.json
+				包含配置数据，如连接字符串
+			- Program.cs
+				相当于 Startup.cs，在这里向依赖项注入 (DI) 容器添加 Razor Pages 支持和其它中间件，比如路由、授权等等
+	- 向 Razor Pages 项目添加模型
+		
+
+
+
+
+
+
+
+# 问题	
+1. 运行所选代码生成器出错，请安装包 Microsoft.VisualStudio.Web.CodeGeneration.Design，然后重试
+	打开 NuGet 包管理器>管理解决方案的 NuGet 包，看到 Microsoft.VisualStudio.Web.CodeGeneration.Design 已经安装，按原步骤重试问题不再显示
+2. 此文件中的某些unicode字符未能保存到当前代码页中
+	选择 是
+3. 在其它电脑运行 asp.net core 项目，错误：
+	SqlException: Invalid object name 'Movie'.
+	Microsoft.Data.SqlClient.SqlCommand+<>c.<ExecuteDbDataReaderAsync>b__188_0(Task<SqlDataReader> result)
+	解决：数据库不存在，update-database 创建更新数据库，然后关掉visual studio重启
+
+# 代码
+	- Link: https://github.com/quanysq/study/tree/master/TestProject_VS2022/WebApiSample/EFCodeFirstExample	
+
+# 参考
+1. 教程：ASP.NET Core 入门
+	https://docs.microsoft.com/zh-cn/aspnet/core/getting-started/?view=aspnetcore-7.0&tabs=windows
+2. .NET Core 命令
+	https://docs.microsoft.com/zh-cn/dotnet/core/tools/
+3. ASP.NET Core 中的配置
+	https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/configuration/?view=aspnetcore-7.0
+4. ASP.NET Core 的 Razor 语法参考
+	https://docs.microsoft.com/zh-cn/aspnet/core/mvc/views/razor?view=aspnetcore-7.0#razor-syntax
+5. ASP.NET Core 中的标记帮助程序
+	https://docs.microsoft.com/zh-cn/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-7.0
+6.
+
