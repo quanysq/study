@@ -68,9 +68,83 @@ Asp.Net Core 【未上传，未完成】
 			- Program.cs
 				相当于 Startup.cs，在这里向依赖项注入 (DI) 容器添加 Razor Pages 支持和其它中间件，比如路由、授权等等
 	- 向 Razor Pages 项目添加模型
+		1. 手动创建 POCO 类
+			- 所谓的 POCO 类就是模型类，也就是平时所说的实体类，它对 EF Core 没有任何依赖性，只是定义数据库中存储的数据属性
+			- 创建 POCO 类，跟 EF6 相同，可参考之前的记录
+			- Net6.0 可以定义 string? 类型，表示属性可为空
+		2. 打开菜单 "工具 - NuGet 包管理器 - 管理解决方案的 NuGet 包" 
+		3. 找到 Microsoft.EntityFrameworkCore.Design 包，选中“项目”，然后选择“安装”
+			- 在“许可证接受”对话框中，选择“我接受” 
+		4. 右键单击 Pages 文件夹 >“添加”>“新建文件夹”，新建 Movies 文件夹
+		5. 右键单击 Movies 文件夹 >“添加”>“已搭建基架的新项”
+		6. 在“添加新基架”对话框中，依次选择“使用实体框架的 Razor Pages (CRUD)”>“添加”
+		7. 完成“添加使用实体框架的 Razor 页面 (CRUD)”对话框
 		
-
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		1. 菜单 "工具 - NuGet 包管理器 - 包管理器控制台(PMC)" 添加 EF Core 包
+			```
+			Install-Package Microsoft.EntityFrameworkCore.Design
+			Install-Package Microsoft.EntityFrameworkCore.SqlServer
+			```
+		2. 为 POCO 类生成 CRUD 页
+			1. 右键单击 Controllers 文件夹，并选择“添加”>“新搭建基架的项目”
+			2. 在“添加基架”对话框中，选择“包含视图的 MVC 控制器(使用实体框架)”>“添加”。
+			3. 在“模型类”下拉列表中，选择“Movie (MvcMovie.Models)”。
+			4. 在“数据上下文类”行中，选择 +（加号）
+				- 在“添加数据上下文”对话框中，将生成类名 MvcMovie.Data.MvcMovieContext。
+				- 选择 添加 
+			5. 其它默认，点击 添加 按钮
+				- 如果收到错误消息，请再次选择“添加”以重试
+			6. 更新和创建以下内容
+				- 在 .csproj 项目文件中插入所需的包引用
+				- 在 Program.cs 文件中注册数据库上下文
+				- 将数据库连接字符串添加到 appsettings.json 文件
+				- 创建 Controller 文件
+				- 创建 CRUD 页面和代码
+				- 创建数据库上下文类
+			7. 使用 EF Core 迁移功能来创建数据库
+				- 迁移是可用于创建和更新数据库以匹配数据模型的一组工具
+				- 和 EF6.x 一样，主要命令是：add-migration 和 update-database
+				- 运行命令：
+					1. Add-Migration InitialCreate
+						- InitialCreate 参数是迁移名称。 可以使用任何名称，但是按照惯例，会选择可说明迁移的名称
+						- 因为这是首次迁移，所以生成的类包含用于创建数据库架构的代码
+						- 数据库架构基于在 MvcMovieContext 类中指定的模型
+					2. Update-Database
+						- 将数据库更新到上一个命令创建的最新迁移
+			8. 运行
+				- 如果收到 SqlException 错误，可能是因为遗漏了迁移步骤
+		3. 数据库上下文类
+			- 对于 EF Core，使用模型执行数据访问
+			- 模型由实体类和表示数据库会话的上下文对象构成
+			- 上下文对象允许查询并保存数据
+			- 数据库上下文派生自 Microsoft.EntityFrameworkCore.DbContext 并指定要包含在数据模型中的实体
+			- DbSet<Movie> 属性表示数据库的 Movie 表
+		4. 注册
+			- ASP.NET Core 通过依赖关系注入 (DI) 生成
+			- 服务（如数据库上下文）在 Program.cs 中向 DI 注册
+				```
+				
+				```
 
 
 
@@ -78,14 +152,20 @@ Asp.Net Core 【未上传，未完成】
 
 # 问题	
 1. 运行所选代码生成器出错，请安装包 Microsoft.VisualStudio.Web.CodeGeneration.Design，然后重试
-	打开 NuGet 包管理器>管理解决方案的 NuGet 包，看到 Microsoft.VisualStudio.Web.CodeGeneration.Design 已经安装，按原步骤重试问题不再显示
+	解决：打开 NuGet 包管理器>管理解决方案的 NuGet 包，看到 Microsoft.VisualStudio.Web.CodeGeneration.Design 已经安装，按原步骤重试问题不再显示
 2. 此文件中的某些unicode字符未能保存到当前代码页中
-	选择 是
+	解决：选择 是
 3. 在其它电脑运行 asp.net core 项目，错误：
 	SqlException: Invalid object name 'Movie'.
-	Microsoft.Data.SqlClient.SqlCommand+<>c.<ExecuteDbDataReaderAsync>b__188_0(Task<SqlDataReader> result)
 	解决：数据库不存在，update-database 创建更新数据库，然后关掉visual studio重启
-
+4. SqlException: Cannot open database "RazorPagesMovieContext-" requested by the login. The login failed. Login failed for user 'user name'
+	解决：先运行 update-database
+5. SqlException: Invalid column name 'Rating'.
+	原因：SqlException 异常是由于更新的 Movie 模型类与数据库的 Movie 表架构不同导致的。 数据库表中没有 Rating 列。
+	解决：运行 add-migration 和 update-database 两个命令
+6. 如何删除表所有数据
+	解决：context.Database.ExecuteSqlRaw("delete from Movie");
+	
 # 代码
 	- Link: https://github.com/quanysq/study/tree/master/TestProject_VS2022/WebApiSample/EFCodeFirstExample	
 
@@ -100,5 +180,6 @@ Asp.Net Core 【未上传，未完成】
 	https://docs.microsoft.com/zh-cn/aspnet/core/mvc/views/razor?view=aspnetcore-7.0#razor-syntax
 5. ASP.NET Core 中的标记帮助程序
 	https://docs.microsoft.com/zh-cn/aspnet/core/mvc/views/tag-helpers/intro?view=aspnetcore-7.0
-6.
+6. 使用 ASP.NET Core 创建 Razor Pages Web 应用 系列教程
+	https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/razor-pages/?view=aspnetcore-7.0
 
