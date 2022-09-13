@@ -79,13 +79,118 @@ Asp.Net Core 【未上传，未完成】
 		5. 右键单击 Movies 文件夹 >“添加”>“已搭建基架的新项”
 		6. 在“添加新基架”对话框中，依次选择“使用实体框架的 Razor Pages (CRUD)”>“添加”
 		7. 完成“添加使用实体框架的 Razor 页面 (CRUD)”对话框
-		
-		
-		
-		
-		
-		
-		
+		8. 在“模型类”下拉列表中，选择“Movie (RazorPagesMovie.Models)” 
+		9. 在“数据上下文类”行中，选择 +（加号）
+			- 在“添加数据上下文”对话框中，生成类名 RazorPagesMovie.Data.RazorPagesMovieContext。
+			- 选择 添加
+		10. 其它默认，点击 添加 按钮
+			- 如果收到错误消息，提示需要安装 Microsoft.EntityFrameworkCore.SqlServer 包，重复从“添加”>“已搭建基架的新项”开始的步骤
+		11. 创建和更新的文件
+			- 在 .csproj 项目文件中插入所需的包引用
+			- 在 Pages/Movies 下创建 CRUD 页面和代码
+			- 创建数据库上下文类 Data/RazorPagesMovieContext.cs
+			- 将数据库连接字符串添加到 appsettings.json 文件
+			- 在 Program.cs 文件中注册数据库上下文
+				```
+				builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
+					options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
+				```
+		12. 使用 EF Core 迁移功能来创建数据库，运行命令：
+			1. Add-Migration InitialCreate
+				- InitialCreate 参数是迁移名称。 可以使用任何名称，但是按照惯例，会选择可说明迁移的名称
+			2. Update-Database
+		13. 运行
+			- 如果收到 SqlException 错误，可能是因为遗漏了迁移步骤
+	- Razor Pages 特征代码
+		- Razor 页面派生自 PageModel。 按照约定，PageModel 派生的类称为 PageNameModel。 例如 IndexModel
+		- 使用依赖注入在构造函数中注入数据库上下文类 RazorPagesMovieContext 
+			```
+			public class IndexModel : PageModel
+			{
+					private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+
+					public IndexModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+					{
+						_context = context;
+					}
+			```
+		- OnGetAsync 或 OnGet 在 Razor 页面上调用，以初始化该页面的状态
+			- 当 OnGet 返回 void 或 OnGetAsync 返回 Task 时，不使用任何返回语句
+			- 当返回类型是 IActionResult 或 Task<IActionResult> 时，必须提供返回语句
+		- @page 指令
+			- @pageRazor 指令将文件转换为一个 MVC 操作，这意味着它可以处理请求。
+			- @page 必须是页面上的第一个 Razor 指令
+		- @model 指令
+			- @model 指令指定传递到 Razor 页面的模型类型
+			- 使用同 MVC
+		- [BindProperty] 特性
+			- 属性使用 [BindProperty] 特性来选择加入模型绑定
+				```
+				[BindProperty]
+				public Movie Movie { get; set; } = default!;
+				```
+			- 当发布表单值时，ASP.NET Core 运行时将发布的值绑定到 Movie 模型。
+			- 非 POCO 类的属性加上[BindProperty]，会绑定属性相同名称的表单的值
+			- 在 HTTP GET 请求中进行绑定需要 [BindProperty(SupportsGet = true)]。
+		- 标记帮助程序
+			- 表单标记帮助程序 <form method="post">
+				表单标记帮助程序会自动包含防伪令牌
+			- 验证标记帮助程序（<div asp-validation-summary 和 <span asp-validation-for）
+				显示验证错误
+			- 标签标记帮助程序 <label asp-for="Movie.Title" class="control-label"></label>
+				生成标签描述和 Title 属性的 [for] 特性。
+			- 输入标记帮助程序 <input asp-for="Movie.Title" class="form-control" />
+				使用 DataAnnotations 属性并在客户端生成 jQuery 验证所需的 HTML 属性。
+			- 定位标记帮助程序 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+				- 从 相对路由(asp-page) 和路由标识符(asp-route-id) 动态生成 HTML href 特性值
+					<a href="/Movies/Edit?id=1">Edit</a>
+				- 使用 {id:int} 路由模板 @page "{id:int}" 可以将生成的 href 改为：
+					<a href="/Movies/Edit/1">Edit</a>
+					- @page "{id:int?}" 可以允许 id 为空
+		- SQL Server Express LocalDB
+			- 轻型版的 SQL Server Express 数据库引擎，以程序开发为目标
+			- 按需启动并在用户模式下运行的轻量级数据库没有复杂的配置
+			- 默认情况下，LocalDB 数据库在 C:\Users\<user>\ 目录下创建 *.mdf 文件
+			- 从 菜单 "视图 - SQL Server 对象资源管理器" 打开数据库
+		- 设定数据库种子，用于初始化数据
+			1. 在 Models 文件夹中创建一个名为 SeedData 的类
+			2. 在 Program.cs 运行 SeedData 类
+				```
+				using (var scope = app.Services.CreateScope())
+				{
+					var services = scope.ServiceProvider;
+
+					SeedData.Initialize(services);
+				}
+				
+				1. 调用 seedData.Initialize 方法，并向其传递数据库上下文实例。
+				2. Seed 方法完成时释放上下文。 using 语句将确保释放上下文
+				```
+		- 捕捉和处理并发冲突 
+			catch (DbUpdateConcurrencyException)
+		- 数据注解同 Mvc
+		- 使用 EF Code First 自动创建和跟踪数据库时，Code First 将：
+			- 向数据库添加 __EFMigrationsHistory 表格，以跟踪数据库的架构是否与从生成它的模型类同步
+			- 如果该模型类未与数据库同步，则会引发异常
+				- 可通过几种方法解决此错误：
+					- 让 Entity Framework 自动丢弃并使用新的模型类架构重新创建数据库。
+						- 此方法在开发周期早期很方便，开发人员可通过它一起快速改进模型和数据库架构。
+						- 缺点是数据库中的现有数据会丢失。
+						- 请勿对生产数据库使用此方法！
+					- 手动或通过创建数据库更改脚本对数据库架构进行显式修改，使它与模型类相匹配
+						- 优点是可以保留数据
+					- 使用 Code First 迁移更新数据库架构 
+						- add-migration xxx
+							- 将 Movie 模型与 Movie 数据库架构进行比较
+							- 创建代码以将数据库架构迁移到新模型
+						- update-database
+			- 自动验证架构与模型是否同步可以更容易地发现不一致的数据库代码问题
+		- 添加验证
+			1. POCO 类添加验证特性如 [Required] 等
+			2. 应用数据注释后，即表示已启用验证 UI
+			3. 服务器端验证使用 ModelState.IsValid 
+			4. 迁移应用新的模型类
+3. 创建 ASP.NET Core MVC 项目
 		
 		
 		
