@@ -191,20 +191,8 @@ Asp.Net Core 【未上传，未完成】
 			3. 服务器端验证使用 ModelState.IsValid 
 			4. 迁移应用新的模型类
 3. 创建 ASP.NET Core MVC 项目
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	- 创建项目（VS2022）
+	- 添加模型
 		1. 菜单 "工具 - NuGet 包管理器 - 包管理器控制台(PMC)" 添加 EF Core 包
 			```
 			Install-Package Microsoft.EntityFrameworkCore.Design
@@ -270,6 +258,8 @@ Asp.Net Core 【未上传，未完成】
 	解决：运行 add-migration 和 update-database 两个命令
 6. 如何删除表所有数据
 	解决：context.Database.ExecuteSqlRaw("delete from Movie");
+7. asp.net core mvc 生成代码出错，提示方法语句有二义性	
+	解决：原步骤重新生成
 	
 # 代码
 	- Link: https://github.com/quanysq/study/tree/master/TestProject_VS2022/WebApiSample/EFCodeFirstExample	
