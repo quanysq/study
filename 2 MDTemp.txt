@@ -1,0 +1,259 @@
+# 2022-08-01
+***事件***
+	
+	井盖新权限系统
+	整改二次开发
+	
+***问题***
+
+	1. 脚本字段注释出错：
+		对象无效。'dbo.xxx.xxx' 不允许有扩展属性，或对象不存在
+		原因：注释不是定位在列上
+	2. 脚本创建存储过程出错：
+		CREATE/ALTER PROCEDURE' 必须是查询批次中的第一个语句
+		原因：之前判断存储过程存在的语句没有写 GO
+	3. Axure8 默认元件库不显示图标，无法使用
+		重新加载（默认元件库位置：{安装目录}\DefaultSettings\Libraries）
+		https://www.hxsd.tv/article/1373/
+	4. C# MVC项目，在 controller 文件夹右击鼠标没有 “添加控制器”
+		原因：先打开asp.net mvc core 的项目，影响了 mvc5 的项目
+		解决：先打开 asp.net mvc5 的项目
+		相关链接：http://t.zoukankan.com/Ly426-p-4454430.html
+	5. EF 存储区更新、插入或删除语句影响到了意外的行数(0)。实体在加载后可能被修改或删除。有关了解和处理乐观并发异常的信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=472540。
+		原因：1 主键改变，因为没有配置 AutoMapper; 2 修改唯一索引的字段的值
+	
+***心得***
+
+	1. Chrome 浏览器看 api 方法
+		F12 -> 网络 -> 点击 Fetch/XHR
+	2. Chrome浏览器怎么样在电脑访问手机版网页
+		F12 - 点击左上角 "显示/隐藏设备工具栏"（英文：Toggle Device Toolbar） 图标按钮
+		Link: https://jingyan.baidu.com/article/6fb756ec476fcc241858fbb3.html
+	3. 在线原型 pixso
+		https://bos-pixso.feishu.cn/wiki/wikcnXWV0Ar983ke2lkly6HIPmb#s97fEX
+	4. Axure8 元件库
+		https://blog.csdn.net/qq_38892842/article/details/88385135
+		https://www.axureux.com/home/freeworks.html
+		https://baijiahao.baidu.com/s?id=1711222376016982733&wfr=spider&for=pc (Axure如何添加第三方元件库)
+	5. FontAwesome 图标字体库的使用
+		http://www.fontawesome.com.cn/icons-ui/
+	6. 如何在Axure中使用FontAwesome字体图标
+		https://www.likecs.com/show-752120.html
+	7. 多级数据 在页面上展现方式
+		https://baijiahao.baidu.com/s?id=1688831942375137894&wfr=spider&for=pc
+	8. Axure8 母版页
+		https://blog.csdn.net/m0_47378383/article/details/120822765
+		备注：其中第 6 步描述不清晰，应该是：在两个页面中分别添加图片，并在页面上的母版元件上添加事件
+	9. Axure如何制作下拉多选框效果
+		https://jingyan.baidu.com/article/9f63fb91e5196788410f0e36.html
+		http://www.downza.cn/xy/45679.html
+		https://it.sohu.com/a/533925210_114819
+	10. sqlserver 备份和还原（还原为新数据库）
+		https://www.jb51.net/article/240952.htm
+		https://www.csdn.net/tags/MtzaAg4sNTg5ODYtYmxvZwO0O0OO0O0O.html
+	11. sqlserver 添加新列，新数据
+		【记录代码】
+	12. sqlserver sms 查看表约束索引等
+		表 -> 点击符号 + -> 即可看到主键、约束、触发器、索引等
+	13. TFS 分配项目仓库给用户 步骤
+		1. 打开项目仓库如 http://192.168.0.126:3000/AndoGit/slnSms
+		2. 点右上角 "仓库设置"
+		3. 点左边菜单 "管理协作者"
+		4. 添加新的协作者如 Jacky
+	14. sqlserver SET NOCOUNT ON
+		减少网络通信流量，提高性能
+		https://blog.csdn.net/weixin_30396699/article/details/95560196
+		https://www.cnblogs.com/cont/archive/2012/12/14/2818371.html
+	15. sqlserver 判断存储过程，删除和创建存储过程
+		【记录代码】
+		https://blog.csdn.net/weixin_48301385/article/details/124632736
+		http://t.zoukankan.com/jsfh-p-12784915.html
+	16. sqlserver NOLOCK
+		简单来说NOLOCK关键字的作用是防止查询的时候被别的会话阻塞，从而顺利完成查询的操作
+		https://blog.csdn.net/xishining/article/details/120755247
+	17. sqlserver FOR XML PATH 
+		行转列
+		【记录代码】
+		https://blog.csdn.net/a275838263/article/details/51118866
+		https://blog.51cto.com/u_11795292/4850400
+	18. IIS 修改证书别名
+		https://www.yimenapp.com/kb-yimen/5078/
+	19. 申请和部署证书	
+		【记录代码】
+		D:\Jacky\Document\公司\申请域名证书+部署.docx
+	20. sqlserver CHARINDEX
+		判断一个字符串中是否包含另一个字符串
+		https://www.cnblogs.com/qianzf/p/7609641.html
+	21. Axure8 画流程图和箭头
+		http://news.558idc.com/260612.html
+	22. Postman 上传文件
+		https://blog.csdn.net/weixin_44635157/article/details/108492886
+	23. Webapi 上传文件和读取Excel
+		【记录代码】
+		https://blog.csdn.net/qq512982554/article/details/103320705（Magicodes.IE之导入学生数据教程）
+		https://cloud.tencent.com/developer/article/1799274（Magicodes.IE Excel合并行数据导入教程）
+		https://www.freesion.com/article/1600363804/（使用MAGICODES.IE.EXCEL完成EXCEL图片的导入和导出）
+		https://github.com/dotnetcore/Magicodes.IE（源码）
+		https://blog.csdn.net/david_520042/article/details/122732392（[WebApi]WebApi通过接口上传文件-单文件 多文件上传 文件下载）
+		https://blog.csdn.net/dandelion_drq/article/details/52507172（jQuery + Ajax + WebAPI 上传文件）
+		https://www.cnblogs.com/gczmn/p/9437935.html（js FormData方法介绍）
+	24. TodoList 任务属性设置栏不见
+		解决：替换 ToDoList.ini 文件
+	25. Postman 显示/隐藏Header
+		https://blog.csdn.net/weixin_35396246/article/details/113629690
+		[显示之后自动滚动到底部，需要向上滑动下才看到 显示/隐藏Header 的图标]
+	26. sqlserver 存储过程中的事务
+		【记录代码】
+		http://t.zoukankan.com/huaan011-p-4725123.html
+		https://blog.csdn.net/weixin_30827565/article/details/97378160
+	27. sqlserver RAISERROR
+		抛出异常
+		【记录代码】
+		http://t.zoukankan.com/hong01072-p-14264855.html
+	28. sqlserver if...else 语法
+		https://blog.csdn.net/caoyanchao1/article/details/122674931
+	29. C# 获取无后缀文件名
+		Path.GetFileNameWithoutExtension
+		http://t.zoukankan.com/LCLBook-p-10922217.html
+	30. asp.net mvc @: 符号
+		@：表明该行后面的内容不是代码
+		https://blog.csdn.net/cnsend/article/details/86618885
+	31. C# 方法中使用动态参数 dynamic 和调用
+		【记录代码】
+	32. C# 将 dynamic 变量转为其它类型
+		【记录代码】
+		https://www.cnblogs.com/Depingblogs/p/15022680.html（在 C# 中将 List<dynamic> 转换为 List<string>）
+	33. HashSet 与 List 的区别
+		HashSet 元素不重复，查找高效。可以利用此特性，将list转为hashset再转为list以去掉重复值
+	34. DateTime.Now - 当天的第一分钟和最后一分钟
+		return dateTime.Date;  //当天的第一分钟
+		return AbsoluteStart(dateTime).AddDays(1).AddTicks(-1); //最后一分钟
+		https://qa.1r1g.com/sf/ask/235407161/
+	35. 软著申请信息采集参考
+		http://www.doczj.com/doc/00730449.html
+	36. Visual Studio 统计代码量
+		- 分析和代码清理--计算代码度量值
+		- 搜索统计
+		https://www.sohu.com/a/513647175_121124364
+	37. 查看sqlserver版本
+		SELECT @@VERSION
+		https://www.gxlcms.com/mysql-337449.html
+	38. EF 三种继承映射关系：TPH,TPT,TPC
+		http://t.zoukankan.com/Leo_wl-p-3273481.html（EF里的继承映射关系TPH、TPT和TPC的讲解以及一些具体的例子）
+		https://www.jb51.net/article/251382.htm（Entity Framework映射TPH、TPT、TPC与继承类）
+	39. Nopad++ 删除空白行
+		编辑 - 行操作 - 移除空行
+		https://jingyan.baidu.com/article/ca41422fc8504d5faf99ed64.html
+		或者
+		查找 ^\s*\n （正则表达式）
+		替换 (空)
+	40. Nopad++ 删除 Java 注释
+		查找 //[\s\S]*?\n （正则表达式）
+		替换 \n
+		
+		查找 /\*{1,2}[\s\S]*?\*/ （正则表达式）
+		替换 \n
+		https://blog.csdn.net/liangpingguo/article/details/106992942
+	41. Word 设置一页 50 行
+		https://jingyan.baidu.com/article/59a015e35b417cb6948865e6.html
+	42. Word 显示/不显示行号
+		https://jingyan.baidu.com/article/cdddd41c84f85b12ca00e1d0.html
+	43. Word 取消行号后消除段落前面黑色点
+		https://jingyan.baidu.com/article/8ebacdf0374f4308f65cd580.html
+	44. WebApi Post 把参数加到 url 上
+		【记录代码】
+		参数不要加 [FromBody] 
+		```
+		[HttpPost]
+        [SwaggerOperation(Tags = new string[] { "单位管理" })]
+        [Route("Delete/{itemGuid}")]
+        public IHttpActionResult Delete(string itemGuid)
+        {
+            _customerInfoService.Value.DeleteCustomer(itemGuid);
+            return Ok(Success());  // NoContent();
+        }
+		```
+	45. POCO 类
+		模型类称为 POCO 类（源自“简单传统 CLR 对象” ），因为它们与 EF Core 没有任何依赖关系。 它们定义数据库中存储的数据属性。
+		【理解】应该就是实体类，只有属性，没有方法
+	46. 微软五笔 快速输入日期
+		https://www.jianshu.com/p/7bda57638f0d
+	47. sqlserver Update set select 语句
+		【记录代码】
+		https://blog.csdn.net/qq_39099370/article/details/79802956
+		http://t.zoukankan.com/Strugglehard-p-11358078.html
+	48. sqlserver 数字转字符串
+		【记录代码】
+		CONVERT(VARCHAR(50),a.ItemID)
+		https://www.csdn.net/tags/MtzaAg5sMTI1ODAtYmxvZwO0O0OO0O0O.html
+	49. sqlserver replace
+		【记录代码】
+		```
+		SELECT 
+			a.UserID, 
+			b.AccountPrefix,
+			REPLACE(a.UserID,b.AccountPrefix+'_','') UserReallyID,
+			a.CustomerNum
+		FROM dbo.UserInfo a 
+			INNER JOIN dbo.CustomerInfo b ON b.CustomerNum=a.CustomerNum
+		```
+		https://blog.csdn.net/weixin_43891773/article/details/117553585
+	50. 激活 Windows10 提示：无法连接到你组织的激活服务器
+		1. 打开 Windows PowerShell(管理员)
+		2. 依次输入以下三行命令
+			- slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX
+			- slmgr /skms kms.03k.org
+			- slmgr /ato
+		3. Link: https://product.pconline.com.cn/itbk/software/dnyw/1491/14914634.html
+	51. sqlserver 递归查询指定树形结构的全部子节点
+		【记录代码】
+		```
+		with subqry(id,name,pid) as (
+		　　select id,name,pid from test1 where id = 5 --指定id
+		　　union all
+		　　select test1.id,test1.name,test1.pid from test1,subqry　where test1.pid = subqry.id
+		)
+		select* from subqry;
+		```
+		http://www.javashuo.com/article/p-sxnwjghg-nv.html
+		【注意】在干净的树形结构表数据查询，然后再跟其它关系表关联，如果多个表关联后再使用递归方法，数据不准确
+	52. C#8 ! 符号作用
+		主要作用就是告诉编译器，变量不可能为 null
+		https://blog.csdn.net/chinaherolts2008/article/details/115785723
+	53. WebAPI 将对象作为 Get 方法参数
+		```
+		public IHttpActionResult UserPageList([FromUri] UserInfoListQueryPageParameter parameter)
+		```
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

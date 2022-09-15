@@ -1,7 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
+using MvcMovie.Models;
+
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<MvcMovieContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
 
@@ -9,6 +12,15 @@ builder.Services.AddDbContext<MvcMovieContext>(options =>
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    SeedData.Initialize(services);
+}
+// 直接以 app.Services 作为参数，提示错误：
+// System.InvalidOperationException:“Cannot resolve scoped service 'Microsoft.EntityFrameworkCore.DbContextOptions`1[MvcMovie.Data.MvcMovieContext]' from root provider.”
+//SeedData.Initialize(app.Services);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
