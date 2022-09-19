@@ -224,6 +224,49 @@
 		```
 		public IHttpActionResult UserPageList([FromUri] UserInfoListQueryPageParameter parameter)
 		```
+	54. Chrome怎么禁止javascript?
+		设置 - 隐私设置和安全性 - 网站设置 - JavaScript - 选择 不允许网站使用 JavaScript
+		https://jingyan.baidu.com/article/a3a3f811f22752cca3eb8a08.html
+	55. TodoList 属性调整：
+		1. 右键右边任务详情列表空白标题
+			1. 任务属性可见性 - 勾选 开始日期/修改日期两个属性
+			2. 自定义任务属性 - 添加 完成日期 属性调整：
+		2. 菜单 "工具 - 选项"
+			1. 用户界面 - 常规 - 不勾选排序的三个选项
+			2. 用户界面 - 任务列表属性 - 不勾选 已完成的任务隐藏开始和到期日期
+			3. 用户界面 - 任务列表属性 - 勾选 用进度条显示完成百分比
+			4. 任务 - 任务属性 - 开始日期 不勾选 创建日期
+			5. 任务 - 属性计算 - 计算任务的剩余时间 - 选择 估算时间-消耗时间
+			6. 任务 - 属性计算 - 不勾选 当计算时间估算时考虑任务的完成百分比？
+	56. sqlserver FOR JSON PATH
+		将表格内容转成Json字符串
+		【记录代码】
+		https://learn.microsoft.com/zh-cn/sql/relational-databases/json/format-query-results-as-json-with-for-json-sql-server?view=sql-server-ver16
+		https://www.freesion.com/article/1142207773/
+	57. js Fetch
+		Fetch API 提供了一个获取资源的接口（包括跨域请求），用于取代传统的XMLHttpRequest的，
+		在 JavaScript 脚本里面发出 HTTP 请求。就是 Ajax
+		https://blog.csdn.net/weixin_52148548/article/details/124703828
+	58. C# 标记废弃方法
+		[Obsolete(message)] 特性
+		https://blog.csdn.net/arrowzz/article/details/56305957
+	59. sqlserver TOP
+		https://blog.csdn.net/zxm8513/article/details/121048219（SQLServer中top关键字的用法）
+		https://www.mianshigee.com/question/413704xiw/（在SELECT查询中使用TOP 1的性能影响）
+		https://www.xp.cn/b.php/43635.html（TOP 1比不加TOP慢的疑惑）
+	60. Web.config
+		```
+		<configuration>
+			<system.web>
+				<customErrors mode="Off" />
+				......
+		```
+		https://blog.csdn.net/yangguosheng/article/details/107703246
+		https://blog.csdn.net/heimao0307/article/details/79737097
+	61. 
+				
+		
+		
 	
 	
 	

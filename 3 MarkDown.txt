@@ -192,6 +192,47 @@ Asp.Net Core 【未上传，未完成】
 			4. 迁移应用新的模型类
 3. 创建 ASP.NET Core MVC 项目
 	- 创建项目（VS2022）
+		1. Create a new project
+		2. ASP.NET Core Web App (Model-View-Controller) 
+		3. .NET 6.0 (Long-term support).
+	- 模型-视图-控制器 (MVC) 体系结构模式
+		- 应用分成 3 个主要组件：模型 (M)、视图 (V) 和控制器 (C) 
+		- 此模式有助于实现关注点分离：
+			- UI 逻辑位于视图中。 
+			- 输入逻辑位于控制器中。 
+			- 业务逻辑位于模型中，业务逻辑即是数据规则和验证规则
+			- 这种隔离有助于控制构建应用时的复杂程度，因为它可用于一次处理一个实现特性，而不影响其他特性的代码。 例如，处理视图代码时不必依赖业务逻辑代码
+		- 模型 (M)：表示应用数据的类
+			- 模型类使用验证逻辑来对该数据强制实施业务规则
+			- 通常，模型对象检索模型状态并将其存储在数据库中
+			- 模型将从数据库中检索数据，并将其提供给视图或对其进行更新， 更新后的数据将写入到数据库
+		- 视图 (V)：视图是显示应用用户界面 (UI) 的组件
+			- 通常会显示模型数据
+		- 控制器，处理用户输入和交互并对其进行响应，可执行以下操作的类：
+			- 处理浏览器请求
+			- 检索模型数据
+			- 调用返回响应的视图模板
+	- 添加控制器
+		1. 在“解决方案资源管理器”中，右键单击“控制器”>“添加”>“控制器”。
+		2. 在“添加新基架项”对话框中，选择“MVC 控制器 - 空”>“添加”。
+		3. 在“添加新项 - MvcMovie”对话框中，输入 HelloWorldController.cs，然后选择“添加”。
+		4. 控制器中的依赖项注入
+			```
+			public class MoviesController : Controller
+			{
+				private readonly MvcMovieContext _context;
+
+				public MoviesController(MvcMovieContext context)
+				{
+					_context = context;
+				}
+				......
+				
+			说明：
+			构造函数使用依赖关系注入将数据库上下文 (MvcMovieContext) 注入到控制器中
+			```
+	- 运行
+		- 路由模板
 	- 添加模型
 		1. 菜单 "工具 - NuGet 包管理器 - 包管理器控制台(PMC)" 添加 EF Core 包
 			```
@@ -236,13 +277,78 @@ Asp.Net Core 【未上传，未完成】
 			- ASP.NET Core 通过依赖关系注入 (DI) 生成
 			- 服务（如数据库上下文）在 Program.cs 中向 DI 注册
 				```
-				
+				builder.Services.AddDbContext<MvcMovieContext>(options =>
+					options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext")));
 				```
+			- 数据库连接字符串
+				- 在 appsettings.json 自动生成
+	- 数据库
+		- SQL Server Express LocalDB
+			- 是 SQL Server Express 数据库引擎的一个轻量级版本，默认与 Visual Studio 一起安装
+			- 使用连接字符串按需启动
+			- 面向程序开发。 它在用户模式下运行，因此没有复杂的配置
+			- 默认情况下，在 C:/Users/{user} 目录中创建 .mdf 文件
+		- 设定数据库种子
+			1. 创建 SeedData 静态类，在其中添加数据
+				```
+				public static class SeedData
+				{
+					public static void Initialize(IServiceProvider serviceProvider)
+					{
+						using (var context = new MvcMovieContext(
+							serviceProvider.GetRequiredService<
+								DbContextOptions<MvcMovieContext>>()))
+						{
+							// Look for any movies.
+							if (context.Movie.Any())
+							{
+								return;   // DB has been seeded
+							}
 
-
-
-
-
+							context.Movie.AddRange(
+								new Movie
+								{
+									Title = "When Harry Met Sally",
+									ReleaseDate = DateTime.Parse("1989-2-12"),
+									Genre = "Romantic Comedy",
+									Price = 7.99M
+								},
+								......
+							);
+							context.SaveChanges();
+						}
+					}
+				}			
+				```
+			2. 在 Program.cs 中执行 SeedData.Initialize 方法
+				```
+				using (var scope = app.Services.CreateScope())
+				{
+					var services = scope.ServiceProvider;
+					SeedData.Initialize(services);
+				}
+				
+				说明：
+				直接使用 app.services 会出错
+				```
+	- 添加新字段，解决方法：
+		- 让 EF 基于新的模型类架构重新创建数据库，优点是开发早期方便，缺点是会丢失数据库中的现有数据
+		- 手动或通过创建数据库更改脚本修改数据库，使其跟模型类一致
+		- 使用 Code First 迁移更新数据库架构（add-migration 和 update-database 命令）
+	- 添加验证规则
+		1. 在模型类以数据注解方式指定验证规则
+			- 比如使用内置的 Required、StringLength、RegularExpression 和 Range 验证特性
+			- DataType 属性仅提供相关提示来帮助视图引擎设置数据格式并提供元素/属性
+			- 可以单独使用 DisplayFormat 特性，但通常建议使用 DataType 特性。 DataType 特性传达数据的语义而不是传达如何在屏幕上呈现数据，并提供 DisplayFormat 不具备的以下优势
+				- 浏览器可启用 HTML5 功能（例如显示日历控件、区域设置适用的货币符号、电子邮件链接等）
+				- 默认情况下，浏览器将根据区域设置采用正确的格式呈现数据
+				- DataType 特性使 MVC 能够选择正确的字段模板来呈现数据（如果 DisplayFormat 由自身使用，则使用的是字符串模板）
+			- jQuery 验证不适用于 DateTime 属性上的 Range 特性，通常，在模型中编译固定日期是不恰当的，因此不推荐在日期类型属性上使用 Range 特性
+		2. UI 的表单、验证和输入标记帮助程序自动进行数据验证
+			- asp-validation-summary
+			- asp-validation-for
+		3. 如果浏览器禁用 JavaScript，服务端的 ModelState.IsValid 将进行数据验证
+		
 # 问题	
 1. 运行所选代码生成器出错，请安装包 Microsoft.VisualStudio.Web.CodeGeneration.Design，然后重试
 	解决：打开 NuGet 包管理器>管理解决方案的 NuGet 包，看到 Microsoft.VisualStudio.Web.CodeGeneration.Design 已经安装，按原步骤重试问题不再显示
