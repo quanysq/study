@@ -348,7 +348,17 @@ Asp.Net Core 【未上传，未完成】
 			- asp-validation-summary
 			- asp-validation-for
 		3. 如果浏览器禁用 JavaScript，服务端的 ModelState.IsValid 将进行数据验证
-		
+4. Asp.net Web API
+	
+
+
+
+
+
+
+
+
+			
 # 问题	
 1. 运行所选代码生成器出错，请安装包 Microsoft.VisualStudio.Web.CodeGeneration.Design，然后重试
 	解决：打开 NuGet 包管理器>管理解决方案的 NuGet 包，看到 Microsoft.VisualStudio.Web.CodeGeneration.Design 已经安装，按原步骤重试问题不再显示
