@@ -303,6 +303,13 @@
 		List<ZhengGaiClosedExportDetail> listExcel = _mapper.Map<List<ZhengGaiClosedExportDetail>>(list);
 		```
 	64. sqlserver 数据库事务日志已满
+		可能是磁盘空间不足
+		其它原因可参考
+		http://t.zoukankan.com/siskin-p-13168857.html
+	65. 禁用Chrome浏览器的缓存功能
+		DevTool - 网络 - Disable Cache [必须要将开发模式一直打开才有效]
+		https://blog.csdn.net/liaowenxiong/article/details/113767187
+	66. 
 		
 		
 		
