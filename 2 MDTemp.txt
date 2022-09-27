@@ -21,7 +21,17 @@
 		相关链接：http://t.zoukankan.com/Ly426-p-4454430.html
 	5. EF 存储区更新、插入或删除语句影响到了意外的行数(0)。实体在加载后可能被修改或删除。有关了解和处理乐观并发异常的信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=472540。
 		原因：1 主键改变，因为没有配置 AutoMapper; 2 修改唯一索引的字段的值
-	
+	6. System.NotSupportedException:“无法创建“Ando.Jinggai.BusinessEntities.Dtos.OwnershipCustomerInfoDto”类型的常量值。此上下文仅支持基元类型或枚举类型。”
+		获取 OwnershipCustomerInfoDto 的方法已经 ToList，不是 IQueryable 类型。注意：并不是要把 DTO 转成 实体对象
+	7. join 子句中其中一个表达式的类型不正确。在对“Join”的调用中，类型推理失败。
+		代码中把 List<DTO对象> 转化成单个实体对象，应该转成 List<实体对象>
+	8. 管家婆提示：数据库事务日志已满
+		原因：磁盘空间不足
+	9. 连接远程计算机提示：“这可能是由于CredSSP加密数据库修正” 问题
+		解决：计算机配置–>系统–>凭据分配–>加密数据库修正
+		https://blog.csdn.net/G_x_n/article/details/113278711
+	10.
+
 ***心得***
 
 	1. Chrome 浏览器看 api 方法
@@ -239,6 +249,7 @@
 			5. 任务 - 属性计算 - 计算任务的剩余时间 - 选择 估算时间-消耗时间
 			6. 任务 - 属性计算 - 不勾选 当计算时间估算时考虑任务的完成百分比？
 			7. 用户界面 - 任务列表属性 - 不勾选 在任务标题后显示注释
+			8. 用户界面 - 字体和颜色 - 注释字体 - 大小 - 14点
 	56. sqlserver FOR JSON PATH
 		将表格内容转成Json字符串
 		【记录代码】
@@ -264,8 +275,35 @@
 		```
 		https://blog.csdn.net/yangguosheng/article/details/107703246
 		https://blog.csdn.net/heimao0307/article/details/79737097
-	61. 
-				
+	61. C# ///注释说明
+		- <c> 将说明中的文本标记为代码spa
+		- <code> 提供了一种将多行指示为代码的方法.net
+		- <example> 指定使用方法或其余库成员的示例code
+		- <exception> 容许你指定可能发生的异常类orm
+		- <include> 容许你引用描述源代码中类型和成员的另外一文件中的注释, 使用 XML XPath 语法来描述你的源代码中的类型和成员。
+		- <list> 向XML注释文档中插入一个列表
+		- <para> 向XML注释文档中插入一个段落
+		- <param> 描述一个参数
+		- <paramref> 提供了一种指示一个词为参数的方法
+		- <permission> 容许你将成员的访问许可加入到文档中
+		- <remarks> 用于添加有关某个类型的信息
+		- <returns> 描述返回值
+		- <see> 指定连接
+		- <seealso> 指定但愿在“请参见”一节中出现的文本
+		- <summary> 类型或类型成员的通用描述
+		- <value> 描述属性
+		https://www.pianshen.com/article/3418550532/
+	62. chrome断点调试
+		http://t.zoukankan.com/williamjie-p-10833021.html
+	63. AutoMapper 数据转换
+		```
+		_mapper.Map<目标对象>(源对象)
+		
+		比如：
+		List<ZhengGaiClosedExportDetail> listExcel = _mapper.Map<List<ZhengGaiClosedExportDetail>>(list);
+		```
+	64. sqlserver 数据库事务日志已满
+		
 		
 		
 	
