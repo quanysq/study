@@ -30,8 +30,33 @@
 	9. 连接远程计算机提示：“这可能是由于CredSSP加密数据库修正” 问题
 		解决：计算机配置–>系统–>凭据分配–>加密数据库修正
 		https://blog.csdn.net/G_x_n/article/details/113278711
-	10.
-
+	10. 测试环境返回 500 
+		数据库实例未启动
+	11. Linq to Entities/SQL: where 条件不能是表达式！！！
+	12. sqlserver 执行存储过程，报错：名为 xxx 的游标已存在
+		1. 声明游标使用 Local
+			```
+			declare MyCursor CURSOR LOCAL FOR
+			```
+		2. 出错也要释放游标
+		https://www.nuomiphp.com/eplan/377848.html
+	13. sqlserver 执行存储过程，报错：过程需要类型为 'ntext/nchar/nvarchar' 的参数 '@statement'。
+		sp_executesql 后面的 sql 语句未定义为 nvarchar 类型
+		https://blog.csdn.net/taoerchun/article/details/85265409
+		https://blog.51cto.com/u_4015465/1378493
+	14. sqlserver 执行存储过程，报错： EXECUTE 后的事务计数指示 BEGIN 和 COMMIT 语句的数目不匹配 
+		begin tran 后面没有 commit tran 语句
+		https://blog.csdn.net/gtosky4u/article/details/103983171
+	15. 网站访问时，http 被自动转成 https，导致css,js等访问出现404错误，网站显示异常
+		原因：网站模板加了这一句，注释后恢复正常
+		```
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+		```
+		https://w55776.blog.csdn.net/article/details/115458408
+		https://blog.csdn.net/whatevery/article/details/109514349
+		
+		也可以在 nginx 中处理，但需要 IIS 配置多绑定一个 https  
+		https://blog.csdn.net/qq_41793064/article/details/116448700
 ***心得***
 
 	1. Chrome 浏览器看 api 方法
@@ -60,6 +85,7 @@
 		https://it.sohu.com/a/533925210_114819
 	10. sqlserver 备份和还原（还原为新数据库）
 		https://www.jb51.net/article/240952.htm
+		https://blog.csdn.net/weixin_57726973/article/details/123578466（SQL Server的备份/自动备份）
 		https://www.csdn.net/tags/MtzaAg4sNTg5ODYtYmxvZwO0O0OO0O0O.html
 	11. sqlserver 添加新列，新数据
 		【记录代码】
@@ -309,7 +335,49 @@
 	65. 禁用Chrome浏览器的缓存功能
 		DevTool - 网络 - Disable Cache [必须要将开发模式一直打开才有效]
 		https://blog.csdn.net/liaowenxiong/article/details/113767187
-	66. 
+	66. c# 使用方法泛型参数的属性
+		1. 方法内部判断转化泛型参数为具体对象
+		2. 方法定义时对泛型参数进行类型约束
+		3. 反射
+		4. 如果泛型参数无法确定，采用 dynamic 类型，但要求有同样的属性
+		Link: https://www.xin3721.com/ArticlecSharp/c13819.html
+	67. sqlserver job
+		可以利用 sqlserver job 进行备份、报警、发送email 等操作
+		https://jingyan.baidu.com/article/4b07be3c842d9b48b380f3ba.html
+	68. Excel 下拉列表
+		https://jingyan.baidu.com/article/a3f121e4b09575bd9052bbcf.html
+	69. Excel 下拉列表 多选
+		https://www.cnblogs.com/Ning-Blog/p/16334484.html [参考，未验证]
+	70. SqlServer 查询数据库中所有表名,查询包含某个字段的表名
+		【记录代码 - ok】
+		https://www.cnblogs.com/HRainet/p/14338157.html
+		https://blog.csdn.net/m0_38010621/article/details/118099343 [▲]
+	71. sqlserver 循环 游标
+		【记录代码】
+		https://blog.51cto.com/lhrbest/2703353
+		https://www.xp.cn/b.php/87631.html
+	72. sqlserver 触发器
+		https://blog.csdn.net/yanglei0620/article/details/118364047
+	73. sqlserver exec sp_executesql
+		【记录代码】
+		sp_executesql 可使用参数和性能计划，性能更佳
+		http://t.zoukankan.com/gavanwanggw-p-6760218.html
+		https://blog.csdn.net/hofmann/article/details/126606423
+	74. sqlserver 获取存储过程中update语句的影响行数
+		【记录代码】
+		```
+		declare @return int;
+		update HoverTreeSCJ_Urls set htUrl=@hturl,htTitle =@htTitle where htId=@htid;
+		set @return =@@rowcount;
+		```
+	75. html meta Content-Security-Policy
+		> 作用：
+		> 1. 启用CSP，预防 XSS 攻击；
+		> 2. 将静态资源的http请求转为https
+		
+		https://blog.csdn.net/petterDong/article/details/106575480
+		https://blog.csdn.net/hofmann/article/details/104745076
+	76. 
 		
 		
 		
