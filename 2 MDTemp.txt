@@ -57,6 +57,11 @@
 		
 		也可以在 nginx 中处理，但需要 IIS 配置多绑定一个 https  
 		https://blog.csdn.net/qq_41793064/article/details/116448700
+	16. VS IDE 项目生成到一半卡住
+		解决：清理项目，然后关掉IDE再重新打开
+		网上说有可能是因为检查nuget包所致，参考：
+		https://www.cnblogs.com/licin/p/16007652.html
+	17. 
 ***心得***
 
 	1. Chrome 浏览器看 api 方法
@@ -216,6 +221,13 @@
 		https://www.jianshu.com/p/7bda57638f0d
 	47. sqlserver Update set select 语句
 		【记录代码】
+		```
+		UPDATE #table 
+		SET DetailNum = a.FaultNum+a.FaultBMNum 
+		FROM dbo.ZhengGaiMainTempToNext a 
+			INNER JOIN #table b ON a.ItemGuid=b.ItemGuid 
+		WHERE b.BusinessType='通知区局整改下发信息';
+		```
 		https://blog.csdn.net/qq_39099370/article/details/79802956
 		http://t.zoukankan.com/Strugglehard-p-11358078.html
 	48. sqlserver 数字转字符串
@@ -377,7 +389,15 @@
 		
 		https://blog.csdn.net/petterDong/article/details/106575480
 		https://blog.csdn.net/hofmann/article/details/104745076
-	76. 
+	76. sqlserver 查询一个月内的数据
+		【记录代码】
+		```
+		SELECT * 
+		FROM dbo.ManageManage_Purchase 
+		WHERE DATEDIFF(dd, CreateTime  , GETDATE()) <= 30 -- 30天内
+		```
+		http://t.zoukankan.com/jiamengyang-p-9300654.html
+	77. 	
 		
 		
 		
