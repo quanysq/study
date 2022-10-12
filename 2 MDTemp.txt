@@ -93,7 +93,7 @@
 		https://blog.csdn.net/weixin_57726973/article/details/123578466（SQL Server的备份/自动备份）
 		https://www.csdn.net/tags/MtzaAg4sNTg5ODYtYmxvZwO0O0OO0O0O.html
 	11. sqlserver 添加新列，新数据
-		【记录代码】
+		【记录代码 - ok】
 	12. sqlserver sms 查看表约束索引等
 		表 -> 点击符号 + -> 即可看到主键、约束、触发器、索引等
 	13. TFS 分配项目仓库给用户 步骤
@@ -106,7 +106,7 @@
 		https://blog.csdn.net/weixin_30396699/article/details/95560196
 		https://www.cnblogs.com/cont/archive/2012/12/14/2818371.html
 	15. sqlserver 判断存储过程，删除和创建存储过程
-		【记录代码】
+		【记录代码 - ok】
 		https://blog.csdn.net/weixin_48301385/article/details/124632736
 		http://t.zoukankan.com/jsfh-p-12784915.html
 	16. sqlserver NOLOCK
@@ -144,12 +144,12 @@
 		https://blog.csdn.net/weixin_35396246/article/details/113629690
 		[显示之后自动滚动到底部，需要向上滑动下才看到 显示/隐藏Header 的图标]
 	26. sqlserver 存储过程中的事务
-		【记录代码】
+		【记录代码 - ok】
 		http://t.zoukankan.com/huaan011-p-4725123.html
 		https://blog.csdn.net/weixin_30827565/article/details/97378160
 	27. sqlserver RAISERROR
 		抛出异常
-		【记录代码】
+		【记录代码 - ok】
 		http://t.zoukankan.com/hong01072-p-14264855.html
 	28. sqlserver if...else 语法
 		https://blog.csdn.net/caoyanchao1/article/details/122674931
@@ -361,17 +361,17 @@
 	69. Excel 下拉列表 多选
 		https://www.cnblogs.com/Ning-Blog/p/16334484.html [参考，未验证]
 	70. SqlServer 查询数据库中所有表名,查询包含某个字段的表名
-		【记录代码 - ok】
+		【记录代码】
 		https://www.cnblogs.com/HRainet/p/14338157.html
 		https://blog.csdn.net/m0_38010621/article/details/118099343 [▲]
 	71. sqlserver 循环 游标
-		【记录代码】
+		【记录代码 - ok】
 		https://blog.51cto.com/lhrbest/2703353
 		https://www.xp.cn/b.php/87631.html
 	72. sqlserver 触发器
 		https://blog.csdn.net/yanglei0620/article/details/118364047
 	73. sqlserver exec sp_executesql
-		【记录代码】
+		【记录代码 - ok】
 		sp_executesql 可使用参数和性能计划，性能更佳
 		http://t.zoukankan.com/gavanwanggw-p-6760218.html
 		https://blog.csdn.net/hofmann/article/details/126606423
@@ -397,9 +397,40 @@
 		WHERE DATEDIFF(dd, CreateTime  , GETDATE()) <= 30 -- 30天内
 		```
 		http://t.zoukankan.com/jiamengyang-p-9300654.html
-	77. 	
+	77. word 标题自动编号怎么设置 
+		https://jingyan.baidu.com/article/6f2f55a17762fff4b83e6c53.html
+		https://jingyan.baidu.com/article/495ba841eeb92a79b30ede8b.html
+		https://www.yutu.cn/question/tiwen_156237.html
+	78. word 中如何设置大纲级别
+		https://jingyan.baidu.com/article/db55b609e925510aa30a2fa6.html
+	79. sqlserver 创建临时表
+		【记录代码】
+		```
+		-- 临时表包含数据
+		SELECT ItemGuid,
+				Editor,
+				CONVERT(VARCHAR(10), PlanTime, 21) PlanTime,
+				CONVERT(VARCHAR(10), Deadline, 21) Deadline
+		INTO #table_ZGRepairOrderOverDate
+		FROM dbo.RepairOrder
+		WHERE FromType=6 
+			AND Status=21 
+			--AND Remark='整改虚拟派单'
+			AND Deadline < CONVERT(VARCHAR(10), GETDATE(), 21)
+			AND DATEDIFF(dd, SystemDate, GETDATE()) <= 5;
 		
-		
+		-- 临时表只有表结构
+		SELECT *
+		INTO #table_SjWithArea
+		FROM #table_ZGRepairOrderCustomerOrgAdmin
+		WHERE 1=2;
+		```
+	80. sqlserver 删除表
+		【记录代码】
+		```
+		DROP TABLE #table_ZGRepairOrderOverDate;
+		```
+	81. 
 		
 	
 	
