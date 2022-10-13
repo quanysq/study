@@ -1,0 +1,108 @@
+Project Experience
+1
+2022.02 –  	
+Intelligent monitoring system for well cover facilities 
+
+Description: 
+The Intelligent monitoring system for well cover facilities can display the location and pictures of well cover facilities in Guangzhou on the map. If abnormal well cover facilities are found, the system will automatically notify the relevant municipal departments to organize rectification
+
+Technologies: C#, EF, SqlSugar, Web Api, Autofac, Automapper, Vue, Element UI, Bootstrap, MSSQL, Nginx
+
+Main responsibilities:
+Requirement analysis
+Project structure split
+Database design and maintenance
+Backend API development, provide API to the front end and joint debugging
+Evaluate development time, group task assignment and project schedule follow up
+Code review
+Project deployment and maintenance
+Technical writer
+
+Key Achievements: 
+Quickly iterate on project requirements  
+Project development and maintenance
+Lead the team to complete development tasks on time
+============
+2
+2015.06 – 2022.01  	
+Flexera Data Platform Data Distribution Center
+
+Description: 
+The Flexera Data Platform Data Distribution Center is one of the core projects of the entire product. It provides an Restful API to send the data subscribed by the customer, collect the data that cannot be matched and analyzed by the customer, and transfer it to other departments for induction and analysis
+
+Technologies: C#, Web Api, EF, MSSQL, Nginx, Jenkins, Jira
+
+Main responsibilities:
+Design system structure
+Service split
+Database design and maintenance
+Independent project development, deployment and maintenance
+Technical writer
+
+Key Achievements:
+Complete development tasks on time
+Independent project development and maintenance
+The system performance is stable and safe, No major problems occurred in 7 years of running
+============
+3
+2017.03 - 2017.10 	
+Huawei SCCM plug-in
+
+Description: 
+Huawei SCCM plug-in is a Winform application. It is installed as a plug-in of Microsoft SCCM application through the installation package. It acts as the agent of Huawei Restful API to collect server and software information
+
+Technologies: C#, HttpClient，CefSharp.Browser, Vue, Element UI, NSIS, SQLite, Jenkins
+
+Main responsibilities:
+Backend development
+Make installer
+Performance optimization
+Jenkins service setup, deployment and maintenance
+Technical writer
+
+Key Achievements:
+Complete development tasks on time
+Make installer to deploy the program as a sccm plug-in
+Jenkins service deployment
+============
+4
+2012.08 - 2013.06 	
+E-Commerce websites
+
+Description: 
+E-Commerce websites are developed according to customer requirements, use B2C form. The content includes goods listing, goods display, purchase, payment, after-sales, and integrated PayPal payment
+
+Technologies: C#, Asp.net Mvc, ADO.NET, MSSQL, JQuery, PayPal
+
+Main responsibilities:
+Business development, including back-end and front-end
+Paypal payment integration
+Test
+
+Key Achievements:
+Complete development tasks on time
+Timely feedback and response to work order issues
+============
+5
+2010.06 - 2012.07 
+China University Student Career Planning Competition
+
+Description: 
+It is a website that integrates the psychological assessment results of Dr. Cai Shenggang from South China Normal University. Through it, students can learn about their own personality advantages and professional suitability, and upload their competition works. At the peak, more than 3 million students browsed and operated on the website
+
+Technologies: VB.NET, Asp.net WebForm, ADO.NET, Oracle, JQuery
+
+Main responsibilities:
+Requirement analysis
+Project structure split
+Database design and maintenance
+Evaluate development time, group task assignment and project schedule follow up
+Solve technical problems
+Project development, deployment and maintenance
+Technical writer
+Organize team activities
+
+Key Achievements:
+Project development and maintenance
+Lead the team to complete development tasks on time
+The website is stable and safe, effectively handling high concurrent flow

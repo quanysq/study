@@ -430,7 +430,19 @@
 		```
 		DROP TABLE #table_ZGRepairOrderOverDate;
 		```
-	81. 
+	81. sqlserver 导入 Excel 数据
+		https://www.cnblogs.com/qk2014/p/15719518.html
+	82. sqlserver 修改字段长度
+		【记录代码】
+		```
+		alter table <表名> alter column <字段名> 新类型名(长度)
+		
+		eg.
+		alter table students alter column PhotoEnterSchool nvarchar(500)
+		```
+	83. windows 文件搜索 .cs，连带搜索出 .css，怎么办？
+		搜索结果 - 右键 - 按文件类型排序
+	84. 
 		
 	
 	
