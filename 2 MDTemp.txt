@@ -442,7 +442,11 @@
 		```
 	83. windows 文件搜索 .cs，连带搜索出 .css，怎么办？
 		搜索结果 - 右键 - 按文件类型排序
-	84. 
+	84. sqlserver Max
+		【记录代码】
+		```
+		SELECT ISNULL(MAX(CustomerNum),'100'+'100')+1 FROM dbo.CustomerInfo WHERE CustomerPid='100';
+		```
 		
 	
 	
