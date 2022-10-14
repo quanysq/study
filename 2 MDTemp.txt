@@ -61,7 +61,11 @@
 		解决：清理项目，然后关掉IDE再重新打开
 		网上说有可能是因为检查nuget包所致，参考：
 		https://www.cnblogs.com/licin/p/16007652.html
-	17. 
+	17. 打开 word，提示Window找不到文件‘\Plugins\Creator\FoxitProxyServer_PH.exe‘。请确定文件名是否正确后，再试一次
+		打开word -> 工具栏->"文件" -> "选项" -> "加载项" -> "转到" -> 取消福昕相关的加载项勾选，点击"确定"即可。亲测有效!
+		https://blog.csdn.net/shanvlang/article/details/125514153
+		
+		
 ***心得***
 
 	1. Chrome 浏览器看 api 方法
@@ -447,6 +451,14 @@
 		```
 		SELECT ISNULL(MAX(CustomerNum),'100'+'100')+1 FROM dbo.CustomerInfo WHERE CustomerPid='100';
 		```
+	84. Word表格里，如何调整单个单元格宽度，并且不影响其他行的宽度？
+		选择目标单元格 - 拖动或属性中设置宽度
+		https://3g.163.com/v/video/VK7QCCGTQ.html
+	85. Office 激活
+		https://zhuanlan.zhihu.com/p/526244135 （亲测有效）
+	86. Visual Studio自带数据库 (localdb)MSSQLLocalDB 的使用方法
+		http://t.zoukankan.com/lucky-donkey-p-13946290.html
+	87. 	
 		
 	
 	

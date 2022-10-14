@@ -42,7 +42,7 @@ Technical writer
 Key Achievements:
 Complete development tasks on time
 Independent project development and maintenance
-The system performance is stable and safe, No major problems occurred in 7 years of running
+The system performance is stable, No major problems occurred in 7 years of running
 ============
 3
 2017.03 - 2017.10 	
@@ -105,4 +105,4 @@ Organize team activities
 Key Achievements:
 Project development and maintenance
 Lead the team to complete development tasks on time
-The website is stable and safe, effectively handling high concurrent flow
+The website is stable, effectively handling high concurrent flow
