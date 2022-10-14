@@ -266,8 +266,26 @@
 		　　select test1.id,test1.name,test1.pid from test1,subqry　where test1.pid = subqry.id
 		)
 		select* from subqry;
+		
+		--加级别
+		WITH CustomersOfNum AS (
+			SELECT CustomerNum,CustomerName,CustomerPid,CustomerType,AccountPrefix, 0 Level  
+			FROM dbo.CustomerInfo WHERE IsDelete=0 AND CustomerPid='0'
+			UNION ALL
+			SELECT a.CustomerNum,a.CustomerName,a.CustomerPid,a.CustomerType,a.AccountPrefix, b.Level+1 Level
+			FROM dbo.CustomerInfo a INNER JOIN CustomersOfNum b ON b.CustomerNum=a.CustomerPid
+			WHERE a.IsDelete=0
+		)
+		SELECT a.CustomerNum,
+				a.CustomerName,
+				a.CustomerPid,
+				a.CustomerType,
+				a.Level
+		FROM CustomersOfNum a
+		ORDER BY a.CustomerPid,a.CustomerNum
 		```
 		http://www.javashuo.com/article/p-sxnwjghg-nv.html
+		https://blog.csdn.net/qq_36350477/article/details/103732277
 		【注意】在干净的树形结构表数据查询，然后再跟其它关系表关联，如果多个表关联后再使用递归方法，数据不准确
 	52. C#8 ! 符号作用
 		主要作用就是告诉编译器，变量不可能为 null
@@ -458,8 +476,13 @@
 		https://zhuanlan.zhihu.com/p/526244135 （亲测有效）
 	86. Visual Studio自带数据库 (localdb)MSSQLLocalDB 的使用方法
 		http://t.zoukankan.com/lucky-donkey-p-13946290.html
-	87. 	
-		
+	87. git 回滚到指定版本
+		```
+		git log (or git reflog)
+		git reset --hard {commit id}
+		```
+		https://blog.csdn.net/m0_60935443/article/details/124546133
+	88. 	
 	
 	
 	
