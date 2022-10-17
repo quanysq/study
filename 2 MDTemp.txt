@@ -64,7 +64,9 @@
 	17. 打开 word，提示Window找不到文件‘\Plugins\Creator\FoxitProxyServer_PH.exe‘。请确定文件名是否正确后，再试一次
 		打开word -> 工具栏->"文件" -> "选项" -> "加载项" -> "转到" -> 取消福昕相关的加载项勾选，点击"确定"即可。亲测有效!
 		https://blog.csdn.net/shanvlang/article/details/125514153
-		
+	18. sqlserver insert into select 时出错：仅当使用了列列表并且 IDENTITY_INSERT 为 ON 时，才能为表'dbo.SystemMenuDetail'中的标识列指定显式值
+		字段中有自增字段
+		https://blog.csdn.net/qinggan1/article/details/103924999
 		
 ***心得***
 
@@ -482,8 +484,28 @@
 		git reset --hard {commit id}
 		```
 		https://blog.csdn.net/m0_60935443/article/details/124546133
-	88. 	
-	
+	88. EF lambda Join
+		【记录代码】
+		```
+		/*
+		第一个参数：   join的表
+		第二，三参数： 连接条件
+		第四个参数：   返回值
+		*/
+		var query = oae.Users.Join(oae.Parent, a => a.Id, b => b.ParentId, (a, b) => new
+		{
+		 username = a.UserName,
+		 fahter = b.Father
+		});
+		
+		Link: 
+		Entity Framework常用查询，EF join,EF多表联查 （重要）
+		https://blog.csdn.net/cxnwb/article/details/120257199
+		
+		EF JOIN 多条件
+		https://www.cnblogs.com/realpht/p/14462243.html
+		```
+	89. 
 	
 	
 	
