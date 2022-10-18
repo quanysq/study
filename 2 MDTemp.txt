@@ -505,7 +505,26 @@
 		EF JOIN 多条件
 		https://www.cnblogs.com/realpht/p/14462243.html
 		```
-	89. 
+	89. windows C盘扩容
+		https://www.disktool.cn/jiaocheng/extend-c-drive.html
+	90. windows 给C盘软件搬家
+		mklink 命令
+		```
+		C:\WINDOWS\system32>mklink /J "C:\Test" D:\Test
+		当文件已存在时，无法创建该文件。
+
+		C:\WINDOWS\system32>mklink /J "C:\Test" D:\Test
+		为 C:\Test <<===>> D:\Test 创建的联接
+		
+		注意：
+		C:\Test 目录不能存在
+		```
+		Link:
+		https://baijiahao.baidu.com/s?id=1722716051189739192&wfr=spider&for=pc
+		https://www.csdn.net/tags/NtDaUg3sNTA3OS1ibG9n.html
+	91. C# 发布 pubxml 文件配置
+		https://www.cnblogs.com/toolgood/p/15244809.html
+		
 	
 	
 	

@@ -1,222 +1,72 @@
-https://apps.microsoft.com/store/detail/ubuntu-22041-lts/9PN20MSR04DW?hl=zh-cn&gl=cn
-http://releases.ubuntu.com/
+在Docker中安装 sql server 2019
 
-To run a command as administrator (user "root"), use "sudo <command>"
-https://blog.csdn.net/xp_fangfei/article/details/122985782
-
-
-
-UNIX username: mydocker 
-password: 123456
-
-Clone
-Build
-Run
-Share
-
-# 安装
-1. 下载 Docker Desktop
-	- 官网：https://www.docker.com/products/docker-desktop/
-	- 下载 URL: https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header
-	- (或者) 点击页面上的 Windows 链接
-	-- [备注]2022.10.14 下载的 Docker Desktop Installer.exe 的版本是 4.12.0.0
-2. 设置好 WSL2(Windows Subsystem for Linux) 的环境
-	1. 控制面板 - 程序与功能 - 启用或关闭 Windows 功能
-	2. 勾选 Hyper-v [感觉不装Hyper-v也是可以的?]
-	3. 勾选 适用于 Linux 的 Windows 子系统 
-	4. 确定
-	5. 重启电脑
-3. 安装 Ubuntu 22.04 LTS
-	1. 菜单 - 打开 Microsoft Store
-	2. 搜索 Ubuntu 22.04 LTS
-	3. 免费下载
-	4. 如果网速太慢，也可以下载离线安装包
-		- https://learn.microsoft.com/zh-cn/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package
-	5. 安装成功后提示输入 UNIX UserName 和密码，当前输入 mydocker
-	6. 输入成功后进入 Welcome 界面
-	7. 结束
-4. 升级到 WSL2
-	1. 打开 CMD，运行命令
-		> wsl -l -v
-	2. 可以看到当前是版本是 1
-	3. 下载和安装 WSL2
-		- https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
-		- 不知道是否必要，可以先试下升级命令
-	4. CMD 运行命令将WSL 2设置为默认版本
-		```
-		wsl --set-default-version 2
-		```
-	5. CMD 运行命令升级 Ubuntu 22.04 LTS (需要几分钟)
-		```
-		wsl --set-version Ubuntu 22.04 2
-		```
-	6. 确认安装成功
-		```
-		wsl -l -v
-		
-		version 应该显示 2
-		```
-	7. 参考：
-		- https://blog.csdn.net/qq_35333978/article/details/113177819
-	8. 升级完，控制面板 - 程序与功能 - 启用或关闭 Windows 功能会被自动装上
-5. 安装 Docker
-	1. 双击运行 Docker Desktop Installer.exe
-	2. Congiguration 勾选：
-		- Use WSL2 instead of Hyper-v(recommended)
-		- Add shortcut to desktop
-	3. 其它默认，一直 Next
-	4. 安装完提示 Installation succeeded
-	5. 安装路径：C:\Program Files\Docker
-	6. docker 文件保存在：C:\Users\Jacky\.docker
-	7. 安装完初次打开有个 Docker Subscription Service Agreement，接受就行
-	8. 默认开始启动
-	9. 看一下几个引导页，也可以按引导页的命令试运行一下
-	10. 安装结束
-
-# 配置
-	1. 配置国内镜像地址，提高下载速度
-		1. 点击界面顶栏的 Settings 按钮
-		2. 点击左边栏 "Docker Engine"
-		3. 修改配置文件为：
-			```
-			{
-			  "builder": {
-				"gc": {
-				  "defaultKeepStorage": "20GB",
-				  "enabled": true
-				}
-			  },
-			  "experimental": false,
-			  "features": {
-				"buildkit": true
-			  },
-			  "registry-mirrors": [
-				"https://hub-mirror.c.163.com",
-				"https://1rlt72n0.mirror.aliyuncs.com",
-				"https://registry.docker-cn.com",
-				"https://mirror.ccs.tencentyun.com",
-				"https://mirror.baidubce.com"
-			  ]
-			}
-			
-			注：主要是 registry-mirrors 部分
-			```
-# 使用（.NET6 项目Docker容器化打包部署）
-	1. 启动 Docker Desktop
-	2. 创建一个 asp.net core webapi 项目，创建时启用 docker 支持
-		- 创建后会提示一下错误（如下），但会创建一个 Dockerfile 文件
-			> Containers feature is disabled. Enable it using the PowerShell script...
-		- 也可以先创建项目，然后右键项目选择添加，选择Docker支持，在项目添加Dockerfile文件
-	3. 修改Dockerfile文件，改动如下（加注释）：
-		```
-		#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-		#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-		#For more information, please see https://aka.ms/containercompat
-
-		#添加一个基于asp.net6.0的镜像，命名为base
-		FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-		WORKDIR /app 	#切换工作目录下
-		EXPOSE 80		#设置对外端口为80和443
-		EXPOSE 443
-
-		#拉取.net镜像的.net core6.0的sdk 來构建我们这个项目,命名为build
-		FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-		WORKDIR /src
-		COPY ["WebApiWithDocker.csproj", "./"]
-		RUN dotnet restore "./WebApiWithDocker.csproj"
-		COPY . .
-		WORKDIR "/src/."
-		RUN dotnet build "WebApiWithDocker.csproj" -c Release -o /app/build
-
-		#项目构建完成后需要打包发布，继续使用.net core6.0的sdk來发布,也就是上面命名的build，生成可执行的dll文件
-		FROM build AS publish
-		RUN dotnet publish "WebApiWithDocker.csproj" -c Release -o /app/publish
-
-		#切换会第一阶段的base镜像，然后使用COPY命令把构建发布完成的所有文件都复制到工作目录，最后给Docker设置一个启动点，通过dotnet命令启动项目
-		FROM base AS final 								#切换会第一阶段的base镜像
-		WORKDIR /app									#切换到工作目录
-		COPY --from=publish /app/publish .				#使用COPY命令把构建发布完成的所有文件都复制到工作目录
-		ENTRYPOINT ["dotnet", "WebApiWithDocker.dll"]	#给Docker设置一个启动点，通过dotnet命令启动项目
-		```
-	4. CMD进入项目路径下，跟Dockerfile文件同一路径
-		```
-		CD D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker
-		```
-	5. 输入 docker build 命令來构建镜像，回车
-		```
-		D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker> docker build -t webapiwithdocker .
-		
-		说明：
-		1. webapiwithdocker 是镜像名称，可随意取
-		2. 最后有一个 . ，表示当前目录
-		```
-	6. 构建完成后用 docker images 查看所有镜像命令
-		```
-		
-		```
-# 问题
-1. 创建 asp.net core web api + 启用 docker 支持，提示错误:
-	> Containers feature is disabled. Enable it using the PowerShell script (in an administrative PowerShell) and restart your computer before using Docker Desktop: 
-	> Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All
+1. CMD 下载 sql server 2019 镜像
+	```
+	C:\Users\Jacky>docker pull mcr.microsoft.com/mssql/server:2019-latest
 	
-	解决：
-	https://blog.csdn.net/sunshineGGB/article/details/122838156
-2. docker build 时提示以下错误
-	> error CS5001: Program does not contain a static 'Main' method suitable for an entry point [/src/WebApiWithDocker/WebApiWithDocker.csproj]
+	说明：
+	大概 3 分钟
+	```
+2. 查看镜像是否下载成功
+	```
+	C:\Users\Jacky>docker images
 	
-	解决：
-	修改Dockerfile文件有关项目的路径后解决，就是将 WebApiWithDocker/ 改为 ./
-	
-# 参考：
-1. Docker 系列之 DockerDesktop 初步安装
-	https://mp.weixin.qq.com/s/m85yRklEq9dKj8Kny6qYgQ
-2. 总结Windows下安装WSL与升级WSL2的方法
-	https://blog.csdn.net/qq_35333978/article/details/113177819
-3. .net6 项目Docke容器化打包部署
-	https://blog.csdn.net/weixin_44442366/article/details/124053487 （重点）
-	
+	REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
+	webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
+	alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
+	mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
+	```
+3. 运行 sql server 2019
+	```
+	C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
+	df5d025aec890a46825e1462f25f73f51b51a282eb119e9fa0febf38da7d6c8b
 
-```
-PS D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker> docker build -t webapiwithdocker .
-[+] Building 13.5s (18/18) FINISHED
- => [internal] load build definition from Dockerfile                                                               0.0s
- => => transferring dockerfile: 962B                                                                               0.0s
- => [internal] load .dockerignore                                                                                  0.0s
- => => transferring context: 2B                                                                                    0.0s
- => [internal] load metadata for mcr.microsoft.com/dotnet/sdk:6.0                                                  0.4s
- => [internal] load metadata for mcr.microsoft.com/dotnet/aspnet:6.0                                               0.4s
- => [internal] load build context                                                                                  0.0s
- => => transferring context: 6.01kB                                                                                0.0s
- => [build 1/7] FROM mcr.microsoft.com/dotnet/sdk:6.0@sha256:e86848d2834af9afb04eb9f822344178b5aad3b1909a3325be71  0.0s
- => [base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:6.0@sha256:efdef78af0a4423222ed247df36baf26b065253fb2c9b57dfe  0.0s
- => CACHED [build 2/7] WORKDIR /src                                                                                0.0s
- => CACHED [base 2/2] WORKDIR /app                                                                                 0.0s
- => CACHED [final 1/2] WORKDIR /app                                                                                0.0s
- => [build 3/7] COPY [WebApiWithDocker.csproj, ./]                                                                 0.1s
- => [build 4/7] RUN dotnet restore "./WebApiWithDocker.csproj"                                                     4.4s
- => [build 5/7] COPY . .                                                                                           0.1s
- => [build 6/7] WORKDIR /src/.                                                                                     0.1s
- => [build 7/7] RUN dotnet build "WebApiWithDocker.csproj" -c Release -o /app/build                                5.1s
- => [publish 1/1] RUN dotnet publish "WebApiWithDocker.csproj" -c Release -o /app/publish                          2.8s
- => [final 2/2] COPY --from=publish /app/publish .                                                                 0.1s
- => exporting to image                                                                                             0.2s
- => => exporting layers                                                                                            0.1s
- => => writing image sha256:e12d6bba36c7f4154509b822fbc388e3f0a9335815aaff78334c74e9ee3fd30f                       0.0s
- => => naming to docker.io/library/webapiwithdocker                                                                0.0s
+	说明：
+	SA_PASSWORD 是数据库sa登录用的数据库密码，需要注意的是，这个密码必须是微软要求的强密码；
+	端口是用的默认端口1433
+	-d 镜像
+	-v D:/database/sqlserver2019:/var/opt/mssql/data 数据存储地址
+	```
+4. 打开本地的 SMS，输入：localhost sa Abc!@#123456 即可使用
+ 	
+C:\Users\Jacky>docker pull mcr.microsoft.com/mssql/server:2019-latest
+2019-latest: Pulling from mssql/server
+210a236fbb96: Pull complete
+4d3b5ee6a318: Pull complete
+b97468a53f24: Pull complete
+Digest: sha256:f57d743a99a4003a085d0fd67dbb5ecf98812c08a616697a065082cad68d77ce
+Status: Downloaded newer image for mcr.microsoft.com/mssql/server:2019-latest
+mcr.microsoft.com/mssql/server:2019-latest
 
-Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
-PS D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker> docker images
-REPOSITORY         TAG       IMAGE ID       CREATED              SIZE
-webapiwithdocker   latest    e12d6bba36c7   About a minute ago   212MB
-alpine/git         latest    b80d2cac43e4   10 days ago          43.6MB
-PS D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker> docker run -d --name webapiwithdockerapi -p 8080:80 webapiwithdocker
-5bda385ba93ac0d1a67f3b90e9ee6f863877690000f6a67a52b88839bdd5217b
-docker: Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:8080 -> 0.0.0.0:0: listen tcp 0.0.0.0:8080: bind: An attempt was made to access a socket in a way forbidden by its access permissions.
-PS D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker> docker run -d --name webapiwithdockerapi -p 8090:80 webapiwithdocker
-docker: Error response from daemon: Conflict. The container name "/webapiwithdockerapi" is already in use by container "5bda385ba93ac0d1a67f3b90e9ee6f863877690000f6a67a52b88839bdd5217b". You have to remove (or rename) that container to be able to reuse that name.
+C:\Users\Jacky>docker images
+REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
+webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
+alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
+mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
+
+C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network --d mcr.microsoft.com/mssql/server:2019-latest
+unknown flag: --d
 See 'docker run --help'.
-PS D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker> docker run -d --name webapiwithdockerapi2 -p 8090:80 webapiwithdocker
-ca35df38dc5e5e25940d03246b34c1e201b61bb6878e76a577bbec006573448a
-PS D:\Work\study\TestProject_VS2022\WebApiWithDocker\WebApiWithDocker>
-```
+
+C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network -d mcr.microsoft.com/mssql/server:2019-latest
+c5a61363a687610cdd33dfc83c8c850375806a7bafae2e2c723555b66ce26dc2
+docker: Error response from daemon: network common-network not found.
+
+C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network -d mcr.microsoft.com/mssql/server:2019-latest
+docker: Error response from daemon: Conflict. The container name "/mssql2019" is already in use by container "c5a61363a687610cdd33dfc83c8c850375806a7bafae2e2c723555b66ce26dc2". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network -d mcr.microsoft.com/mssql/server:2019-latest
+8866321fc45cae8d0151f0945c66937042a19ae6c24b6aa9617c33a763a513db
+docker: Error response from daemon: network common-network not found.
+
+C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
+df5d025aec890a46825e1462f25f73f51b51a282eb119e9fa0febf38da7d6c8b
+
+C:\Users\Jacky>docker images
+REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
+webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
+alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
+mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
+
+C:\Users\Jacky>
