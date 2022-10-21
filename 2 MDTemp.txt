@@ -67,6 +67,13 @@
 	18. sqlserver insert into select 时出错：仅当使用了列列表并且 IDENTITY_INSERT 为 ON 时，才能为表'dbo.SystemMenuDetail'中的标识列指定显式值
 		字段中有自增字段
 		https://blog.csdn.net/qinggan1/article/details/103924999
+	19. Unable to resolve service for type 'System.String' while attempting to activate 'AttributeSample.TestAttribute'.
+		原因：[TypeFilter(typeof(TestActionFilterAttribute))] 写成 [TypeFilter(typeof(TestAttribute))]，但这也是一个实际的问题
+		参考：
+		services.AddScoped<IMyService>(_ => new MyService("value here"));
+		https://www.cnblogs.com/JerryMouseLi/archive/2019/06/19/11052009.html
+		https://zhuanlan.zhihu.com/p/147512784
+		https://blog.csdn.net/qq_18932003/article/details/121349357
 		
 ***心得***
 
@@ -524,7 +531,31 @@
 		https://www.csdn.net/tags/NtDaUg3sNTA3OS1ibG9n.html
 	91. C# 发布 pubxml 文件配置
 		https://www.cnblogs.com/toolgood/p/15244809.html
-		
+	92. EF OrderBy 多字段用法
+		【记录代码 - ok】
+		```
+		单字段
+		.OrderBy(p => p.Status).ToList();
+
+		多字段
+		.OrderBy(p => p.Status).ThenByDescending(p=>p.ApplyTime).ToList();
+
+		//注： .ThenBy正序    .ThenByDescending倒序
+		```
+	93. asp.net core webapi 打印语句在 vs ide 调试窗口
+		使用自带的 ILogger
+	94. asp.net core webapi Attribute
+		【记录代码 - ok】
+		Attrbiute本身只是“标签”，脱离了通过反射操作它的代码逻辑，它什么也不是
+		https://blog.csdn.net/m0_47659279/article/details/119831486
+		https://zhuanlan.zhihu.com/p/428828316
+	95. asp.net core webapi ActionFilterAttribute
+		Action 过滤器，在执行 Action 前后执行一些操作，类似 AOP
+		【记录代码 - ok】
+		https://www.jianshu.com/p/f0b99fb61260
+		https://blog.csdn.net/ssjdoudou/article/details/107871053
+		https://www.cnblogs.com/hnsongbiao/p/7039666.html （非 asp.net core）
+	96. 
 	
 	
 	
