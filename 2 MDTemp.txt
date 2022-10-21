@@ -3,6 +3,7 @@
 	
 	井盖新权限系统
 	整改二次开发
+	整改三次开发
 	
 ***问题***
 
@@ -127,13 +128,13 @@
 		https://blog.csdn.net/xishining/article/details/120755247
 	17. sqlserver FOR XML PATH 
 		行转列
-		【记录代码】
+		【记录代码 - ok】
 		https://blog.csdn.net/a275838263/article/details/51118866
 		https://blog.51cto.com/u_11795292/4850400
 	18. IIS 修改证书别名
 		https://www.yimenapp.com/kb-yimen/5078/
 	19. 申请和部署证书	
-		【记录代码】
+		【记录代码 - ok】
 		D:\Jacky\Document\公司\申请域名证书+部署.docx
 	20. sqlserver CHARINDEX
 		判断一个字符串中是否包含另一个字符串
@@ -143,7 +144,7 @@
 	22. Postman 上传文件
 		https://blog.csdn.net/weixin_44635157/article/details/108492886
 	23. Webapi 上传文件和读取Excel
-		【记录代码】
+		【记录代码 - ok】
 		https://blog.csdn.net/qq512982554/article/details/103320705（Magicodes.IE之导入学生数据教程）
 		https://cloud.tencent.com/developer/article/1799274（Magicodes.IE Excel合并行数据导入教程）
 		https://www.freesion.com/article/1600363804/（使用MAGICODES.IE.EXCEL完成EXCEL图片的导入和导出）
@@ -173,9 +174,9 @@
 		@：表明该行后面的内容不是代码
 		https://blog.csdn.net/cnsend/article/details/86618885
 	31. C# 方法中使用动态参数 dynamic 和调用
-		【记录代码】
+		【记录代码 - ok】
 	32. C# 将 dynamic 变量转为其它类型
-		【记录代码】
+		【记录代码 - ok】
 		https://www.cnblogs.com/Depingblogs/p/15022680.html（在 C# 中将 List<dynamic> 转换为 List<string>）
 	33. HashSet 与 List 的区别
 		HashSet 元素不重复，查找高效。可以利用此特性，将list转为hashset再转为list以去掉重复值
@@ -215,7 +216,7 @@
 	43. Word 取消行号后消除段落前面黑色点
 		https://jingyan.baidu.com/article/8ebacdf0374f4308f65cd580.html
 	44. WebApi Post 把参数加到 url 上
-		【记录代码】
+		【记录代码 - ok】
 		参数不要加 [FromBody] 
 		```
 		[HttpPost]
@@ -233,7 +234,7 @@
 	46. 微软五笔 快速输入日期
 		https://www.jianshu.com/p/7bda57638f0d
 	47. sqlserver Update set select 语句
-		【记录代码】
+		【记录代码 - ok】
 		```
 		UPDATE #table 
 		SET DetailNum = a.FaultNum+a.FaultBMNum 
@@ -244,11 +245,11 @@
 		https://blog.csdn.net/qq_39099370/article/details/79802956
 		http://t.zoukankan.com/Strugglehard-p-11358078.html
 	48. sqlserver 数字转字符串
-		【记录代码】
+		【记录代码 - ok】
 		CONVERT(VARCHAR(50),a.ItemID)
 		https://www.csdn.net/tags/MtzaAg5sMTI1ODAtYmxvZwO0O0OO0O0O.html
 	49. sqlserver replace
-		【记录代码】
+		【记录代码 - ok】
 		```
 		SELECT 
 			a.UserID, 
@@ -267,7 +268,7 @@
 			- slmgr /ato
 		3. Link: https://product.pconline.com.cn/itbk/software/dnyw/1491/14914634.html
 	51. sqlserver 递归查询指定树形结构的全部子节点
-		【记录代码】
+		【记录代码 - ok】
 		```
 		with subqry(id,name,pid) as (
 		　　select id,name,pid from test1 where id = 5 --指定id
@@ -321,7 +322,7 @@
 			8. 用户界面 - 字体和颜色 - 注释字体 - 大小 - 14点
 	56. sqlserver FOR JSON PATH
 		将表格内容转成Json字符串
-		【记录代码】
+		【记录代码 - ok】
 		https://learn.microsoft.com/zh-cn/sql/relational-databases/json/format-query-results-as-json-with-for-json-sql-server?view=sql-server-ver16
 		https://www.freesion.com/article/1142207773/
 	57. js Fetch
@@ -392,7 +393,7 @@
 	69. Excel 下拉列表 多选
 		https://www.cnblogs.com/Ning-Blog/p/16334484.html [参考，未验证]
 	70. SqlServer 查询数据库中所有表名,查询包含某个字段的表名
-		【记录代码】
+		【记录代码 - ok】
 		https://www.cnblogs.com/HRainet/p/14338157.html
 		https://blog.csdn.net/m0_38010621/article/details/118099343 [▲]
 	71. sqlserver 循环 游标
@@ -407,7 +408,7 @@
 		http://t.zoukankan.com/gavanwanggw-p-6760218.html
 		https://blog.csdn.net/hofmann/article/details/126606423
 	74. sqlserver 获取存储过程中update语句的影响行数
-		【记录代码】
+		【记录代码 - ok】
 		```
 		declare @return int;
 		update HoverTreeSCJ_Urls set htUrl=@hturl,htTitle =@htTitle where htId=@htid;
@@ -421,7 +422,7 @@
 		https://blog.csdn.net/petterDong/article/details/106575480
 		https://blog.csdn.net/hofmann/article/details/104745076
 	76. sqlserver 查询一个月内的数据
-		【记录代码】
+		【记录代码 - ok】
 		```
 		SELECT * 
 		FROM dbo.ManageManage_Purchase 
@@ -435,7 +436,7 @@
 	78. word 中如何设置大纲级别
 		https://jingyan.baidu.com/article/db55b609e925510aa30a2fa6.html
 	79. sqlserver 创建临时表
-		【记录代码】
+		【记录代码 - ok】
 		```
 		-- 临时表包含数据
 		SELECT ItemGuid,
@@ -457,14 +458,14 @@
 		WHERE 1=2;
 		```
 	80. sqlserver 删除表
-		【记录代码】
+		【记录代码 - ok】
 		```
 		DROP TABLE #table_ZGRepairOrderOverDate;
 		```
 	81. sqlserver 导入 Excel 数据
 		https://www.cnblogs.com/qk2014/p/15719518.html
 	82. sqlserver 修改字段长度
-		【记录代码】
+		【记录代码 - ok】
 		```
 		alter table <表名> alter column <字段名> 新类型名(长度)
 		
@@ -474,7 +475,7 @@
 	83. windows 文件搜索 .cs，连带搜索出 .css，怎么办？
 		搜索结果 - 右键 - 按文件类型排序
 	84. sqlserver Max
-		【记录代码】
+		【记录代码 - ok】
 		```
 		SELECT ISNULL(MAX(CustomerNum),'100'+'100')+1 FROM dbo.CustomerInfo WHERE CustomerPid='100';
 		```
@@ -492,7 +493,7 @@
 		```
 		https://blog.csdn.net/m0_60935443/article/details/124546133
 	88. EF lambda Join
-		【记录代码】
+		【记录代码 - ok】
 		```
 		/*
 		第一个参数：   join的表
@@ -555,7 +556,6 @@
 		https://www.jianshu.com/p/f0b99fb61260
 		https://blog.csdn.net/ssjdoudou/article/details/107871053
 		https://www.cnblogs.com/hnsongbiao/p/7039666.html （非 asp.net core）
-	96. 
 	
 	
 	
