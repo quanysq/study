@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "顶级语句", "顶级语句\顶级语句.csproj", "{BF3B7387-2EA4-4949-B03B-0BA3CB102EFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharp语言的新特性", "CSharp语言的新特性", "{90F6F86E-0E22-4060-9663-CDD2D9783887}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LINQ", "LINQ", "{6E32E23B-D7A3-4E0F-AA65-F51E2D1091F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "异步编程", "异步编程", "{BAE609BA-7799-4932-8146-E0842395D5B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "全局using指令", "全局using指令\全局using指令.csproj", "{AB0246DF-8BED-4DE2-9379-8CDC33EEBB43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "using声明新语法", "using声明新语法\using声明新语法.csproj", "{446F65C0-3B71-48D3-B4F1-64480E1A8C6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF3B7387-2EA4-4949-B03B-0BA3CB102EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF3B7387-2EA4-4949-B03B-0BA3CB102EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF3B7387-2EA4-4949-B03B-0BA3CB102EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF3B7387-2EA4-4949-B03B-0BA3CB102EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB0246DF-8BED-4DE2-9379-8CDC33EEBB43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0246DF-8BED-4DE2-9379-8CDC33EEBB43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0246DF-8BED-4DE2-9379-8CDC33EEBB43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0246DF-8BED-4DE2-9379-8CDC33EEBB43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446F65C0-3B71-48D3-B4F1-64480E1A8C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446F65C0-3B71-48D3-B4F1-64480E1A8C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446F65C0-3B71-48D3-B4F1-64480E1A8C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446F65C0-3B71-48D3-B4F1-64480E1A8C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF3B7387-2EA4-4949-B03B-0BA3CB102EFC} = {90F6F86E-0E22-4060-9663-CDD2D9783887}
+		{AB0246DF-8BED-4DE2-9379-8CDC33EEBB43} = {90F6F86E-0E22-4060-9663-CDD2D9783887}
+		{446F65C0-3B71-48D3-B4F1-64480E1A8C6E} = {90F6F86E-0E22-4060-9663-CDD2D9783887}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B64420CF-CE2E-4078-B88C-649C460FF672}
+	EndGlobalSection
+EndGlobal
