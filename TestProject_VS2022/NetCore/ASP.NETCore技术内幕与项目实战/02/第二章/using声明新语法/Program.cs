@@ -43,6 +43,7 @@ void NewUsing()
     }
 }
 
+// using 新写法的陷阱
 void NewUsingWithError()
 {
     using var outStream = File.OpenWrite(file);
