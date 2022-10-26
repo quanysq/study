@@ -7,7 +7,15 @@
 
 	1. .NET Core 项目引用 .NET Standard 类库项目
 		项目 - 依赖项 - 右键 - 添加项目引用
-	2. 
+	2. C# 本地方法
+		https://www.cnblogs.com/ylvict/p/5579350.html
+	3. C# null合并赋值
+		?? and ??= (C# 8.0)
+		https://blog.csdn.net/weixin_45129218/article/details/115726143
+	4. C# 源代码生成器
+		就是根据之前的代码预判即将输入代码，C#9.0推出的功能
+		https://blog.csdn.net/zls365365/article/details/125755366
+	5. 
 	
 	
 	
