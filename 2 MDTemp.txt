@@ -15,10 +15,51 @@
 	4. C# 源代码生成器
 		就是根据之前的代码预判即将输入代码，C#9.0推出的功能
 		https://blog.csdn.net/zls365365/article/details/125755366
-	5. 
-	
-	
-	
+	5. sqlserver 将数据库设为单用户模式之后，查询出错：
+		此时无法更改数据库 'JinggaiProduction' 的状态或选项。此数据库处于单用户模式, 当前某个用户已与其连接。
+		解决步骤：
+		1. 在 master 库上新建查询页面
+		2. 运行查询语句
+			```
+			select spid from sysprocesses where dbid=db_id('JinggaiProduction')
+			```
+		3. 杀掉 spid 
+			```
+			KILL {spid}, 如 KILL 53
+			```
+		4. 将数据库设为多用户模式
+			```
+			ALTER DATABASE JinggaiProduction SET MULTI_USER WITH NO_WAIT;
+			```
+			
+		Link: https://blog.csdn.net/weixin_30443731/article/details/97587349
+	6. sqlserver 还原时出错，提示：因为数据库正在使用，所以无法获得对数据库的独占访问权
+		右键点击数据库 -> 属性 -> 选项 -> 状态 -> 限制访问 -> 选择Single-> 确定。然后还原。
+		Link: http://www.kaotop.com/it/169888.html
+		
+		
+***心得***	
+	1. sqlserver 还原数据库与还原为新数据库的区别
+		还原数据库：
+			右键【需要还原的数据库】->【任务】->【还原】->【数据库】
+			Link: https://blog.csdn.net/qq_35139974/article/details/118304576
+		还原为新数据库：
+			右键【数据库】->【还原文件和文件组(E)...】
+			Link: https://www.jb51.net/article/240952.htm
+	2. c# Task.FromResult
+		https://www.cnblogs.com/zaijianba/p/11442400.html
+	3. c# Task.CompletedTask
+		https://blog.csdn.net/xu2034029667/article/details/111768120
+	4. c# Task.WhenAll
+		同时等待几个 Task
+	5. c# await Task.Delay
+		异步暂停，（不要用Thread.Sleep，因为它会阻塞调用线程，要使用await Task.Delay）
+	6. c# yield
+		yield 可以把每一步的计算都推迟到程序实际需要的时候再执行，也就是说不用等所有结果都运行完才执行后续代码
+		好处是可以尽可能即时地给用户响应，和提高内存使用效率
+		https://blog.csdn.net/gangzhucoll/article/details/121569805
+	7.
+		
 	
 	
 	
