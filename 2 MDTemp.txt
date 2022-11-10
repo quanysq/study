@@ -36,7 +36,9 @@
 	6. sqlserver 还原时出错，提示：因为数据库正在使用，所以无法获得对数据库的独占访问权
 		右键点击数据库 -> 属性 -> 选项 -> 状态 -> 限制访问 -> 选择Single-> 确定。然后还原。
 		Link: http://www.kaotop.com/it/169888.html
-		
+	7. ef core add-migration 提示 Build failed.
+		原因：项目删掉 Program.cs 代码，编译失败，重新加上代码，编译成功即可
+		https://www.cnblogs.com/wcoolly/p/13371804.html
 		
 ***心得***	
 	1. sqlserver 还原数据库与还原为新数据库的区别
@@ -58,8 +60,43 @@
 		yield 可以把每一步的计算都推迟到程序实际需要的时候再执行，也就是说不用等所有结果都运行完才执行后续代码
 		好处是可以尽可能即时地给用户响应，和提高内存使用效率
 		https://blog.csdn.net/gangzhucoll/article/details/121569805
-	7.
-		
+	7. sqlserver 查找自定义函数被谁引用
+		右键自定义函数 - 选择查看依赖关系
+	8. sqlserver 修改字段描述
+		【记录代码】
+		EXEC sp_updateextendedproperty ......
+		https://blog.csdn.net/qq_34357018/article/details/112182951
+	9. sqlserver 计算某个字段中用分隔符分割的字符的个数	
+		【记录代码】
+		```
+		select LEN('a,b,c')-LEN(REPLACE('a,b,c','|',''))+1
+		```
+		https://www.gxlcms.com/sql_question-393580.html
+	10. sqlserver 多个 NOT EXISTS
+		【记录代码】
+		```
+		SELECT a.District,
+			COUNT(CASE WHEN a.Urgencylevel=1 THEN 1 ELSE NULL END) FaultNum1,
+			COUNT(CASE WHEN a.Urgencylevel=2 THEN 1 ELSE NULL END) FaultNum2,
+			COUNT(CASE WHEN a.Urgencylevel=3 THEN 1 ELSE NULL END) FaultNum3
+		FROM dbo.V_WellCoverAllInfo a
+		WHERE a.FaultGuid IS NOT NULL
+			AND a.City='广州市'
+			AND ''<>ISNULL(a.District,'')
+			AND NOT EXISTS (SELECT 1 FROM dbo.ZhengGaiDetail b WHERE b.FaultItemGuid=a.FaultGuid)
+			AND NOT EXISTS (SELECT 1 FROM #table_TempToNextDetail c WHERE c.ItemGuid=a.FaultGuid)
+		GROUP BY a.District;
+		```
+	11. c# FormattableString
+		表示复合格式字符串和要设置格式的自变量。
+		可用于获取和转换
+		https://blog.csdn.net/gangzhucoll/article/details/104713390
+	12. c# VS IDE LocalDB 新建数据库和表
+		在表设计器的左上角，选择 "更新"，选择 "更新数据库"
+		https://blog.csdn.net/bjxiejihua/article/details/107909233
+		http://t.zoukankan.com/lucky-donkey-p-13946290.html
+		https://blog.csdn.net/cytcytcytcytcyt/article/details/124118825
+	13. 
 	
 	
 	
