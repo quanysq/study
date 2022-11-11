@@ -37,8 +37,18 @@
 		右键点击数据库 -> 属性 -> 选项 -> 状态 -> 限制访问 -> 选择Single-> 确定。然后还原。
 		Link: http://www.kaotop.com/it/169888.html
 	7. ef core add-migration 提示 Build failed.
-		原因：项目删掉 Program.cs 代码，编译失败，重新加上代码，编译成功即可
+		原因：
+		1. 项目删掉 Program.cs 代码，编译失败，重新加上代码，编译成功即可
+		2. 解决方案中有一个项目编译失败
 		https://www.cnblogs.com/wcoolly/p/13371804.html
+	8. ef core add-migration AddArticleTable 生成的 20221111063618_AddArticleTable 没有内容
+		原因: DbContext 没有新增内容
+	9. ef core add-migration AddArticleTable 报错：
+		Could not load assembly '普通的一对多配置1'. Ensure it is referenced by the startup project '第一个EFCore项目'.
+		原因：项目 普通的一对多配置1 不是启动项目
+	10. ef core add-migration AddArticleTable 报错：
+		System.ArgumentException: The string argument 'name' cannot be empty.
+		原因：有一个表配置时忘记了给表名 builder.ToTable("");
 		
 ***心得***	
 	1. sqlserver 还原数据库与还原为新数据库的区别

@@ -1,17 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-class TestDbContext : DbContext
+class TestDbContext: DbContext
 {
-    public DbSet<Book> Books { get; set; }
+    public DbSet<Article> Articles { get; set; }
+    public DbSet<Comment> Comments { get; set; }
 
-    // OnConfiguring方法用于对程序要连接的数据库进行配置
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         string connStr = "Server=(localdb)\\mssqllocaldb;Database=TestDB;Trusted_Connection=True;MultipleActiveResultSets=true";
         optionsBuilder.UseSqlServer(connStr);
-
-        // 输出 日志（包含SQL 语句）到控制台
-        //optionsBuilder.LogTo(Console.WriteLine);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

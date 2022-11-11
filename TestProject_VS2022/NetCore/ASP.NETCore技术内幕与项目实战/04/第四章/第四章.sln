@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "第一个EFCore项目", "第一个EFCore项目\第一个EFCore项目.csproj", "{44D40FFA-96FB-4FA3-B8B5-15B20CA4513B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "第一个EFCore项目", "第一个EFCore项目\第一个EFCore项目.csproj", "{44D40FFA-96FB-4FA3-B8B5-15B20CA4513B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "关系配置", "关系配置", "{C090CB39-79D9-44C8-B8EB-4E00268F1C1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "普通的一对多配置1", "普通的一对多配置1\普通的一对多配置1.csproj", "{3EF5C2DD-4FDE-42BD-A4AA-FF32B25D2CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "单向导航机制", "单向导航机制\单向导航机制.csproj", "{4E778DC0-7DC0-4E24-B2D3-93CBC68B0DCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "一对一关系", "一对一关系\一对一关系.csproj", "{774DFE39-4293-45B9-B43F-91A0A83D9E80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "多对多配置", "多对多配置\多对多配置.csproj", "{8C581D74-3D86-45BC-BAC1-45A4DB964029}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,31 @@ Global
 		{44D40FFA-96FB-4FA3-B8B5-15B20CA4513B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44D40FFA-96FB-4FA3-B8B5-15B20CA4513B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44D40FFA-96FB-4FA3-B8B5-15B20CA4513B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EF5C2DD-4FDE-42BD-A4AA-FF32B25D2CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EF5C2DD-4FDE-42BD-A4AA-FF32B25D2CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EF5C2DD-4FDE-42BD-A4AA-FF32B25D2CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EF5C2DD-4FDE-42BD-A4AA-FF32B25D2CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E778DC0-7DC0-4E24-B2D3-93CBC68B0DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E778DC0-7DC0-4E24-B2D3-93CBC68B0DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E778DC0-7DC0-4E24-B2D3-93CBC68B0DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E778DC0-7DC0-4E24-B2D3-93CBC68B0DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{774DFE39-4293-45B9-B43F-91A0A83D9E80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774DFE39-4293-45B9-B43F-91A0A83D9E80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774DFE39-4293-45B9-B43F-91A0A83D9E80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774DFE39-4293-45B9-B43F-91A0A83D9E80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C581D74-3D86-45BC-BAC1-45A4DB964029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C581D74-3D86-45BC-BAC1-45A4DB964029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C581D74-3D86-45BC-BAC1-45A4DB964029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C581D74-3D86-45BC-BAC1-45A4DB964029}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EF5C2DD-4FDE-42BD-A4AA-FF32B25D2CDB} = {C090CB39-79D9-44C8-B8EB-4E00268F1C1C}
+		{4E778DC0-7DC0-4E24-B2D3-93CBC68B0DCB} = {C090CB39-79D9-44C8-B8EB-4E00268F1C1C}
+		{774DFE39-4293-45B9-B43F-91A0A83D9E80} = {C090CB39-79D9-44C8-B8EB-4E00268F1C1C}
+		{8C581D74-3D86-45BC-BAC1-45A4DB964029} = {C090CB39-79D9-44C8-B8EB-4E00268F1C1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54D3F7ED-044B-4C4E-9151-757E234C38EC}
