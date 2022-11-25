@@ -49,6 +49,17 @@
 	10. ef core add-migration AddArticleTable 报错：
 		System.ArgumentException: The string argument 'name' cannot be empty.
 		原因：有一个表配置时忘记了给表名 builder.ToTable("");
+	11. sqlserver 聚合不应出现在 UPDATE 语句的集合列表中
+		修改语句中不能出现聚合函数这一类
+		解决：
+		https://blog.csdn.net/weixin_30384217/article/details/97130346
+	12. EF 达到了表达式服务限制。请在您的查询中查找潜在的复杂表达式，并尝试简化它们
+		EF Contains 包含的值太多
+		解决：先不要在数据库层用Contains并 ToList 将数据查出来再 Contains
+		https://blog.csdn.net/qq_44965678/article/details/122240247
+	13. c# EF报错：非静态方法需要一个目标	
+		因为 Linq 条件有 null 值导致的
+		https://blog.csdn.net/u010690818/article/details/86645017
 		
 ***心得***	
 	1. sqlserver 还原数据库与还原为新数据库的区别
@@ -106,7 +117,84 @@
 		https://blog.csdn.net/bjxiejihua/article/details/107909233
 		http://t.zoukankan.com/lucky-donkey-p-13946290.html
 		https://blog.csdn.net/cytcytcytcytcyt/article/details/124118825
-	13. 
+	13. git 回滚到某个版本修改，然后再回滚回来 步骤
+		1. 项目右键 - TortoiseGit - Show Log - SHA-1(即 Commit ID) 【推荐】
+			（or）git cmd - run git log - 找到目标 commit id
+		2. git reset --hard <commit id>，如：
+			git reset --hard fb5f7b02d810c3358d3681e6c88f7598618482c5
+		3. git checkout -b <新分支名>，如：
+			git checkout -b pro/team/dev/newpermission
+		4. 修改后保存
+		5. git checkout 切换回原分支
+		6. git reset --hard <commit id> 返回原先的版本，如：
+			git reset --hard a42c919fb003fddad4dbcd49f066768c19dbbc30
+	14. sqlserver 删除表及删除表中数据的方法
+		delete or truncate
+		truncate table <表名>
+		http://www.gimoo.net/t/1803/5aa2640965236.html
+	15. sqlserver 窗口函数 分组
+		partition by
+		https://www.jianshu.com/p/aea57473191a
+	16. HR SaaS
+		https://zhuanlan.zhihu.com/p/377662346
+	17. sqlserver 将字符串转换为 in (字符串格式)
+		a,b,c -> 'a','b','c'
+		SELECT ''''+REPLACE('a,b,c',',',''',''')+'''';
+		单引号用2个引号代替
+		http://t.zoukankan.com/cnaspnet-p-2002903.html
+	18. sqlserver 分页
+		【记录代码】
+		```
+		SELECT * 
+		FROM dbo.WellCoverMainInfo a
+		ORDER BY a.ItemID DESC
+		OFFSET (2-1)*10 ROW FETCH NEXT 10 ROW ONLY;
+		--OFFSET (当前页数-1)*每页数据条数 ROW FETCH NEXT 每页数据条数 ROW ONLY
+		```
+		https://www.cnblogs.com/cplvfx/articles/14205768.html
+	19. sqlserver 时间转换
+		【记录代码】
+		```
+		SELECT GETDATE() NowTime,  --2022-11-23 14:38:24.420
+			CONVERT(VARCHAR(25),GETDATE(),20) NowTimeStr1, --2022-11-23 14:38:24
+			CONVERT(VARCHAR(10),GETDATE(), 21) NowTimeStr2 --2022-11-23
+		```
+	20. Windows 进入和退出 linux 子系统
+		进入：CMD 运行 bash 命令
+		退出：运行 exit 命令
+		https://blog.csdn.net/liouwb/article/details/109028515
+	21. linux子系统文件在哪
+		https://jingyan.baidu.com/article/d8072ac4718e74ad95cefdaa.html
+		[注]我本地机没有 rootfs 这个目录，不知是否升级为 wsl2 的原因
+	22. Linux查看目录命令
+		ls：查看当前目录信息
+		tree：以树状方式显示目录信息
+		https://blog.csdn.net/weixin_57003452/article/details/121160160
+	24. Linux子系统中查看Windows目录
+		```
+		cd /mnt
+		ll -a --即可看到本地盘符
+		cd c
+		ls
+		```
+		https://blog.csdn.net/weixue9/article/details/125443406
+		https://blog.csdn.net/qq_34159047/article/details/121973652
+	25. Windows10内置Linux子系统（WSL）迁移目录
+		https://www.cnblogs.com/RainFate/p/16771574.html
+	26. sqlserver int 转 decimal
+		【记录代码】
+		```
+		DECLARE @Total DECIMAL(8,2);
+		SET @Total=17*1.0;
+		```
+	27. sqlserver 保留2位小数点
+		```
+		Convert(decimal(18,2), 3.1245)
+		```
+		https://www.cnblogs.com/wangcq/p/4938547.html
+	28. 
+		
+	
 	
 	
 	

@@ -1,72 +1,196 @@
-在Docker中安装 sql server 2019
+3. 在Docker中安装 NodeJs，并在 Windows 目录中创建 Vue 脚手架项目
+	1. CMD 下载 NodeJs 镜像
+		```
+		C:\Users\Jacky>docker pull node:latest
+		
+		说明：
+		大概 3 分钟
+		
+		链接：
+		https://blog.csdn.net/qq_28550263/article/details/124256323
+		http://www.ultrapower.com/wiki/1320481173012512/1320502620586016
+		http://t.zoukankan.com/flafly-p-14246374.html
+		```
+	2. 查看镜像是否下载成功
+		```
+		C:\Users\Jacky>docker images
+		
+		REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
+		webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
+		alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
+		mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
+		node                             latest        c71adfc6ec58   8 days ago     995MB
+		```
+	3. 运行 NodeJS 镜像
+		```
+		C:\Users\Jacky>docker run -itd -v D:\Work\study\TestProject_VS2022\NetCore:/app --name myNode -d node:latest
+		26be976703486f6bab3a222527cbc14a1eb7985cd0c63c3cb0e57926217e0572
 
-1. CMD 下载 sql server 2019 镜像
-	```
-	C:\Users\Jacky>docker pull mcr.microsoft.com/mssql/server:2019-latest
-	
-	说明：
-	大概 3 分钟
-	```
-2. 查看镜像是否下载成功
-	```
-	C:\Users\Jacky>docker images
-	
-	REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
-	webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
-	alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
-	mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
-	```
-3. 运行 sql server 2019
-	```
-	C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
-	df5d025aec890a46825e1462f25f73f51b51a282eb119e9fa0febf38da7d6c8b
+		说明：
+		-v D:\Work\study\TestProject_VS2022\NetCore:/app 挂载Windows本地目录到镜像
+		冒号前为宿主机目录，必须为绝对路径，创建的文件将存在这里目录；冒号后为镜像内挂载的路径，可以随便填，最好有意义
+		
+		链接：
+		https://www.yisu.com/zixun/580938.html
+		https://www.shuzhiduo.com/A/rV57oOEV5P/
+		```
+	4. 进入 NodeJS 环境查看版本
+		```
+		C:\Users\Jacky>docker exec -it myNode /bin/bash
+		root@26be97670348:/# ls
+		app  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
 
-	说明：
-	SA_PASSWORD 是数据库sa登录用的数据库密码，需要注意的是，这个密码必须是微软要求的强密码；
-	端口是用的默认端口1433
-	-d 镜像
-	-v D:/database/sqlserver2019:/var/opt/mssql/data 数据存储地址
-	```
-4. 打开本地的 SMS，输入：localhost sa Abc!@#123456 即可使用
- 	
-C:\Users\Jacky>docker pull mcr.microsoft.com/mssql/server:2019-latest
-2019-latest: Pulling from mssql/server
-210a236fbb96: Pull complete
-4d3b5ee6a318: Pull complete
-b97468a53f24: Pull complete
-Digest: sha256:f57d743a99a4003a085d0fd67dbb5ecf98812c08a616697a065082cad68d77ce
-Status: Downloaded newer image for mcr.microsoft.com/mssql/server:2019-latest
-mcr.microsoft.com/mssql/server:2019-latest
+		说明：
+		app 即上一步创建的路径
+		----------------
+		查看 NodeJs 和 NPM 版本：
+		root@0368ee7f7799:/# node -v
+		v19.1.0
+		root@0368ee7f7799:/# npm -v
+		8.19.3
+		```
+	5. 配置 NPM 国内镜像站点，加速资源下载 【可选】
+		```
+		root@0368ee7f7799:/# npm config set registry https://registry.npm.taobao.org
+		```
+	6. 安装 yarn，后面使用它来创建 vue 项目，安装 NodeJS 镜像时，已经自动安装了 yarn，所以这一步可略过
+		```
+		npm install -g yarn
+		
+		说明：
+		npm和yarn都属于包管理器，yarn 内部使用的也是 npm，但 yarn 更好用
+		
+		链接：
+		https://www.jianshu.com/p/73b20a026a51?open_source=weibo_search
+		https://blog.csdn.net/zhemeban/article/details/125136139
+		```
+	7. 进入 app 目录
+		```
+		root@26be97670348:/# cd app
+		```
+	8. 创建 VUE 脚手架项目
+		```
+		root@26be97670348:/app# yarn create vite WebAPI1FrontEnd
+		yarn create v1.22.19
+		[1/4] Resolving packages...
+		[2/4] Fetching packages...
+		warning Pattern ["create-vite@^3.2.1"] is trying to unpack in the same destination "/usr/local/share/.cache/yarn/v6/npm-create-vite-3.2.1-3e23dc09f1e7a3aa9b0c2f4922d1ff398b453046-integrity/node_modules/create-vite" as pattern ["create-vite@latest"]. This could result in non-deterministic behavior, skipping.
+		[3/4] Linking dependencies...
+		[4/4] Building fresh packages...
+		success Installed "create-vite@3.2.1" with binaries:
+			  - create-vite
+			  - cva
+		✔ Package name: … webapi1frontend
+		✔ Select a framework: › Vue
+		✔ Select a variant: › JavaScript
 
-C:\Users\Jacky>docker images
-REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
-webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
-alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
-mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
+		Scaffolding project in /app/WebAPI1FrontEnd...
 
-C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network --d mcr.microsoft.com/mssql/server:2019-latest
-unknown flag: --d
-See 'docker run --help'.
+		Done. Now run:
 
-C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network -d mcr.microsoft.com/mssql/server:2019-latest
-c5a61363a687610cdd33dfc83c8c850375806a7bafae2e2c723555b66ce26dc2
-docker: Error response from daemon: network common-network not found.
+		  cd WebAPI1FrontEnd
+		  yarn
+		  yarn dev
 
-C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network -d mcr.microsoft.com/mssql/server:2019-latest
-docker: Error response from daemon: Conflict. The container name "/mssql2019" is already in use by container "c5a61363a687610cdd33dfc83c8c850375806a7bafae2e2c723555b66ce26dc2". You have to remove (or rename) that container to be able to reuse that name.
-See 'docker run --help'.
-
-C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data --network common-network -d mcr.microsoft.com/mssql/server:2019-latest
-8866321fc45cae8d0151f0945c66937042a19ae6c24b6aa9617c33a763a513db
-docker: Error response from daemon: network common-network not found.
-
-C:\Users\Jacky>docker run --name mssql2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Abc!@#123456" -p 1433:1433 -v D:/database/sqlserver2019:/var/opt/mssql/data -d mcr.microsoft.com/mssql/server:2019-latest
-df5d025aec890a46825e1462f25f73f51b51a282eb119e9fa0febf38da7d6c8b
-
-C:\Users\Jacky>docker images
-REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
-webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
-alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
-mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
+		Done in 29.41s.
+		
+		说明：
+		询问 Package name 时，按回车
+		选择项目类型时，上下箭头选择，回车确定
+		```
+	8. Vue 项目将创建在 D:\Work\study\TestProject_VS2022\NetCore 目录
+ 	9. 依次运行以下命令进行工作目录
+		```
+		root@26be97670348:/app# cd WebAPI1FrontEnd/ 
+		root@26be97670348:/app/WebAPI1FrontEnd# yarn
+			yarn install v1.22.19
+			info No lockfile found.
+			[1/4] Resolving packages...
+			[2/4] Fetching packages...
+			[3/4] Linking dependencies...
+			[4/4] Building fresh packages...
+			success Saved lockfile.
+			Done in 42.28s.
+		root@26be97670348:/app/WebAPI1FrontEnd# yarn dev
+		```
+	10. 成功将显示：
+		```
+		yarn run v1.22.19
+		$ vite
+		  VITE v3.2.4  ready in 2185 ms
+		  ➜  Local:   http://localhost:5173/
+		  ➜  Network: use --host to expose
+		```
+C:\Users\Jacky>docker pull node:latest
+latest: Pulling from library/node
+a8ca11554fce: Pull complete
+e4e46864aba2: Pull complete
+c85a0be79bfb: Pull complete
+195ea6a58ca8: Pull complete
+157f16ed0a0c: Pull complete
+3745f00fc1cc: Pull complete
+5bbc49fd3a32: Pull complete
+bf8c7ae7c46e: Pull complete
+dc0e02f1aec6: Pull complete
+Digest: sha256:bff0e689cb433913ab411af7a58253d54c7fd8c3134ffeb25287cdf24d9a5972
+Status: Downloaded newer image for node:latest
+docker.io/library/node:latest
 
 C:\Users\Jacky>
+C:\Users\Jacky>docker images
+REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
+node                             latest        c71adfc6ec58   8 days ago     995MB
+webapiwithdocker                 latest        e12d6bba36c7   5 weeks ago    212MB
+alpine/git                       latest        b80d2cac43e4   6 weeks ago    43.6MB
+mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   2 months ago   1.47GB
+
+C:\Users\Jacky>docker run -itd -v D:\Work\study\TestProject_VS2022\NetCore\ASP.NETCore技术内幕与项目实战\06\第六章\前后端分离的WebAPI:/app --name myNode -d node:latest
+26be976703486f6bab3a222527cbc14a1eb7985cd0c63c3cb0e57926217e0572
+
+C:\Users\Jacky>docker exec -it myNode /bin/bash
+root@0368ee7f7799:/# node -v
+v19.1.0
+root@0368ee7f7799:/# npm -v
+8.19.3
+root@26be97670348:/# ls
+app  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@26be97670348:/# cd mnt
+root@26be97670348:/mnt# ls
+root@26be97670348:/mnt# cd app
+bash: cd: app: No such file or directory
+root@26be97670348:/mnt# cd ..
+root@26be97670348:/# cd app
+root@26be97670348:/app# ls
+ Controllers       appsettings.Development.json
+ LoginRequest.cs   appsettings.json
+ LoginResult.cs    bin
+ ProcessInfo.cs    obj
+ Program.cs       ''$'\345\211\215\345\220\216\347\253\257\345\210\206\347\246\273\347\232\204''WebAPI.csproj'
+ Properties
+root@26be97670348:/app# cd ..
+root@0368ee7f7799:/# npm config set registry https://registry.npm.taobao.org
+root@26be97670348:/# cd app
+root@26be97670348:/app# yarn create vite WebAPI1FrontEnd
+yarn create v1.22.19
+[1/4] Resolving packages...
+[2/4] Fetching packages...
+warning Pattern ["create-vite@^3.2.1"] is trying to unpack in the same destination "/usr/local/share/.cache/yarn/v6/npm-create-vite-3.2.1-3e23dc09f1e7a3aa9b0c2f4922d1ff398b453046-integrity/node_modules/create-vite" as pattern ["create-vite@latest"]. This could result in non-deterministic behavior, skipping.
+[3/4] Linking dependencies...
+[4/4] Building fresh packages...
+success Installed "create-vite@3.2.1" with binaries:
+      - create-vite
+      - cva
+✔ Package name: … webapi1frontend
+✔ Select a framework: › Vue
+✔ Select a variant: › JavaScript
+
+Scaffolding project in /app/WebAPI1FrontEnd...
+
+Done. Now run:
+
+  cd WebAPI1FrontEnd
+  yarn
+  yarn dev
+
+Done in 29.41s.
+root@26be97670348:/app#
