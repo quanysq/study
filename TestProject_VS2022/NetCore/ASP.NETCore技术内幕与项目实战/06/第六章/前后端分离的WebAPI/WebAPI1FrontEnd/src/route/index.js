@@ -3,7 +3,7 @@ import Test from "../views/Test.vue";
 import Login from "../views/Login.vue";
 
 const routes = [
-    { path: "/", redirect: "/Test" },
+    { path: "/", redirect: "/Login" },
     { path: "/Test", name: "Test", component: Test },
     { path: "/Login", name: "Login", component: Login }
 ]

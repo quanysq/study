@@ -1,20 +1,20 @@
-<template>
+ï»¿<template>
     <div>
         <fieldset>
             <legend>Demo1</legend>
-            <div>ĞÕÃû£º{{state.person.name}}</div>
-            <div>{{state.person.isVIP?"VIP":"ÆÕÍ¨»áÔ±"}}</div>
-            <div>×¢²áÊ±¼ä£º{{state.person.createdTime}}</div>
+            <div>å§“åï¼š{{state.person.name}}</div>
+            <div>{{state.person.isVIP?"VIP":"æ™®é€šä¼šå‘˜"}}</div>
+            <div>æ³¨å†Œæ—¶é—´ï¼š{{state.person.createdTime}}</div>
         </fieldset>
         <fieldset>
             <legend>Search</legend>
             <input type="text" v-model="state.searchRequest.word" />
             <select v-model="state.searchRequest.siteName">
-                <option value="Baidu">°Ù¶È</option>
-                <option value="Sogou">ËÑ¹·</option>
+                <option value="Baidu">ç™¾åº¦</option>
+                <option value="Sogou">æœç‹—</option>
                 <option value="360">360</option>
             </select>
-            <input type="button" value="ËÑË÷" @click="searchClick" />
+            <input type="button" value="æœç´¢" @click="searchClick" />
         </fieldset>
     </div>
 </template>
@@ -30,14 +30,14 @@
 
             const searchClick = async () => {
                 const payload = state.searchRequest;
-                //Èç¹ûÌá½»js¶ÔÏó£¬ÄÇÃ´Ä¬ÈÏ¾ÍÊÇjsonÇëÇó£¬content-typeÒ²ÊÇtext/json£¬ÕâÑù·şÎñÆ÷¶ËÕıºÃ¿ÉÒÔ½âÎö
-                const resp = await axios.post('https://localhost:7029/api/Test/SubmitSearch', payload);
+                //å¦‚æœæäº¤jså¯¹è±¡ï¼Œé‚£ä¹ˆé»˜è®¤å°±æ˜¯jsonè¯·æ±‚ï¼Œcontent-typeä¹Ÿæ˜¯text/jsonï¼Œè¿™æ ·æœåŠ¡å™¨ç«¯æ­£å¥½å¯ä»¥è§£æ
+                const resp = await axios.post('https://localhost:7022/api/Test/SubmitSearch', payload);
                 const url = resp.data;
                 location.href = url;
             };
 
             onMounted(async () => {
-                const demo1 = await axios.get('https://localhost:7029/api/Test/Demo1');
+                const demo1 = await axios.get('https://localhost:7022/api/Test/Demo1');
                 state.person = demo1.data;
             });
             return { state, searchClick };

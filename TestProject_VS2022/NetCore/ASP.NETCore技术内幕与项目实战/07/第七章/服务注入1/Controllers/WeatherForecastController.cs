@@ -1,0 +1,52 @@
+using Microsoft.AspNetCore.Mvc;
+using 服务注入1;
+
+namespace 服务注入1.Controllers
+{
+    [ApiController]
+    [Route("[controller]/[action]")]
+    public class WeatherForecastController : ControllerBase
+    {
+        private readonly MyService1 _myService1;
+
+        private static readonly string[] Summaries = new[]
+        {
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
+
+        private readonly ILogger<WeatherForecastController> _logger;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, MyService1 myService1)
+        {
+            _logger = logger;
+            _myService1 = myService1;
+        }
+
+        [HttpGet(Name = "GetWeatherForecast")]
+        public IEnumerable<WeatherForecast> Get()
+        {
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = DateTime.Now.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            })
+            .ToArray();
+        }
+
+        // 方法参数注入，用于使用频率比较低的服务
+        [HttpGet]
+        public string Test([FromServices] MyService1 _myService2, string name)
+        {
+            var names = _myService2.GetNames();
+            return string.Join(",", names) + ",hello:" + name;
+        }
+
+        [HttpGet]
+        public string Test2(string name)
+        {
+            var names = _myService1.GetNames();
+            return string.Join(",", names) + ",hello:" + name;
+        }
+    }
+}

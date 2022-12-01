@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "服务注入1", "服务注入1\服务注入1.csproj", "{BF1D0BAD-F996-4E59-8F9A-256B0354DEBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "分层项目中EF Core", "分层项目中EF Core", "{BD50EC18-C67B-44D9-B201-07BEB8ED9D86}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "缓存", "缓存", "{C5CEA918-EC0A-4DB6-B16C-1F9E2DDF4DA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "模块化服务注册", "模块化服务注册", "{85C0A10F-4186-4AC1-9634-C65B74CB607D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "筛选器", "筛选器", "{2C3443FF-F5A0-4873-9923-B356A4B70EA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "中间件", "中间件", "{30F8EB5B-BB5E-4362-899A-523F5E37FBC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "例子服务接口1", "例子服务接口1\例子服务接口1.csproj", "{032F4137-E093-40B4-8E49-8D4073471FB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "例子服务实现1", "例子服务实现1\例子服务实现1.csproj", "{75137970-5F92-42CC-9D92-E3985D5C546E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "模块化测试程序1", "模块化测试程序1\模块化测试程序1.csproj", "{15018E71-551D-4931-825D-588198C15A71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "例子服务实现2", "例子服务实现2\例子服务实现2.csproj", "{3F41F142-92A8-4859-9F1C-974AB49E3364}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF1D0BAD-F996-4E59-8F9A-256B0354DEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF1D0BAD-F996-4E59-8F9A-256B0354DEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF1D0BAD-F996-4E59-8F9A-256B0354DEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF1D0BAD-F996-4E59-8F9A-256B0354DEBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{032F4137-E093-40B4-8E49-8D4073471FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{032F4137-E093-40B4-8E49-8D4073471FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{032F4137-E093-40B4-8E49-8D4073471FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{032F4137-E093-40B4-8E49-8D4073471FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75137970-5F92-42CC-9D92-E3985D5C546E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75137970-5F92-42CC-9D92-E3985D5C546E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75137970-5F92-42CC-9D92-E3985D5C546E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75137970-5F92-42CC-9D92-E3985D5C546E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15018E71-551D-4931-825D-588198C15A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15018E71-551D-4931-825D-588198C15A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15018E71-551D-4931-825D-588198C15A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15018E71-551D-4931-825D-588198C15A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F41F142-92A8-4859-9F1C-974AB49E3364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F41F142-92A8-4859-9F1C-974AB49E3364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F41F142-92A8-4859-9F1C-974AB49E3364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F41F142-92A8-4859-9F1C-974AB49E3364}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{032F4137-E093-40B4-8E49-8D4073471FB6} = {85C0A10F-4186-4AC1-9634-C65B74CB607D}
+		{75137970-5F92-42CC-9D92-E3985D5C546E} = {85C0A10F-4186-4AC1-9634-C65B74CB607D}
+		{15018E71-551D-4931-825D-588198C15A71} = {85C0A10F-4186-4AC1-9634-C65B74CB607D}
+		{3F41F142-92A8-4859-9F1C-974AB49E3364} = {85C0A10F-4186-4AC1-9634-C65B74CB607D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29A20DC2-D333-4A41-8415-D167E79DAF9C}
+	EndGlobalSection
+EndGlobal

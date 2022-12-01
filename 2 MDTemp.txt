@@ -192,8 +192,17 @@
 		Convert(decimal(18,2), 3.1245)
 		```
 		https://www.cnblogs.com/wangcq/p/4938547.html
-	28. 
-		
+	28. docker 怎么退出 yarn dev 环境？
+		Ctrl + C
+		https://blog.csdn.net/qq_53810245/article/details/121007677
+	29. sqlserver float 转 Int，并去掉小数点
+		【记录代码】
+		```
+		SELECT CAST(0.96*100 AS int)
+		```
+	30. html声明charset="utf-8"后，浏览器访问中文依旧乱码
+		https://blog.csdn.net/weixin_50464560/article/details/119277472
+	31. 
 	
 	
 	

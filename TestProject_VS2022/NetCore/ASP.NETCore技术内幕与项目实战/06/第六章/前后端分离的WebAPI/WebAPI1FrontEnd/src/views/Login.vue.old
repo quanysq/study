@@ -1,15 +1,15 @@
 <template>
     <div>
         <fieldset>
-            <legend>Login</legend><label for="userName">ç”¨æˆ·å:</label>
+            <legend>Login</legend><label for="userName">ÓÃ»§Ãû:</label>
             <input type="text" v-model="state.loginData.userName" id="userName" />
-            <label for="password">å¯†ç :</label>
+            <label for="password">ÃÜÂë:</label>
             <input type="password" v-model="state.loginData.password" id="password" />
-            <input type="submit" value="ç™»å½•" @click="loginSubmit" />
+            <input type="submit" value="µÇÂ¼" @click="loginSubmit" />
         </fieldset>
         <table v-if="state.processes.length>0">
             <thead>
-                <tr><th style="width:50px;">è¿›ç¨‹Id</th><th style="width:20px;">è¿›ç¨‹å</th><th style="width:20px;">å†…å­˜å ç”¨</th></tr>
+                <tr><th style="width:50px;">½ø³ÌId</th><th style="width:20px;">½ø³ÌÃû</th><th style="width:20px;">ÄÚ´æÕ¼ÓÃ</th></tr>
             </thead>
             <tbody>
                 <tr v-for="p in state.processes" :key="p.id">
@@ -30,11 +30,11 @@
             const state = reactive({ loginData: {}, processes: [] });
             const loginSubmit = async () => {
                 const payload = state.loginData;
-                //å¦‚æœæäº¤jså¯¹è±¡ï¼Œé‚£ä¹ˆé»˜è®¤å°±æ˜¯jsonè¯·æ±‚ï¼Œcontent-typeä¹Ÿæ˜¯text/jsonï¼Œè¿™æ ·æœåŠ¡å™¨ç«¯æ­£å¥½å¯ä»¥è§£æ
+                //Èç¹ûÌá½»js¶ÔÏó£¬ÄÇÃ´Ä¬ÈÏ¾ÍÊÇjsonÇëÇó£¬content-typeÒ²ÊÇtext/json£¬ÕâÑù·şÎñÆ÷¶ËÕıºÃ¿ÉÒÔ½âÎö
                 const resp = await axios.post('https://localhost:7022/api/Login/Login', payload);
                 const data = resp.data;
                 if (!data.isOK) {
-                    alert("ç™»å½•å¤±è´¥");
+                    alert("µÇÂ¼Ê§°Ü");
                     return;
                 }
                 state.processes = data.processes;
