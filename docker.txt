@@ -1,246 +1,188 @@
-3. 在Docker中安装 NodeJs，并在 Windows 目录中创建 Vue 脚手架项目
+4. 在Docker中安装 Redis，并 asp.net core 项目中使用
 	1. CMD 下载 NodeJs 镜像
 		```
-		C:\Users\Jacky>docker pull node:latest
+		docker pull redis:latest
 		
 		说明：
-		大概 3 分钟
-		
-		链接：
-		https://blog.csdn.net/qq_28550263/article/details/124256323
-		http://www.ultrapower.com/wiki/1320481173012512/1320502620586016
-		http://t.zoukankan.com/flafly-p-14246374.html
+		大概 2 分钟
 		```
 	2. 查看镜像是否下载成功
 		```
 		C:\Users\Jacky>docker images
-		
 		REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
-		webapiwithdocker                 latest        e12d6bba36c7   23 hours ago   212MB
-		alpine/git                       latest        b80d2cac43e4   11 days ago    43.6MB
-		mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   4 weeks ago    1.47GB
-		node                             latest        c71adfc6ec58   8 days ago     995MB
+		redis                            latest        3358aea34e8c   2 weeks ago    117MB
+		node                             latest        c71adfc6ec58   2 weeks ago    995MB
+		webapiwithdocker                 latest        e12d6bba36c7   7 weeks ago    212MB
+		alpine/git                       latest        b80d2cac43e4   8 weeks ago    43.6MB
+		mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   2 months ago   1.47GB
 		```
-	3. 运行 NodeJS 镜像
+	3. 在 D:\database 创建两个目录：
 		```
-		C:\Users\Jacky>docker run -itd -p 5173:5173 -v D:\Work\study\TestProject_VS2022\NetCore\ASP.NETCore技术内幕与项目实战\06\第六章\前后端分离的WebAPI:/app --name myNode -d node:latest
-		26be976703486f6bab3a222527cbc14a1eb7985cd0c63c3cb0e57926217e0572
-
-		说明：
-		-v D:\Work\study\TestProject_VS2022\NetCore\...:/app 挂载Windows本地目录到镜像
-		冒号前为宿主机目录，必须为绝对路径，创建的文件将存在这里目录；冒号后为镜像内挂载的路径，可以随便填，最好有意义
+		D:\database\redis\conf
+		D:\database\redis\data
+		```
+	4. 创建 reids.conf 文件，存储在 D:\database\redis\conf 目录下
+		```
+		D:\database\redis\conf\reids.conf
 		
-		链接：
-		https://www.yisu.com/zixun/580938.html
-		https://www.shuzhiduo.com/A/rV57oOEV5P/
-		```
-	4. 进入 NodeJS 环境查看版本
-		```
-		C:\Users\Jacky>docker exec -it myNode /bin/bash
-		root@26be97670348:/# ls
-		app  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+		内容：
+		#用守护线程的方式启动 后台运行
+		daemonize no 
 
-		说明：
-		app 即上一步创建的路径
-		----------------
-		查看 NodeJs 和 NPM 版本：
-		root@0368ee7f7799:/# node -v
-		v19.1.0
-		root@0368ee7f7799:/# npm -v
-		8.19.3
+		#给redis设置密码
+		requirepass 123456 
+
+		#redis持久化　　默认是no
+		appendonly yes
+
+		#防止出现远程主机强迫关闭了一个现有的连接的错误 默认是300
+		tcp-keepalive 300 
 		```
-	5. 配置 NPM 国内镜像站点，加速资源下载 【可选】
+	5. 运行 Redis 镜像，创建 redis 容器
 		```
-		root@0368ee7f7799:/# npm config set registry https://registry.npm.taobao.org
-		```
-	6. 安装 yarn，后面使用它来创建 vue 项目，安装 NodeJS 镜像时，已经自动安装了 yarn，所以这一步可略过
-		```
-		npm install -g yarn
+		C:\Users\Jacky>docker run --name redis -p 16379:6379 -v /D/database/redis/conf/redis.conf:/etc/redis/redis_6379.conf -v /D/database/redis/data:/data/ -d redis:latest redis-server /etc/redis/redis_6379.conf --appendonly yes
+		e69db3ef2158e21ea204da03267d0dc612d3d7cb1f9b8aecee5e3cffc0d58808
 		
 		说明：
-		npm和yarn都属于包管理器，yarn 内部使用的也是 npm，但 yarn 更好用
-		
-		链接：
-		https://www.jianshu.com/p/73b20a026a51?open_source=weibo_search
-		https://blog.csdn.net/zhemeban/article/details/125136139
+		–name=“容器新名字”：为容器指定一个名称
+		-p: 指定端口映射，格式为：主机(宿主)端口:容器端口
+		-d: 后台运行容器，并返回容器ID
+		-v /D/database/redis/conf/redis.conf:/etc/redis/redis_6379.conf 把宿主机配置好的redis.conf放到容器内的这个位置中
+		-v /D/docker/redis/data:/data/ 把redis持久化的数据在宿主机内显示，做数据备份
 		```
-	7. 进入 app 目录
+	6. 进入容器并尝试配置和读取值
 		```
-		root@26be97670348:/# cd app
-		```
-	8. 创建 VUE 脚手架项目
-		```
-		root@26be97670348:/app# yarn create vite WebAPI1FrontEnd
-		yarn create v1.22.19
-		[1/4] Resolving packages...
-		[2/4] Fetching packages...
-		warning Pattern ["create-vite@^3.2.1"] is trying to unpack in the same destination "/usr/local/share/.cache/yarn/v6/npm-create-vite-3.2.1-3e23dc09f1e7a3aa9b0c2f4922d1ff398b453046-integrity/node_modules/create-vite" as pattern ["create-vite@latest"]. This could result in non-deterministic behavior, skipping.
-		[3/4] Linking dependencies...
-		[4/4] Building fresh packages...
-		success Installed "create-vite@3.2.1" with binaries:
-			  - create-vite
-			  - cva
-		✔ Package name: … webapi1frontend
-		✔ Select a framework: › Vue
-		✔ Select a variant: › JavaScript
-
-		Scaffolding project in /app/WebAPI1FrontEnd...
-
-		Done. Now run:
-
-		  cd WebAPI1FrontEnd
-		  yarn
-		  yarn dev
-
-		Done in 29.41s.
+		C:\Users\Jacky>docker exec -it redis redis-cli
+		127.0.0.1:6379> set name long
+		OK
+		127.0.0.1:6379> get name
+		"long"
+		127.0.0.1:6379> set msg "hello world redis"
+		OK
+		127.0.0.1:6379> get name
+		"long"
+		127.0.0.1:6379>
 		
 		说明：
-		询问 Package name 时，按回车
-		选择项目类型时，上下箭头选择，回车确定
+		redis-cli表示运行一个redis客户端 (-a 123456 指定密码)
+		set name "{value}" 配置 key=name value={value} 
+		get name 读取 key=name 的 value
 		```
-	9. Vue 项目将创建在 D:\Work\study\TestProject_VS2022\NetCore\ASP.NETCore技术内幕与项目实战\06\第六章\前后端分离的WebAPI\ 目录
-	10. 依次运行以下命令启动前端VUE项目开发环境
-		```
-		root@26be97670348:/app# cd WebAPI1FrontEnd/ 
-		root@26be97670348:/app/WebAPI1FrontEnd# yarn
-			yarn install v1.22.19
-			info No lockfile found.
-			[1/4] Resolving packages...
-			[2/4] Fetching packages...
-			[3/4] Linking dependencies...
-			[4/4] Building fresh packages...
-			success Saved lockfile.
-			Done in 42.28s.
-		root@26be97670348:/app/WebAPI1FrontEnd# yarn dev
-		```
-	11. 成功将显示：
-		```
-		yarn run v1.22.19
-		$ vite
-		  VITE v3.2.4  ready in 2185 ms
-		  ➜  Local:   http://localhost:5173/
-		  ➜  Network: use --host to expose
-		```
-	12. 在宿主机打开 http://localhost:5173/ 失败，因为这个地址是 Linux 地址，需要配置暴露给宿主机
-	13. 按 Ctrl + C 退出 yarn dev 环境
-	14. 打开 ...\WebAPI1FrontEnd\package.json，修改其中的 scripts.preview 内容
-		```
-		修改前：
-		  "scripts": {
-			"dev": "vite",
-			"build": "vite build",
-			"preview": "vite preview"
-		  },
-		
-		修改后：
-		  "scripts": {
-			"dev": "vite",
-			"build": "vite build",
-			"preview": "vite preview --host"
-		  },
-		```
-	15. 打开 ...\WebAPI1FrontEnd\vite.config.js，修改其中的 defineConfig 内容
-		```
-		修改前：
-		export default defineConfig({
-			plugins: [vue()] 
-		})
-		
-		修改后：
-		export default defineConfig({
-			plugins: [vue()],
-			server:{                 //此处为新增代码
-				host:'0.0.0.0',      //此处为新增代码
-			}  
-		})
-		```
-		注：14 - 15 参考：
-		https://blog.csdn.net/zcfllcp/article/details/127485203
-		https://www.cnblogs.com/rocael/p/16173660.html
-		https://blog.csdn.net/hou9983/article/details/82496240 可能适用于vux2
-	16. 重新运行 yarn dev，显示：
-		```
-		root@0e4b0b6115bc:/app/WebAPI1FrontEnd# yarn dev
-		yarn run v1.22.19
-		$ vite
+	7. asp.net core webapi 项目中使用:
+		1. 在 SqlServer 中创建表 T_Configs
+			> 表包含Id、Name、Value这3列，Id列定义为整数类型的标识列，Name列和Value列都定义为字符串类型，Name列为配置项的名字，Value列为配置项的值
+		2. 将 Redis 连接配置写到 T_Configs 表
+			```
+			Name: Redis
+			Value: {"ConnStr":"127.0.0.1:16379,allowadmin=true"}
+			```
+		3. Nuget 安装以下三个包：
+			```
+			StackExchange.Redis
+			System.Data.SqlClient
+			Zack.AnyDBConfigProvider
+			```
+		4. 在项目上右击，选择【管理用户机密】。secrets.json内容如下
+			```
+			{
+			  "ConnectionStrings": { "configServer": "Server=(localdb)\\mssqllocaldb;Database=TestDB;Trusted_Connection=True;MultipleActiveResultSets=true" }
+			}
+			
+			说明：
+			secrets.json 存储在 C:\Users\Jacky\AppData\Roaming\Microsoft\UserSecrets\{sha256码，在csproj中可以看到}\secrets.json
+			如果secrets.json已经创建，点击【管理用户机密】
+			```
+		5. 在 Program.cs 页中读取配置和注入 Redis 连接对象 IConnectionMultiplexer
+			```
+			using StackExchange.Redis;
+			using System.Data.SqlClient;
 
-		  VITE v3.2.4  ready in 2286 ms
+			var builder = WebApplication.CreateBuilder(args);
+			......
+			builder.Host.ConfigureAppConfiguration((_, configBuilder) => {
+				//读取用户机密文件中的sqlserver连接串
+				string connStr = builder.Configuration.GetConnectionString("configServer");
+				configBuilder.AddDbConfiguration(() => new SqlConnection(connStr));
+			});
+			//采用直接读取builder.Configuration的方式来读取配置
+			builder.Services.AddSingleton<IConnectionMultiplexer>(sp => {
+				string connStr = builder.Configuration.GetValue<string>("Redis:ConnStr");
+				return ConnectionMultiplexer.Connect(connStr);
+			}); 
+			......
+			var app = builder.Build();
+			```
+		6. 在控制器中的构造方法声明
+			```
+			using Microsoft.AspNetCore.Mvc;
+			using Microsoft.Extensions.Options;
+			using StackExchange.Redis;
 
-		  ➜  Local:   http://localhost:5173/
-		  ➜  Network: http://172.17.0.2:5173/
-		```
-	17. 宿主机Windows打开浏览器输入 http://localhost:5173/，正确显示页面
-	
-C:\Users\Jacky>docker pull node:latest
-latest: Pulling from library/node
-a8ca11554fce: Pull complete
-e4e46864aba2: Pull complete
-c85a0be79bfb: Pull complete
-195ea6a58ca8: Pull complete
-157f16ed0a0c: Pull complete
-3745f00fc1cc: Pull complete
-5bbc49fd3a32: Pull complete
-bf8c7ae7c46e: Pull complete
-dc0e02f1aec6: Pull complete
-Digest: sha256:bff0e689cb433913ab411af7a58253d54c7fd8c3134ffeb25287cdf24d9a5972
-Status: Downloaded newer image for node:latest
-docker.io/library/node:latest
+			namespace 配置系统集成1.Controllers
+			{
+				[ApiController]
+				[Route("[controller]/[action]")]
+				public class HomeController : ControllerBase
+				{
+					private readonly IOptionsSnapshot<SmtpOptions> smtpOptions;
+					private readonly IConnectionMultiplexer connMultiplexer;
 
-C:\Users\Jacky>
+					public HomeController(
+						IOptionsSnapshot<SmtpOptions> smtpOptions,
+						IConnectionMultiplexer connMultiplexer)
+					{
+						this.smtpOptions = smtpOptions;
+						this.connMultiplexer = connMultiplexer;
+					}
+
+					[HttpGet]
+					public async Task<string> Index()
+					{
+						var opt = smtpOptions.Value;
+						var timeSpan = connMultiplexer.GetDatabase().Ping();
+						
+						//写入和读取 Key-value
+						var database = connMultiplexer.GetDatabase(1);
+						await database.StringSetAsync("name", "Jacky");
+						string str = await database.StringGetAsync("name");
+
+						return $"Smtp:{opt} timeSpan:{timeSpan} str:{str}";
+					}
+				}
+			}
+			```
+			
+
+C:\Users\Jacky>docker pull redis:latest
+latest: Pulling from library/redis
+a603fa5e3b41: Pull complete
+77631c3ef092: Pull complete
+ed3847cf62b8: Pull complete
+261a8b530567: Pull complete
+7d9005a8af6d: Pull complete
+828da1afb5be: Pull complete
+Digest: sha256:1e3207c292225b6dd21cb74d59255748a50e8f739dd983040df38fa913927cf1
+Status: Downloaded newer image for redis:latest
+docker.io/library/redis:latest
+
 C:\Users\Jacky>docker images
 REPOSITORY                       TAG           IMAGE ID       CREATED        SIZE
-node                             latest        c71adfc6ec58   8 days ago     995MB
-webapiwithdocker                 latest        e12d6bba36c7   5 weeks ago    212MB
-alpine/git                       latest        b80d2cac43e4   6 weeks ago    43.6MB
+redis                            latest        3358aea34e8c   2 weeks ago    117MB
+node                             latest        c71adfc6ec58   2 weeks ago    995MB
+webapiwithdocker                 latest        e12d6bba36c7   7 weeks ago    212MB
+alpine/git                       latest        b80d2cac43e4   8 weeks ago    43.6MB
 mcr.microsoft.com/mssql/server   2019-latest   4885f6112d74   2 months ago   1.47GB
 
-C:\Users\Jacky>docker run -itd -v D:\Work\study\TestProject_VS2022\NetCore\ASP.NETCore技术内幕与项目实战\06\第六章\前后端分离的WebAPI:/app --name myNode -d node:latest
-26be976703486f6bab3a222527cbc14a1eb7985cd0c63c3cb0e57926217e0572
+C:\Users\Jacky>docker run --name redis -p 16379:6379 -v /D/database/redis/conf/redis.conf:/etc/redis/redis_6379.conf -v /D/database/redis/data:/data/ -d redis:latest redis-server /etc/redis/redis_6379.conf --appendonly yes
+e69db3ef2158e21ea204da03267d0dc612d3d7cb1f9b8aecee5e3cffc0d58808
 
-C:\Users\Jacky>docker exec -it myNode /bin/bash
-root@0368ee7f7799:/# node -v
-v19.1.0
-root@0368ee7f7799:/# npm -v
-8.19.3
-root@26be97670348:/# ls
-app  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
-root@26be97670348:/# cd mnt
-root@26be97670348:/mnt# ls
-root@26be97670348:/mnt# cd app
-bash: cd: app: No such file or directory
-root@26be97670348:/mnt# cd ..
-root@26be97670348:/# cd app
-root@26be97670348:/app# ls
- Controllers       appsettings.Development.json
- LoginRequest.cs   appsettings.json
- LoginResult.cs    bin
- ProcessInfo.cs    obj
- Program.cs       ''$'\345\211\215\345\220\216\347\253\257\345\210\206\347\246\273\347\232\204''WebAPI.csproj'
- Properties
-root@26be97670348:/app# cd ..
-root@0368ee7f7799:/# npm config set registry https://registry.npm.taobao.org
-root@26be97670348:/# cd app
-root@26be97670348:/app# yarn create vite WebAPI1FrontEnd
-yarn create v1.22.19
-[1/4] Resolving packages...
-[2/4] Fetching packages...
-warning Pattern ["create-vite@^3.2.1"] is trying to unpack in the same destination "/usr/local/share/.cache/yarn/v6/npm-create-vite-3.2.1-3e23dc09f1e7a3aa9b0c2f4922d1ff398b453046-integrity/node_modules/create-vite" as pattern ["create-vite@latest"]. This could result in non-deterministic behavior, skipping.
-[3/4] Linking dependencies...
-[4/4] Building fresh packages...
-success Installed "create-vite@3.2.1" with binaries:
-      - create-vite
-      - cva
-✔ Package name: … webapi1frontend
-✔ Select a framework: › Vue
-✔ Select a variant: › JavaScript
-
-Scaffolding project in /app/WebAPI1FrontEnd...
-
-Done. Now run:
-
-  cd WebAPI1FrontEnd
-  yarn
-  yarn dev
-
-Done in 29.41s.
-root@26be97670348:/app#
+C:\Users\Jacky>docker exec -it redis redis-cli
+127.0.0.1:6379> set name long
+OK
+127.0.0.1:6379> get name
+"long"
+127.0.0.1:6379> set msg "hello world redis"
+OK
+127.0.0.1:6379> get name
+"long"
+127.0.0.1:6379>

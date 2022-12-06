@@ -3,6 +3,7 @@ using 例子服务接口1;
 using Zack.Commons;
 
 ServiceCollection services=new ServiceCollection();
+
 var assemblies = ReflectionHelper.GetAllReferencedAssemblies();
 services.RunModuleInitializers(assemblies);
 using var sp = services.BuildServiceProvider();

@@ -202,7 +202,33 @@
 		```
 	30. html声明charset="utf-8"后，浏览器访问中文依旧乱码
 		https://blog.csdn.net/weixin_50464560/article/details/119277472
-	31. 
+	31. sqlserver 查询具体某一天的数据
+		【记录代码】
+		```
+		...... Where DateDiff(dd,'2022-9-23',a.SystemDate)=0
+		```
+		http://t.zoukankan.com/fumj-p-3672755.html
+	32. 查询出来的列表数据同时其它用途如下载等，如果设计？
+		在数据库增加一临时表，用于缓存列表数据（不用所有字段，只要主键字段就够），
+		每次查询列表时同时把数据缓存在这个临时表，
+		缓存前先把数据清空
+	33. c# SqlSugar List 批量快速存入数据库在数据库增加一临时表
+		sqlSugarClient.Insertable(List<TempDataCenter>).ExecuteCommand();
+		TempDataCenter是数据表实体类
+		https://www.donet5.com/home/Doc?typeId=1193
+	34. c# SqlSugar 批量删除数据表
+		sqlSugarClient.Deleteable<TempDataCenter>().ExecuteCommand();
+		或者执行SQL语句
+		https://www.donet5.com/home/Doc?typeId=1195
+	35. asp.net core IOptionsSnapshot
+		IOptionsSnapshot 通过注册为一个作用域内的单例模式，来保证当配置发生变化时，下一个请求可以获取到最新的配置
+		https://blog.csdn.net/sD7O95O/article/details/78096175
+	36. asp.net web api httppost frombody string 参数在 postman 如何传参？
+		Body - raw - Json 格式 - 直接输入字符串如 "1,2"
+		https://www.cnblogs.com/microestc/p/11003233.html
+	37. ASP.NET Core 使用redis
+		https://blog.csdn.net/weixin_46178278/article/details/125593153
+	38. 
 	
 	
 	
