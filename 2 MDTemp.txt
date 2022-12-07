@@ -228,7 +228,18 @@
 		https://www.cnblogs.com/microestc/p/11003233.html
 	37. ASP.NET Core 使用redis
 		https://blog.csdn.net/weixin_46178278/article/details/125593153
-	38. 
+	38. sqlserver 存储过程表值参数
+		1. 用于代码中直接传送list结构数据
+		2. sqlserver 需要创建一个跟 List 相同结构的 Type (注意：这里会产生比较深的耦合)
+		3. 代码中list参数类型用 SqlDbType.Structured
+		4. 总结：代码传类似1,2,3结构的字符串，sqlserve创建一个类似 split 的函数进行字符串进行解析转成table比较方便
+		5. 参考：https://www.cnblogs.com/qingiqng99/archive/2012/02/28/2370984.html
+	39. c# TransactionScope 事务 MSDTC
+		https://blog.csdn.net/weixin_45756851/article/details/126466392
+		https://www.cnblogs.com/nlh774/p/3434050.html
+	40. Asp.net B/S模式下使用Console.Write()
+		https://www.cnblogs.com/blogshow/archive/2012/07/22/2603808.html
+	41. 
 	
 	
 	

@@ -1,5 +1,4 @@
-using Microsoft.EntityFrameworkCore;
-using Zack.ASPNETCore;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,13 +8,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//注册内存缓存服务
-builder.Services.AddMemoryCache();
-builder.Services.AddDbContext<MyDbContext>(opt => {
-    string connStr = builder.Configuration.GetConnectionString("Default");
-    opt.UseSqlServer(connStr);
+
+//注册自定义异常过滤器服务
+//MvcOptions是ASP.NET Core项目的主要配置对象
+//用于向Filters注册全局的筛选器
+builder.Services.Configure<MvcOptions>(opt => { 
+    opt.Filters.Add<MyExceptionFilter>();
 });
-builder.Services.AddScoped<IMemoryCacheHelper, MemoryCacheHelper>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

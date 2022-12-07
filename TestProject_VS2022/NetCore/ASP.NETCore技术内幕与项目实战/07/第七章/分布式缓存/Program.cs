@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Zack.ASPNETCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,13 +8,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//注册内存缓存服务
-builder.Services.AddMemoryCache();
-builder.Services.AddDbContext<MyDbContext>(opt => {
-    string connStr = builder.Configuration.GetConnectionString("Default");
-    opt.UseSqlServer(connStr);
+
+//注册分布式缓存服务
+builder.Services.AddStackExchangeRedisCache(options => {
+    // 配置 Redis 连接串
+    options.Configuration = "127.0.0.1:16379,allowadmin=true";
+
+    // 配置缓存Key前缀，避免和其它程序冲突，因为Redis可能其它程序也在使用
+    options.InstanceName = "yzk_";
 });
-builder.Services.AddScoped<IMemoryCacheHelper, MemoryCacheHelper>();
+
+//注册自定义的分布式缓存服务帮助接口
+builder.Services.AddScoped<IDistributedCacheHelper, DistributedCacheHelper>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -25,13 +25,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "例子服务实现2", "例�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "配置系统集成1", "配置系统集成1\配置系统集成1.csproj", "{839B7B77-D567-4040-BFA1-FEF04A52010D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksEFCore", "BooksEFCore\BooksEFCore.csproj", "{ED84E29B-A5E2-4B56-8A93-B0E5B9959D8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksEFCore", "BooksEFCore\BooksEFCore.csproj", "{ED84E29B-A5E2-4B56-8A93-B0E5B9959D8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore测试用WebAPI项目1", "EFCore测试用WebAPI项目1\EFCore测试用WebAPI项目1.csproj", "{30DAA573-48BF-439B-894A-A224E4955EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore测试用WebAPI项目1", "EFCore测试用WebAPI项目1\EFCore测试用WebAPI项目1.csproj", "{30DAA573-48BF-439B-894A-A224E4955EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "客户端响应缓存", "客户端响应缓存\客户端响应缓存.csproj", "{EE68F4FF-173E-4A6A-975E-7A044D3648E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "客户端响应缓存", "客户端响应缓存\客户端响应缓存.csproj", "{EE68F4FF-173E-4A6A-975E-7A044D3648E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "内存缓存", "内存缓存\内存缓存.csproj", "{7AFE1AF6-36F8-47AF-974F-CC5157A90B78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存", "内存缓存\内存缓存.csproj", "{7AFE1AF6-36F8-47AF-974F-CC5157A90B78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "分布式缓存", "分布式缓存\分布式缓存.csproj", "{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "异常筛选器", "异常筛选器\异常筛选器.csproj", "{86F0BA11-1393-47D1-AC66-D66F375C51F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "操作筛选器", "操作筛选器\操作筛选器.csproj", "{FB281A32-9FD9-4F14-9437-6CC4289732BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自动启用事务的筛选器", "自动启用事务的筛选器\自动启用事务的筛选器.csproj", "{596753EE-537A-4294-BFE7-3FC591AA485C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +87,22 @@ Global
 		{7AFE1AF6-36F8-47AF-974F-CC5157A90B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AFE1AF6-36F8-47AF-974F-CC5157A90B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AFE1AF6-36F8-47AF-974F-CC5157A90B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86F0BA11-1393-47D1-AC66-D66F375C51F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86F0BA11-1393-47D1-AC66-D66F375C51F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86F0BA11-1393-47D1-AC66-D66F375C51F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86F0BA11-1393-47D1-AC66-D66F375C51F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB281A32-9FD9-4F14-9437-6CC4289732BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB281A32-9FD9-4F14-9437-6CC4289732BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB281A32-9FD9-4F14-9437-6CC4289732BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB281A32-9FD9-4F14-9437-6CC4289732BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{596753EE-537A-4294-BFE7-3FC591AA485C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{596753EE-537A-4294-BFE7-3FC591AA485C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{596753EE-537A-4294-BFE7-3FC591AA485C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{596753EE-537A-4294-BFE7-3FC591AA485C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +116,10 @@ Global
 		{30DAA573-48BF-439B-894A-A224E4955EF2} = {BD50EC18-C67B-44D9-B201-07BEB8ED9D86}
 		{EE68F4FF-173E-4A6A-975E-7A044D3648E5} = {C5CEA918-EC0A-4DB6-B16C-1F9E2DDF4DA9}
 		{7AFE1AF6-36F8-47AF-974F-CC5157A90B78} = {C5CEA918-EC0A-4DB6-B16C-1F9E2DDF4DA9}
+		{790096E3-00FE-4D83-9FC5-92CF05F8F6A0} = {C5CEA918-EC0A-4DB6-B16C-1F9E2DDF4DA9}
+		{86F0BA11-1393-47D1-AC66-D66F375C51F2} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
+		{FB281A32-9FD9-4F14-9437-6CC4289732BB} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
+		{596753EE-537A-4294-BFE7-3FC591AA485C} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29A20DC2-D333-4A41-8415-D167E79DAF9C}
