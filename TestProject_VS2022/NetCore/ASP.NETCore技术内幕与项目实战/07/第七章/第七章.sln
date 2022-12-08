@@ -33,13 +33,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "客户端响应缓存", "�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "内存缓存", "内存缓存\内存缓存.csproj", "{7AFE1AF6-36F8-47AF-974F-CC5157A90B78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "分布式缓存", "分布式缓存\分布式缓存.csproj", "{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "分布式缓存", "分布式缓存\分布式缓存.csproj", "{790096E3-00FE-4D83-9FC5-92CF05F8F6A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "异常筛选器", "异常筛选器\异常筛选器.csproj", "{86F0BA11-1393-47D1-AC66-D66F375C51F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "异常筛选器", "异常筛选器\异常筛选器.csproj", "{86F0BA11-1393-47D1-AC66-D66F375C51F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "操作筛选器", "操作筛选器\操作筛选器.csproj", "{FB281A32-9FD9-4F14-9437-6CC4289732BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "操作筛选器", "操作筛选器\操作筛选器.csproj", "{FB281A32-9FD9-4F14-9437-6CC4289732BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "自动启用事务的筛选器", "自动启用事务的筛选器\自动启用事务的筛选器.csproj", "{596753EE-537A-4294-BFE7-3FC591AA485C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "自动启用事务的筛选器", "自动启用事务的筛选器\自动启用事务的筛选器.csproj", "{596753EE-537A-4294-BFE7-3FC591AA485C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "请求限流器", "请求限流器\请求限流器.csproj", "{1F72385B-DDD0-4196-82E0-BD30C04750C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "中间件入门案例", "中间件入门案例\中间件入门案例.csproj", "{64552602-D8DF-48DE-8431-F130F98A97CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniWebAPI", "MiniWebAPI\MiniWebAPI.csproj", "{44DE8A03-4672-47DA-AB50-C454BEEFBE6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniWebAPIDemo1", "MiniWebAPIDemo1\MiniWebAPIDemo1.csproj", "{1855211D-3534-4736-A504-507DE0BC99AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +111,22 @@ Global
 		{596753EE-537A-4294-BFE7-3FC591AA485C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{596753EE-537A-4294-BFE7-3FC591AA485C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{596753EE-537A-4294-BFE7-3FC591AA485C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F72385B-DDD0-4196-82E0-BD30C04750C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F72385B-DDD0-4196-82E0-BD30C04750C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F72385B-DDD0-4196-82E0-BD30C04750C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F72385B-DDD0-4196-82E0-BD30C04750C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64552602-D8DF-48DE-8431-F130F98A97CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64552602-D8DF-48DE-8431-F130F98A97CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64552602-D8DF-48DE-8431-F130F98A97CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64552602-D8DF-48DE-8431-F130F98A97CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44DE8A03-4672-47DA-AB50-C454BEEFBE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DE8A03-4672-47DA-AB50-C454BEEFBE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DE8A03-4672-47DA-AB50-C454BEEFBE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DE8A03-4672-47DA-AB50-C454BEEFBE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1855211D-3534-4736-A504-507DE0BC99AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1855211D-3534-4736-A504-507DE0BC99AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1855211D-3534-4736-A504-507DE0BC99AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1855211D-3534-4736-A504-507DE0BC99AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +144,10 @@ Global
 		{86F0BA11-1393-47D1-AC66-D66F375C51F2} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
 		{FB281A32-9FD9-4F14-9437-6CC4289732BB} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
 		{596753EE-537A-4294-BFE7-3FC591AA485C} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
+		{1F72385B-DDD0-4196-82E0-BD30C04750C1} = {2C3443FF-F5A0-4873-9923-B356A4B70EA0}
+		{64552602-D8DF-48DE-8431-F130F98A97CC} = {30F8EB5B-BB5E-4362-899A-523F5E37FBC8}
+		{44DE8A03-4672-47DA-AB50-C454BEEFBE6E} = {30F8EB5B-BB5E-4362-899A-523F5E37FBC8}
+		{1855211D-3534-4736-A504-507DE0BC99AC} = {30F8EB5B-BB5E-4362-899A-523F5E37FBC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {29A20DC2-D333-4A41-8415-D167E79DAF9C}

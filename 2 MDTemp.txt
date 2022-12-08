@@ -239,7 +239,62 @@
 		https://www.cnblogs.com/nlh774/p/3434050.html
 	40. Asp.net B/S模式下使用Console.Write()
 		https://www.cnblogs.com/blogshow/archive/2012/07/22/2603808.html
-	41. 
+	41. c# Environment.TickCount64
+		自系统启动以来的毫秒数
+	42. asp.net core webapi 中间件获取请求的 Body
+		【记录代码】
+		```
+		var reqStream = context.Request.BodyReader.AsStream();
+        var jsonObj = JsonSerializer.Deserialize<CheckAndParsingMiddlewareModel>(reqStream);
+
+		[OR]
+		Stream reqStream = context.Request.Body;
+		byte[] buffer = new byte[context.Request.ContentLength!.Value];
+		await reqStream.ReadAsync(buffer, 0, buffer.Length);
+		var reqStr = Encoding.UTF8.GetString(buffer);
+		var jsonObj = JsonSerializer.Deserialize<CheckAndParsingMiddlewareModel>(reqStr)!;
+
+		说明：
+		1. 以前两种写法都可以，第一种更简洁，第二种是先转成字符串
+		2. JsonSerializer.Deserialize 不支持序列化为 dynamic 类型，需要创建一个实体类
+		```
+		https://blog.csdn.net/xyx_0300/article/details/121560872
+		https://www.cnblogs.com/tchivs/p/12167949.html
+	43. c# PathString
+		使用给定值初始化路径字符串，必须采用未转义格式。
+		就是普通的string,但有自己的一系列方法和属性
+	44. .net core 类库项目如何使用 Microsoft.AspNetCore.App 框架？
+		在 csproj 文件添加：
+		```
+		<Project Sdk="Microsoft.NET.Sdk">
+			......
+			<ItemGroup>
+				<FrameworkReference Include="Microsoft.AspNetCore.App" />
+			</ItemGroup>
+		</Project>
+		```
+	45. c# 读取文本文件编码 Nuget 包
+		Ude.NetStandard
+		```
+		/// <summary>
+		/// 检测流的编码
+		/// </summary>
+		/// <param name="stream"></param>
+		/// <returns></returns>
+		private static string DetectCharset(Stream stream)
+		{
+			CharsetDetector charDetector = new();
+			charDetector.Feed(stream);
+			charDetector.DataEnd();
+			string charset = charDetector.Charset ?? "UTF-8";
+			stream.Position = 0;
+			return charset;
+		}		
+		```
+	46. c# MarkDown to Html 转换器 Nuget 包
+		MarkdownSharp
+	47. 
+		
 	
 	
 	
