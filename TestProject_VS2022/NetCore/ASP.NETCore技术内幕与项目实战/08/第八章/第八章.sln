@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "标识框架1", "标识框架1\标识框架1.csproj", "{B1505870-C88D-4E74-A14C-E26392632BBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication与Authorization", "Authentication与Authorization", "{7BEFA2A9-2D63-4031-B52C-A00DA2C1569B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SignalR", "SignalR", "{235D37E6-6483-4C67-AAA4-A39115423577}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数据校验", "数据校验", "{370B36C2-4BFE-4F3A-86DF-6FC9A009944A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "托管服务", "托管服务", "{B0B583A7-54C8-49ED-A44D-38DD1265720E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生成JWT令牌", "生成JWT令牌\生成JWT令牌.csproj", "{C7B2DC10-B4AA-4B34-A50A-62D780265535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "解码JWT令牌", "解码JWT令牌\解码JWT令牌.csproj", "{6676C216-272E-4A7C-94EC-772C0E73B812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCore_JWT1", "ASPNETCore_JWT1\ASPNETCore_JWT1.csproj", "{F8F1B6A9-7993-4C30-AC34-48C1CCFBDB83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1505870-C88D-4E74-A14C-E26392632BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1505870-C88D-4E74-A14C-E26392632BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1505870-C88D-4E74-A14C-E26392632BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1505870-C88D-4E74-A14C-E26392632BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B2DC10-B4AA-4B34-A50A-62D780265535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B2DC10-B4AA-4B34-A50A-62D780265535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B2DC10-B4AA-4B34-A50A-62D780265535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B2DC10-B4AA-4B34-A50A-62D780265535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6676C216-272E-4A7C-94EC-772C0E73B812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6676C216-272E-4A7C-94EC-772C0E73B812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6676C216-272E-4A7C-94EC-772C0E73B812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6676C216-272E-4A7C-94EC-772C0E73B812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8F1B6A9-7993-4C30-AC34-48C1CCFBDB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8F1B6A9-7993-4C30-AC34-48C1CCFBDB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8F1B6A9-7993-4C30-AC34-48C1CCFBDB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8F1B6A9-7993-4C30-AC34-48C1CCFBDB83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1505870-C88D-4E74-A14C-E26392632BBC} = {7BEFA2A9-2D63-4031-B52C-A00DA2C1569B}
+		{C7B2DC10-B4AA-4B34-A50A-62D780265535} = {7BEFA2A9-2D63-4031-B52C-A00DA2C1569B}
+		{6676C216-272E-4A7C-94EC-772C0E73B812} = {7BEFA2A9-2D63-4031-B52C-A00DA2C1569B}
+		{F8F1B6A9-7993-4C30-AC34-48C1CCFBDB83} = {7BEFA2A9-2D63-4031-B52C-A00DA2C1569B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2DCD82CD-827B-4DB3-ABCD-8EFBCAA5CD4C}
+	EndGlobalSection
+EndGlobal
