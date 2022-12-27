@@ -2,9 +2,11 @@
 
 class Demo
 {
+    // IOptionsSnapshot<T>在配置改变后，能读到新的值
     private readonly IOptionsSnapshot<DbSettings> optDbSettings;
     private readonly IOptionsSnapshot<SmtpSettings> optSmtpSettings;
 
+    // 构造方法注入 IOptionsSnapshot
     public Demo(
         IOptionsSnapshot<DbSettings> optDbSettings,
         IOptionsSnapshot<SmtpSettings> optSmtpSettings

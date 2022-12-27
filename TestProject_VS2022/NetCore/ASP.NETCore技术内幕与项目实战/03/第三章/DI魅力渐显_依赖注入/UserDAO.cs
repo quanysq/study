@@ -6,6 +6,7 @@ namespace DI魅力渐显_依赖注入
     {
         private readonly IDbConnection conn;
 
+        // 通过构造方法要求依赖注入容器为其注入一个IDbConnection对象
         public UserDAO(IDbConnection conn)
         {
             this.conn = conn;

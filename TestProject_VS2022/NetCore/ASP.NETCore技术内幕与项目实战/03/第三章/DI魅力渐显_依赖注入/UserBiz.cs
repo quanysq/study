@@ -4,6 +4,7 @@
     {
         private readonly IUserDAO userDAO;
 
+        // 通过构造方法要求注入IUserDAO服务
         public UserBiz(IUserDAO userDAO)
         {
             this.userDAO = userDAO;
