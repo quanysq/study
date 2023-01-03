@@ -7,6 +7,7 @@ class HouseConfig : IEntityTypeConfiguration<House>
     {
         builder.ToTable("T_Houses");
         builder.Property(p => p.Name).IsUnicode().IsRequired();
+        // 把 Owner 列配置为并发令牌
         builder.Property(p => p.Owner).IsConcurrencyToken();
     }
 }

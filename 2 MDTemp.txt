@@ -9,6 +9,7 @@
 	5. 现场验收巡查
 	6. 应急巡查
 2. 整改四次开发
+3. 正式环境无法登录问题（支持）
 	
 ***问题***
 
@@ -417,8 +418,37 @@
 	https://www.cnblogs.com/superfeeling/p/15605996.html
 	http://t.zoukankan.com/kelelipeng-p-10495891.html
 64. sqlserver 执行计划
+	【记录代码】
+	```
+	SET STATISTICS PROFILE ON
+	SELECT * FROM dbo.V_WellCoverAllInfo
+	```
 	https://blog.csdn.net/lm3758/article/details/119920277
-65. 
+65. sqlserver 聚集索引，非聚集索引
+	【记录代码】
+	```
+	--创建 聚集索引
+	CREATE UNIQUE CLUSTERED INDEX IX_Clustered_Empployee ON dbo.Employee(EmpID);
+	
+	--创建唯一非聚集索引
+	CREATE UNIQUE NONCLUSTERED INDEX IX_NonClustered_Employee ON dbo.Employee(EmpContactNumber);
+
+	--创建不唯一非聚集索引
+	CREATE NONCLUSTERED INDEX NCIX_Employee_EmpAge ON dbo.Employee(EmpAge);
+	```
+	https://blog.csdn.net/albatross76/article/details/117645595
+66. 微信公众号发送通知消息
+	http://lihuaxi.xjx100.cn/news/32456.html
+	
+	企业微信消息推送
+	https://zhuanlan.zhihu.com/p/460215635
+	
+	微信开发文档
+	https://developers.weixin.qq.com/doc/
+	
+	微信官文档 * 公众号
+	https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html
+67. 
 			
 	
 		
