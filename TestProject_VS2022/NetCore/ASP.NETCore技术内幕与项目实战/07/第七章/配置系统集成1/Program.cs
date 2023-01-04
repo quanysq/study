@@ -10,12 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// 1.读取用户机密文件中的sqlserver连接串
 builder.Host.ConfigureAppConfiguration((_, configBuilder) => {
-    //读取用户机密文件中的sqlserver连接串
     string connStr = builder.Configuration.GetConnectionString("configServer");
     configBuilder.AddDbConfiguration(() => new SqlConnection(connStr));
 });
-//采用直接读取builder.Configuration的方式来读取配置
+
+// 2.采用直接读取builder.Configuration的方式来读取数据库中的配置，并注册服务
 builder.Services.Configure<SmtpOptions>(builder.Configuration.GetSection("Smtp"));
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp => {
     string connStr = builder.Configuration.GetValue<string>("Redis:ConnStr");

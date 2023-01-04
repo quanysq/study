@@ -9,9 +9,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// 注册数据库上下文服务
+// 使用AddDbContext方法来通过依赖注入的方式让MyDbContext采用指定的连接字符串连接数据库。
+// 由于AddDbContext方法是泛型的，因此可以为同一个项目中的多个不同的上下文设定连接不同的数据库。
 builder.Services.AddDbContext<MyDbContext>(opt =>
 {
-    string connStr = builder.Configuration.GetConnectionString("Default");
+    string connStr = builder.Configuration.GetConnectionString("Default")!;
     opt.UseSqlServer(connStr);
 });
 

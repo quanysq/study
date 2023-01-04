@@ -10,7 +10,8 @@
 	6. 应急巡查
 2. 整改四次开发
 3. 正式环境无法登录问题（支持）
-	
+4. 抽奖
+5. 微信公众号道	
 ***问题***
 
 1. .NET Core 项目引用 .NET Standard 类库项目
@@ -446,9 +447,18 @@
 	微信开发文档
 	https://developers.weixin.qq.com/doc/
 	
-	微信官文档 * 公众号
+	微信官文档 ■ 公众号
 	https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html
-67. 
+67. 个人可以注册使用企业微信吗？
+	可以
+	https://zhuanlan.zhihu.com/p/413034814
+68. 快速查看本机公网IP的方法
+	打开百度 - 输入 :ip - 确定，即显示本机公网 ip 
+	或者第三方网站，如 https://ifconfig.me/
+	参考：
+	https://blog.csdn.net/bitcsljl/article/details/124551299
+	https://www.woyoujk.com/k/401859.html
+69. 
 			
 	
 		

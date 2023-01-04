@@ -7,6 +7,7 @@ class ModuleInitializer : IModuleInitializer
 {
     public void Initialize(IServiceCollection services)
     {
+        // 把EnService注册为IMyService的实现服务
         services.AddScoped<IMyService, EnService>();
     }
 }

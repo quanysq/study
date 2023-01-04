@@ -2,6 +2,8 @@
 
 public class MyActionFilter1 : IAsyncActionFilter
 {
+    // context参数代表Action执行的上下文对象，从context中我们可以获取请求的路径、参数值等信息
+    // next参数代表下一个要执行的操作筛选器
     public async Task OnActionExecutionAsync(
         ActionExecutingContext context, 
         ActionExecutionDelegate next)

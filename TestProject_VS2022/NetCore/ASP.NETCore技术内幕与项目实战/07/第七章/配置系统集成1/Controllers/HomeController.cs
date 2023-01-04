@@ -11,6 +11,7 @@ namespace 配置系统集成1.Controllers
         private readonly IOptionsSnapshot<SmtpOptions> smtpOptions;
         private readonly IConnectionMultiplexer connMultiplexer;
 
+        // 通过构造方法注入获取SmtpOptions和Redis连接对象
         public HomeController(
             IOptionsSnapshot<SmtpOptions> smtpOptions,
             IConnectionMultiplexer connMultiplexer)
@@ -19,6 +20,7 @@ namespace 配置系统集成1.Controllers
             this.connMultiplexer = connMultiplexer;
         }
 
+        // 读取配置信息，连接 Redis 读取数据
         [HttpGet]
         public async Task<string> Index()
         {

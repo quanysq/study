@@ -8,7 +8,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<MyService1>(); //注册服务
+
+// 注册自定义的服务
+builder.Services.AddScoped<MyService1>(); 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

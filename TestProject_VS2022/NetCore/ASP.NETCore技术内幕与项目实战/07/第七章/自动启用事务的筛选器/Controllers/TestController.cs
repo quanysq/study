@@ -20,7 +20,10 @@ namespace 自动启用事务的筛选器.Controllers
             await dbCtx.SaveChangesAsync();
             dbCtx.Books.Add(new Book { Id = Guid.NewGuid(), Name = "2", Price = 2 });
             await dbCtx.SaveChangesAsync();
-            throw new Exception();
+            // 以上代码能够正确地插入两条数据
+            // 如果启用以下代码抛出异常，将不会插入数据
+            // 说明事务起作用，数据被回滚了
+            // throw new Exception();
         }
     }
 }
