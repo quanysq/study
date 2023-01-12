@@ -25,6 +25,7 @@ public class CheckAndParsingMiddleware
         {
             if (context.Request.HasJsonContentType())
             {
+                // 解析 Body 参数的值
                 var reqStream = context.Request.BodyReader.AsStream();
                 var jsonObj = JsonSerializer.Deserialize<CheckAndParsingMiddlewareModel>(reqStream);
 

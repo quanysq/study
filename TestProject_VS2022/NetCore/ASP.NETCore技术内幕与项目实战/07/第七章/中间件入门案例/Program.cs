@@ -62,6 +62,12 @@ app.Map("/test", async appbuilder => {
     });
     //Run 最终业务操作方法
     appbuilder.Run(async ctx => {
+        // 如果在一个中间件中使用ctx.Response.WriteAsync向客户端发送响应，
+        // 就不能再执行next.Invoke把请求转到其他中间件了
+        // 因为其他中间件中有可能对Response进行了更改，比如修改响应状态码、修改报文头或者向响应报文中写入其他数据，
+        // 这样就会造成响应报文体被损坏的问题
+        // 所以这里在向报文体中写入内容后，又执行next.Invoke是不推荐的行为
+        // 只是为了演示而已
         await ctx.Response.WriteAsync("hello middleware <br/>");
     });
 
@@ -77,7 +83,10 @@ app.Map("/test", async appbuilder => {
 });
 
 app.Map("/testForCustomMiddleware", async appbuild => { 
+    // 使用自定义的中间件
     appbuild.UseMiddleware<CheckAndParsingMiddleware>();
+
+    // 执行
     appbuild.Run(async ctx => {
         ctx.Response.ContentType = "text/html";
         ctx.Response.StatusCode = 200;

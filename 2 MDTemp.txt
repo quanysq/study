@@ -72,7 +72,10 @@
 16. nginx 上传大于1M的文件，提示：413 Request Entity Too Large
 	在 nginx.conf - http 块增加一行 - client_max_body_size 10m;
 	https://blog.csdn.net/weixin_40786663/article/details/99681571
-17. 
+17. 测试环境提示出错：No installed debugger has Just-In-Time debugging enabled（VsJITDebugger），然后关闭应用连接池
+	原因：开发人员上传了在 Debug 模式下编译的 dll
+	https://blog.csdn.net/bitezijie/article/details/43937667
+18. 
 		
 ***心得***	
 1. sqlserver 还原数据库与还原为新数据库的区别
@@ -458,8 +461,12 @@
 	参考：
 	https://blog.csdn.net/bitcsljl/article/details/124551299
 	https://www.woyoujk.com/k/401859.html
-69. 
-			
+69. Notepad++ 支持 MarkDown
+	https://blog.csdn.net/m0_54648836/article/details/126812490
+70. Postman中伪造referer
+	https://blog.csdn.net/taotie_/article/details/119639190
+	
+70. 花生壳内网穿透配置			
 	
 		
 		

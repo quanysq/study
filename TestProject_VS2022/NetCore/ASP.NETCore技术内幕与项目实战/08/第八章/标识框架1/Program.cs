@@ -32,7 +32,7 @@ services.AddIdentityCore<User>(options => {
     options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
     options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
 });
-// ----4. UserManager、RoleManager等服务注入
+// ----4. 注入 UserManager、RoleManager等服务
 var idBuilder = new IdentityBuilder(typeof(User), typeof(Role), services);
 idBuilder.AddEntityFrameworkStores<IdDbContext>()
     .AddDefaultTokenProviders()

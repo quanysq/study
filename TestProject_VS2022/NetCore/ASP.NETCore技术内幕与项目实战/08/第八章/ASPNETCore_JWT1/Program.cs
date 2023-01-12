@@ -92,7 +92,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// 使用 Authentication 中间间，放在 UseAuthorization 之前
+// 使用 Authentication 中间件，放在 UseAuthorization 之前
 app.UseAuthentication();
 app.UseAuthorization();
 

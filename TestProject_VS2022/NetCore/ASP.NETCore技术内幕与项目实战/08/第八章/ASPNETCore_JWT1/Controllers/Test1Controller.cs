@@ -14,11 +14,13 @@ namespace ASPNETCore_JWT1.Controllers
     {
         private readonly UserManager<User> userManager;
 
+        //注入 UserManager
         public Test1Controller(UserManager<User> userManager)
         {
             this.userManager = userManager;
         }
 
+        // 生成 JWT
         private static string BuildToken(IEnumerable<Claim> claims, JWTOptions options)
         {
             DateTime expires = DateTime.Now.AddSeconds(options.ExpireSeconds);
@@ -33,6 +35,8 @@ namespace ASPNETCore_JWT1.Controllers
             return result;
         }
 
+        // 在方法中注入 IOptions<JWTOptions> 
+        // 只需要返回 JWT Token 即可，其它的身份验证中间件会处理
         [HttpPost]
         public async Task<IActionResult> Login(
             LoginRequest req,

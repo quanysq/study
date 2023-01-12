@@ -11,6 +11,7 @@ namespace 标识框架1.Controllers
         private readonly RoleManager<Role> roleManager;
         private readonly UserManager<User> userManager;
 
+        // 注入 RoleManager，UserManager，ILogger
         public Test1Controller(
             ILogger<Test1Controller> logger,
             RoleManager<Role> roleManager,
@@ -21,6 +22,7 @@ namespace 标识框架1.Controllers
             this.userManager = userManager;
         }
 
+        // 创建角色和用户
         [HttpPost]
         public async Task<ActionResult> CreateUserRole()
         {
@@ -61,6 +63,7 @@ namespace 标识框架1.Controllers
             return Ok();
         }
 
+        // 登录
         [HttpPost]
         public async Task<ActionResult> Login(LoginRequest req)
         {
@@ -93,6 +96,7 @@ namespace 标识框架1.Controllers
             }
         }
 
+        // 发送重置密码 Token
         [HttpPost]
         public async Task<IActionResult> SendResetPasswordToken(
             SendResetPasswordTokenRequest req)
@@ -103,9 +107,24 @@ namespace 标识框架1.Controllers
             {
                 return NotFound($"邮箱不存在：[{email}]");
             }
+            // 调用GeneratePasswordResetTokenAsync方法来生成一个密码重置令牌，这个令牌会被保存到数据库中
+            // 然后把这个令牌发送到用户邮箱
             string token = await userManager.GenerateEmailConfirmationTokenAsync(user);
             logger.LogInformation($"向邮箱{user.Email}发送Token={token}");
             return Ok(token); 
+        }
+
+        // 重置密码
+        [HttpPost]
+        public async Task<IActionResult> VerifyResetPasswordToken(
+            ResetPasswordRequest req)
+        {
+            string email = req.Email;
+            var user = await userManager.FindByEmailAsync(email);
+            string token = req.Token;
+            string password = req.NewPassword;
+            var r = await userManager.ResetPasswordAsync(user, token, password);
+            return Ok();
         }
     }
 }
