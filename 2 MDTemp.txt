@@ -75,7 +75,12 @@
 17. 测试环境提示出错：No installed debugger has Just-In-Time debugging enabled（VsJITDebugger），然后关闭应用连接池
 	原因：开发人员上传了在 Debug 模式下编译的 dll
 	https://blog.csdn.net/bitezijie/article/details/43937667
-18. 
+18. sqlserver json 转成 表格，提示错误：JSON 文本格式不正确。位置 8 中存在非预期的字符 "-"
+	原因：Json 字符串格式必须是数组类型，比如：[{"perName": "张三","perAge": 20}]
+19. Asp.net core Flunt 报错：
+	Validator "LoginRequestValidator" can't be used with ASP.NET automatic validation as it contains asynchronous rules. ASP.NET's validation pipeline is not asynchronous and can't invoke asynchronous rules. Remove the asynchronous rules in order for this validator to run.
+	原因：使用了 异步 代码，改为同步则无问题
+	.MustAsync((name,_) => dbCtx.Users.AnyAsync(u => u.UserName == name))
 		
 ***心得***	
 1. sqlserver 还原数据库与还原为新数据库的区别
@@ -465,7 +470,41 @@
 	https://blog.csdn.net/m0_54648836/article/details/126812490
 70. Postman中伪造referer
 	https://blog.csdn.net/taotie_/article/details/119639190
-	
+71. sqlserver 日期增加一天
+	【记录代码】
+	```
+	SELECT DATEADD(DAY,1, GETDATE())
+	```
+72. sqlserver 解析 json 格式字符串，转成表格
+	【记录代码】
+	```
+	DECLARE @jsonStr VARCHAR(MAX)
+	----SET @jsonStr ='[{"perName": "张三","perAge": 20},{"perName": "李四","perAge": 23},{"perName": "王五","perAge": 25}]'
+	--SET @jsonStr ='[{"perName": "张三","perAge": 20}]'
+	--SELECT JSON_VALUE(value,'$.perName') AS perName,JSON_VALUE(value,'$.perAge') AS perAge
+	--FROM openjson(@jsonStr) AS A
+
+	SET @jsonStr='[{"ItemGuid":"58210000-5D00-0015-1712-08DAF4668C22","IsEditWellCover":-1,"PageNumber":1,"PageSize":10,"Sort":"systemDate","Order":"desc","OrderBy":"systemDate desc","Fields":null}]';
+	SELECT JSON_VALUE(value, '$.ItemGuid') AS ItemGuid
+	FROM OPENJSON(@jsonStr) AS a
+	```
+	https://www.cnblogs.com/xy0710/p/16362753.html
+	https://www.gxlsystem.com/shujuku-2338815.html
+73. sqlserver 查看兼容级别
+	【记录代码】
+	```
+	SELECT name,compatibility_level FROM sys.databases WHERE name ='{数据库名}'
+	如：
+	SELECT name,compatibility_level FROM sys.databases WHERE name ='JinggaiNew'
+	```	
+74. sqlserver 索引视图（物化视图）
+	http://www.manongjc.com/detail/52-urndldbucxqrwqi.html
+	https://www.cnblogs.com/kissdodog/p/3385161.html
+75. sqlserver CLR
+	sqlserver 调用 C# 方法
+	如果一个存储过程返回多个结果集，其它存储过程调用它并取其中的一个结果集，就可以采用这个方式
+	https://blog.csdn.net/tjvictor/article/details/4731052/
+	https://blog.csdn.net/weixin_30485799/article/details/99471556/
 70. 花生壳内网穿透配置			
 	
 		
