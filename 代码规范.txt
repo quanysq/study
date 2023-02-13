@@ -1,0 +1,91 @@
+1. 项目结构说明
+	1. Common：公共类
+		1. Ando.ERP.Common：
+			说明：
+			A. 公共工具类，一般为静态方法或者 Sealed class
+			B. 通常在业务层或数据层调用，视图层尽量避免调用
+		1. Ando.ERP.Logger
+			说明：日志记录器，所有其它项目都可用
+		1. Ando.ERP.Message
+			说明：集中提示消息，所有其它项目都可用
+	2. BLL：业务层
+		2. Ando.ERP.BLL
+			说明：
+			A. 业务逻辑方法，被客户端（视图层）调用
+			B. 一般每个数据表都有自己对应的业务方法接口
+		2. Ando.ERP.BLL.Model
+			说明：
+			A. 业务逻辑方法的实体层，被 BLL 和 Client 使用，ViewModel 也可以被 DAL 使用
+			B. 主要有：
+				ViewModel：与 EF 实体类对应，丰富实体类，因为实体类经常会被 EF 刷新，所以实体类字段有变动时，需要同步维护此Model
+				SearchModel：搜索条件的Model
+				ResultModel：返回结果的Model
+	3. DAL：数据层
+		3. Ando.ERP.DAL.Repository
+			说明：
+			A. 数据表操作（增删查改）方法，被 BLL 层调用
+			B. EF DBFirst 自动生成的实体类也是此处
+			C. 视图层尽量避免调用此处方法
+	4. WebApi：API 层，暂不需要
+	5. Client：前端，视图层
+		5.1 Ando.ERP.Client.Mvc
+			说明：
+			1. Controller 对应每一个功能模块，调用 BLL 层方法
+			2. View 使用 Vue2.0 + element ui
+
+2. 开发架构说明
+	1. B/S 
+	2. 前后端分离：
+		2. Controller 提供 API
+		2. Vue 利用 Ajax 从 Controller 获取数据
+
+3. 代码规范
+	1. CSS
+		1. 存放位置：Ando.ERP.Client.Mvc\Content\PageCss\
+		1. 命名规范：
+			一个 Page Action 对应一个 css 文件，命名规则如下：
+			{小写 controller name}.[{小写 action name|可选(如果是Index action，可以忽略)}].css
+			例子：
+			home.css 对应 HomeController - Index action
+			company.add.css 对应 CompanyController - Add action
+		1. 调用规范：
+			写在 @RenderSection("PageCss", false) 节点
+			例子：
+			@section PageCss {
+				<link href="~/Content/PageCss/home.css" rel="stylesheet" />
+			}
+	2. JS
+		2. 存放位置：Ando.ERP.Client.Mvc\Scripts\PageJs\{Controller Name}
+		2. 命名规范：
+			1. API 方法调用统一写在 {小写 controller name}.controller.js
+				例子：Ando.ERP.Client.Mvc\Scripts\PageJs\Company\company.contoller.js
+			2. VUE 脚本写在 {小写 controller name}.[{小写 action name|可选(如果是Index action，可以忽略)}].vue.js
+				例子：
+				Ando.ERP.Client.Mvc\Scripts\PageJs\Company\company.vue.js
+				Ando.ERP.Client.Mvc\Scripts\PageJs\Company\company.add.vue.js
+		2. 调用规范：
+			写在 @RenderSection("PageScripts", false) 节点
+			例子：
+			@section PageScripts {
+				<script src="~/Scripts/PageJs/Home/home.contoller.js?v=1000"></script>
+				<script src="~/Scripts/PageJs/Home/home.vue.js?v=1000"></script>
+			}
+	3. C# Code
+		3. 类，方法（包括私有），属性和公有字段必须加上注释
+		3. 类，方法（包括私有），属性，枚举，枚举成员和公有字段命名规范：大驼峰命名法，即首字母大写
+			例子：
+			public class UserInfo{}
+		3. 字段、参数、成员变量、局部变量命名规则：小驼峰命名法，即首字母小写
+			例子：
+			public string userName;
+			public string GetUserName(string userId) { return "userName"; }
+		3. 常量命名规则：名称全部大写，单词间用下划线_分开
+			例子：
+			public const string USER_NAME = "userinfo";
+		3. 复数类型（集合类、数组等）命名规则：优先以小写字符s结尾，如果单词最后的字母就是s或其他不适合s结尾的单词，可以使用复数类型的类型名称结尾（如List、Array等结尾）。
+			例子：
+			public List<string> userNames { get; set; }
+			public string[] userNameArray { get; set; }
+			public List<string> userNameList { get; set; }
+	
+

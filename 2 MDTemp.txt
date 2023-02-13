@@ -448,9 +448,13 @@
 	https://blog.csdn.net/albatross76/article/details/117645595
 66. 微信公众号发送通知消息
 	http://lihuaxi.xjx100.cn/news/32456.html
+	https://www.cnblogs.com/yzeng/p/15767349.html
+	https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#3
 	
 	企业微信消息推送
 	https://zhuanlan.zhihu.com/p/460215635
+	https://developer.work.weixin.qq.com/document/path/90487
+	https://blog.csdn.net/obliv/article/details/127980221
 	
 	微信开发文档
 	https://developers.weixin.qq.com/doc/
@@ -505,10 +509,48 @@
 	如果一个存储过程返回多个结果集，其它存储过程调用它并取其中的一个结果集，就可以采用这个方式
 	https://blog.csdn.net/tjvictor/article/details/4731052/
 	https://blog.csdn.net/weixin_30485799/article/details/99471556/
-70. 花生壳内网穿透配置			
-	
-		
-		
+76. sqlserver 分页查询并返回总数
+	使用count(1) over()获取总记录数量
+	https://www.zhiu.cn/65569.html
+77. sqlserver 日志
+	https://jingyan.baidu.com/article/48a42057929109e925250444.html （SQL Server如何查看日志）
+	https://www.imooc.com/article/25436（SQL Server中日志起到的的作用）
+	https://bbs.csdn.net/topics/380207214?list=2027765（SQLServer中的日志的作用是什么）
+78. c# HashSet
+	不允许有重复元素的List
+	https://blog.csdn.net/qq_42316280/article/details/121498678
+79. c# 算数运算符（++）
+	分为前++和后++，不管是前++还是后++，最终的结果都是给这个变量加一。
+	区别：表达式中，如果是前++，则先给这个变量加一，然后带着这个加一后的值去参与运算。如果是后++，则先拿原值参与运算，运算完之后，再将这个变量自身加一。
+	https://blog.csdn.net/weixin_62520626/article/details/126832180
+80. 如何在word里面插入代码块？
+	菜单 插入 - 工具栏 - 文本区域 - 选择对象 - 新建 - 选择 OpenDocument Text 
+	https://blog.csdn.net/Davidietop/article/details/118878899
+	https://jingyan.baidu.com/article/ce4366494f80023772afd34e.html
+81. sqlserver 去重
+	【记录代码】
+	```
+	--先排序数据，然后按照原排序顺序去除重复数据
+	SELECT COUNT(1) OVER(PARTITION BY a.RFID  ORDER BY a.SystemDate DESC) RNO,
+		a.EquitmentNum,
+		a.RFID,
+		a.SystemDate
+	INTO #Tb_UserScanRFID
+	FROM dbo.BindUserEquitmentInfo b
+		INNER JOIN dbo.ScanRFID a ON b.UserID=a.Creator AND b.EquitmentNum=a.EquitmentNum 
+	WHERE a.IsDelete=0
+		AND b.IsDelete=0
+		AND b.UserID='gzcg_maxingzhi'
+		AND NOT EXISTS(SELECT 1 FROM dbo.WellCoverMainInfo b WHERE b.RFID=a.RFID AND b.IsDelete=0);
+	SELECT * FROM #Tb_UserScanRFID a WHERE a.RNO=1 ORDER BY a.SystemDate DESC;
+	DROP TABLE #Tb_UserScanRFID;
+	```
+	https://www.zjh336.cn/?id=241
+82. markdown Excel数据快速转换为Markdown格式
+	https://blog.csdn.net/qi8023for/article/details/125580002
+	https://tableconvert.com/zh-cn/excel-to-markdown (markdow - to - excel 在线转换 中文)
+	https://tableconvert.com/excel-to-markdown (markdow - to - excel 在线转换 英文)	
+83. 
 	
 	
 	
