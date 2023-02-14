@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>threejs</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+      }
+    </style>
+  </head>
+
+  <body></body>
+  <script type="module">
+    import * as THREE from "https://cdn.skypack.dev/three@v0.129.0";
+    import { OrbitControls } from "https://cdn.skypack.dev/three@v0.129.0/examples/jsm/controls/OrbitControls.js";
+    // 创建渲染器
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.setClearColor("#fff", 1);
+    // 渲染画布（canvas元素)添加到body下
+    document.body.appendChild(renderer.domElement);
+
+    // 创建场景
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#050912");
+
+    // 创建相机
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
+    camera.position.set(0, 100, 100);
+
+    // 添加点光源
+    const light1 = new THREE.PointLight("#fff", 1);
+    light1.position.set(0, 160, 160);
+    scene.add(light1);
+
+    // 添加环境光
+    const ambient = new THREE.AmbientLight("#fff", 0.5);
+    scene.add(ambient);
+
+    // 添加辅助线
+    const axisHelper = new THREE.AxisHelper(500);
+    scene.add(axisHelper);
+
+    // 创建控制器
+    const controls = new OrbitControls(camera, renderer.domElement);
+    //controls.autoRotate = true;
+
+    // 渲染
+    requestAnimationFrame(function render() {
+      requestAnimationFrame(render);
+      controls.update(); // Update controls
+      renderer.render(scene, camera);
+    });
+
+    // 定义飞线
+    let flyLine;
+    !(() => {
+      const length = 20;
+      // 创建点数组
+      const curve = new THREE.CubicBezierCurve3(new THREE.Vector3(-length, 0, 0), new THREE.Vector3(-length * (2 / 3), 0, -0), new THREE.Vector3(-length / 3, 0, -0), new THREE.Vector3(0, 0, 0));
+      const pointsPosition = curve.getPoints(100); // 点数组
+      const pointsGeometry = new THREE.BufferGeometry(); // 创建缓冲几何体
+      // 填充点位
+      const arr = pointsPosition.reduce((arr, point) => {
+        const { x, y, z } = point;
+        arr.push(x, y, z);
+        return arr;
+      }, []);
+      pointsGeometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(arr), 3)); // 一个顶点由3个坐标构成
+
+      // 缩放量
+      const aScaleArr = pointsPosition.map((point, index) => {
+        const scale = index / pointsPosition.length;
+        // if (scale < 0.1) scale = 0.1
+        return scale;
+      });
+      pointsGeometry.setAttribute("aScale", new THREE.BufferAttribute(new Float32Array(aScaleArr), 1)); // 一个缩放量由1个浮点数表示
+
+      // 纹理和材质
+      const pointTexture = new THREE.TextureLoader().load("http://182.43.179.137:81/public/images/circle3.png");
+      const pointsMaterial = new THREE.PointsMaterial({
+        color: "#6A5ACD",
+        map: pointTexture, 
+        // alphaTest: 0.1, 
+        transparent: true, // 开启透明度
+        depthWrite: false, // 禁止深度写入
+        opacity: 0.6,
+        size: 1, // 点大小
+        sizeAttenuation: true, // 大小是否随相机深度衰减
+        blending: THREE.AdditiveBlending,
+      });
+
+      // 修正着色器
+      pointsMaterial.onBeforeCompile = (shader) => {
+        // 包围盒box
+        pointsGeometry.computeBoundingBox();
+        const { max, min } = pointsGeometry.boundingBox;
+        shader.uniforms.uMax = { value: max };
+        shader.uniforms.uMin = { value: min };
+        const vertex = `
+        attribute float aScale; // 缩放量
+        varying vec3 vPosition;
+        void main() {
+          vPosition = position; 
+        `;
+        const vertex1 = "gl_PointSize = size * aScale;"; // 设置点图元的不同大小
+        shader.vertexShader = shader.vertexShader.replace("void main() {", vertex);
+        shader.vertexShader = shader.vertexShader.replace("gl_PointSize = size;", vertex1);
+        const fragment = `
+        uniform vec3 uMax; 
+        uniform vec3 uMin; 
+        varying vec3 vPosition; // 接收顶点着色传递进来的位置数据
+        void main() {
+      `;
+        const fragment1 = `
+      float uOpacity = (vPosition.x - uMin.x) / (uMax.x - uMin.x)*opacity ;
+      vec4 diffuseColor = vec4( diffuse, uOpacity);
+      `;
+        shader.fragmentShader = shader.fragmentShader.replace("void main() {", fragment);
+        shader.fragmentShader = shader.fragmentShader.replace("vec4 diffuseColor = vec4( diffuse, opacity );", fragment1);
+      };
+
+      // 创建飞线
+      flyLine = new THREE.Group();
+      const points = new THREE.Points(pointsGeometry, pointsMaterial);
+      points.rotateY((Math.PI / 180) * -30);
+      flyLine.add(points);
+    })();
+
+    // 复用飞线
+    const num = 3500;
+    let flyLineGroup = new THREE.Group();
+    scene.add(flyLineGroup);
+    for (let i = 0; i < num; i++) {
+      const flyLineCopy = flyLine.clone();
+      // const scale = Math.random() * 0.7 + 0.3
+      // flyLineCopy.scale.set(scale, scale, scale)
+      flyLineCopy.updateMatrix();
+
+      // 初始位置和姿态设置
+      const range = 200;
+      const offset = 15;
+      let x = Math.random() * range * 2;
+      const y = Math.random() * range * 0.3;
+      let z = Math.random() * range * 2;
+      if (x < range) x = -x - offset;
+      if (x > range) x = x - range + offset;
+      if (z < range) z = -z - offset;
+      if (z > range) z = z - range + offset;
+
+      flyLineCopy.position.set(x, y, z);
+      const q = new THREE.Quaternion();
+      q.setFromUnitVectors(new THREE.Vector3(0, 0, -1), new THREE.Vector3(flyLineCopy.position.x, 0, flyLineCopy.position.z).normalize());
+      flyLineCopy.quaternion.premultiply(q);
+      flyLineCopy.updateMatrix();
+
+      // 其他数据设置
+      flyLineCopy.angleSpeed = 5 + Math.random() * 50; // 每秒旋转速度
+      flyLineCopy.offsetSpeed = 1500; // 聚拢时长
+      flyLineGroup.add(flyLineCopy);
+    }
+
+    // 更新飞线
+    const start = Date.now();
+    let last = start;
+    const time = 4000;
+    let stop = false;
+    requestAnimationFrame(function h() {
+      const now = Date.now();
+      const dt = now - last;
+      last = now;
+      if (stop) return; // 停止后，则不执行
+
+      // 超过2秒停止动画
+      if (now - start > time) {
+        stop = true;
+        scene.remove(flyLineGroup);
+        flyLineGroup = null;
+        flyLine.children[0].geometry.dispose();
+        flyLine.children[0].material.dispose();
+        camera.position.set(0, 300, 600);
+        setTimeout(() => {
+          createCircle();
+        });
+        return;
+      }
+
+      // 执行动画
+      requestAnimationFrame(h);
+      if (dt <= 0) return;
+      flyLineGroup.children.forEach((flyLineCopy, index) => {
+        flyLineCopy.visible = true;
+        const { angleSpeed, offsetSpeed } = flyLineCopy;
+        const dAngle = (-angleSpeed * dt) / 1000;
+        const q = new THREE.Quaternion();
+        q.setFromAxisAngle(new THREE.Vector3(0, 1, 0).normalize(), (Math.PI / 180) * dAngle);
+        flyLineCopy.position.applyQuaternion(q);
+
+        // 位置聚拢
+        const { x, y, z } = flyLineCopy.position;
+        const dOffset = 1 - dt / offsetSpeed;
+        flyLineCopy.position.set(x * dOffset, y * dOffset, z * dOffset);
+        flyLineCopy.quaternion.premultiply(q);
+        flyLineCopy.updateMatrix();
+      });
+    });
+
+    // 创建圆块和光柱
+    function createCircle() {
+      // 所有圆块，共用几何体和材质
+      const geometry = new THREE.CircleGeometry(10, 100);
+      const material = new THREE.MeshStandardMaterial({ color: "#6A5ACD", side: THREE.DoubleSide });
+
+      // 批量创建圆块
+      for (let i = 0; i < 15; i++) {
+        let points;
+        if (i === 0) {
+          points = [new THREE.Vector2(0, 0)];
+        } else {
+          const curve = new THREE.EllipseCurve(
+            0,
+            0, // ax, aY
+            i * 30,
+            i * 30, // xRadius, yRadius
+            0,
+            2 * Math.PI, // aStartAngle, aEndAngle
+            false, // aClockwise
+            0 // aRotation
+          );
+          points = curve.getPoints(i * 5);
+        }
+
+        points.forEach((p) => {
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.rotateX(Math.PI / 2);
+          mesh.position.set(p.x, 0, p.y);
+          mesh.name = "block";
+          scene.add(mesh);
+        });
+      }
+
+      // 定义光柱
+      const group = new THREE.Group();
+      scene.add(group);
+      !(() => {
+        // 光柱参数
+        const wallData = {
+          position: {
+            x: 0,
+            y: 30,
+            z: 0,
+          },
+          height: 60, // 光幕高度
+          radius: 10, // 光幕半径
+          maxRadius: 450, // 光幕扩散最大搬家
+          color: "#6A5ACD", // 光幕颜色
+          opacity: 0.4, // 光幕基本透明度
+          period: 2, // 光幕扩散一轮的周期
+        };
+
+        const geometry = new THREE.CylinderGeometry(wallData.radius, wallData.radius, wallData.height, 100);
+        // 包围盒box
+        geometry.computeBoundingBox();
+        const max = geometry.boundingBox.max;
+        const min = geometry.boundingBox.min;
+
+        // 创建材质
+        const material = new THREE.ShaderMaterial({
+          color: wallData.color,
+          transparent: true, // 开启透明
+          side: THREE.DoubleSide, // 两面都渲染
+          depthTest: false, // 关闭材质的深度测试
+          blend: THREE.AdditiveBlending,
+          uniforms: {
+            uMax: {
+              value: max, // 物体坐标系下的值
+            },
+            uMin: {
+              value: min,
+            },
+            uColor: {
+              value: new THREE.Color(wallData.color),
+            },
+          },
+          vertexShader: `
+        varying vec4 vPosition;
+        void main() {
+          vPosition = vec4(position,1.0) ;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+
+      `,
+          fragmentShader: `
+        uniform vec3 uColor; // 光墙半径
+        uniform vec3 uMax; // 最高的坐标(物体坐标系)
+        uniform vec3 uMin; // 最低的坐标(物体坐标系)
+        varying vec4 vPosition; // 接收顶点着色传递进来的位置数据
+        void main() {
+          // 根据像素点世界坐标的y轴高度,设置透明度
+          float opacity = 1.0 - (vPosition.y - uMin.y) / (uMax.y -uMin.y);
+           gl_FragColor = vec4( uColor.x + opacity/2.0, uColor.y + opacity/2.0, uColor.z + opacity/2.0, opacity);
+        }
+      `,
+        });
+
+        // 创建mesh，
+        const wall = new THREE.Mesh(geometry, material);
+        // wall.renderOrder = 1000 // 渲染顺序调高
+        wall.name = "wall";
+        const { x, y, z } = wallData.position;
+        wall.position.set(x, y, z);
+        wall.updateMatrix();
+        group.add(wall);
+
+        // 拾取圆点，并发射光柱
+        !(() => {
+          // 监听pointermove事件
+          renderer.domElement.addEventListener("pointermove", function (event) {
+            event = event || window.event;
+
+            // 触点在canvas画布的水平和垂直坐标
+            const x = event.clientX - renderer.domElement.getBoundingClientRect().left;
+            const y = event.clientY - renderer.domElement.getBoundingClientRect().top;
+            const canvasWidth = renderer.domElement.clientWidth; // canvas画布宽度
+            const canvasHeight = renderer.domElement.clientHeight; // canvas画布高度
+
+            // 转换出触点在webgl视口的水平和垂直坐标（归一化的值）
+            const sx = -1 + (x / canvasWidth) * 2;
+            const sy = 1 - (y / canvasHeight) * 2;
+
+            const targetArr = [];
+            scene.traverse((item) => {
+              if (item.name === "block") {
+                targetArr.push(item);
+              }
+            });
+
+            // 创建光线投射器对象
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(new THREE.Vector2(sx, sy), camera);
+            const intersects = raycaster.intersectObjects(targetArr);
+
+            // 判断是否点击在地面上（是否拾取到地面）
+            if (intersects.length > 0) {
+              group.position.copy(intersects[0].object.position);
+              group.visible = true;
+            } else {
+              // group.visible = false
+            }
+          });
+        })();
+      })();
+    }
+  </script>
+</html>

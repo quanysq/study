@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>threejs</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body ontouchmove="event.preventDefault()">
+    <script type="module">
+      import * as THREE from "https://cdn.skypack.dev/three@v0.129.0";
+      import { OrbitControls } from "https://cdn.skypack.dev/three@v0.129.0/examples/jsm/controls/OrbitControls.js";
+      // 创建渲染器
+
+      // 创建渲染器对象
+      var renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio); // 设置像素比，图元光栅化时采样的像素点更多（可以推断出物理像素），画面更精细
+      document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+
+      // 创建场景对象
+      var scene = new THREE.Scene();
+      scene.background = new THREE.Color("#347897");
+
+      //创建正交相机（透视相机也行）
+      var width = window.innerWidth; //窗口宽度
+      var height = window.innerHeight; //窗口高度
+      var k = width / height; //窗口宽高比
+      var s = 100; //三维场景缩放系数
+      var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+      camera.position.set(200, 300, 200); //设置相机位置
+      camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+
+      //点光源
+      var point = new THREE.PointLight("#fff", 1);
+      point.position.set(400, 200, 300); //点光源位置
+      scene.add(point); //点光源添加到场景中
+
+      //环境光
+      var ambient = new THREE.AmbientLight("#fff", 1);
+      scene.add(ambient);
+
+      // 添加辅助线
+      const axisHelper = new THREE.AxisHelper(500);
+      scene.add(axisHelper);
+
+      // 创建控制器
+      const controls = new OrbitControls(camera, renderer.domElement);
+
+      // 渲染
+      requestAnimationFrame(function render() {
+        requestAnimationFrame(render);
+        controls.update(); // Update controls
+        renderer.render(scene, camera);
+      });
+
+      // 创建带重复纹理的管道
+      var curve = new THREE.CatmullRomCurve3([new THREE.Vector3(-80, -40, 0), new THREE.Vector3(-70, 40, 0), new THREE.Vector3(70, 40, 0), new THREE.Vector3(80, -40, 0)]);
+      var tubeGeometry = new THREE.TubeGeometry(curve, 100, 2, 50, false); // 管道几何体，参考官方文档
+      var texture = new THREE.TextureLoader().load("http://182.43.179.137:81/public/images/texture-pipe.jpg");
+      texture.wrapS = THREE.RepeatWrapping; // 水平平铺模式
+      texture.wrapT = THREE.RepeatWrapping; // 垂直平铺模式
+      texture.repeat.set(20, 1); // 纹理会自动铺满整个坐标系，这里的平铺实际是对顶点的纹理坐标进行了缩放，参考threejs--纹理贴图--纹理矩阵--笔记
+      var tubeMaterial = new THREE.MeshPhongMaterial({ map: texture, transparent: true, depthWrite: false });
+      var tube = new THREE.Mesh(tubeGeometry, tubeMaterial);
+      scene.add(tube);
+
+      // 管道纹理流动（通过偏移实现）
+      requestAnimationFrame(function render() {
+        requestAnimationFrame(render);
+        texture.offset.x -= 0.02;
+      });
+
+      // 再创建一个半透明的管道套在外部
+      var tubeGeometry2 = new THREE.TubeGeometry(curve, 100, 6, 50, false);
+      var tubeMaterial2 = new THREE.MeshPhongMaterial({
+        color: "#FFD700",
+        transparent: true,
+        depthWrite: false,
+        opacity: 0.5,
+        side: THREE.DoubleSide,
+      });
+      var tube2 = new THREE.Mesh(tubeGeometry2, tubeMaterial2);
+      scene.add(tube2);
+    </script>
+  </body>
+</html>

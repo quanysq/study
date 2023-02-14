@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Hello ThreeJs - Web 3D</title>
+    <meta charset="utf-8" />
+    <!--基础脚本库-->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
+    <!--
+        TrackballControls.js
+        摄像机移动控制脚本
+    -->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/controls/TrackballControls.js"></script>
+    <!--
+        Stats.js
+        动画帧数检测库
+        检测动画运行时的帧数
+        在动画运行时，该库可以在一个图片中显示画面每秒传输帧数
+    -->
+    <script type="text/javascript" src="../../libs/util/Stats.js"></script>
+    <!--
+        dat.gui.js
+        用户操作界面脚本
+    -->
+    <script type="text/javascript" src="../../libs/util/dat.gui.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+    <body>
+        <div id="webgl-output"></div>
+
+        <script type="text/javascript">
+            function init() {
+                //A. 初始化侦数探测器 
+                var stats = initStats();
+
+                //1. 创建场景
+                var scene = new THREE.Scene();
+
+                //2. 创建相机
+                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+                scene.add(camera); //不加也可以，但如果有多个摄像机，最好加
+
+                //3. 创建渲染器并设置大小
+                var renderer = new THREE.WebGLRenderer();
+                var color = new THREE.Color(0x000000);
+                renderer.setClearColor(color);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.shadowMap.enabled = true; //启用阴影
+
+                //5. 创建平面和位置
+                var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
+                var planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });   //MeshLambertMaterial材质，能接收光源
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                plane.receiveShadow = true; //启用阴影
+                plane.rotation.x = -0.5 * Math.PI;
+                plane.position.x = 0;
+                plane.position.y = 0;
+                plane.position.z = 0;
+                scene.add(plane);
+
+                //8. 设置相机的位置
+                camera.position.x = -30;
+                camera.position.y = 40;
+                camera.position.z = 30;
+                camera.lookAt(scene.position);
+
+                // 环境光
+                var ambienLight = new THREE.AmbientLight(0x3c3c3c);
+                scene.add(ambienLight);
+
+                //9.1 创建光源 
+                var spotLight = new THREE.SpotLight(0xFFFFFF, 1.2, 150, 120); //SpotLight 光源能够产生阴影
+                spotLight.position.set(-40, 60, -10);
+                spotLight.castShadow = true;
+                scene.add(spotLight);
+                
+                //10. 输出渲染器到 div
+                document.getElementById("webgl-output").appendChild(renderer.domElement);
+
+                //10.1 增加动画操作UI
+                var step = 0;
+                var controls = new function () {
+                    this.rotationSpeed = 0.02;
+                    this.numberOfObjects = scene.children.length;
+
+                    this.removeCube = function () {
+                        var allChildren = scene.children;
+                        var lastObject = allChildren[lastObject.length - 1];
+                        if (lastObject instanceof THREE.Mesh) {
+                            scene.remove(lastObject);
+                            this.numberOfObjects = scene.children.length;
+                        }
+                    };
+
+                    this.addCube = function () {
+                        var cubeSize = Math.ceil((Math.random() * 3));
+                        var cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
+                        var cubeMaterial = new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff });
+                        var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                        cube.castShadow = true;
+                        cube.name = "cube-" + scene.children.length;
+
+                        cube.position.x = -30 + Math.round((Math.random() * planeGeometry.parameters.width));
+                        cube.position.y = Math.round((Math.random() * 5));
+                        cube.position.z = -20 + Math.round((Math.random() * planeGeometry.parameters.height));
+
+                        scene.add(cube);
+                        this.numberOfObjects = scene.children.length;
+                    };
+
+                    this.outputObjects = function () {
+                        console.log(scene.children);
+                    };
+                };
+
+                var gui = new dat.GUI();
+                gui.add(controls, 'rotationSpeed', 0, 0.5);
+                gui.add(controls, 'addCube');
+                gui.add(controls, 'removeCube');
+                gui.add(controls, 'outputObjects');
+                gui.add(controls, 'numberOfObjects').listen();
+
+                //10.2 初始化摄像机控制器
+                var trackballControls = initTrackballControls(camera, renderer);
+                var clock = new THREE.Clock();
+
+                //11. 渲染场景
+                //renderer.render(scene, camera);
+                var step = 0;
+                render();
+
+                //12. 其它内嵌函数
+                // 初始化侦测器
+                function initStats() {
+                    var panelType = (typeof type !== 'undefined' && type) && (!isNaN(type)) ? parseInt(type) : 0;
+                    var stats = new Stats();
+                    stats.showPanel(panelType); // 0: fps, 1: ms, 2: mb, 3+: custom
+                    document.body.appendChild(stats.dom);
+
+                    return stats;
+                }
+
+                // 渲染场景
+                function render() {
+                    //更新摄像机
+                    trackballControls.update(clock.getDelta());
+                    // 调用stats.update函数更新统计
+                    stats.update();
+
+                    scene.traverse(function (e) {
+                        if (e instanceof THREE.Mesh && e != plane) {
+                            e.rotation.x += controls.rotationSpeed;
+                            e.rotation.y += controls.rotationSpeed;
+                            e.rotation.z += controls.rotationSpeed;
+                        }
+                    });
+
+                    // 浏览器自动间隔渲染
+                    requestAnimationFrame(render);
+                    renderer.render(scene, camera);
+                }
+
+                // 初始化摄像机控制器
+                function initTrackballControls(camera, renderer) {
+                    var trackballControls = new THREE.TrackballControls(camera, renderer.domElement);
+                    trackballControls.rotateSpeed = 1.0;
+                    trackballControls.zoomSpeed = 1.2;
+                    trackballControls.panSpeed = 0.8;
+                    trackballControls.noZoom = false;
+                    trackballControls.noPan = false;
+                    trackballControls.staticMoving = true;
+                    trackballControls.dynamicDampingFactor = 0.3;
+                    trackballControls.keys = [65, 83, 68];
+
+                    return trackballControls;
+                }
+            }
+
+            (function () {
+                init();
+            })();
+        </script>
+    </body>
+</html>

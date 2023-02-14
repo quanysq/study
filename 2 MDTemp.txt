@@ -550,7 +550,34 @@
 	https://blog.csdn.net/qi8023for/article/details/125580002
 	https://tableconvert.com/zh-cn/excel-to-markdown (markdow - to - excel 在线转换 中文)
 	https://tableconvert.com/excel-to-markdown (markdow - to - excel 在线转换 英文)	
-83. 
+83. 网页3D
+	https://blog.csdn.net/weixin_55953988/article/details/123082379
+	https://blog.csdn.net/qq_43668086/article/details/86708532
+84. 搭建本地ThreeJS例子站点
+	1. IIS 创建站点
+	2. 配置 MIME 信息
+		```
+		.glb       mime类型：model/gltf-binary
+		.gltf      mime类型：model/gltf+json
+		.hdr       mime类型：application/x-hdr
+		.wasm      mime类型：application/wasm
+		.dae       mime类型：model/vnd.collada+xml
+		.drc       mime类型：application/vnd.oma.drm.rights+wbxml
+		.fbx       mime类型：application/octet-stream
+		.gcode     mime类型：text/x-gcode
+		.kmz       mime类型：application/vnd.google-earth.kmz
+		.mpd       mime类型：application/vnd.ms-project
+		.*         mime类型：application/octet-stream //万能类型
+		```
+	https://www.jianshu.com/p/5f765b45f3ac
+85. js instanceof
+	相当于 C# 中 is，判断对象是否指定的类型
+	https://www.cnblogs.com/WuAnqi/p/15406999.html
+86. ThreeJS 查看版本
+	打开 three.js 搜索 REVISION
+	https://blog.csdn.net/lin5165352/article/details/103400442
+87. 
+	
 	
 	
 	

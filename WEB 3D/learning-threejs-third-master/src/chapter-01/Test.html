@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Hello ThreeJs - Web 3D</title>
+    <meta charset="utf-8" />
+    <!--基础脚本库-->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
+    <!--
+        TrackballControls.js
+        摄像机移动控制脚本
+    -->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/controls/TrackballControls.js"></script>
+    <!--
+        Stats.js
+        动画帧数检测库
+        检测动画运行时的帧数
+        在动画运行时，该库可以在一个图片中显示画面每秒传输帧数
+    -->
+    <script type="text/javascript" src="../../libs/util/Stats.js"></script>
+    <!--
+        dat.gui.js
+        用户操作界面脚本
+        1. 控制小球弹跳的速度
+        2. 控制立方体的旋转
+    -->
+    <script type="text/javascript" src="../../libs/util/dat.gui.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+    <body>
+        <div id="webgl-output"></div>
+
+        <script type="text/javascript">
+            function init() {
+                //A. 注册一个事件监听器
+                window.addEventListener('resize', onResize, false);
+
+                //A. 初始化侦数探测器 
+                var stats = initStats();
+
+                //1. 创建场景
+                var scene = new THREE.Scene();
+
+                //2. 创建相机
+                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+                //3. 创建渲染并设置大小
+                var renderer = new THREE.WebGLRenderer();
+                var color = new THREE.Color(0x000000);
+                renderer.setClearColor(color);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.shadowMap.enabled = true; //启用阴影
+
+                //4. 在场景上显示轴
+                //var axes = new THREE.AxesHelper(20);
+                //scene.add(axes);
+
+                //5. 创建平面和位置
+                //5.1 定义平面的大小
+                var planeGeometry = new THREE.PlaneGeometry(60, 20, 1, 1);
+                //5.2 通过创建材质对象来设置平面的外观
+                //var planeMaterial = new THREE.MeshBasicMaterial({ color: 0xAAAAAA });   //基础材质，基本材质只会使用指定的颜色来渲染物体，对光源没有反应
+                var planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });   //MeshLambertMaterial材质，能接收光源
+                //5.3 创建平面
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                //5.4 设置平面的位置
+                plane.rotation.x = -0.5 * Math.PI; //将平面围绕x轴旋转90度
+                plane.position.set(15, 0, 0); //使用position属性来定义其在场景中的位置
+                //5.4.1
+                plane.receiveShadow = true; //启用阴影
+                //5.5 将平面放到场景中
+                scene.add(plane);
+
+                //6. 创建一个立方体
+                var cubeGeometry = new THREE.BoxGeometry(4, 4, 4);
+                //var cubeMaterial = new THREE.MeshBasicMaterial({
+                //    color: 0xFF0000,
+                //    wireframe: true
+                //});
+                var cubeMaterial = new THREE.MeshLambertMaterial({
+                    color: 0xFF0000,
+                    wireframe: false    //false 为实体，默认为 false
+                });
+                var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                cube.castShadow = true; //启用阴影
+                cube.position.set(-4, 3, 0);
+                scene.add(cube);
+
+                //7. 创建一个球体
+                var sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
+                //var sphereMaterial = new THREE.MeshBasicMaterial({
+                //    color: 0x7777FF,
+                //    wireframe: true
+                //});
+                var sphereMaterial = new THREE.MeshLambertMaterial({
+                    color: 0x7777FF
+                });
+                var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                sphere.position.set(20, 0, 2);
+                sphere.castShadow = true;
+                scene.add(sphere);
+
+                //8. 设置相机的位置
+                camera.position.set(-30, 40, 30);
+
+                //9. 使用lookAt方法指向场景的中心，确保所要渲染的物体能够被摄像机拍摄到
+                camera.lookAt(scene.position);
+
+                //9.1 创建光源 
+                var spotLight = new THREE.SpotLight(0xFFFFFF); //SpotLight 光源能够产生阴影
+                spotLight.position.set(-40, 40, -15);
+                spotLight.castShadow = true;
+                //9.1.1 设置shadow.mapSize、shadow.camera.far和shadow.camera.near三个参数来控制阴影的精细程度
+                spotLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
+                spotLight.shadow.camera.far = 130;
+                spotLight.shadow.camera.near = 40;
+                scene.add(spotLight);
+
+                //9.1.2 另一种光源，使平面变得光亮
+                var ambienLight = new THREE.AmbientLight(0x353535);
+                scene.add(ambienLight);
+
+                //10. 输出渲染器到 div
+                document.getElementById("webgl-output").appendChild(renderer.domElement);
+
+                //10.1 增加动画操作UI
+                var controls = new function () {
+                    this.rotationSpeed = 0.02;
+                    this.bouncingSpeed = 0.03;
+                };
+
+                var gui = new dat.GUI();
+                gui.add(controls, 'rotationSpeed', 0, 0.5);
+                gui.add(controls, 'bouncingSpeed', 0, 0.5);
+
+                //10.2 初始化摄像机控制器
+                var trackballControls = initTrackballControls(camera, renderer);
+                var clock = new THREE.Clock();
+
+                //11. 渲染场景
+                //renderer.render(scene, camera);
+                var step = 0;
+                renderScene();
+
+                //12. 其它内嵌函数
+                // 初始化侦测器
+                function initStats() {
+                    var panelType = (typeof type !== 'undefined' && type) && (!isNaN(type)) ? parseInt(type) : 0;
+                    var stats = new Stats();
+                    stats.showPanel(panelType); // 0: fps, 1: ms, 2: mb, 3+: custom
+                    document.body.appendChild(stats.dom);
+
+                    return stats;
+                }
+
+                // 渲染场景
+                function renderScene() {
+                    //更新摄像机
+                    trackballControls.update(clock.getDelta());
+                    // 调用stats.update函数更新统计
+                    stats.update();
+
+                    // 立方体围绕它的每个轴以0.02的速度进行缓慢的旋转
+                    //cube.rotation.x += 0.02;
+                    //cube.rotation.y += 0.02;
+                    //cube.rotation.z += 0.02;
+                    cube.rotation.x += controls.rotationSpeed;
+                    cube.rotation.y += controls.rotationSpeed;
+                    cube.rotation.z += controls.rotationSpeed;
+
+                    // 球体以0.04的速度沿着Math.cos|Math.abs计算出来的轨迹弹跳
+                    //step += 0.04;
+                    step += controls.bouncingSpeed;
+                    sphere.position.x = 20 + (10 * (Math.cos(step)));
+                    sphere.position.y = 2 + (10 * Math.abs(Math.sin(step)));
+
+                    // 浏览器自动间隔渲染
+                    requestAnimationFrame(renderScene);
+                    renderer.render(scene, camera);
+                }
+
+                // 初始化摄像机控制器
+                function initTrackballControls(camera, renderer) {
+                    var trackballControls = new THREE.TrackballControls(camera, renderer.domElement);
+                    trackballControls.rotateSpeed = 1.0;
+                    trackballControls.zoomSpeed = 1.2;
+                    trackballControls.panSpeed = 0.8;
+                    trackballControls.noZoom = false;
+                    trackballControls.noPan = false;
+                    trackballControls.staticMoving = true;
+                    trackballControls.dynamicDampingFactor = 0.3;
+                    trackballControls.keys = [65, 83, 68];
+
+                    return trackballControls;
+                }
+
+                // 改变浏览器大小
+                function onResize() {
+                    // 更新摄像机的aspect属性，它表示屏幕的长宽比
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    // 改变渲染器的尺寸
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                }
+            }
+
+            (function () {
+                init();
+            })();
+        </script>
+    </body>
+</html>

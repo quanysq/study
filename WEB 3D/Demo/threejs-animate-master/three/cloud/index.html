@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>threejs</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      canvas {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+      }
+    </style>
+  </head>
+
+  <body></body>
+  <script type="module">
+    import * as THREE from "https://cdn.skypack.dev/three@v0.129.0";
+    import { OrbitControls } from "https://cdn.skypack.dev/three@v0.129.0/examples/jsm/controls/OrbitControls.js";
+    // 创建渲染器
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.setClearColor("#fff", 1);
+    // 渲染画布（canvas元素)添加到body下
+    document.body.appendChild(renderer.domElement);
+    // 创建场景
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#1E4877");
+
+    // 创建相机
+    const far = 500000;
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, far);
+
+    camera.position.set(0, 200, 1900);
+    // scene.add(camera) // 若相机加进场景，则场景旋转可能看不出效果（因为相机也在转），相机可只传入render方法
+
+    // 添加点光源
+    const light1 = new THREE.PointLight("#fff", 1);
+    light1.position.set(0, 1600, 1000);
+    scene.add(light1);
+
+    // 添加环境光
+    const ambient = new THREE.AmbientLight("#fff", 0.5);
+    scene.add(ambient);
+
+    // 添加辅助线
+    const axisHelper = new THREE.AxisHelper(500);
+    scene.add(axisHelper);
+
+    // 创建控制器
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    // 渲染
+    requestAnimationFrame(function render() {
+      requestAnimationFrame(render);
+      controls.update(); // Update controls
+      renderer.render(scene, camera);
+    });
+
+    // 地面
+    const texture = new THREE.TextureLoader().load("http://182.43.179.137:81/public/images/texture-wood2.jpg");
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(14, 12);
+    const g = new THREE.PlaneGeometry(10000, 10000, 100);
+    const m = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+    const plane = new THREE.Mesh(g, m);
+    plane.rotateX(Math.PI / 2);
+    scene.add(plane);
+
+    // 定义云
+    let cloud;
+    const size = 3100; // 尺寸
+    !(() => {
+      // 几何体，材质，纹理
+      const t = new THREE.TextureLoader().load("http://182.43.179.137:81/public/images/texture-cloud.png");
+      const g = new THREE.PlaneGeometry(size, size, 100);
+      const m = new THREE.MeshBasicMaterial({
+        map: t, // 纹理
+        transparent: true, // 开启透明度
+        opacity: 1,
+        depthWrite: false, // 禁止深度写入
+        side: THREE.DoubleSide, // 双面可见
+      });
+
+      // 创建云
+      cloud = new THREE.Mesh(g, m);
+      cloud.rotateX(Math.PI / 2);
+    })();
+
+    // 批量复用云
+    const range = 15000;
+    for (let i = 0; i < 50; i++) {
+      // 计算云的x位置
+      let x = Math.random() * range;
+      x = Math.floor(x / 300) * 300 - 0.5 * range;
+
+      // y位置
+      const y = 1000 + Math.random() * 500;
+
+      // z位置
+      let z = Math.random() * range;
+      z = Math.floor(z / 300) * 300 - 0.5 * range;
+
+      // 复用云
+      const cloneCloud = cloud.clone();
+      cloneCloud.position.set(x, y, z);
+      cloneCloud.name = "cloud";
+      scene.add(cloneCloud);
+    }
+  </script>
+</html>
