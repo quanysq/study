@@ -571,7 +571,7 @@
 		```
 	https://www.jianshu.com/p/5f765b45f3ac
 85. js instanceof
-	相当于 C# 中 is，判断对象是否指定的类型
+	相当于 C# 中 is，判断对象是否某个类型
 	https://www.cnblogs.com/WuAnqi/p/15406999.html
 86. ThreeJS 查看版本
 	打开 three.js 搜索 REVISION

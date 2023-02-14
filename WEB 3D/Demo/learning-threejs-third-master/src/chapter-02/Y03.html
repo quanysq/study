@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Hello ThreeJs - Web 3D - 基础场景</title>
+    <title>Hello ThreeJs - Web 3D - 场景 - 固定材质</title>
     <meta charset="utf-8" />
     <!--基础脚本库-->
     <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
@@ -41,9 +41,12 @@
 
                 //1. 创建场景
                 var scene = new THREE.Scene();
+                scene.overrideMaterial = new THREE.MeshLambertMaterial({
+                    color: 0xffffff
+                });
 
                 //2. 创建相机
-                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
                 scene.add(camera); //不加也可以，但如果有多个摄像机，最好加
 
                 //3. 创建渲染器并设置大小
@@ -71,7 +74,7 @@
                 camera.lookAt(scene.position);
 
                 // 环境光
-                var ambienLight = new THREE.AmbientLight(0x3c3c3c);
+                var ambienLight = new THREE.AmbientLight(0x0c0c0c);
                 scene.add(ambienLight);
 
                 //9.1 创建光源 
@@ -104,7 +107,7 @@
                         var cubeMaterial = new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff });
                         var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
                         cube.castShadow = true;
-                        cube.name = "cube-" + scene.children.length;
+                        //cube.name = "cube-" + scene.children.length;
 
                         cube.position.x = -30 + Math.round((Math.random() * planeGeometry.parameters.width));
                         cube.position.y = Math.round((Math.random() * 5));

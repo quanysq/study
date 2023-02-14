@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Hello ThreeJs - Web 3D - 基础场景</title>
+    <title>Hello ThreeJs - Web 3D - 场景 - 雾化</title>
     <meta charset="utf-8" />
     <!--基础脚本库-->
     <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
@@ -41,9 +41,11 @@
 
                 //1. 创建场景
                 var scene = new THREE.Scene();
+                //scene.fog = new THREE.Fog(0xffffff, 10, 100);     //雾化 雾的浓度是线性增长的
+                scene.fog = new THREE.FogExp2(0xffffff, 0.015);     //雾化 雾的浓度随着距离指数增长的
 
                 //2. 创建相机
-                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
                 scene.add(camera); //不加也可以，但如果有多个摄像机，最好加
 
                 //3. 创建渲染器并设置大小
@@ -65,13 +67,13 @@
                 scene.add(plane);
 
                 //8. 设置相机的位置
-                camera.position.x = -30;
-                camera.position.y = 40;
-                camera.position.z = 30;
+                camera.position.x = -40;
+                camera.position.y = 20;
+                camera.position.z = 40;
                 camera.lookAt(scene.position);
 
                 // 环境光
-                var ambienLight = new THREE.AmbientLight(0x3c3c3c);
+                var ambienLight = new THREE.AmbientLight(0x0c0c0c);
                 scene.add(ambienLight);
 
                 //9.1 创建光源 
@@ -101,10 +103,10 @@
                     this.addCube = function () {
                         var cubeSize = Math.ceil((Math.random() * 3));
                         var cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize);
-                        var cubeMaterial = new THREE.MeshLambertMaterial({ color: Math.random() * 0xffffff });
+                        var cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xFF0000 });
                         var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
                         cube.castShadow = true;
-                        cube.name = "cube-" + scene.children.length;
+                        //cube.name = "cube-" + scene.children.length;
 
                         cube.position.x = -30 + Math.round((Math.random() * planeGeometry.parameters.width));
                         cube.position.y = Math.round((Math.random() * 5));
