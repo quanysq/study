@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Hello ThreeJs - Web 3D - 网格</title>
+    <meta charset="utf-8" />
+    <!--基础脚本库-->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/controls/TrackballControls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/geometries/ConvexGeometry.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/geometries/QuickHull.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/geometries/ParametricGeometries.js"></script>
+    <script type="text/javascript" src="../../libs/util/Stats.js"></script>
+    <script type="text/javascript" src="../../libs/util/dat.gui.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+    <body>
+        <div id="webgl-output"></div>
+
+        <script type="text/javascript">
+            function init() {
+                //A. 初始化侦数探测器 
+                var stats = initStats();
+
+                //1. 创建场景
+                var scene = new THREE.Scene();
+                
+                //2. 创建相机
+                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+                scene.add(camera); //不加也可以，但如果有多个摄像机，最好加
+
+                //3. 创建渲染器并设置大小
+                var renderer = new THREE.WebGLRenderer();
+                var color = new THREE.Color(0x000000);
+                renderer.setClearColor(color);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.shadowMap.enabled = true; //启用阴影
+
+                //5. 创建平面和位置
+                var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
+                var planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });   //MeshLambertMaterial材质，能接收光源
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                plane.receiveShadow = true; //启用阴影
+                plane.rotation.x = -0.5 * Math.PI;
+                plane.position.x = 0;
+                plane.position.y = 0;
+                plane.position.z = 0;
+                scene.add(plane);
+
+                //8. 设置相机的位置
+                camera.position.x = -30;
+                camera.position.y = 40;
+                camera.position.z = 30;
+                camera.lookAt(scene.position);
+
+                // 环境光
+                var ambienLight = new THREE.AmbientLight(0x555555);
+                scene.add(ambienLight);
+
+                // SpotLight 聚合光
+                var spotLight = new THREE.SpotLight(0xffffff, 1, 180, Math.PI / 4);
+                spotLight.shadow.mapSize.height = 2048;
+                spotLight.shadow.mapSize.width = 2048;
+                spotLight.position.set(-40, 30, 30);
+                spotLight.castShadow = true;
+                scene.add(spotLight);
+
+                // 立方体网格
+                var material = new THREE.MeshLambertMaterial({ color: 0x44ff44 });
+                var geom = new THREE.BoxGeometry(5, 8, 3);
+                var cube = new THREE.Mesh(geom, material); //创建网格
+                cube.position.y = 4;
+                cube.castShadow = true;
+                scene.add(cube);
+
+                // 控制器
+                var controls = new function () {
+                    this.scaleX = 1;
+                    this.scaleY = 1;
+                    this.scaleZ = 1;
+
+                    this.positionX = 0;
+                    this.positionY = 4;
+                    this.positionZ = 0;
+
+                    this.rotationX = 0;
+                    this.rotationY = 0;
+                    this.rotationZ = 0;
+                    this.scale = 1;
+
+                    this.translateX = 0;
+                    this.translateY = 0;
+                    this.translateZ = 0;
+
+                    this.visible = true;
+
+                    this.translate = function () {
+
+                        cube.translateX(controls.translateX);
+                        cube.translateY(controls.translateY);
+                        cube.translateZ(controls.translateZ);
+
+                        controls.positionX = cube.position.x;
+                        controls.positionY = cube.position.y;
+                        controls.positionZ = cube.position.z;
+                    }
+                };
+
+                // 操作
+                var gui = new dat.GUI();
+                guiScale = gui.addFolder('scale');  //沿着x,y,x轴缩放对象
+                guiScale.add(controls, 'scaleX', 0, 5);
+                guiScale.add(controls, 'scaleY', 0, 5);
+                guiScale.add(controls, 'scaleZ', 0, 5);
+
+                guiPosition = gui.addFolder('position');//相对于 Scene 的位置
+                var contX = guiPosition.add(controls, 'positionX', -10, 10);
+                var contY = guiPosition.add(controls, 'positionY', -4, 20);
+                var contZ = guiPosition.add(controls, 'positionZ', -10, 10);
+
+                contX.listen();
+                contX.onChange(function (value) {
+                    cube.position.x = controls.positionX;
+                    // cube.children[1].position.x = controls.positionX;
+                });
+
+                contY.listen();
+                contY.onChange(function (value) {
+                    cube.position.y = controls.positionY;
+                });
+
+                contZ.listen();
+                contZ.onChange(function (value) {
+                    cube.position.z = controls.positionZ;
+                });
+
+
+                guiRotation = gui.addFolder('rotation');//绕每个轴的旋转弧度
+                guiRotation.add(controls, 'rotationX', -4, 4);
+                guiRotation.add(controls, 'rotationY', -4, 4);
+                guiRotation.add(controls, 'rotationZ', -4, 4);
+
+                guiTranslate = gui.addFolder('translate');//沿轴平移
+                guiTranslate.add(controls, 'translateX', -10, 10);
+                guiTranslate.add(controls, 'translateY', -10, 10);
+                guiTranslate.add(controls, 'translateZ', -10, 10);
+                guiTranslate.add(controls, 'translate');
+
+                gui.add(controls, 'visible');//是否可见
+
+                //10. 输出渲染器到 div
+                document.getElementById("webgl-output").appendChild(renderer.domElement);
+
+                //10.2 初始化摄像机控制器
+                var trackballControls = initTrackballControls(camera, renderer);
+                var clock = new THREE.Clock();
+
+                //11. 渲染场景
+                //renderer.render(scene, camera);
+                render();
+
+                //12. 其它内嵌函数
+                // 初始化侦测器
+                function initStats() {
+                    var panelType = (typeof type !== 'undefined' && type) && (!isNaN(type)) ? parseInt(type) : 0;
+                    var stats = new Stats();
+                    stats.showPanel(panelType); // 0: fps, 1: ms, 2: mb, 3+: custom
+                    document.body.appendChild(stats.dom);
+
+                    return stats;
+                }
+
+                // 渲染场景
+                function render() {
+                    //更新摄像机
+                    trackballControls.update(clock.getDelta());
+                    // 调用stats.update函数更新统计
+                    stats.update();
+
+                    cube.visible = controls.visible;
+
+                    cube.rotation.x = controls.rotationX;
+                    cube.rotation.y = controls.rotationY;
+                    cube.rotation.z = controls.rotationZ;
+
+                    cube.scale.set(controls.scaleX, controls.scaleY, controls.scaleZ);
+
+                    // 浏览器自动间隔渲染
+                    requestAnimationFrame(render);
+                    renderer.render(scene, camera);
+                }
+
+                // 初始化摄像机控制器
+                function initTrackballControls(camera, renderer) {
+                    var trackballControls = new THREE.TrackballControls(camera, renderer.domElement);
+                    trackballControls.rotateSpeed = 1.0;
+                    trackballControls.zoomSpeed = 1.2;
+                    trackballControls.panSpeed = 0.8;
+                    trackballControls.noZoom = false;
+                    trackballControls.noPan = false;
+                    trackballControls.staticMoving = true;
+                    trackballControls.dynamicDampingFactor = 0.3;
+                    trackballControls.keys = [65, 83, 68];
+
+                    return trackballControls;
+                }
+            }
+
+            (function () {
+                init();
+            })();
+        </script>
+    </body>
+</html>

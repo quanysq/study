@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Hello ThreeJs - Web 3D - 自定义几何体</title>
+    <meta charset="utf-8" />
+    <!--基础脚本库-->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/controls/TrackballControls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/geometries/ConvexGeometry.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/geometries/QuickHull.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/geometries/ParametricGeometries.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/utils/SceneUtils.js"></script>
+    <script type="text/javascript" src="../../libs/util/Stats.js"></script>
+    <script type="text/javascript" src="../../libs/util/dat.gui.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+    <body>
+        <div id="webgl-output"></div>
+
+        <script type="text/javascript">
+            function init() {
+                //A. 初始化侦数探测器 
+                var stats = initStats();
+
+                //1. 创建场景
+                var scene = new THREE.Scene();
+                
+                //2. 创建相机
+                var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+                scene.add(camera); //不加也可以，但如果有多个摄像机，最好加
+
+                //3. 创建渲染器并设置大小
+                var renderer = new THREE.WebGLRenderer();
+                var color = new THREE.Color(0x000000);
+                renderer.setClearColor(color);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.shadowMap.enabled = true; //启用阴影
+
+                //5. 创建平面和位置
+                var planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1);
+                var planeMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });   //MeshLambertMaterial材质，能接收光源
+                var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+                plane.receiveShadow = true; //启用阴影
+                plane.rotation.x = -0.5 * Math.PI;
+                plane.position.x = 0;
+                plane.position.y = 0;
+                plane.position.z = 0;
+                scene.add(plane);
+
+                //8. 设置相机的位置
+                camera.position.x = -20;
+                camera.position.y = 25;
+                camera.position.z = 20;
+                camera.lookAt(new THREE.Vector3(5, 0, 0));
+
+                // 环境光
+                var ambienLight = new THREE.AmbientLight(0x555555);
+                scene.add(ambienLight);
+
+                // 顶点集
+                var vertices = [
+                    new THREE.Vector3(1, 3, 1),//x,y,z
+                    new THREE.Vector3(1, 3, -1),
+                    new THREE.Vector3(1, -1, 1),
+                    new THREE.Vector3(1, -1, -1),
+                    new THREE.Vector3(-1, 3, -1),
+                    new THREE.Vector3(-1, 3, 1),
+                    new THREE.Vector3(-1, -1, -1),
+                    new THREE.Vector3(-1, -1, 1)
+                ];
+
+                // 面集
+                var faces = [
+                    new THREE.Face3(0, 2, 1), //表示vertices[0],vertices[2],vertices[1] 三个点组成的面
+                    new THREE.Face3(2, 3, 1),
+                    new THREE.Face3(4, 6, 5),
+                    new THREE.Face3(6, 7, 5),
+                    new THREE.Face3(4, 5, 1),
+                    new THREE.Face3(5, 0, 1),
+                    new THREE.Face3(7, 6, 2),
+                    new THREE.Face3(6, 3, 2),
+                    new THREE.Face3(5, 7, 0),
+                    new THREE.Face3(7, 2, 0),
+                    new THREE.Face3(1, 3, 4),
+                    new THREE.Face3(3, 6, 4),
+                ];
+
+                // 创建几何体 By vertices and faces
+                var geom = new THREE.Geometry();
+                geom.vertices = vertices;
+                geom.faces = faces;
+                geom.computeFaceNormals();
+
+                // 材质集合
+                var materials = [
+                    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true }),
+                    new THREE.MeshLambertMaterial({ opacity: 0.6, color: 0x44ff44, transparent: true })
+                ];
+
+                // 创建网格
+                var mesh = THREE.SceneUtils.createMultiMaterialObject(geom, materials);
+                mesh.castShadow = true;
+                mesh.children.forEach(function (e) {
+                    e.castShadow = true
+                });
+                scene.add(mesh);
+
+                // 另一种显示线框的方法
+                //var wr = new THREE.WireframeGeometry(geom);
+                //var line = new THREE.LineSegments(wr);
+                //scene.add(line);
+                //line.material.linewidth = 3;
+
+                // SpotLight 聚合光
+                var spotLight = new THREE.SpotLight(0xffffff, 1, 180, Math.PI / 4);
+                spotLight.shadow.mapSize.height = 2048;
+                spotLight.shadow.mapSize.width = 2048;
+                spotLight.position.set(-40, 30, 30);
+                spotLight.castShadow = true;
+                spotLight.lookAt(mesh);     //光关联网格
+                scene.add(spotLight);
+
+                // 控制器
+                function addControl(x, y, z) {
+                    var controls = new function () {
+                        this.x = x;
+                        this.y = y;
+                        this.z = z;
+                    };
+
+                    return controls;
+                }
+
+                // 控制点集
+                var controlPoints = [];
+                controlPoints.push(addControl(3, 5, 3));
+                controlPoints.push(addControl(3, 5, 0));
+                controlPoints.push(addControl(3, 0, 3));
+                controlPoints.push(addControl(3, 0, 0));
+                controlPoints.push(addControl(0, 5, 0));
+                controlPoints.push(addControl(0, 5, 3));
+                controlPoints.push(addControl(0, 0, 0));
+                controlPoints.push(addControl(0, 0, 3));
+
+                // 操作
+                var gui = new dat.GUI();
+                gui.add(new function () {
+                    // 按照几何体当前的状态创建出一个拷贝
+                    // 显示 clone 操作项
+                    this.clone = function () {
+                        var clonedGeometry = mesh.children[0].geometry.clone();
+
+                        // 两个材质构成的数组
+                        // 这样做的原因是，除了显示绿色透明的立方体外，还能显示一个线框
+                        // 因为使用线框可以很容易地找出顶点和面的位置
+                        var materials = [
+                            new THREE.MeshLambertMaterial({ opacity: 0.8, color: 0xff44ff, transparent: true }),
+                            new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true })
+                        ];
+
+                        // 为materials数组中每个指定的材质创建一个实例，并把这些实例存放在一个组里
+                        // 注意不是一个THREE.Mesh对象实例
+                        var mesh2 = THREE.SceneUtils.createMultiMaterialObject(clonedGeometry, materials);
+                        mesh2.children.forEach(function (e) {
+                            e.castShadow = true
+                        });
+
+                        // 使用translate()方法移动这个新创建的网格，
+                        // 删除之前的副本（如果存在）并把这个副本添加到场景中
+                        mesh2.translateX(5);
+                        mesh2.translateZ(5);
+                        mesh2.name = "clone";
+                        scene.remove(scene.getChildByName("clone"));
+                        scene.add(mesh2);
+                    }
+                }, 'clone');
+
+                // 创建操作面板上的8个目录（Vertices1 ~ Vertices8）
+                for (var i = 0; i < 8; i++) {
+
+                    f1 = gui.addFolder('Vertices ' + (i + 1));
+                    f1.add(controlPoints[i], 'x', -10, 10);
+                    f1.add(controlPoints[i], 'y', -10, 10);
+                    f1.add(controlPoints[i], 'z', -10, 10);
+
+                }
+
+                //10. 输出渲染器到 div
+                document.getElementById("webgl-output").appendChild(renderer.domElement);
+
+                //10.2 初始化摄像机控制器
+                var trackballControls = initTrackballControls(camera, renderer);
+                var clock = new THREE.Clock();
+
+                //11. 渲染场景
+                //renderer.render(scene, camera);
+                render();
+
+                //12. 其它内嵌函数
+                // 初始化侦测器
+                function initStats() {
+                    var panelType = (typeof type !== 'undefined' && type) && (!isNaN(type)) ? parseInt(type) : 0;
+                    var stats = new Stats();
+                    stats.showPanel(panelType); // 0: fps, 1: ms, 2: mb, 3+: custom
+                    document.body.appendChild(stats.dom);
+
+                    return stats;
+                }
+
+                // 渲染场景
+                function render() {
+                    //更新摄像机
+                    trackballControls.update(clock.getDelta());
+                    // 调用stats.update函数更新统计
+                    stats.update();
+
+                    // 渲染时更新改变后的顶点数据
+                    var vertices = [];
+                    for (var i = 0; i < 8; i++) {
+                        vertices.push(new THREE.Vector3(controlPoints[i].x, controlPoints[i].y, controlPoints[i].z));
+                    }
+
+                    mesh.children.forEach(function (e) {
+                        // 将组成网格的几何体的vertices属性值指向一个更新后的顶点数组
+                        e.geometry.vertices = vertices;
+                        // 顶点被更新了，通知几何体顶点需要更新
+                        e.geometry.verticesNeedUpdate = true;
+                        // 重新计算每个面，从而完成整个模型的更新
+                        e.geometry.computeFaceNormals();
+                        delete e.geometry.__directGeometry
+                    });
+
+                    // 浏览器自动间隔渲染
+                    requestAnimationFrame(render);
+                    renderer.render(scene, camera);
+                }
+
+                // 初始化摄像机控制器
+                function initTrackballControls(camera, renderer) {
+                    var trackballControls = new THREE.TrackballControls(camera, renderer.domElement);
+                    trackballControls.rotateSpeed = 1.0;
+                    trackballControls.zoomSpeed = 1.2;
+                    trackballControls.panSpeed = 0.8;
+                    trackballControls.noZoom = false;
+                    trackballControls.noPan = false;
+                    trackballControls.staticMoving = true;
+                    trackballControls.dynamicDampingFactor = 0.3;
+                    trackballControls.keys = [65, 83, 68];
+
+                    return trackballControls;
+                }
+            }
+
+            (function () {
+                init();
+            })();
+        </script>
+    </body>
+</html>
