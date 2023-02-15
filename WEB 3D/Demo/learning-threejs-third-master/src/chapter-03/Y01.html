@@ -241,6 +241,8 @@
                         ambientLight.color = new THREE.Color(controls.ambientColor);
                         ambientLight.intensity = controls.intensity;
                     });
+                    // addColor 在控制菜单里添加一个选项，在这个选项里可以直接改变传入的颜色变量
+                    // onChange 告诉dat.GUI控制菜单在每次颜色改变的时候调用传入的函数
                     gui.addColor(controls, 'ambientColor').onChange(function (e) {
                         ambientLight.color = new THREE.Color(controls.ambientColor);
                         ambientLight.intensity = controls.intensity;
