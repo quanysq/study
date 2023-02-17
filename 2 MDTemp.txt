@@ -81,7 +81,13 @@
 	Validator "LoginRequestValidator" can't be used with ASP.NET automatic validation as it contains asynchronous rules. ASP.NET's validation pipeline is not asynchronous and can't invoke asynchronous rules. Remove the asynchronous rules in order for this validator to run.
 	原因：使用了 异步 代码，改为同步则无问题
 	.MustAsync((name,_) => dbCtx.Users.AnyAsync(u => u.UserName == name))
-		
+20. 调用华为云接口，提示：未能解析此远程名称
+	机器原因，DNS未能解析域名，可能跟网络有关，过一会就可以了，可以换其它机器试试
+21. 打开多个谷歌浏览器，不小心关闭其中一个谷歌浏览器，怎么恢复
+	右上角的 ... -> 历史 -> 最近关闭的标签页 -> n个标签页 -> 恢复窗口
+	https://www.liulinblog.com/99252.html
+22. 
+
 ***心得***	
 1. sqlserver 还原数据库与还原为新数据库的区别
 	还原数据库：
