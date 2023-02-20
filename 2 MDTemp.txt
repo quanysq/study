@@ -582,7 +582,8 @@
 86. ThreeJS 查看版本
 	打开 three.js 搜索 REVISION
 	https://blog.csdn.net/lin5165352/article/details/103400442
-87. 
+87. Git显示文件被修改，实际没有改动的问题解决办法
+	http://5ixiaohui.com/index.php/Git/70.html
 	
 	
 	
