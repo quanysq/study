@@ -582,7 +582,10 @@
 86. ThreeJS 查看版本
 	打开 three.js 搜索 REVISION
 	https://blog.csdn.net/lin5165352/article/details/103400442
-87. 
+87. 如果关闭打开 IE11 自动跳转到 Edge
+	右上角的 ... - 设置 - 默认浏览器 - IE兼容性 - 选择 从不
+	https://jingyan.baidu.com/article/2fb0ba4099cb2441f3ec5f19.html
+88. 
 	
 	
 	
