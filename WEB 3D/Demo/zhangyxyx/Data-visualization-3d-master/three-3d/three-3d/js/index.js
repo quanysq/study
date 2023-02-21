@@ -1,19 +1,4 @@
 $(function () {
-    //$(".floor").click(function () {
-    //    mesh2.position.y = 17
-    //    mesh3.position.y = 29
-    //    code2.position.y = 17
-    //    code3.position.y = 29
-    //    code4.position.y = 44
-    //})
-    //$(".floor1").click(function () {
-    //    mesh2.position.y = 15
-    //    mesh3.position.y = 25
-    //    code2.position.y = 15
-    //    code3.position.y = 25
-    //    code4.position.y = 40
-    //})
-
     var progress1 = 0;
     var progress2 = 0;
     var camera, scene, renderer, orbitControls, clock, delta;
@@ -38,7 +23,7 @@ $(function () {
         'build_2_31', 'build_2_32', 'build_2_33', 'build_2_34', 'build_2_35', 'build_2_36', 'build_2_37', 'build_2_38', 'build_2_39', 'build_2_40',
         'build_2_41', 'build_2_42', 'build_2_43', 'build_2_44', 'build_2_45', 'build_2_46', 'build_2_47', 'build_2_48', 'build_2_49', 'build_2_50',
     ]
-    //管道
+    //管道 模拟道路
     var curve1 = new THREE.CatmullRomCurve3([
         new THREE.Vector3(-150, 2, -280),
         new THREE.Vector3(-110, 2, -50),
@@ -73,7 +58,7 @@ $(function () {
         renderer.shadowMapEnabled = true;//需要阴影映射
         container.appendChild(renderer.domElement)
 
-
+		//控制旋转
         orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
         orbitControls.target = new THREE.Vector3(0, 0, 0);//控制焦点
         orbitControls.autoRotate = false;//将自动旋转关闭
@@ -235,7 +220,13 @@ $(function () {
             var loader = new THREE.TextureLoader();
             loader.load("./img/cude2.png", (texture) => {
                 var geometry = new THREE.BoxGeometry(30, 5, 20);
-                var material = new THREE.MeshBasicMaterial({ color: 0x739783, map: texture });
+                var material;
+                if (i == 17) {
+                    //模拟选择17楼
+                    material = new THREE.MeshBasicMaterial({ color: 0x99FF66, map: texture });
+                } else {
+                    material = new THREE.MeshBasicMaterial({ color: 0x739783, map: texture });
+                }
                 buildArr1[i] = new THREE.Mesh(geometry, material);
                 buildArr1[i].position.x = 100
                 buildArr1[i].position.y = 5 + i * 5
