@@ -585,7 +585,6 @@
 87. 如果关闭打开 IE11 自动跳转到 Edge
 	右上角的 ... - 设置 - 默认浏览器 - IE兼容性 - 选择 从不
 	https://jingyan.baidu.com/article/2fb0ba4099cb2441f3ec5f19.html
-88. 
 87. Git显示文件被修改，实际没有改动的问题解决办法
 	http://5ixiaohui.com/index.php/Git/70.html
 88. NodeJs 安装教程
