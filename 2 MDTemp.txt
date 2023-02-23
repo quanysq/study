@@ -586,13 +586,22 @@
 	右上角的 ... - 设置 - 默认浏览器 - IE兼容性 - 选择 从不
 	https://jingyan.baidu.com/article/2fb0ba4099cb2441f3ec5f19.html
 87. Git显示文件被修改，实际没有改动的问题解决办法
-	http://5ixiaohui.com/index.php/Git/70.html
+	http://5ixiaohui.com/index.php/Git/70.html （实践无效）
 88. NodeJs 安装教程
 	https://www.jianshu.com/p/1542ce013181
 89. 查看电脑opengl是什么版本
 	https://jingyan.baidu.com/article/93f9803f39f987a1e46f55eb.html
 90. 阿里云镜像
 	https://developer.aliyun.com/mirror/?spm=a2c6h.13651102.0.0.39ce1b11JNbqgB&serviceType=mirror
+91. SVN
+	https://baijiahao.baidu.com/s?id=1690831345300618108&wfr=spider&for=pc
+	https://pc.qq.com/detail/4/detail_2684.html（下载 TortoiseSVN）
+92. WEB 3D 资源库
+	https://www.zhihu.com/column/c_1448595514925592576
+	https://zhuanlan.zhihu.com/p/438916193
+	https://polyhaven.com/zh
+	
+	
 	
 	
 	

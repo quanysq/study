@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Hello ThreeJs - Web 3D - 加载collada格式文件</title>
+    <meta charset="utf-8" />
+    <!--基础脚本库-->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/three.js"></script>
+    <!--
+        TrackballControls.js
+        摄像机移动控制脚本
+    -->
+    <script type="text/javascript" charset="utf-8" src="../../libs/three/controls/TrackballControls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../../libs/three/loaders/ColladaLoader.js"></script>
+    <!--
+        Stats.js
+        动画帧数检测库
+        检测动画运行时的帧数
+        在动画运行时，该库可以在一个图片中显示画面每秒传输帧数
+    -->
+    <script type="text/javascript" src="../../libs/util/Stats.js"></script>
+    <!--
+        dat.gui.js
+        用户操作界面脚本
+    -->
+    <script type="text/javascript" src="../../libs/util/dat.gui.js"></script>
+
+    <script type="text/javascript" src="../js/util.js"></script>
+    <script type="text/javascript" src="./js/baseLoaderScene.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+    <body>
+        <div id="webgl-output"></div>
+
+        <script type="text/javascript">
+            function init() {
+                var camera = initCamera(new THREE.Vector3(35, 35, 35));
+                var loaderScene = new BaseLoaderScene(camera);
+                camera.lookAt(new THREE.Vector3(0, 45, 0));
+
+                var loader = new THREE.ColladaLoader();
+                loader.load("../../assets/models/medieval/Medieval_building.DAE", function (result) {
+
+                    var sceneGroup = result.scene;
+                    sceneGroup.children.forEach(function (child) {
+                        if (child instanceof THREE.Mesh) {
+                            child.receiveShadow = true;
+                            child.castShadow = true;
+                        } else {
+                            // remove any lighting sources from the model
+                            sceneGroup.remove(child);
+                        }
+                    });
+
+                    // correctly scale and position the model
+                    sceneGroup.rotation.z = 0.5 * Math.PI;
+                    sceneGroup.scale.set(8, 8, 8);
+
+                    // call the default render loop.
+                    loaderScene.render(sceneGroup, camera);
+                });
+            }
+
+            (function () {
+                init();
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,83 @@
+{
+	"show": true,
+	"uuid": "",
+	"name": "b1_back_1",
+	"objType": "cube2",
+	"length": 40000,
+	"width": 40000,
+	"height": 1,
+	"x": 0,
+	"y": 0,
+	"z": 0,
+	"style": {
+		"skinColor": 16777215,
+		"skin": {
+			"skin_up": {
+				"skinColor": 16777215,
+				"side": 1,
+				"opacity": 0.4,
+				"imgurl": "../../img/3dImg/bg2.png",
+				"repeatx": true,
+				"width": 5,
+				"repeaty": true,
+				"height": 5
+			},
+			"skin_down": {
+				"skinColor": 16777215,
+				"side": 1,
+				"opacity": 1,
+				"imgurl": "../../img/3dImg/bg2.png"
+			},
+			"skin_fore": {
+				"skinColor": 16777215,
+				"side": 1,
+				"opacity": 1
+			},
+			"skin_behind": {
+				"skinColor": 16777215,
+				"side": 1,
+				"opacity": 1
+			},
+			"skin_left": {
+				"skinColor": 16777215,
+				"side": 1,
+				"opacity": 1
+			},
+			"skin_right": {
+				"skinColor": 16777215,
+				"side": 1,
+				"opacity": 1
+			}
+		}
+	},
+	"showSortNub": 1,
+	"customType1": "",
+	"customType2": "",
+	"animation": null,
+	"dbclickEvents": null,
+	"rotation": [
+		{
+			"direction": "x",
+			"degree": 0
+		},
+		{
+			"direction": "y",
+			"degree": 0
+		},
+		{
+			"direction": "z",
+			"degree": 0
+		}
+	],
+	"thick": null,
+	"scale": {
+		"x": 1,
+		"y": 0.1,
+		"z": 1
+	},
+	"BindDevId": null,
+	"BindDevName": null,
+	"devInfo": null,
+	"BindMeteId": null,
+	"BindMeteName": null
+}
