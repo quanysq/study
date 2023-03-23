@@ -1,607 +1,155 @@
-# 2022-10-24
+# 2023-03-02
 ***事件***
 	
-1. 专项巡查
-	1. 数据中心
-	2. 数据验收巡查
-	3. 确权巡查
-	4. 专项巡查
-	5. 现场验收巡查
-	6. 应急巡查
-2. 整改四次开发
-3. 正式环境无法登录问题（支持）
-4. 抽奖
-5. 微信公众号道	
+1. 番禺何贤医院项目
+
 ***问题***
 
-1. .NET Core 项目引用 .NET Standard 类库项目
-	项目 - 依赖项 - 右键 - 添加项目引用
-2. C# 本地方法
-	https://www.cnblogs.com/ylvict/p/5579350.html
-3. C# null合并赋值
-	?? and ??= (C# 8.0)
-	https://blog.csdn.net/weixin_45129218/article/details/115726143
-4. C# 源代码生成器
-	就是根据之前的代码预判即将输入代码，C#9.0推出的功能
-	https://blog.csdn.net/zls365365/article/details/125755366
-5. sqlserver 将数据库设为单用户模式之后，查询出错：
-	此时无法更改数据库 'JinggaiProduction' 的状态或选项。此数据库处于单用户模式, 当前某个用户已与其连接。
-	解决步骤：
-	1. 在 master 库上新建查询页面
-	2. 运行查询语句
-		```
-		select spid from sysprocesses where dbid=db_id('JinggaiProduction')
-		```
-	3. 杀掉 spid 
-		```
-		KILL {spid}, 如 KILL 53
-		```
-	4. 将数据库设为多用户模式
-		```
-		ALTER DATABASE JinggaiProduction SET MULTI_USER WITH NO_WAIT;
-		```
-		
-	Link: https://blog.csdn.net/weixin_30443731/article/details/97587349
-6. sqlserver 还原时出错，提示：因为数据库正在使用，所以无法获得对数据库的独占访问权
-	右键点击数据库 -> 属性 -> 选项 -> 状态 -> 限制访问 -> 选择Single-> 确定。然后还原。
-	Link: http://www.kaotop.com/it/169888.html
-7. ef core add-migration 提示 Build failed.
-	原因：
-	1. 项目删掉 Program.cs 代码，编译失败，重新加上代码，编译成功即可
-	2. 解决方案中有一个项目编译失败
-	https://www.cnblogs.com/wcoolly/p/13371804.html
-8. ef core add-migration AddArticleTable 生成的 20221111063618_AddArticleTable 没有内容
-	原因: DbContext 没有新增内容
-9. ef core add-migration AddArticleTable 报错：
-	Could not load assembly '普通的一对多配置1'. Ensure it is referenced by the startup project '第一个EFCore项目'.
-	原因：项目 普通的一对多配置1 不是启动项目
-10. ef core add-migration AddArticleTable 报错：
-	System.ArgumentException: The string argument 'name' cannot be empty.
-	原因：有一个表配置时忘记了给表名 builder.ToTable("");
-11. sqlserver 聚合不应出现在 UPDATE 语句的集合列表中
-	修改语句中不能出现聚合函数这一类
-	解决：
-	https://blog.csdn.net/weixin_30384217/article/details/97130346
-12. EF 达到了表达式服务限制。请在您的查询中查找潜在的复杂表达式，并尝试简化它们
-	EF Contains 包含的值太多
-	解决：先不要在数据库层用Contains并 ToList 将数据查出来再 Contains
-	https://blog.csdn.net/qq_44965678/article/details/122240247
-13. c# EF报错：非静态方法需要一个目标	
-	因为 Linq 条件有 null 值导致的
-	https://blog.csdn.net/u010690818/article/details/86645017
-16. nginx 上传大于1M的文件，提示：413 Request Entity Too Large
-	在 nginx.conf - http 块增加一行 - client_max_body_size 10m;
-	https://blog.csdn.net/weixin_40786663/article/details/99681571
-17. 测试环境提示出错：No installed debugger has Just-In-Time debugging enabled（VsJITDebugger），然后关闭应用连接池
-	原因：开发人员上传了在 Debug 模式下编译的 dll
-	https://blog.csdn.net/bitezijie/article/details/43937667
-18. sqlserver json 转成 表格，提示错误：JSON 文本格式不正确。位置 8 中存在非预期的字符 "-"
-	原因：Json 字符串格式必须是数组类型，比如：[{"perName": "张三","perAge": 20}]
-19. Asp.net core Flunt 报错：
-	Validator "LoginRequestValidator" can't be used with ASP.NET automatic validation as it contains asynchronous rules. ASP.NET's validation pipeline is not asynchronous and can't invoke asynchronous rules. Remove the asynchronous rules in order for this validator to run.
-	原因：使用了 异步 代码，改为同步则无问题
-	.MustAsync((name,_) => dbCtx.Users.AnyAsync(u => u.UserName == name))
-20. 调用华为云接口，提示：未能解析此远程名称
-	机器原因，DNS未能解析域名，可能跟网络有关，过一会就可以了，可以换其它机器试试
-21. 打开多个谷歌浏览器，不小心关闭其中一个谷歌浏览器，怎么恢复
-	右上角的 ... -> 历史 -> 最近关闭的标签页 -> n个标签页 -> 恢复窗口
-	https://www.liulinblog.com/99252.html
-22. 
-
+1. nvm 安装 nodejs 运行报错：exit status 1: 'D:\Program' 乱码
+	原因：nvm安装到了有空格的路径上（D:\Program Files），导致切换失败
+	Link: https://blog.csdn.net/mrhaoxiaojun/article/details/122505142
+2. 在vscode终端运行 npm run dev 出错：npm : 无法加载文件 D:\Learn\NodeJs\nvm\npm\npm.ps1。未对文件 D:\Learn\NodeJs\nvm\npm\npm.ps1 进行数字签名。无法在当前系统上运行该脚本。有关运行脚本和设置执行策略的详细信息，请参阅 https:/go.microsoft.com/fwlink/?LinkID=135170 中的 about_Execution_Policies。
+	解决：直接删除 D:\Learn\NodeJs\nvm\npm\npm.ps1，或者把它改名
+	Link：http://www.caotama.com/1424076.html
+3. Win10环境变量Path的开头处增加Java变量后，编辑多行变成单行？
+	把 C:\WINDOWS\system32; 加到最前
+	https://blog.csdn.net/m0_67297673/article/details/123843510
+4. 网上邻居看得见局域网机器，打开时提示找不到网络路径
+	原因：该机器是双网卡，一个IP在局域网内，另一个IP不在局域网内
+	解决：TrueNas 删除其中物理卡(re0)的IP配置
+5. 打开网上邻居，提示：网络发现已关闭,网络计算机和设备不可见
+	控制面板 - 网络和Internet - 网络和共享中心 - 更改高级共享设置 - 启用网络发现
+	https://g.pconline.com.cn/x/1553/15536456.html
+	
+	
 ***心得***	
-1. sqlserver 还原数据库与还原为新数据库的区别
-	还原数据库：
-		右键【需要还原的数据库】->【任务】->【还原】->【数据库】
-		Link: https://blog.csdn.net/qq_35139974/article/details/118304576
-	还原为新数据库：
-		右键【数据库】->【还原文件和文件组(E)...】
-		Link: https://www.jb51.net/article/240952.htm
-2. c# Task.FromResult
-	https://www.cnblogs.com/zaijianba/p/11442400.html
-3. c# Task.CompletedTask
-	https://blog.csdn.net/xu2034029667/article/details/111768120
-4. c# Task.WhenAll
-	同时等待几个 Task
-5. c# await Task.Delay
-	异步暂停，（不要用Thread.Sleep，因为它会阻塞调用线程，要使用await Task.Delay）
-6. c# yield
-	yield 可以把每一步的计算都推迟到程序实际需要的时候再执行，也就是说不用等所有结果都运行完才执行后续代码
-	好处是可以尽可能即时地给用户响应，和提高内存使用效率
-	https://blog.csdn.net/gangzhucoll/article/details/121569805
-7. sqlserver 查找自定义函数被谁引用
-	右键自定义函数 - 选择查看依赖关系
-8. sqlserver 修改字段描述
-	【记录代码】
-	EXEC sp_updateextendedproperty ......
-	https://blog.csdn.net/qq_34357018/article/details/112182951
-9. sqlserver 计算某个字段中用分隔符分割的字符的个数	
-	【记录代码】
-	```
-	select LEN('a,b,c')-LEN(REPLACE('a,b,c','|',''))+1
-	```
-	https://www.gxlcms.com/sql_question-393580.html
-10. sqlserver 多个 NOT EXISTS
-	【记录代码】
-	```
-	SELECT a.District,
-		COUNT(CASE WHEN a.Urgencylevel=1 THEN 1 ELSE NULL END) FaultNum1,
-		COUNT(CASE WHEN a.Urgencylevel=2 THEN 1 ELSE NULL END) FaultNum2,
-		COUNT(CASE WHEN a.Urgencylevel=3 THEN 1 ELSE NULL END) FaultNum3
-	FROM dbo.V_WellCoverAllInfo a
-	WHERE a.FaultGuid IS NOT NULL
-		AND a.City='广州市'
-		AND ''<>ISNULL(a.District,'')
-		AND NOT EXISTS (SELECT 1 FROM dbo.ZhengGaiDetail b WHERE b.FaultItemGuid=a.FaultGuid)
-		AND NOT EXISTS (SELECT 1 FROM #table_TempToNextDetail c WHERE c.ItemGuid=a.FaultGuid)
-	GROUP BY a.District;
-	```
-11. c# FormattableString
-	表示复合格式字符串和要设置格式的自变量。
-	可用于获取和转换
-	https://blog.csdn.net/gangzhucoll/article/details/104713390
-12. c# VS IDE LocalDB 新建数据库和表
-	在表设计器的左上角，选择 "更新"，选择 "更新数据库"
-	https://blog.csdn.net/bjxiejihua/article/details/107909233
-	http://t.zoukankan.com/lucky-donkey-p-13946290.html
-	https://blog.csdn.net/cytcytcytcytcyt/article/details/124118825
-13. git 回滚到某个版本修改，然后再回滚回来 步骤
-	1. 项目右键 - TortoiseGit - Show Log - SHA-1(即 Commit ID) 【推荐】
-		（or）git cmd - run git log - 找到目标 commit id
-	2. git reset --hard <commit id>，如：
-		git reset --hard fb5f7b02d810c3358d3681e6c88f7598618482c5
-	3. git checkout -b <新分支名>，如：
-		git checkout -b pro/team/dev/newpermission
-	4. 修改后保存
-	5. git checkout 切换回原分支
-	6. git reset --hard <commit id> 返回原先的版本，如：
-		git reset --hard a42c919fb003fddad4dbcd49f066768c19dbbc30
-14. sqlserver 删除表及删除表中数据的方法
-	delete or truncate
-	truncate table <表名>
-	http://www.gimoo.net/t/1803/5aa2640965236.html
-15. sqlserver 窗口函数 分组
-	partition by
-	https://www.jianshu.com/p/aea57473191a
-16. HR SaaS
-	https://zhuanlan.zhihu.com/p/377662346
-17. sqlserver 将字符串转换为 in (字符串格式)
-	【记录代码】
-	```
-	a,b,c -> 'a','b','c'
-	SELECT ''''+REPLACE('a,b,c',',',''',''')+'''';
-	单引号用2个引号代替
-	```
-	http://t.zoukankan.com/cnaspnet-p-2002903.html
-18. sqlserver 分页
-	【记录代码】
-	```
-	SELECT * 
-	FROM dbo.WellCoverMainInfo a
-	ORDER BY a.ItemID DESC
-	OFFSET (2-1)*10 ROW FETCH NEXT 10 ROW ONLY;
-	--OFFSET (当前页数-1)*每页数据条数 ROW FETCH NEXT 每页数据条数 ROW ONLY
-	```
-	https://www.cnblogs.com/cplvfx/articles/14205768.html
-19. sqlserver 时间转换
-	【记录代码】
-	```
-	SELECT GETDATE() NowTime,  --2022-11-23 14:38:24.420
-		CONVERT(VARCHAR(25),GETDATE(),20) NowTimeStr1, --2022-11-23 14:38:24
-		CONVERT(VARCHAR(10),GETDATE(), 21) NowTimeStr2 --2022-11-23
-	```
-20. Windows 进入和退出 linux 子系统
-	进入：CMD 运行 bash 命令
-	退出：运行 exit 命令
-	https://blog.csdn.net/liouwb/article/details/109028515
-21. linux子系统文件在哪
-	https://jingyan.baidu.com/article/d8072ac4718e74ad95cefdaa.html
-	[注]我本地机没有 rootfs 这个目录，不知是否升级为 wsl2 的原因
-22. Linux查看目录命令
-	ls：查看当前目录信息
-	tree：以树状方式显示目录信息
-	https://blog.csdn.net/weixin_57003452/article/details/121160160
-24. Linux子系统中查看Windows目录
-	```
-	cd /mnt
-	ll -a --即可看到本地盘符
-	cd c
-	ls
-	```
-	https://blog.csdn.net/weixue9/article/details/125443406
-	https://blog.csdn.net/qq_34159047/article/details/121973652
-25. Windows10内置Linux子系统（WSL）迁移目录
-	https://www.cnblogs.com/RainFate/p/16771574.html
-26. sqlserver int 转 decimal
-	【记录代码】
-	```
-	DECLARE @Total DECIMAL(8,2);
-	SET @Total=17*1.0;
-	```
-27. sqlserver 保留2位小数点
-	```
-	Convert(decimal(18,2), 3.1245)
-	```
-	https://www.cnblogs.com/wangcq/p/4938547.html
-28. docker 怎么退出 yarn dev 环境？
-	Ctrl + C
-	https://blog.csdn.net/qq_53810245/article/details/121007677
-29. sqlserver float 转 Int，并去掉小数点
-	【记录代码】
-	```
-	SELECT CAST(0.96*100 AS int)
-	```
-30. html声明charset="utf-8"后，浏览器访问中文依旧乱码
-	https://blog.csdn.net/weixin_50464560/article/details/119277472
-31. sqlserver 查询具体某一天的数据
-	【记录代码】
-	```
-	...... Where DateDiff(dd,'2022-9-23',a.SystemDate)=0
-	```
-	http://t.zoukankan.com/fumj-p-3672755.html
-32. 查询出来的列表数据同时其它用途如下载等，如果设计？
-	在数据库增加一临时表，用于缓存列表数据（不用所有字段，只要主键字段就够），
-	每次查询列表时同时把数据缓存在这个临时表，
-	缓存前先把数据清空
-33. c# SqlSugar List 批量快速存入数据库在数据库增加一临时表
-	sqlSugarClient.Insertable(List<TempDataCenter>).ExecuteCommand();
-	TempDataCenter是数据表实体类
-	https://www.donet5.com/home/Doc?typeId=1193
-34. c# SqlSugar 批量删除数据表
-	sqlSugarClient.Deleteable<TempDataCenter>().ExecuteCommand();
-	或者执行SQL语句
-	https://www.donet5.com/home/Doc?typeId=1195
-35. asp.net core IOptionsSnapshot
-	IOptionsSnapshot 通过注册为一个作用域内的单例模式，来保证当配置发生变化时，下一个请求可以获取到最新的配置
-	https://blog.csdn.net/sD7O95O/article/details/78096175
-36. asp.net web api httppost frombody string 参数在 postman 如何传参？
-	Body - raw - Json 格式 - 直接输入字符串如 "1,2"
-	https://www.cnblogs.com/microestc/p/11003233.html
-37. ASP.NET Core 使用redis
-	https://blog.csdn.net/weixin_46178278/article/details/125593153
-38. sqlserver 存储过程表值参数
-	1. 用于代码中直接传送list结构数据
-	2. sqlserver 需要创建一个跟 List 相同结构的 Type (注意：这里会产生比较深的耦合)
-	3. 代码中list参数类型用 SqlDbType.Structured
-	4. 总结：代码传类似1,2,3结构的字符串，sqlserve创建一个类似 split 的函数进行字符串进行解析转成table比较方便
-	5. 参考：https://www.cnblogs.com/qingiqng99/archive/2012/02/28/2370984.html
-39. c# TransactionScope 事务 MSDTC
-	https://blog.csdn.net/weixin_45756851/article/details/126466392
-	https://www.cnblogs.com/nlh774/p/3434050.html
-40. Asp.net B/S模式下使用Console.Write()
-	https://www.cnblogs.com/blogshow/archive/2012/07/22/2603808.html
-41. c# Environment.TickCount64
-	自系统启动以来的毫秒数
-42. asp.net core webapi 中间件获取请求的 Body
-	【记录代码】
-	```
-	var reqStream = context.Request.BodyReader.AsStream();
-	var jsonObj = JsonSerializer.Deserialize<CheckAndParsingMiddlewareModel>(reqStream);
-
-	[OR]
-	Stream reqStream = context.Request.Body;
-	byte[] buffer = new byte[context.Request.ContentLength!.Value];
-	await reqStream.ReadAsync(buffer, 0, buffer.Length);
-	var reqStr = Encoding.UTF8.GetString(buffer);
-	var jsonObj = JsonSerializer.Deserialize<CheckAndParsingMiddlewareModel>(reqStr)!;
-
-	说明：
-	1. 以前两种写法都可以，第一种更简洁，第二种是先转成字符串
-	2. JsonSerializer.Deserialize 不支持序列化为 dynamic 类型，需要创建一个实体类
-	```
-	https://blog.csdn.net/xyx_0300/article/details/121560872
-	https://www.cnblogs.com/tchivs/p/12167949.html
-43. c# PathString
-	使用给定值初始化路径字符串，必须采用未转义格式。
-	就是普通的string,但有自己的一系列方法和属性
-44. .net core 类库项目如何使用 Microsoft.AspNetCore.App 框架？
-	在 csproj 文件添加：
-	```
-	<Project Sdk="Microsoft.NET.Sdk">
-		......
-		<ItemGroup>
-			<FrameworkReference Include="Microsoft.AspNetCore.App" />
-		</ItemGroup>
-	</Project>
-	```
-45. c# 读取文本文件编码 Nuget 包
-	Ude.NetStandard
-	```
-	/// <summary>
-	/// 检测流的编码
-	/// </summary>
-	/// <param name="stream"></param>
-	/// <returns></returns>
-	private static string DetectCharset(Stream stream)
-	{
-		CharsetDetector charDetector = new();
-		charDetector.Feed(stream);
-		charDetector.DataEnd();
-		string charset = charDetector.Charset ?? "UTF-8";
-		stream.Position = 0;
-		return charset;
-	}		
-	```
-46. c# MarkDown to Html 转换器 Nuget 包
-	MarkdownSharp
-47. 微信公众号文章发布和群发的区别？
-	发布：
-	发布的内容不会通过推送消息触达给关注的粉丝，也不会占用群发的次数，每天可以发布多篇内容，只能通过搜索找到文章。
-	相当于把以前预览的临时链接，生成了一个永久链接而已
-	
-	群发：
-	发布的同时推送消息给关注的粉丝，订阅号每天只能发送一次
-	
-	https://blog.csdn.net/xyookj/article/details/126948703
-48. 微信公众号发布改成群发
-	在公众号首页 - 新的创作选项下，点击选择已有图文 - 编辑后点击群发，缺点是会重新生成一篇同样的文章
-	https://jingyan.baidu.com/article/d169e186657765026711d845.html
-49. c# AddDataProtection
-	数据保护服务
-	https://www.cnblogs.com/fanfan-90/p/16368728.html
-50. .net core 6.0 类库项目怎么转为控制台项目？
-	直接 【项目右键 - 属性 - 输出类型 - 控制台应用程序】 即可
-51. sqlserver 查询经纬度范围（2公里以内的数据）
-	【记录代码】
-	```
-	--筛查井盖
-	WITH WellCoverPicture AS (
-		SELECT b.ModuleGuid,
-			MAX(b.Url) PictureUrl
-		FROM dbo.PictureAttachWellCover b
-		WHERE b.Type=2 --显示远景图片
-			AND b.Module='WellCoverInfo'
-			AND b.Sort<=1
-		GROUP BY b.ModuleGuid
-	)
-	SELECT a.ItemGuid,c.PictureUrl,a.GdLng,a.GdLat
-	FROM dbo.V_WellCoverAllInfo a
-		INNER JOIN WellCoverPicture c ON c.ModuleGuid=a.ItemGuid
-	WHERE 1=1
-		--AND a.CustomerNum=''
-		--AND a.InspectionRoad='白云大道南'
-		--AND a.WellType=''
-		AND (6371.004*ACOS(SIN(23.116299/180*PI())*SIN(a.GdLat/180*PI())+COS(23.116299/180*PI())*COS(a.GdLat/180*PI())*COS((113.249934-a.GdLng)/180*PI())))<=2 --计算经纬度范围在2公里以内
-	
-	--说明：
-	--1. 23.116299 是前端传的纬度数据
-	--2. 113.249934 是前端传的经度数据
-	```
-	https://blog.51cto.com/u_15288318/3025544 （代码中用这个）
-	https://blog.csdn.net/weixin_44939996/article/details/108050672
-	https://cloud.tencent.com/developer/article/1895321
-	https://map.jiqrxx.com/jingweidu/ （在线地图经纬度查询）
-52. sqlserver 窗口函数
-	http://wjhsh.net/CareySon-p-3411176.html
-53. sqlserver 删除数据库
-	> 步骤：
-		1. 打开SQL SERVER management studio
-		2. 要删除的数据库上右键，点击 属性，查看数据库的文件在哪里
-		3. 要删除的数据库上右键，点击 删除
-		3. 在删除界面上勾选 关闭现有连接
-		4. 点击 确定
-		6. 返回后，可以看到数据库已经被删除，文件也已经被删除
-	
-	https://jingyan.baidu.com/article/a501d80c118ab9ad620f5e5c.html
-54. 有道云笔记 Markdown 代码块一行代码太长怎么自动换行
-	调查后，有道云笔记 Markdown 编辑框的问题，暂时只能用引用代替
-	https://www.codenong.com/jse0c048b60e78/
-55. 微信语音怎么转给别人？
-	http://www.kmmshs.com/news/695.html
-56. UEFI环境下安装的WIN10运行Ghost失败？
-	UEFI不支持DOS，所以在UEFI环境下安装的WIN10等系统也就无法使用基于DOS的一键GHOST，
-	只能在传统模式（即“Legacy”模式）下重做系统，才能使用本软件
-57. sqlserver 大数据量insert into xx select慢的解决方案
-	> 1. update 和Delete操作当成一个事务处理
-		2. Insert into前先删除索引
-		3. 将需要insert into的数据，拆分成不大于3000条/次去执行。
+1. 树莓派
+	> 树莓派是一系列为编程教育而设计的:
+		1. 只有信用卡大小的微型电脑（单板计算机），
+		2. 拥有丰富的硬件接口，
+		3. 能够安装任何ARM平台的操作系统，比如Linux的一些发行版、Android、Windows IoT等
 		
-	http://t.zoukankan.com/colder-p-3508452.html
-58. sqlserver 在存储过程中使用另一个存储过程返回的查询结果集的方法
-	> 1. 创建一个跟结果集相同结构的临时表或 table 变量
-		2. 执行 Insert into 语句，如:
-			insert into @Record
-			exec sp_GetBorrowRecord @BeginTime,@EndTime
-		3. 这种方法在查询的数据量较大的情况下比较影响性能，查询速度较慢，在数据量较小的情况下这种差异并不明显
-	https://www.jb51.net/article/36102.htm
-59. 微信公众号在线排版编辑器
-	https://editor.mdnice.com/ 已注册
-	或者安装chrome插件，安装时要打开开发者模式，插件路径：D:\Jacky\Tools\Chrome 插件\mdnice_1_3_1.crx
-	https://blog.csdn.net/weixin_50464560/article/details/120380556
-60. sqlserver 利用 xml 行转列
-	【记录代码】
+	Link: https://zhuanlan.zhihu.com/p/166019428?from=groupmessage
+2. OS Windows10启动项在哪里设置
+	https://jingyan.baidu.com/article/63acb44a31c66320fdc17e28.html
+3. OS 查看内存条型号厂家等信息
+	打开 CPU-Z，看 内存条和SPD 选项，就可以看到内存条详细信息
+	CPU-Z 路径：D:\Tools\OSTools\cpu-z_2.05-cn\cpuz_x64.exe
+4. Vmmem进程(WSL)占用CPU或内存资源过高的解决办法
+	https://blog.csdn.net/Power_Blogger/article/details/128158694
+	【实践中，似乎也没什么太大的改善】
+5. ThinkPad E450 加内存条
+	1. 通过 CPU-Z，看内存条的信息，主要是厂家和型号
+		https://www.zhihu.com/question/398309669
+		https://product.pconline.com.cn/itbk/software/dnyw/1564/15645788.html （WMIC 命令： wmic memorychip）
+	2. 购买相应的内存条（下单前发电脑型号跟客服确认，不要拆机款）
+		- https://item.jd.com/46265454958.html
+	3. 拆后盖安装
+		- 视频：哔哩哔哩（https://www.bilibili.com/video/av642521234/）
+		- URL：
+			https://zhidao.baidu.com/question/1840361557125253260.html
+			https://www.x444.cn/youxishuma/diannao/460556.html（联想（Thinkpad）E450 E450C 拆机教程）
+6. OS 蓝牙耳机怎么连接Win10电脑
+	https://g.pconline.com.cn/x/1563/15634088.html
+7. OS 笔记本 Win10 如何在使用中文输入法的时候打出英文字符
+	先按一下 CTRL+。，再按符号就是英文的了
+	https://blog.csdn.net/m0_59180666/article/details/128942895
+8. OS win10系统如何把应用程序设置在开始桌面进行固定和分类
+	右键 - 固定到开始菜单
+	https://m.kafan.cn/edu/25140154.html
+9. OS win10系统设置显示最常用应用的方法
+	https://jingyan.baidu.com/article/49711c61a3c927bb441b7cda.html
+10. git-svn
+	装了 git 软件，直接 git svn clone 就可以克隆 svn 版本库里的项目，不需要额外安装其它工具
+	http://everet.org/git-svn-journey.html（Git-svn历险记）
+	https://blog.csdn.net/w_z_z_1991/article/details/51851897（学习使用 git-svn）
+	https://blog.csdn.net/wuheshi/article/details/78247296（git-svn使用教程）
+11. 无人机三维建模
+	https://new.qq.com/rain/a/20220218A0C0IO00（无人机倾斜三维建模在建筑检测中的应用）
+	https://zhuanlan.zhihu.com/p/562794806（无人机3D实景建模）
+	https://baijiahao.baidu.com/s?id=1721800766067514742&wfr=spider&for=pc（无人机实景3D建模的几种方式）
+	https://baijiahao.baidu.com/s?id=1722800353319942394&wfr=spider&for=pc（利用无人机进行三维建模的三种方式）
+12. 小米查看应用上次打开时间
+	设置-屏幕时间管理-看板-应用使用情况 [OR]
+	应用设置-应用管理-应用行为记录
+	https://jingyan.baidu.com/article/a65957f431c10765e67f9bf5.html
+	https://jingyan.baidu.com/article/a3aad71a09604ff0fb0096d7.html
+	https://www.x444.cn/youxishuma/shouji/460807.html
+13. java jdk、jre、jvm、javase、javaee
+	jdk: 开发环境（也就是 javase 或 javaee）
+	jre: 运行环境（相当于 .net framework）
+	jvm: 虚拟机（相当于 Windows OS）
+	https://blog.csdn.net/ch1406285246/article/details/129183866
+	https://www.oracle.com/cn/java/technologies/javase/javase8u211-later-archive-downloads.html (Java8官网下载)
+14. java 查看jdk安装路径
+	https://blog.csdn.net/weixin_69553582/article/details/129053793
+15. Everything 官网
+	https://www.voidtools.com/zh-cn/
+16. TrueNas
+	https://www.cnblogs.com/guarderming/p/16111587.html
+17. IDEA2022.2 最佳配置
+	https://blog.csdn.net/sinat_27933301/article/details/83903199（IntelliJ IDEA开发最佳配置（已更新至2022版））
+18. java @RestController 和 @Controller 的区别
+	@RestController: rest api
+	@Controller: 和 view 配合
+	https://www.cnblogs.com/mayay/p/6116689.html
+19. java @RequestMapping
+	@RequestMapping: 用来处理请求地址映射的注解，可用于映射一个请求或一个方法，可以用在类或方法上
+	https://blog.csdn.net/m0_67401055/article/details/125057030
+20. java @Autowired
+	可以对类成员变量、方法及构造函数进行标注，完成自动装配的工作，类似于 C# 的 IOC
+	https://www.cnblogs.com/fnlingnzb-learner/p/9723834.html
+	https://blog.csdn.net/weixin_45755816/article/details/118654961
+21. java @PreAuthorize
+	@PreAuthorize是SpringSecurity提供的权限安全认证注解。是在进入方法前进行权限验证，@PreAuthorize 声明这个方法所需要的权限表达式
+	https://www.cnblogs.com/harbin1900/p/15220849.html
+22. java pom.xml
+	POM是项目对象模型(Project Object Model)的简称,它是Maven项目中的文件，使用XML表示，名称叫做pom.xml。作用类似ant的build.xml文件，功能更强大。该文件用于管理：源代码、配置文件、开发者的信息和角色、问题追踪系统、组织信息、项目授权、项目的url、项目的依赖关系等等。事实上，在Maven世界中，project可以什么都没有，甚至没有代码，但是必须包含pom.xml文件。
+	https://www.cnblogs.com/xubao/p/14745523.html
+23. java pom.xml 打包方式
+	在父级项目中的pom.xml文件使用的packaging配置一定为pom
+	当pom文件中没有设置packaging参数时，默认使用jar方式打包
+	https://blog.csdn.net/HEshenghuxi/article/details/124765772
+24. java MyBatis
+	一个半自动的 ORM 框架
+	https://blog.csdn.net/lsl5713/article/details/124451398 [MyBatis教程（看这一篇就够了）]【重要】
+25. OS 打开 Windows Defender
+	Windows 设置 - 搜索 Windows Defender - 双击打开
+26. 初步认识 Frp
+	内网穿透工具，比免费花生壳好用
+	https://sspai.com/post/52523/
+27. OS windows Server 2016安装Hyper-V 安装图解
+	https://jingyan.baidu.com/article/48a4205720a077a9242504b5.html
+28. OS 在hyper-v虚拟机中安装并配置linux
+	https://www.cnblogs.com/lovexy-fun/p/16656432.html
+29. java SpringBoot项目查看（Spring、SpringBoot）默认版本配置
+	通过 pom 文件查看
+	https://www.jianshu.com/p/6e026d6ea65c
+30. linux centos7命令行安装桌面
+	https://blog.csdn.net/weixin_43055250/article/details/125375621
+31. linux centos yum 命令
+	https://blog.csdn.net/qq_44114279/article/details/105913624
+32. OS 清除windows访局域网保留的缓存信息
 	```
-	DECLARE @name VARCHAR(16);
-	DECLARE @xml_para XML;
-	  
-	SET @name = 'b,c';
-	SET @xml_para = CAST(( '<a>' + REPLACE(@name, ',', '</a><a>') + '</a>' ) AS XML);
-	  
-	SELECT A.value('.', 'varchar(max)') AS [Column] FROM  @xml_para.nodes('a') AS FN ( A )
+	1. 单击“开始”，单击“运行”，键入“control userpasswords2”或输入“control keymgr.dll”，然后按 Enter.
+	2. 单击“高级”选项卡，然后单击“管理密码”
+	3. 单击“高级”选项卡，然后单击“管理密码”。
+	4. 重启机器或者尝试重启“workstation”服务
+	5. Link: https://www.bkqs.com.cn/content/1pldl8o3o.html(清除windows访局域网保留的缓存信息)
+	```
+33. Notepad++如何安装使用Vim？visimulator？
+	https://jingyan.baidu.com/article/6fb756ec5bd0c8241858fb30.html
+34. java IDEA 重命名文件
+	选择需要重命名的文件,右击,选择Refactor--Rename
+	https://blog.csdn.net/weixin_61623926/article/details/126032789
+35. java IDEA 创建 MyBatis 映射文件模板
+	https://www.cnblogs.com/tiancn/p/16516649.html
+36. java IDEA 去掉拼写检查
+	File - Settings - 搜索 inspections（Editor - Inspections）- 左边列表 - 找到并展开 proofreading - 取消勾选 Typo
+	https://blog.csdn.net/qq_33425234/article/details/119535852
+37. 
 	
-	说明：
-	如果将表中某个字段的值行转列，需要利用 OUTER APPLY，可参考以下URL或笔记《sql server 内联表值函数例子》
-	```
-	https://blog.csdn.net/qq_25128693/article/details/114265459
-	https://blog.csdn.net/weixin_30572613/article/details/96695941
-61. sqlserver 函数例子
-	【记录代码 - ok】
-	https://blog.csdn.net/aijie6150/article/details/102135229
-62. sqlserver 查询条件IN中能否使用变量探研
-	https://www.php1.cn/detail/SQLServer_ChaXun_e50f6bf4.html
-63. sqlserver apply 语法（OUTER APPLY 和CROSS APPLY）
-	类似于Join语法，但可以使用更复杂的表值函数对某个字段进行处理，性能上不如Join，但可用于更复杂情况
-	https://www.cnblogs.com/superfeeling/p/15605996.html
-	http://t.zoukankan.com/kelelipeng-p-10495891.html
-64. sqlserver 执行计划
-	【记录代码】
-	```
-	SET STATISTICS PROFILE ON
-	SELECT * FROM dbo.V_WellCoverAllInfo
-	```
-	https://blog.csdn.net/lm3758/article/details/119920277
-65. sqlserver 聚集索引，非聚集索引
-	【记录代码】
-	```
-	--创建 聚集索引
-	CREATE UNIQUE CLUSTERED INDEX IX_Clustered_Empployee ON dbo.Employee(EmpID);
-	
-	--创建唯一非聚集索引
-	CREATE UNIQUE NONCLUSTERED INDEX IX_NonClustered_Employee ON dbo.Employee(EmpContactNumber);
 
-	--创建不唯一非聚集索引
-	CREATE NONCLUSTERED INDEX NCIX_Employee_EmpAge ON dbo.Employee(EmpAge);
-	```
-	https://blog.csdn.net/albatross76/article/details/117645595
-66. 微信公众号发送通知消息
-	http://lihuaxi.xjx100.cn/news/32456.html
-	https://www.cnblogs.com/yzeng/p/15767349.html
-	https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#3
-	
-	企业微信消息推送
-	https://zhuanlan.zhihu.com/p/460215635
-	https://developer.work.weixin.qq.com/document/path/90487
-	https://blog.csdn.net/obliv/article/details/127980221
-	
-	微信开发文档
-	https://developers.weixin.qq.com/doc/
-	
-	微信官文档 ■ 公众号
-	https://developers.weixin.qq.com/doc/offiaccount/Getting_Started/Overview.html
-67. 个人可以注册使用企业微信吗？
-	可以
-	https://zhuanlan.zhihu.com/p/413034814
-68. 快速查看本机公网IP的方法
-	打开百度 - 输入 :ip - 确定，即显示本机公网 ip 
-	或者第三方网站，如 https://ifconfig.me/
-	参考：
-	https://blog.csdn.net/bitcsljl/article/details/124551299
-	https://www.woyoujk.com/k/401859.html
-69. Notepad++ 支持 MarkDown
-	https://blog.csdn.net/m0_54648836/article/details/126812490
-70. Postman中伪造referer
-	https://blog.csdn.net/taotie_/article/details/119639190
-71. sqlserver 日期增加一天
-	【记录代码】
-	```
-	SELECT DATEADD(DAY,1, GETDATE())
-	```
-72. sqlserver 解析 json 格式字符串，转成表格
-	【记录代码】
-	```
-	DECLARE @jsonStr VARCHAR(MAX)
-	----SET @jsonStr ='[{"perName": "张三","perAge": 20},{"perName": "李四","perAge": 23},{"perName": "王五","perAge": 25}]'
-	--SET @jsonStr ='[{"perName": "张三","perAge": 20}]'
-	--SELECT JSON_VALUE(value,'$.perName') AS perName,JSON_VALUE(value,'$.perAge') AS perAge
-	--FROM openjson(@jsonStr) AS A
-
-	SET @jsonStr='[{"ItemGuid":"58210000-5D00-0015-1712-08DAF4668C22","IsEditWellCover":-1,"PageNumber":1,"PageSize":10,"Sort":"systemDate","Order":"desc","OrderBy":"systemDate desc","Fields":null}]';
-	SELECT JSON_VALUE(value, '$.ItemGuid') AS ItemGuid
-	FROM OPENJSON(@jsonStr) AS a
-	```
-	https://www.cnblogs.com/xy0710/p/16362753.html
-	https://www.gxlsystem.com/shujuku-2338815.html
-73. sqlserver 查看兼容级别
-	【记录代码】
-	```
-	SELECT name,compatibility_level FROM sys.databases WHERE name ='{数据库名}'
-	如：
-	SELECT name,compatibility_level FROM sys.databases WHERE name ='JinggaiNew'
-	```	
-74. sqlserver 索引视图（物化视图）
-	http://www.manongjc.com/detail/52-urndldbucxqrwqi.html
-	https://www.cnblogs.com/kissdodog/p/3385161.html
-75. sqlserver CLR
-	sqlserver 调用 C# 方法
-	如果一个存储过程返回多个结果集，其它存储过程调用它并取其中的一个结果集，就可以采用这个方式
-	https://blog.csdn.net/tjvictor/article/details/4731052/
-	https://blog.csdn.net/weixin_30485799/article/details/99471556/
-76. sqlserver 分页查询并返回总数
-	使用count(1) over()获取总记录数量
-	https://www.zhiu.cn/65569.html
-77. sqlserver 日志
-	https://jingyan.baidu.com/article/48a42057929109e925250444.html （SQL Server如何查看日志）
-	https://www.imooc.com/article/25436（SQL Server中日志起到的的作用）
-	https://bbs.csdn.net/topics/380207214?list=2027765（SQLServer中的日志的作用是什么）
-78. c# HashSet
-	不允许有重复元素的List
-	https://blog.csdn.net/qq_42316280/article/details/121498678
-79. c# 算数运算符（++）
-	分为前++和后++，不管是前++还是后++，最终的结果都是给这个变量加一。
-	区别：表达式中，如果是前++，则先给这个变量加一，然后带着这个加一后的值去参与运算。如果是后++，则先拿原值参与运算，运算完之后，再将这个变量自身加一。
-	https://blog.csdn.net/weixin_62520626/article/details/126832180
-80. 如何在word里面插入代码块？
-	菜单 插入 - 工具栏 - 文本区域 - 选择对象 - 新建 - 选择 OpenDocument Text 
-	https://blog.csdn.net/Davidietop/article/details/118878899
-	https://jingyan.baidu.com/article/ce4366494f80023772afd34e.html
-81. sqlserver 去重
-	【记录代码】
-	```
-	--先排序数据，然后按照原排序顺序去除重复数据
-	SELECT COUNT(1) OVER(PARTITION BY a.RFID  ORDER BY a.SystemDate DESC) RNO,
-		a.EquitmentNum,
-		a.RFID,
-		a.SystemDate
-	INTO #Tb_UserScanRFID
-	FROM dbo.BindUserEquitmentInfo b
-		INNER JOIN dbo.ScanRFID a ON b.UserID=a.Creator AND b.EquitmentNum=a.EquitmentNum 
-	WHERE a.IsDelete=0
-		AND b.IsDelete=0
-		AND b.UserID='gzcg_maxingzhi'
-		AND NOT EXISTS(SELECT 1 FROM dbo.WellCoverMainInfo b WHERE b.RFID=a.RFID AND b.IsDelete=0);
-	SELECT * FROM #Tb_UserScanRFID a WHERE a.RNO=1 ORDER BY a.SystemDate DESC;
-	DROP TABLE #Tb_UserScanRFID;
-	```
-	https://www.zjh336.cn/?id=241
-82. markdown Excel数据快速转换为Markdown格式
-	https://blog.csdn.net/qi8023for/article/details/125580002
-	https://tableconvert.com/zh-cn/excel-to-markdown (markdow - to - excel 在线转换 中文)
-	https://tableconvert.com/excel-to-markdown (markdow - to - excel 在线转换 英文)	
-83. 网页3D
-	https://blog.csdn.net/weixin_55953988/article/details/123082379
-	https://blog.csdn.net/qq_43668086/article/details/86708532
-84. 搭建本地ThreeJS例子站点
-	1. IIS 创建站点
-	2. 配置 MIME 信息
-		```
-		.glb       mime类型：model/gltf-binary
-		.gltf      mime类型：model/gltf+json
-		.hdr       mime类型：application/x-hdr
-		.wasm      mime类型：application/wasm
-		.dae       mime类型：model/vnd.collada+xml
-		.drc       mime类型：application/vnd.oma.drm.rights+wbxml
-		.fbx       mime类型：application/octet-stream
-		.gcode     mime类型：text/x-gcode
-		.kmz       mime类型：application/vnd.google-earth.kmz
-		.mpd       mime类型：application/vnd.ms-project
-		.*         mime类型：application/octet-stream //万能类型
-		```
-	https://www.jianshu.com/p/5f765b45f3ac
-85. js instanceof
-	相当于 C# 中 is，判断对象是否某个类型
-	https://www.cnblogs.com/WuAnqi/p/15406999.html
-86. ThreeJS 查看版本
-	打开 three.js 搜索 REVISION
-	https://blog.csdn.net/lin5165352/article/details/103400442
-87. 如果关闭打开 IE11 自动跳转到 Edge
-	右上角的 ... - 设置 - 默认浏览器 - IE兼容性 - 选择 从不
-	https://jingyan.baidu.com/article/2fb0ba4099cb2441f3ec5f19.html
-87. Git显示文件被修改，实际没有改动的问题解决办法
-	http://5ixiaohui.com/index.php/Git/70.html （实践无效）
-88. NodeJs 安装教程
-	https://www.jianshu.com/p/1542ce013181
-89. 查看电脑opengl是什么版本
-	https://jingyan.baidu.com/article/93f9803f39f987a1e46f55eb.html
-90. 阿里云镜像
-	https://developer.aliyun.com/mirror/?spm=a2c6h.13651102.0.0.39ce1b11JNbqgB&serviceType=mirror
-91. SVN
-	https://baijiahao.baidu.com/s?id=1690831345300618108&wfr=spider&for=pc
-	https://pc.qq.com/detail/4/detail_2684.html（下载 TortoiseSVN）
-92. WEB 3D 资源库
-	https://www.zhihu.com/column/c_1448595514925592576
-	https://zhuanlan.zhihu.com/p/438916193
-	https://polyhaven.com/zh
-	
-	
 	
 	
 	
