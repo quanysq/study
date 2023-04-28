@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService{
+    // 依赖注入 UserDao
     @Autowired
     private UserDao userDao;
 

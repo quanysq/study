@@ -21,6 +21,6 @@ public class UserController {
     public String getIndex(Model model){
         User user = userService.selectUserById(1);
         model.addAttribute("user", user);
-        return "index";
+        return "index"; //Mvc 页，名称跟thymeleaf 模板页一致
     }
 }

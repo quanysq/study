@@ -20,7 +20,45 @@
 5. 打开网上邻居，提示：网络发现已关闭,网络计算机和设备不可见
 	控制面板 - 网络和Internet - 网络和共享中心 - 更改高级共享设置 - 启用网络发现
 	https://g.pconline.com.cn/x/1553/15536456.html
-	
+6. git报错: unable to access ‘https://github.com/…’: OpenSSL SSL_read: Connection was reset, errno 10054
+	原因：一般是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错
+	解决：运行命令 git config --global http.sslVerify false
+	参考：https://blog.csdn.net/bblood307/article/details/120307064
+7. 使用 threeBSD 出错：Right-hand side of 'instanceof' is not an object
+	原因：应该是threejs版本的问题
+	解决：使用 three v110 没有问题
+	参考：https://blog.csdn.net/qq_41604498/article/details/116939823
+8. TrueNas 系统机器突然关机后重启提示：	This is a FreeNAS data disk and can not boot system. System halted. 进入 BIOS 后没有找到启动系统 SanDisk 'Cruzer' Fit
+	原因：猜测是机房太热导致机器主板出现故障，BIOS 找不到启动系统
+	解决：将 CMOS 电池取出来后擦一擦过几分钟后重新放回，问题解决
+	扩展：CMOS 电池取出放回可以消除 BIOS 密码和重置 BIOS 
+	参考：https://www.truenas.com/community/threads/this-is-a-freenas-data-disk-and-can-not-boot-system-system-halted-after-every-update.95940/
+9. VB6 的程序拷到 WinXP 上不能使用，提示 ActiveX 部件不能创建
+	原因：没有 VB6 运行时库
+	解决：安装 VB6 后解决
+10. asp.net core webapi 运行时（http://localhost:5061）提示：ERR_UNSAFE_PORT网页可能已永久移到新的网址	
+	原因：Edge 浏览器限制了端口
+	解决：修改项目的端口号为8089（方法见心得83），问题解决
+	参考：https://cloud.tencent.com/developer/article/1589142，https://www.cnblogs.com/soyxiaobi/p/9507798.html
+11. 万傲瑞达V6600(ZKBioCV Security_V6600_2.3.0_x64_2022-04-02-1212.exe) 找不到门口的考勤机设备？
+	原因：安装 万傲瑞达V6600 时用的是 SSL，但考勤机设备没有启用Https
+	解决：重装 万傲瑞达V6600 并使用 Http 模式
+	参考：
+		- D:\Work\GaoShen\doc\中控人脸机\万傲瑞达V6000用户手册.pdf 
+		- D:\Work\GaoShen\doc\中控人脸机\万傲瑞达V6600_2.3.0版本（软件包）_标准API接口_20220321.pdf
+12. asp.net core webapi 读取 request body 提示：System.InvalidOperationException: Synchronous operations are disallowed. Call ReadAsync or set AllowSynchronousIO to true instead.
+	原因：使用同步方法 Read 读取，.net core 默认不启用同步方法
+	解决：采用异步方法或启用同步
+	参考：https://article.itxueyuan.com/rxX6wp
+13. 连接 Mysql 提示错误：Unhandled exception. SqlSugar.SqlSugarException: 中文提示 :  连接数据库过程中发生错误，检查服务器是否正常连接字符串是否正确，错误信息：Host 'svr-ltsk-yyznpt' is not allowed to connect to this MySQL serverDbType="MySql";ConfigId="6b269db7-71de-47b7-8c9e-aaf6451b249e".
+	原因：Mysql 未启用远程连程
+	解决：启用远程连接或将 Host 改为 localhost
+	参考：https://blog.csdn.net/arlene12345/article/details/122933316
+14. C# 代码中使用 Mysql 插入数据，提示：Unhandled exception. MySqlConnector.MySqlException (0x80004005): Parameter '@dev_name' must be defined. To use this as a variable, set 'Allow User Variables=true' in the connection string.
+	原因：sql 语句中有 @dev_name，但没定义相应的参数
+	参考：https://blog.csdn.net/General_Y/article/details/117375418
+15. gogs 把已有仓库添加到团队仓库中,提示不存在
+	原因：仓库的拥有者不是团队的组织
 	
 ***心得***	
 1. 树莓派
@@ -96,6 +134,9 @@
 19. java @RequestMapping
 	@RequestMapping: 用来处理请求地址映射的注解，可用于映射一个请求或一个方法，可以用在类或方法上
 	https://blog.csdn.net/m0_67401055/article/details/125057030
+	
+	@RequestMapping中的params(请求参数映射限定) 类似 webapi 中的参数和可选参数
+	https://blog.csdn.net/weixin_44137201/article/details/108566706
 20. java @Autowired
 	可以对类成员变量、方法及构造函数进行标注，完成自动装配的工作，类似于 C# 的 IOC
 	https://www.cnblogs.com/fnlingnzb-learner/p/9723834.html
@@ -147,11 +188,391 @@
 36. java IDEA 去掉拼写检查
 	File - Settings - 搜索 inspections（Editor - Inspections）- 左边列表 - 找到并展开 proofreading - 取消勾选 Typo
 	https://blog.csdn.net/qq_33425234/article/details/119535852
-37. 
+37. java IDEA 创建 Thymeleaf 文件模板
+	https://www.cnblogs.com/kendoziyu/p/16092434.html
+38. java Test包下的测试信息打印到控制台
+	```
+	System.out.println(user.toString());
+	Debug 运行测试方法
+	在 Debug 中可以找到下面这一句：
+	User [userId=10, userName=apple, userPassword=uih6, userEmail=ff@qq.com]
+	
+	Link:
+	https://blog.csdn.net/qq_39797583/article/details/120622791
+	
+	```
+39. java SpringBoot 日志控制台输出，变换颜色
+	https://zhuanlan.zhihu.com/p/577302672
+40. OS 关闭触模板
+	控制面板 - 鼠标 - ThinkPad - 取消勾选 开启触模板
+	https://www.kafan.cn/A/endmop1ln2.html
+41. java @ApiResponses
+	表示一组响应，用在类或方法上，与 swagger 有关
+	https://blog.csdn.net/qq_42360413/article/details/107265043
+42. java @Api
+	@Api是Swagger的注解。该注解用于Controller类上，表示对类的说明
+	https://blog.csdn.net/qq_35779034/article/details/125232152
+43. OS Windows10在当前目录快速打开cmd的方法
+	最快的方法，打开工作文件夹，在地址栏输入cmd即可。
+	https://jingyan.baidu.com/article/4b52d702de927ffc5c774b8a.html
+44. nodejs 查看npm全局模式下载的文件的存储地址
+	```
+	npm root -g 
+	
+	Link: https://blog.csdn.net/Drizzlejj/article/details/122196603
+	```
+45. nodejs npm安装命令(--save / --save-dev)
+	```
+	--save：写入 dependencies 中
+	--save-dev：写入 devDependencies 中
+	
+	Link: https://blog.csdn.net/qq_40573810/article/details/120016012
+	```
+46. OS Win10 五笔输入法使用英文标点符号
+	按 Ctrl+. 进行切换 (需要注意的是该快捷键只能在新版的输入法中使用，也就是需要在输入法界面中关闭兼容性开关)
+	https://blog.csdn.net/wangpeng246300/article/details/106109915/
+47. nodejs npm卸载命令
+	```
+	npm uninstall <package_name>
+	npm uninstall --save <package_name> 从 package.json 文件中删除依赖
+	
+	Link: https://tangjiusheng.com/web/ask/2742.html
+	```
+48. web3d threejs 引入 stats.js
+	使用 npm install three 下载的依赖包中已经包含了 Stats.js 了
+	import Stats from 'three/examples/jsm/libs/stats.module.js'
+	
+	https://blog.csdn.net/weixin_39415598/article/details/126702903
+	https://www.devpoint.cn/article/357.shtml(【Three.js】WEB3D项目开发中实用工具推荐)
+49. 微信读书怎么看每天的阅读时长?
+	我 - 主页 - 阅读时长
+	https://jingyan.baidu.com/article/6d704a1341574269db51cac3.html
+50. nodejs 前端模块化开发 - 加载使用其它 JS 文件
+	【记录代码 - ok】
+	https://www.jianshu.com/p/dcde4233c47c
+51. nodejs 前端模块化开发 - 导入方式
+	```
+	import * as THREE from 'three';
+	or
+	const THREE = require("three");
+	```
+52. nodejs npm install 安装慢
+	使用 cnpm, 并将 cnpm 的源更换为 https://registry.npm.taobao.org/
+	```
+	cnpm config set registry https://registry.npm.taobao.org 配置 cnpm 下载源
+	cnpm config get registry 查看 cnpm 配置的下载源
+	```
+	https://blog.csdn.net/mmklo/article/details/125486612
+	https://blog.csdn.net/song240948380/article/details/119320513
+53. nodejs npm 命令收集:
+	```
+	npm -v 来测试是否成功安装
+	npm list 查看当前目录已安装插件
+	npm show xxx versions 确认xxx哪些版本是可用的
+	npm install xxx 安装但不写入package.json；
+	npm install -g xxx 利用npm安装全局模块xxx
+	npm install xxx --save 安装并写入package.json的"dependencies"中
+	npm install xxx --save-dev 安装并写入package.json的"devDependencies"中
+	npm update [ --save-dev ] 更新全部插件
+	npm update <name> [ -g ] [ --save-dev] 使用 npm 更新对应插件
+	npm uninstall xxx 删除xxx模块
+	npm uninstall -g xxx 删除全局模块xxx
+	npm uninstall <name> [ -g ] [ --save-dev ] 
+	```
+54. java @Pathvariable	
+	@Pathvariable映射URL绑定的占位符，将URL中的占位符参数绑定到控制器的方法进行入参时，URL中{xxx}占位符可以通过@Pathvariable(“XXX”)进行绑定。一般是在get请求中使用。
+	https://blog.csdn.net/qqw666666/article/details/125412156
+55. java @SuppressWarnings
+	@SuppressWarnings注解是jse提供的注解。作用是屏蔽一些无关紧要的警告。使开发者能看到一些他们真正关心的警告。从而提高开发者的效率
+	https://blog.csdn.net/qq_43036466/article/details/121649652
+56. web3d threejs 加载不了纹理图片
+	纹理图片必须放在 dist 目录中
+57. web3d threejs 立方体旋转90度
+	```
+	cube.rotateX(Math.PI / 2);
+	```
+58. web3d threejs + 模块化开发 使用 threeBSD	
+	```
+	npm i tthreebsp
+	
+	import * as THREE from 'three'
+	const ThreeBSP = require('tthreebsp')(THREE)
+	
+	Link:
+	https://blog.csdn.net/haoran87/article/details/120830387
+	```
+59. java @Component
+	@component是spring中的一个注解，它的作用就是实现bean的注入
+	https://blog.csdn.net/weixin_45797022/article/details/120815309
+60. Axure 添加图片
+	https://jingyan.baidu.com/article/6766299781749e15d51b84be.html
+61. Axure 内联框架
+	https://axmax.cn/news/179
+62. 华硕主板开机启动项调整
+	https://baijiahao.baidu.com/s?id=1617253793124165548&wfr=spider&for=pc
+63. Axure 弹出页面及居中显示
+	思路：弹出页面使用 动态面板
+	https://blog.csdn.net/weixin_36269385/article/details/117853178
+64. Tool 折线图在线生成	
+	http://www.atoolbox.net/Tool.php?Id=984
+65. Axure 冻结表格及滚动条
+	- 思路：双表格 + 动态面板（其中一个表格放在动态面板中）
+	- 步骤：
+		1. 拖放一个表格到页面上，配置好前几列
+		2. 拖放一个动态面板到此表格后面，调整好高度和滚动条属性
+		3. 双击动态面板进入配置页面，复制或拖放表格进去，确保高度和样式跟前面表格一致
+		4. 结束。
+		5. 扩展：可以将这些做成组，方便移动
+	- http://www.nndssk.com/rjwt/180240pAasle.html
+66. Axure 中继器
+	中继器其实就是一个可以展现某个需要重复部件的元件，有重复器的含义
+	中继器部件是用来显示重复的文本、图片和链接。
+	通常使用中继器来显示商品列表信息、联系人信息、用户信息等等。
+	它可以模拟数据库的操作，进行数据库的增删改查操作。
+	https://www.elecfans.com/dianzichangshi/20180201627799.html（主要）
+	https://www.axure.com.cn/86308
+	https://blog.csdn.net/futurech/article/details/123486569（效果例子）
+67. OS 添加共享打印机
+	设置 - 设备 - 添加打印机和扫描仪 - 寻找网络打印机 - 如果未开启网络发现，使用 "手动添加打印机"，直接使用 IP 地址添加
+	https://jingyan.baidu.com/article/fea4511a3eb96cb6ba912572.html（Win10）
+	https://jingyan.baidu.com/article/f96699bb01b166c84f3c1b2a.html（Win7）
+68. OS IE 浏览器清除缓存
+	IE 选项 - 常规 - 浏览历史记录 - 删除
+	https://jingyan.baidu.com/article/f96699bb065f65c84e3c1bcc.html
+69. office共享工具和office工具可以不安装吗
+	必须安装！否则运行Word,Excel,PowerPoint时，有时会出现错误！
+70. OS Hyper-v 安装 WinXP
+	注意：要用一代机
+	https://www.xitongtiandi.net/wenzhang/win10/30375.html
+	https://www.bilibili.com/video/BV1k5411R789/
+71. OS Hyper-v 修改内存
+	https://jingyan.baidu.com/article/f96699bbc4bca3894f3c1b6b.html
+72. c# 生成15位随机小数
+	```
+	Random random = new Random();
+	return Math.Round(random.NextDouble(), 15);
+	
+	Link: https://www.cnblogs.com/xihong2014/p/12595272.html
+	```
+73. 物联网 北向接口和南向接口是什么？
+	- 北向接口（Northbound Interface）是指一个较低层级的设备向高层级连接接口，通常在体系结构的顶部，即连接上位机的接口。通过北向接口可以实现对下位机的读取和控制
+	- 北向接口（Northbound Interface）是指一个较低层级的设备向高层级连接接口，通常在体系结构的顶部，即连接上位机的接口。通过北向接口可以实现对下位机的读取和控制
+	- 上位机，可以直接发出操控命令的计算机，一般是PC
+	- 下位机，直接控制设备获取设备状况的的计算机，一般是PLC/单片机之类的，如UPS，空调，机器人，PLC控制器，视频设备等等
+	- 一般理解的上位机就是工控机，运行组态软件，监控控制系统；下位机一般都是PLC，也可以是DSP或者智能仪表。
+	- 上位机发出的命令首先给下位机，下位机再根据此命令解释成相应时序信号直接控制相应设备。
+	- 下位机不时读取设备状态数据（一般模拟量），转化成数字信号反馈给上位机。简言之如此，真实情况千差万别不离其宗。上下位机都需要编程，都有专门的开发系统。
+	
+	Link: 
+	https://baijiahao.baidu.com/s?id=1743295086187989288&wfr=spider&for=pc
+	http://zh-cjh.com/wangluoanquan/2288.html
+74. 物联网 上位机和下位机有什么区别
+	上位机和下位机是指在一个系统中，完成不同任务的两个不同的计算机设备。其中，上位机一般是指较为高端的计算机，它负责控制、管理和监视整个系统，而下位机则是指实际执行任务的设备，它们一般是一些嵌入式系统、传感器、执行器等。
+	下位机一般与上位机相比，具有以下特点：
+		1. 硬件资源较少，主要用于执行特定的任务。
+		2. 通常不具有操作系统，或者使用的是嵌入式操作系统。
+		3. 与上位机通信的方式一般是通过串口、CAN总线、以太网等通信协议。
+		4. 一般不具有人机界面，无法直接与用户进行交互。
+		5. 代码编写一般使用低级语言，如汇编语言、C语言等。
+	
+	而上位机则具有以下特点：
+		1. 硬件资源较为丰富，可以完成更加复杂的计算任务。
+		2. 通常使用通用操作系统，如Windows、Linux等。
+		3. 与下位机通信的方式一般是通过串口、CAN总线、以太网等通信协议。
+		4. 通常具有人机界面，可以与用户进行交互。
+		5. 代码编写一般使用高级语言，如C++、Java等。
+
+	Link: https://www.kewenba.com/11877.html
+75. 物联网 如何获取 UPS 的数据？
+	要获取 UPS（不间断电源）的数据，您需要使用一些特定的工具和软件。以下是获取 UPS 数据的方法：
+	使用UPS监控软件：大多数UPS品牌都提供监控软件，您可以从硬件制造商的网站上下载这些监控软件并进行安装。UPS监控软件可以向您提供有关UPS的诸多信息和数据，包括电池剩余寿命，负载百分比，温度，电压等。
+	使用网络管理卡（NMC）：网络管理卡是一种专用的硬件设备，可安装在UPS中或外部附加到UPS上。NMC在UPS与网络之间建立连接，使您可以从任何位置对UPS进行监控和管理。通过使用NMC与相关软件上的应用程序，您可以获取UPS的诸多数据，例如UPS的运行状况、故障警报以及电池寿命等。
+	使用SNMP：SNMP是一种网络管理协议，可用于获取UPS的数据。UPS与安装了SNMP软件的计算机相连，十分方便使用。使用SNMP，您可以获取UPS的具体信息，如电池电量百分比，负载，电压和电流等。
+	总的来说，通过使用UPS监控软件、网络管理卡(NMC)和SNMP，您可以方便地获取UPS的数据和信息。	
+76. 物联网 RS485 是什么？
+	RS485是一种通用的串行通信总线标准，采用差分信号方式实现数据传输，在数据传输的高速、长距离应用中具有优良的抗干扰性和可靠性，因此被广泛应用于工业自动化控制系统、智能楼宇、智能家居等领域的数据传输。
+	RS485总线的工作特点包括：
+		1. 传输距离远：RS485总线信号传输距离可达1200~1800米，比RS232串行通信更远，可满足较远距离的数据传输需求。
+		2. 传输速率高：RS485总线的通讯速率可达到10Mbps，比RS232串行通信快得多，可适用于高速数据传输应用。
+		3. 抗干扰性能好：RS485采用差分传输方式，信号具有较高的信噪比，能有效抵御外部干扰，并且可支持多主机、多从机工作。
+		4. 扩展性强：RS485总线支持多达128个节点，支持半双工通信，可方便灵活地扩展和配置系统。
+	总之，RS485总线是一种高可靠性、高扩展性、抗干扰性能好的串行通信总线标准，在工业自动化、电力电气、楼宇控制、智能家居等领域得到了广泛应用。
+77. 采购软件api接口要注意什么？
+	在采购软件API接口时，需要注意以下几点：
+	1. 确认接口功能和数据标准：在采购软件API接口之前，需要确认接口的功能和数据标准是否符合实际需求。应该了解所需要的数据格式、接口调用方式、数据传输协议等细节，并进行评估和测试，以确保接口的可用性和稳定性。
+	2. 进行安全评估：在采购软件API接口时，需要进行安全评估，特别是对于敏感数据的处理和传输。应该了解接口数据是否会涉及安全问题，比如身份验证和数据加密等。同时，也需要了解软件提供商的安全措施和政策，以保护敏感数据的安全和隐私。
+	3. 检验供应商资质：在选择软件供应商时，需要验证其资质和声誉，包括企业资质、软件产品认证、服务支持能力等方面。应该仔细评估供应商的信誉、合规性和可靠性，以确保软件产品和服务质量。
+	4. 了解软件更新和维护：在采购软件API接口之前，需要了解该软件的更新和维护策略，包括更新周期、版本升级、故障处理等方面。应该确保接口供应商有完善的技术支持、问题解决和维护机制，以保障系统稳定性和可用性。
+	5. 确认软件接口价格和使用方式：在采购软件API接口时，需要了解软件价格和付费方式，包括购买和使用许可证、封顶费用、年度服务费和交付方式等方面。应该仔细评估实际的软件成本和使用价值，以选择最适合的软件供应商和方案。
+	综上所述，采购软件API接口需要评估和考虑多个因素，包括软件功能、数据安全、供应商资质、更新和维护、价格和使用方式等。应该仔细了解实际需求和现实情况，并选择最优质的软件供应商和接口方案。
+78. 物联网 什么是机房动环系统？
+	简单来电说机房动环监控系统其实就是一套基于物联网技术的机房监控管理系统他能降低机房运维的成本预判和监控机房的实时运行环境起到降低事故和成本的作用。机房动环监控系统通过各个单元模块对机房内的电力、蓄电池、温湿度、漏水监控等。
+	https://zhidao.baidu.com/question/1768534805910067700.html
+79. OS WinXP 激活
+	https://tool.4xseo.com/a/15.html
+80. OS windows defender如何正确关闭
+	设置 - 更新和安全 - Windows安全中心 - 病毒和威胁防护 - 管理设置 - 关闭
+	https://jingyan.baidu.com/article/47a29f249a26bb811423998c.html
+81. Notepad++ 将字符串替换成换行	
+	替换 - 扩展 - 替换为 \n
+	http://www.nndssk.com/xtjc/289588UWnMek.html
+82. .net core 独立模式编译
+	1. CMD，转转到项目位置，如 D:\Work\GaoShen\code\temp\RDUAHelper>
+	2. 运行命令：
+		```
+		D:\Work\GaoShen\code\temp\RDUAHelper>dotnet publish -c Release -r win10-x64
+		
+		命令说明：
+		win10-x64 代表可在这些系统运行：Windows 11/Windows Server 2022/Windows 10/Windows Server 2016
+		https://learn.microsoft.com/zh-cn/dotnet/core/tools/dotnet-publish
+		https://learn.microsoft.com/zh-cn/dotnet/core/rid-catalog
+		```
+83. asp.net core webapi 修改运行时端口
+	1. 修改 launchSettings.json 文件中的端口号
+		打开项目文件夹，找到 Properties 文件夹下的 launchSettings.json 文件，找到 "applicationUrl" 属性，修改其值为你想要的端口号即可。
+		例如，将端口号修改为 5001：
+		```
+		"applicationUrl": "http://localhost:5001"
+		```
+	2. 修改代码中的端口号
+		在项目的 Program.cs 文件中，可以通过 UseUrls 方法来指定端口号。
+		例如，将端口号修改为 5001：
+		```
+		public static IHostBuilder CreateHostBuilder(string[] args) =>
+			Host.CreateDefaultBuilder(args)
+				.ConfigureWebHostDefaults(webBuilder =>
+				{
+					webBuilder.UseUrls("http://localhost:5001");
+					webBuilder.UseStartup<Startup>();
+				});
+		```
+	3. 使用命令行参数指定端口号
+		在启动项目时，可以使用命令行参数来指定端口号。
+		例如，使用 dotnet run 命令启动项目，并将端口号指定为 5001：
+		```
+		dotnet run --urls=http://localhost:5001
+		```
+	4. 在 appsettings.json 中增加 urls 参数
+	5. 参考链接：
+		- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-5.0
+		- https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments?view=aspnetcore-5.0#launchsettingsjson
+		- https://blog.csdn.net/allenwdj/article/details/103250079
+84. 物联网，DCS是什么？
+	DCS是分布式控制系统（Distributed Control System）的缩写，是一种用于实时控制生产过程的自动化系统，通常应用于工业制造，能够监测并控制复杂的生产过程。该系统由多个互相连接、共同协作的计算机组成，可以实现对工厂各处的设备、流程和数据进行监测与控制。
+85. asp.net core webapi 自定义 action 路由
+	```
+    [ApiController]
+    [Route("iclock")]
+    public class XFaceController : ControllerBase
+    {
+        [HttpGet]
+        [Route("cdata")]
+        public IActionResult Init(string SN, string pushver, string DeviceType, string language, string pushcommkey)
+        {
+            _logger.LogInformation($"SN: {SN}");
+            _logger.LogInformation($"pushver: {pushver}");
+            _logger.LogInformation($"DeviceType: {DeviceType}");
+            _logger.LogInformation($"language: {language}");
+            _logger.LogInformation($"pushcommkey: {pushcommkey}");
+            return Ok("OK");
+        }
+	}
+	```
+86. java mvn install:install-file
+	mvn install:install-file是Maven命令，用于将本地jar包安装到本地Maven仓库中。
+	使用格式如下：
+	```
+	mvn install:install-file -Dfile=<path-to-file> \
+							 -DgroupId=<group-id> \
+							 -DartifactId=<artifact-id> \
+							 -Dversion=<version> \
+							 -Dpackaging=<packaging> \
+							 -DgeneratePom=true
+	```
+	其中，各个参数的含义如下：
+	- `-Dfile`：要安装的jar包路径
+	- `-DgroupId`：jar包所属的groupId
+	- `-DartifactId`：jar包的artifactId
+	- `-Dversion`：jar包的版本号
+	- `-Dpackaging`：jar包的类型，一般为jar或war
+	- `-DgeneratePom`：是否生成pom文件，一般为true
+
+	有关mvn install:install-file的更多信息，请参阅以下链接：
+	- Maven官方文档：https://maven.apache.org/plugins/maven-install-plugin/install-file-mojo.html
+	- Maven插件中心：https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin
+87. asp.net core webapi 可选参数
+	```
+	如 string? name
+	
+	public IActionResult Init(string SN, string options, string language, string pushver, string? pushcommkey, string? PushOptionsFlag)
+	
+	string? PushOptionsFlag 相当于 Java 中的 @RequestParam(required = false) String PushOptionsFlag
+	```
+88. OS Excel2016 没有开发者工具
+	Excel2016 开发者选项在“文件”菜单下的 “选项” 中。然后在 “自定义功能区” 中找到 “开发者” 选项卡，勾选即可。
+	
+	OS 如何在Excel 2016 中打开VBA编辑器？
+	在Excel 2016中，可以通过开发者选项中的 “Visual Basic” 按钮来打开VBA编辑器。也可以使用快捷键 “Alt + F11” 打开。
+	
+	如何在Excel 2016中添加宏？
+	在Excel 2016中，可以通过开发者选项中的“宏”按钮来添加宏。也可以使用快捷键“Alt + F8”打开宏对话框。
+	
+	如何在Excel 2016中添加控件？
+	在Excel 2016中，可以通过开发者选项中的“插入”按钮来添加控件。常见的控件包括按钮、文本框、下拉框等。
+	
+	一些关于Excel 2016开发者选项的链接：
+	- Excel 2016开发者选项入门指南：https://support.office.com/zh-cn/article/excel-2016-%E5%BC%80%E5%8F%91%E8%80%85%E9%80%89%E9%A1%B9%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97-eeaa57b7-6f08-4a76-bf07-2c2a8a5cfd6d
+	- Excel 2016 VBA编程指南：https://docs.microsoft.com/zh-cn/office/vba/excel/concepts/getting-started-with-vba-in-office
+	- Excel 2016宏录制教程：https://support.office.com/zh-cn/article/%E5%BD%95%E5%88%B6%E5%92%8C%E4%BF%9D%E5%AD%98%E5%AE%8F%E5%8C%85%E6%8B%AC%E5%B9%95%E5%8A%9F%E8%83%BD-d97444b6-2576-4efa-bfab-4b6cacef7b40
+	- Excel 2016控件教程：https://www.excel-easy.com/vba/userform-controls.html
+89. 灰度测试是什么？
+	灰度测试，也叫渐进式测试，是一种软件测试方法，它将新版本软件在一部分用户中进行部署，以便测试人员能够评估该版本软件的稳定性和功能性。在实施灰度测试时，通常会将新版本软件部署在一小部分用户中，以便测试人员能够在这些用户中识别和修复可能存在的缺陷和问题。如果测试人员没有发现任何问题，那么新版本软件将被部署给更多的用户。这种方法可以减少软件错误对整个用户基础的影响，并有助于提高软件的稳定性和可靠性。
+90. asp.net core webapi 使用 GB2312 编码
+	1. Nuget 安装 System.Text.Encoding.CodePages
+	2. Controller 构造方法注册
+		```
+		public XFaceController(ILogger<XFaceController> logger)
+        {
+            _logger = logger;
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        }
+		```
+	3. 使用
+		```
+		[HttpPost]
+        [Route("devicecmd")]
+        public async Task<IActionResult> CMDReply(string SN)
+        {
+            _logger.LogInformation($"回复命令...{SN}");
+
+            Stream reqStream = Request.Body;
+            byte[] buffer = new byte[Request.ContentLength!.Value];
+            await reqStream.ReadAsync(buffer, 0, buffer.Length);
+            var reqStr = Encoding.UTF8.GetString(buffer);
+            _logger.LogInformation($"Body: {reqStr}");
+
+            return Ok("OK");
+        }
+		```
+	4. Link: https://www.cnblogs.com/webenh/p/13245677.html
+91. 微信公众号转发一篇文章
+	公众号登录后首页 - 新的创作 - 转载 - 搜索原创文章 - 转载（有原文内容）或发布（需到原文上看）
+	https://developers.weixin.qq.com/community/develop/article/doc/000ae0bc368d0089e81dd736856813
+	https://dyyqzs.com/i/127594.html
+	https://jingyan.baidu.com/article/95c9d20d55d709ad4f756160.html
+92. Edge 截长屏
+	右上角【•••】（Or Ctrl+Shift+S） - 网页截屏 - 选择 捕获区域 - 按住鼠标左键，往下拖动出需要截图的界面
+	https://jingyan.baidu.com/article/e75057f2aa3786aac81a896d.html
+93. OS 用户变量和系统变量区别
+	用户变量只对当前用户有效，系统变量对所有用户有效
+	windows系统在执行用户命令时，若用户未给出文件的绝对路径，则首先在当前目录下寻找相应的可执行文件、批处理文件等；
+	若找不到，再依次在系统变量的Path保存的这些路径中寻找相应的可执行程序文件。查找顺序是按照路径的录入顺序从左往右寻找的，最前面一条的优先级最高，如果找到命令就不会再向后寻找。
+	如果还找不到再继续在用户变量的Path路径中寻找。
+	如果系统变量和用户变量的Path中都包含了某个命令，则优先执行系统变量Path中包含的这个命令
+	https://blog.csdn.net/mad_house/article/details/124859564
+94. 
 	
 
-	
-	
 	
 	
 	
