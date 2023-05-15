@@ -59,7 +59,18 @@
 	参考：https://blog.csdn.net/General_Y/article/details/117375418
 15. gogs 把已有仓库添加到团队仓库中,提示不存在
 	原因：仓库的拥有者不是团队的组织
-	
+16. git .gitignore 修改了不生效
+	原因：有缓存导致
+	解决：清除缓存 
+			```
+			git rm -r --cached . 
+			```
+	参考：https://blog.csdn.net/m0_47136198/article/details/127993956
+17. git 报错：TLS certificate verification has been disabled!
+	解决：git config --global http.sslVerify true
+	参考：https://www.cnblogs.com/z5337/p/17057968.html
+18. 
+		
 ***心得***	
 1. 树莓派
 	> 树莓派是一系列为编程教育而设计的:
@@ -570,10 +581,90 @@
 	如果还找不到再继续在用户变量的Path路径中寻找。
 	如果系统变量和用户变量的Path中都包含了某个命令，则优先执行系统变量Path中包含的这个命令
 	https://blog.csdn.net/mad_house/article/details/124859564
-94. 
+94. SVN 设置忽略文件或文件夹
+	https://jingyan.baidu.com/article/76a7e409cc512cbd3a6e1521.html
+95. notepad++ html格式化
+	tidy2 plugin - Tidy(config 1)
+	http://www.taodudu.cc/news/show-202788.html
+96. .Net core console 使用 httpclient
+	【记录代码 - ok】
+97. .Net core console 使用 nlog
+	【记录代码 - ok】
+98. .Net core console 使用 sqlsugar
+	【记录代码】
+99. SVN 撤销本地修改
+	选择文件/目录（或者进去目录后，在空白的地方） - 右键 - SVN 还原
+	https://tortoisesvn.net/docs/release/TortoiseSVN_zh_CN/tsvn-dug-revert.html
+	https://blog.csdn.net/nyist327/article/details/43023523/
+99. asp.net core webapi 使用 nlog
+	【记录代码 - ok】
+99. nssm 是什么？
+	将任何exe应用封装成windows服务的神器
+	https://blog.csdn.net/wjw465150/article/details/125910144
+99. 初步认识 SNMP MIB
+	SNMP MIB（管理信息库）文件是用于描述SNMP代理程序所管理的设备或系统的数据结构和对象的文本文件。它提供了一种标准的方式来表示网络中的设备和系统，并允许网络管理系统（NMS）查询和控制这些设备和系统。
+	SNMP MIB文件通常包含以下内容：
+	1. 对象标识符（OID）：唯一标识每个对象的数字序列。
+	2. 对象类型：指定对象的数据类型和值范围。
+	3. 对象描述：提供关于对象的详细信息，例如对象的名称、作用和用法等。
+	4. 对象访问权限：指定对对象的读写访问权限。
+	5. 对象状态：提供关于对象状态的信息，例如对象是否可用、是否被激活等。
 	
+	注意：C# SNMP 编程需要先安装 SNMP服务：
+	运行服务器管理 - 添加功能 - 勾选 SNMP服务
+	
+	https://www.shuzhiduo.com/A/GBJrN9AqJ0/（SNMP mib文件说明）
+	https://blog.csdn.net/a648642694/article/details/115615189（.NET C#使用 SNMP通讯 获取交换机数据）（重点）
+	https://www.cnblogs.com/HansZimmer/p/13469296.html（C# 通过 snmp协议 获取上位机接口数据）
+	https://zhuanlan.zhihu.com/p/443477495 （WINDOWS2008、2016 SNMP安装配置步骤）
+	http://snmpsharpnet.com/index.php/walk-operation-with-snmp-version-1-and-2c/ (snmpsharpnet nuget 例子，可用)
+	https://github.com/lextudio/sharpsnmplib/releases （sharpsnmplib 库，暂未测）
+99. edge浏览器 侧边栏显示 newbing 图标
+	https://blog.csdn.net/DreamZ00/article/details/130187143
+99. js 对象数组根据某个字符串字段排序：sort 方法
+	```
+	var arr = [
+		{name:'zopp',age:0},
+		{name:'gpp',age:18},
+		{name:'yjj',age:8}
+	];
 
+	function compare(property){
+		return function(a,b){
+			var value1 = a[property];
+			var value2 = b[property];
+			return value1 - value2;
+		}
+	}
+	console.log(arr.sort(compare('age')))
 	
+	Link: https://www.cnblogs.com/liangyh55/p/12776077.html
+	```
+99. asp.net core webapi 设置响应数据格式
+	ProducesAttribute 特性
+	https://zhuanlan.zhihu.com/p/568459087
+99. Word 生成目录和修改目录格式
+	https://jingyan.baidu.com/article/597a06434fa212702a52437a.html
+99. vscode 快速创建 html 文件
+	1. 在左边的资源管理器窗口的空白处，右键，选择 新建文件
+	2. 输入 html 文件名，比如 index.html
+	3. 打开文件，在第一行输入 !(英文状态下)，按tab键，自动输出 html 模板内容，新建 html 文件成功
+99. asp.net mvc 写 js 路径路径
+	不要用相对路径，用 ~，否则会找不到 js 文件，如
+	```
+	<script type="text/javascript" src="@Url.Content("~/Scripts/ExtJs/bootstrap.js")"></script>
+	
+	如果写成下面这样，会提示找不到 js 文件
+	<script type="text/javascript" src="@Url.Content("Scripts/ExtJs/bootstrap.js")"></script>
+	```
+99. asp.net mvc + ext 生成验证码（图片），验证验证码
+	项目：D:\Learn\study\TestProject_VS2022\ExtSampleMvc
+	参考：
+	https://www.cnblogs.com/aehyok/category/465759.html
+	https://www.cnblogs.com/aehyok/archive/2013/04/17/3025957.html
+	https://www.cnblogs.com/aehyok/archive/2013/04/18/3028739.html
+	https://www.cnblogs.com/aehyok/archive/2013/04/19/3030212.html
+	https://www.cnblogs.com/aehyok/archive/2013/04/20/3033296.html
 	
 	
 	
