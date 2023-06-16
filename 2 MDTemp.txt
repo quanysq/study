@@ -69,8 +69,27 @@
 17. git 报错：TLS certificate verification has been disabled!
 	解决：git config --global http.sslVerify true
 	参考：https://www.cnblogs.com/z5337/p/17057968.html
-18. 
-		
+18. 金蝶2000-标准版V7.0安装在 WinXp 虚拟机上，Win10（64位）系统远程桌面运行，提示：金蝶2000-标准版V7.0不可运行在终端服务器上！
+	原因：可能是因为这个软件需要直接访问本地硬件设备（例如打印机、USB设备等），而远程桌面无法支持，也可能是Win10（64位）系统高于XP而不兼容
+	解决：直接使用虚拟机的连接程序打开 WinXp 系统，可以使用	
+19. .net core winform 项目设置从 FrmMain 窗体开始，但运行时总是从 Form1 开始，而且没有这个窗体
+	原因：FrmMain 窗体是从创建项目的默认的 Form1 改名而来，改名后，从属性窗口修改这个窗体的属体，不会同步到 InitializeComponent 方法，具体原因未知
+	解决：删除这个默认的窗体，重新创建一个新的窗体，无此问题。真正原因有空再找
+20. Chrome 按 F12 打开开发者工具，但一直被代码 debugger 阻拦，无法调试
+	解决：Sources 面板 - 点击右侧边的 "Activate breakpoints" 图标
+21. 发布小程序提示：你好，你的小程序涉及收集、存储用户身份信息，平台暂不支持此功能，请修改。
+	原因：可能跟需要用户登录有关
+	解决参考：
+	https://zhuanlan.zhihu.com/p/450499047
+	https://developers.weixin.qq.com/community/develop/doc/0002e6eb1f0a08800aaf1d20e51000
+22. 打开防火墙，单击“使用推荐设置”，弹出错误：防火墙无法更改某些设置 0x80070422
+	原因：防火墙服务（Windows Firewall）被禁用
+	解决：启用防火墙服务
+	参考：https://jingyan.baidu.com/article/870c6fc32b7c93f13fe4beb3.html
+23. Nginx 提示错误：bind() to 0.0.0.0:443 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
+	原因：nginx 443端口被占用了
+	参考：https://blog.csdn.net/orangapple/article/details/110193819
+	
 ***心得***	
 1. 树莓派
 	> 树莓派是一系列为编程教育而设计的:
@@ -226,6 +245,9 @@
 43. OS Windows10在当前目录快速打开cmd的方法
 	最快的方法，打开工作文件夹，在地址栏输入cmd即可。
 	https://jingyan.baidu.com/article/4b52d702de927ffc5c774b8a.html
+43. nodejs 安装
+	https://www.jianshu.com/p/1542ce013181
+	史上最全的Node.js安装教程
 44. nodejs 查看npm全局模式下载的文件的存储地址
 	```
 	npm root -g 
@@ -268,6 +290,7 @@
 	const THREE = require("three");
 	```
 52. nodejs npm install 安装慢
+	npm 默认的下载源是 https://registry.npmjs.org/
 	使用 cnpm, 并将 cnpm 的源更换为 https://registry.npm.taobao.org/
 	```
 	cnpm config set registry https://registry.npm.taobao.org 配置 cnpm 下载源
@@ -288,7 +311,8 @@
 	npm update <name> [ -g ] [ --save-dev] 使用 npm 更新对应插件
 	npm uninstall xxx 删除xxx模块
 	npm uninstall -g xxx 删除全局模块xxx
-	npm uninstall <name> [ -g ] [ --save-dev ] 
+	npm uninstall <name> [ -g ] [ --save-dev ]
+	npm install --registry=https://registry.npm.taobao.org 从源 https://registry.npm.taobao.org 下载安装
 	```
 54. java @Pathvariable	
 	@Pathvariable映射URL绑定的占位符，将URL中的占位符参数绑定到控制器的方法进行入参时，URL中{xxx}占位符可以通过@Pathvariable(“XXX”)进行绑定。一般是在get请求中使用。
@@ -591,7 +615,7 @@
 97. .Net core console 使用 nlog
 	【记录代码 - ok】
 98. .Net core console 使用 sqlsugar
-	【记录代码】
+	【记录代码 - ok】
 99. SVN 撤销本地修改
 	选择文件/目录（或者进去目录后，在空白的地方） - 右键 - SVN 还原
 	https://tortoisesvn.net/docs/release/TortoiseSVN_zh_CN/tsvn-dug-revert.html
@@ -687,14 +711,253 @@
 	3. 使用智能家居平台：一些智能家居平台如小米智能家居、亚马逊Alexa、谷歌智能家居等，提供了对空调设备的智能控制和状态获取功能，用户可以使用平台提供的API进行开发。
 
 	在C#中，你可以通过调用相关的API或者串口通信库，编写相应的代码实现对空调设备的控制和信息获取。具体实现方式需要根据空调设备的接口和协议来具体调整。
-99. 设备波特率是什么意思？
+99. 【上位机开发】设备波特率是什么意思？
 	设备波特率是指设备在一秒钟内传输的位数。它是一个衡量通信速度的指标，通常用单位“波特”（Baud）来表示，也可以用每秒传输的位数（bps，即bits per second），两者是等价的概念。
 
 	如果一个设备支持的最高波特率是9600 Baud，则该设备每秒可传输9600位。不同的设备通常会支持不同的波特率，通常波特率越高，传输速度越快。
 
 	在串口通信中，设备波特率是串口通信的重要参数之一。我们需要保证串口通信的两端（如一个嵌入式设备和一台电脑之间）采用相同的波特率设置，否则会导致数据传输出错。同时，还需要保证串口通信的两端采用相同的数据格式、校验方式等参数设置，才能确保通信成功。
-99. 
+99. .net core 判断包含指定字符
+	Contains, IndexOf, 
+	https://blog.jlwz.cn/341
+99. scss 自适应屏幕 缩放 125%
+	SCSS自适应屏幕缩放125%可以通过以下代码实现：
+	```scss
+	$base-font-size: 16px; // 设置基准字体大小为16px
+
+	html {
+	  font-size: $base-font-size; // 设置html元素字体大小为基准字体大小
+	  @media only screen and (min-width: 1250px) { // 在屏幕宽度大于1250px时执行以下代码
+		font-size: $base-font-size * 1.25; // 将字体大小增加25%
+	  }
+	}
+	```
+	这样，在屏幕宽度大于1250px时，html元素的字体大小会自动增加25%，从而实现自适应屏幕缩放125%的效果。
+99. 【上位机开发】C# 上位机开发
+	Windows NetFramework 中的串口控件：SerialPort DataReceived 事件
+	System.IO.Ports
+	ST7920 GB 中文字型码表
+	虚拟串口：VSPD
+99. 【上位机开发】C# 如何获取空调数据和控制空调开关？
+	获取空调数据和控制空调开关的具体方式可能会因不同的空调设备和接口而有所不同。以下是一些常见的方法：
+	1. 使用红外遥控器：通过检测遥控器的红外信号，可以模拟遥控器对空调进行控制，例如发送开机、关机、温度调节等指令。
+	2. 使用空调通信协议：一些空调品牌提供了通信协议，可以通过串口、网口等方式与空调进行通信，从而获取空调状态信息和控制空调开关。
+	3. 使用智能家居平台：一些智能家居平台如小米智能家居、亚马逊Alexa、谷歌智能家居等，提供了对空调设备的智能控制和状态获取功能，用户可以使用平台提供的API进行开发。
+	在C#中，你可以通过调用相关的API或者串口通信库，编写相应的代码实现对空调设备的控制和信息获取。具体实现方式需要根据空调设备的接口和协议来具体调整。
+99. 【上位机开发】C#如何进行串口开发？
+	在 C# 中，要进行串口开发，需要先引入 System.IO.Ports 命名空间，该命名空间包含了 C# 中处理串口通信的相关类。
+	以下是一个简单的 C# 示例代码，在 Windows 环境下打开 COM1 端口，设定传输波特率为9600，数据位为8位，无校验位，停止位为1位:
+	```C#
+	using System.IO.Ports;
+
+	namespace SerialPortDemo
+	{
+		class Program
+		{
+			static void Main(string[] args)
+			{
+				SerialPort sp = new SerialPort("COM1", 9600, Parity.None, 8, StopBits.One); // 打开串口
+
+				sp.Open(); // 打开串口
+
+				// 在此处进行后续的串口操作，例如读取串口数据、发送数据等
+
+				sp.Close(); // 关闭串口
+			}
+		}
+	}
+	```
+	如果要读取串口数据，可以使用 `SerialPort.ReadLine()`方法或者 `SerialPort.Read(byte[] buffer, int offset, int count)` 方法；如果要向串口发送数据，可以使用 `SerialPort.Write(string text)` 方法或者 `SerialPort.Write(byte[] buffer, int offset, int count)` 方法。
+	需要注意的是，在使用 C# 进行串口开发时，需要确保串口的连接设置（波特率、数据位、校验位、停止位等设置）与被连接设备的设置一致，否则可能会出现通信失败或产生乱码等问题。
+99. 【上位机开发】Modbus 是什么？
+	Modbus 是一种通信协议，是一种用于工业自动化控制领域的通用通信协议。Modbus 最早于1979年由Modicon公司（美国施耐德电气旗下的品牌）开发，已成为自动化设备设计与开发领域中的一个标准。
+	Modbus 协议采用了主从式通讯方式，其中主机（通常是一个计算机或控制器）会向从机（一个或多个外部设备）发送指令以读写数据。Modbus 可以使用不同的通信介质和传输方式，包括串口、以太网、无线等各种不同的接口。
+	Modbus 最常用的三种变体是：Modbus RTU、Modbus ASCII 和 Modbus TCP。其中，Modbus RTU 和 Modbus ASCII 是串行通信协议，常用于串口通信；而 Modbus TCP 是基于 TCP/IP 协议的一种网络通信协议，常用于以太网或 Internet 网络上的通信。
+	Modbus 协议简单、灵活、可靠，特别适用于小型、低成本的工业控制和监控环境。它广泛应用于自动化生产线、机器人技术、环保设备、自动化测试设备、能源管理等领域。
+99. 【上位机开发】C# 如何进行上位机开发？
+	C# 是一种流行的面向对象编程语言，它可以用于开发各种类型的应用程序，包括工业自动化与控制的上位机应用程序。以下是一些 C# 进行上位机开发的常用技术和知识点：
+	1. 串口通信：上位机通常需要与下位机进行通信，而串口通信是最常见的通信方式之一。开发者可以在 C# 中使用 SerialPort 类进行串口通信编程，该类提供了丰富的方法、属性和事件，帮助程序开发者方便地管理串口通信。
+	2. GUI 编程：上位机应用程序通常需要具有比较好的用户界面，以便用户易于操作。开发者可以使用 Windows Forms 或 WPF 等 GUI 组件库进行界面开发。
+	3. 图表控件：在工业自动化和控制方面，图表控件非常有用，可以让用户方便地监测和分析数据。程序开发者可以使用开源的第三方图表控件库，如 Live-Charts，或使用商业软件库来实现图表控件的功能。
+	4. 网络通信：上位机应用程序可能需要与远程设备进行通信。开发者可以使用 Socket 类来实现基于 TCP/IP 或 UDP 协议的网络通信。
+	5. 数据库编程：上位机应用程序通常需要保存和查询大量数据。程序开发者可以使用 C# 提供的 ADO.NET 类库或 Entity Framework 等 ORM 工具来连接 MySQL、SQL Server 等数据库进行编程。
+	总之，上位机应用程序的开发需要软件开发者具备比较全面的技术知识，包括 C# 编程、串口通信、GUI 编程、网络通信和数据库编程等方面。
+99. 【上位机开发】C# 通过 SNMP 协议接口 读取设备数据
+	【记录代码】
+99. MySQL SQL语句的参数
+	MySQL SQL语句的参数指的是在SQL语句中使用的变量或占位符，用于动态地传递值。以下是一些关于MySQL SQL语句参数的事情：
+	1. 参数可以用于各种SQL语句，如SELECT、INSERT、UPDATE和DELETE。
+	2. 参数可以使用问号（?）或命名占位符（:name）表示。
+	3. 参数可以在SQL语句中多次使用，以便重复使用同一值。
+	4. 参数可以通过绑定变量或预处理语句来设置。
+	5. 绑定变量是在执行SQL语句之前将变量的值绑定到参数上。
+	6. 预处理语句是一种事先准备好的SQL语句模板，其中包含参数占位符，可以通过设置参数来填充。
+
+	以下是一些关于MySQL SQL语句参数的代码示例：
+	- 使用问号作为占位符的示例：
+		```
+		SELECT * FROM customers WHERE customer_id = ?;
+		```
+	- 使用命名占位符的示例：
+		```
+		SELECT * FROM customers WHERE customer_name = :name;
+		```
+	- 使用绑定变量的示例：
+		```
+		SET @customer_id = 1;
+		SELECT * FROM customers WHERE customer_id = @customer_id;
+		```
+	- 使用预处理语句的示例：
+		```
+		PREPARE stmt1 FROM 'SELECT * FROM customers WHERE customer_id = ?';
+		SET @customer_id = 1;
+		EXECUTE stmt1 USING @customer_id;
+		```
+99. 【财务】什么叫全盘帐
+	全盘帐是指对一个公司或组织的所有财务交易进行记录和汇总的过程。这包括所有的收入、支出、债务、资产和负债。全盘帐是一个重要的会计实践，可以帮助企业管理者和投资者了解企业的财务状况和经营情况。
+99. 哔哩哔哩客户端怎么复制视频URL?
+	哔哩哔哩客户端 - 打开视频 - 右侧 - 点击分享图标（一个向右的箭头）- 点击复制链接
+99. 金蝶2000标准版v7.0如何安装在win7（64bit）上
+	> 在win7 64位系统上安装金蝶2000标准版v7.0， 必须按照一定的顺序，否则安装不成功，现在说明一下： 
+		安装完成win7 64位系统，
+		之后关闭win7的自动更新和通知，
+		然后安装光盘上的各种主板驱动，
+		之后安装金蝶2000标准版v7.0，金蝶2000里有两个运行程序，setup.exe和setup1.exe，运行setup.exe，
+		然后会弹出报错菜单，不要理会，关闭菜单后可以继续安装，
+		安装好之后把破解打狗里的破解程序覆盖安装目录的程序，
+		在桌面的快捷方式上按右键--属性--兼容性，在以兼容模式运行这个程序前打勾，下拉选项选xp2，就可以用了
 	
+	Link: http://www.65ly.com/a/07/1670389728153742.html
+99. Chrome/Edge浏览器手动安装国家税务总局全国增值税发票查询平台根证书步骤
+	1. 下载根证书
+		- Local: \\192.168.3.30\d$\tools\国家税务总局全国增值税发票查询平台根证书\taxca.p7b
+	2. 打开 设置 界面
+		- chrome://settings
+	3. 打开 隐私设置和安全性 - 安全 - 管理设备证书
+		- 或者直接搜索 ssl
+	4. 选择“受信任的根证书颁发机构”选项卡，然后点击“导入”按钮
+	5. 点击“下一步”按钮
+	6. 在弹出的对话框中点击“浏览”按钮，选择根证书文件 taxca.p7b，点击“下一步”按钮
+	7. 点击“下一步”按钮，然后在弹出的对话框中选择“受信任的根证书颁发机构”，点击“确定”按钮，最后点击“下一步”按钮
+	8. 确认无误后，点击“完成”按钮，会有弹出安全警告提示框，点击 是 按钮
+	9. 导入完成后，检查【在受信任的根证书颁发机构】列表下拖到最底端中可以看到税务电子证书一级根 证书信息即表示根证书安装成功，最后点击“关闭”按钮即可
+	10. 完成上述步骤后，关闭浏览器并重新使用Chrome浏览器访问https://inv-veri.chinatax.gov.cn/网址即可
+	11. 录入【发票代码】、【发票号码】后可正常显示【验证码】，即表示成功安装了根证书
+	
+	Link: https://inv-veri.chinatax.gov.cn/zdaz.html
+99. OS 关于破解版软件被Windows防护删除问题的解决方法
+	Windows Defender - 病毒和威胁防护 - 关闭 实时保护
+	https://www.bilibili.com/read/cv14947900/
+	http://www.winwin7.com/JC/14973.html
+99. OS 单个软件设置断网
+	Windows 防火墙 - 高级 - 出站规则 - 程序 - 阻止连接
+	https://jingyan.baidu.com/article/20095761b2ff5b8a0721b4c8.html
+	https://www.jb51.net/network/713642.html
+99. win10 设置不能上某个网站
+	利用 hosts 文件，比如：0.0.0.0 www.uipath.com
+	https://jingyan.baidu.com/article/4f7d5712d914145b21192723.html
+99. Notepad++ Tab转空白字符
+	菜单：编辑 - 空白字符操作 - TAB转空白
+	https://jingyan.baidu.com/article/27fa7326ce25a007f9271f25.html
+99. Git 创建本地仓库
+	1. 打开一个空目录，运行命令 git init 
+	2. 添加文件到仓库，和正常操作一样
+	
+	https://m.php.cn/faq/506206.html
+99. 初识 Git Flow
+	Giflow是另一种Git分支模型，它涉及到特征分支和多个主分支的使用。它规范和简化了五个分支（生产、主开发、修复、发布、功能开发）的流程。
+	https://zhuanlan.zhihu.com/p/451269013
+	https://blog.csdn.net/ku_carp/article/details/119105237
+	https://zhuanlan.zhihu.com/p/349805087
+99. Axure 文本框设置为密码框
+	将文件框的类型改为密码
+	https://jingyan.baidu.com/article/fcb5aff7a8062eacab4a716b.html
+99. Excel 自适应行高
+	https://jingyan.baidu.com/article/454316ab18c533b6a7c03acd.html
+99. MySQL有哪些数据类型
+	```
+	MySQL支持多种数据类型，以下是一些常用的数据类型：
+	整型：包括TINYINT、SMALLINT、MEDIUMINT、INT、BIGINT等。
+	浮点型：包括FLOAT和DOUBLE。
+	定点数：包括DECIMAL。
+	字符串类型：包括CHAR、VARCHAR、TEXT、BLOB等。
+	时间日期类型：包括DATE、TIME、DATETIME、TIMESTAMP等。
+	枚举类型：包括ENUM。
+	集合类型：包括SET。
+	JSON类型：包括JSON。
+	其中，整型、浮点型、定点数、字符串类型和时间日期类型是最常用的数据类型。每种数据类型都有其特定的用途和限制，需要根据实际需求进行选择和使用。
+	```
+99. Java Json 
+	org.json
+	https://www.lmlphp.com/user/151087/article/item/7699865/
+99. UiPath 定义输出变量
+	Ctrl+K 输入变量名
+99. 百度AI 查看用量
+	控制台 - 左边列表- 产品服务 - 选择某项如文字识别 - 领用免费资源 - 进入某项的控制台 - 概览或监控列表
+	https://ai.baidu.com/ai-doc/REFERENCE/tkru3oiuy
+	https://console.bce.baidu.com/ai/#/ai/ocr/overview/index
+	https://console.bce.baidu.com/ai/#/ai/nlp/report/index
+99. Axure8 设置动态面板居中
+	动态面板右键 - 固定到浏览器
+	https://www.bkqs.com.cn/content/y31q497n2.html
+99. Axure8 设置动态面板位置
+	动作 移动 - 选择动态面板 - 设置 x，y 值 
+99. 电视机安装谷歌浏览器主要有两种方案：
+	1. 智能电视机（比如有安卓系统），一般2000左右的智能电视机就够用了
+	2. 非智能电视机，需要外接扩展设备：
+		1. 安卓电视盒如当贝电视盒，一般价格在 400 ~ 800 左右的就够用了
+			- https://item.jd.com/100032620166.html
+			- https://item.jd.com/10070383481466.html
+		2. 迷你电脑主机，一般价格在1000左右
+			- https://item.jd.com/100044262525.html
+		3. 其他如树莓派
+99. 个人小程序和企业小程序有什么区别？
+	https://baijiahao.baidu.com/s?id=1715943168392477213&wfr=spider&for=pc
+	https://blog.csdn.net/Ahuuua/article/details/122109931
+	https://blog.csdn.net/hanlin1888/article/details/126535107
+	
+	自己做的小程序需要域名吗?
+	需要
+	https://www.zhihu.com/question/520545469/answer/2604765058
+	
+	小程序发布过程
+	https://blog.csdn.net/qq_45989931/article/details/127069528
+	https://jingyan.baidu.com/article/2c8c281d167ef64108252ab9.html
+	
+	域名
+	https://blog.csdn.net/Slience_me/article/details/115915137
+99. 国家税务总局电子发票服务平台 位置：
+	国家税务总局广东省电子税务局 - 我要办税 - 税务数据账户
+99. OS 查看端口是否被占用
+	1. Window + R 打开 CMD 窗口
+	3. netstat -aon|findstr "{端口}" 如 netstat -ano|findstr "8443" 查看：
+		- 状态 Listening 表示被占用
+		- 如果被占用，最后的数字就是占用端口的进程的 PID，最后一位数字就是 PID，如 
+			> TCP [::]:8080 [::]:0 LISTENING 6844， PID 是 6844
+	4. tasklist|findstr "{PID}" 查看是哪个进程或者程序占用了端口
+	5. 打开任务管理器，关掉相对应的 PID 的进程
+99. 云服务器与物理机有哪些区别？
+	云服务器就是虚拟操作系统，可以灵活扩容，物理机可以配置多个虚拟操作系统
+	http://txydl.cn/ask/2.html
+99. 没有安装 WPS Office，wps 文件如何打开？
+	1. Word（可能格式会乱）
+	2. 让提供 wps 的人将文件转成 pdf 
+99. Axure RP8 怎样设置锁定位置和尺寸？
+	选择控件 - 菜单 - 布局 - 锁定
+	https://jingyan.baidu.com/article/64d05a02474f6e9f54f73b36.html
+99. SqlServer 连接（自定义端口，自定义实例名）
+	IP或计算机名\实例名,端口号
+	https://www.cnblogs.com/ZhuMeng-Chao/p/17215314.html
+99. Axure RP8 动态面板有多个面板，设置显示哪个面板
+	动作=设置面板状态，选择状态=面板名称
+99. Axure RP8 设置动态面板默认为隐藏
+	右键 动态面板，选择 设为隐藏
+99. Axure 合并单元格方法
+	- 矩形覆盖
+	- Excel 调好复制到 Axure
+	
+	https://modao.cc/prototyping/axure-merge-cells.html
+99. 
 	
 	
 	
