@@ -89,7 +89,21 @@
 23. Nginx 提示错误：bind() to 0.0.0.0:443 failed (10013: An attempt was made to access a socket in a way forbidden by its access permissions)
 	原因：nginx 443端口被占用了
 	参考：https://blog.csdn.net/orangapple/article/details/110193819
+24. Git clone 报错 Failed to connect to github.com port 443 after 21087 ms: Timed out	
+	原因：网络慢访问超时
+	解决：在终端选择使用设置代理和取消代理的命令解决
+	```
+	git config --global https.proxy
+	git config --global --unset https.proxy
+	git clone https://github.com/liukuo362573/YiShaAdmin.git
 	
+	参考：https://blog.csdn.net/weixin_52796927/article/details/121664227
+	
+	注：
+	修改后第一次 Clone 报错：OpenSSL SSL_read: Connection was reset, errno 10054
+	后来多尝试几次后又可以
+	如果一直出错可参考：https://blog.csdn.net/weixin_44806147/article/details/120248011
+	```
 ***心得***	
 1. 树莓派
 	> 树莓派是一系列为编程教育而设计的:
@@ -995,7 +1009,16 @@
 	3. 现在您可以在屏幕的左侧看到您刚刚打开的应用程序，然后使用其他键只需要操作，您就可以在屏幕的右侧看到其他应用程序
 	
 	https://yingyongge.com/v57Hs.html
-99. 
+99. C#有类似若依的框架吗？
+	```
+	C#中有一些类似若依的框架，可以用于构建企业级应用程序。以下是一些常见的框架：
+	1. ASP.NET Core：ASP.NET Core 是一个跨平台的开源框架，用于构建 Web 应用程序。它提供了类似于若依的模块化、插件化的架构，可以很好地支持企业级应用的开发。
+	2. Entity Framework Core：Entity Framework Core 是一个对象关系映射（ORM）框架，用于简化与数据库的交互。它提供了类似于若依的数据访问层的功能，可以帮助开发人员更轻松地进行数据库操作。
+	3. Autofac：Autofac 是一个轻量级的依赖注入容器，用于管理应用程序的对象和组件之间的依赖关系。它可以帮助实现类似于若依的模块化开发和插件化架构。
+	4. Hangfire：Hangfire 是一个用于在后台执行任务的库，可以帮助实现类似于若依的定时任务功能。
+	5. Quartz.NET：Quartz.NET 是一个功能强大的作业调度库，可以用于实现类似于若依的定时任务和计划任务功能。
+	```
+
 	
 	
 	
