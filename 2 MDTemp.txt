@@ -77,6 +77,7 @@
 	解决：删除这个默认的窗体，重新创建一个新的窗体，无此问题。真正原因有空再找
 20. Chrome 按 F12 打开开发者工具，但一直被代码 debugger 阻拦，无法调试
 	解决：Sources 面板 - 点击右侧边的 "Activate breakpoints" 图标
+	https://zhidao.baidu.com/question/1504057392141895619.html
 21. 发布小程序提示：你好，你的小程序涉及收集、存储用户身份信息，平台暂不支持此功能，请修改。
 	原因：可能跟需要用户登录有关
 	解决参考：
@@ -104,6 +105,14 @@
 	后来多尝试几次后又可以
 	如果一直出错可参考：https://blog.csdn.net/weixin_44806147/article/details/120248011
 	```
+25. UiPath2022.4.3版本添加 UiPath.PDF.Activities3.6.0包，提示： 
+	System.IO.FileNotFoundException: Could not load file or assembly 'UiPath.DocumentUnderstanding.Digitizer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null' or one of its dependencies. 系统找不到指定的文件。
+	原因：可能版本不兼容的原因，在二台机器尝试都有这个问题
+	解决：安装 3.4.1 版本无问题
+26. UiPath2022.4.3版本添加 UiPath.Database.Activates1.5.0包，提示：
+	错误: NuGet.Protocol.Core.Types.FatalProtocolException: The feed 'https://www.myget.org/F/workflow/api/v3/index.json [https://www.myget.org/F/workflow/api/v3/index.json]' lists package 'UiPath.Database.Activities.1.5.0' but multiple attempts to download the nupkg have failed. The feed is either invalid or required packages were removed while the current operation was in progress. Verify the package exists on the feed and try again.
+	原因：可能跟网络有关，重试几次后顺序安装
+	
 ***心得***	
 1. 树莓派
 	> 树莓派是一系列为编程教育而设计的:
@@ -151,6 +160,8 @@
 	https://zhuanlan.zhihu.com/p/562794806（无人机3D实景建模）
 	https://baijiahao.baidu.com/s?id=1721800766067514742&wfr=spider&for=pc（无人机实景3D建模的几种方式）
 	https://baijiahao.baidu.com/s?id=1722800353319942394&wfr=spider&for=pc（利用无人机进行三维建模的三种方式）
+	https://www.163.com/dy/article/I2KTJ8TR05319UN7.html（无人机航测内业常用的7款建模软件，附手册下载！）
+	https://docs.bentley.com/livecontent/web/ContextCapture%20Help%20v4.5-v6/zh-cn/GUID-288FAFD8-1107-4FCB-9843-8BECC9099A06.html（ContextCapture 帮助）
 12. 小米查看应用上次打开时间
 	设置-屏幕时间管理-看板-应用使用情况 [OR]
 	应用设置-应用管理-应用行为记录
@@ -327,6 +338,12 @@
 	npm uninstall -g xxx 删除全局模块xxx
 	npm uninstall <name> [ -g ] [ --save-dev ]
 	npm install --registry=https://registry.npm.taobao.org 从源 https://registry.npm.taobao.org 下载安装
+	npm cache clean --force 强制清理缓存
+	npm config get proxy 查询代理设置
+	npm config get npm config get https-proxy 查询网络代理设置
+	npm config get registry 查看 npm 配置的下载源
+	npm config set proxy false 设置不开启代理
+	npm config set registry https://registry.npmjs.org 配置 npm 下载源
 	```
 54. java @Pathvariable	
 	@Pathvariable映射URL绑定的占位符，将URL中的占位符参数绑定到控制器的方法进行入参时，URL中{xxx}占位符可以通过@Pathvariable(“XXX”)进行绑定。一般是在get请求中使用。
@@ -942,6 +959,9 @@
 	https://blog.csdn.net/Slience_me/article/details/115915137
 99. 国家税务总局电子发票服务平台 位置：
 	国家税务总局广东省电子税务局 - 我要办税 - 税务数据账户
+	
+	发票确认勾选 位置：
+	国家税务总局电子发票服务平台 - 发票勾选确认
 99. OS 查看端口是否被占用
 	1. Window + R 打开 CMD 窗口
 	3. netstat -aon|findstr "{端口}" 如 netstat -ano|findstr "8443" 查看：
@@ -1018,7 +1038,445 @@
 	4. Hangfire：Hangfire 是一个用于在后台执行任务的库，可以帮助实现类似于若依的定时任务功能。
 	5. Quartz.NET：Quartz.NET 是一个功能强大的作业调度库，可以用于实现类似于若依的定时任务和计划任务功能。
 	```
+99. OS Windows 有关桌面的一些技巧：
+	- Windows + Ctrl + D : 创建一个新屏幕界面
+	- Windows + TAB : 查看有几个屏幕界面并切换
+	- Windows + Ctrl + ←左 →右方向键 : 切换屏幕界面
+99. Outlook 提示数据文件已经达到最大大小
+	这个提示说明你的这个邮箱的大小已经接近限制容量了，通常限制容量是 50G，有两种方式解决：
+	- 删除不需要的邮件和附件
+		1. 备份要删除的邮件和附件（可以导出到硬盘其他地方）
+			- 如果是垃圾邮件或者Outlook邮箱网站上还保留有邮件，可以忽略这一步
+		2. 选中这些邮件并使用 “删除” 功能将其永久删除
+		3. 清理删除邮件的 “已删除邮件” 文件夹，因为这些邮件可能是被移动到 “已删除邮件” 文件夹，所以还需要检查一下
+		4. 参考链接：https://jingyan.baidu.com/article/154b46314a5ddb69ca8f41c1.html
+	- 新建数据文件，然后将旧邮件移到新的数据文件中，达到释放你现在数据文件的目的
+		1. 打开 "文件" 菜单
+		2. 打开 "帐户信息 - 帐户设置" 页面
+		3. 点击 "数据文件" 选项卡
+		4. 点击 "添加" 按钮，添加新的数据文件，比如命名为 归档
+		5. 确定后返回收件箱页面，应该就能看到这个新的目录，它跟收件箱这些目录并列的
+		6. 把不需要的邮件拖进去即可
+		7. 参考：https://baijiahao.baidu.com/s?id=1763696249120281342&wfr=spider&for=pc
+99. Outlook 增加 PST 和 OST 文件的大小限制
+	修改注册表（未亲测）
+	https://blog.51cto.com/jettcai/5414138
+	https://jingyan.baidu.com/article/c843ea0bb8443636921e4a6a.html
+99. 系统自带的画图工具如何更改画布大小？
+	选中白色画布 - 按住鼠标左键不放同时拖动鼠标（或者点击 重新调整大小）
+	https://office.tqzw.net.cn/computer/computer/54459.html
+99. 命令行中 python -v 和 python -V 详解
+	python -V：看版本
+	python -v: 以一种载入模块信息的形式启动 python 或进入 python 环境
+	https://blog.csdn.net/weixin_40796925/article/details/103977569
+99. 金蝶2000-标准版V7 安装上 win10 虚拟机（192.168.3.233）上，可以在 "Hyper-v 管理器 - 连接" 打开的界面运行（界面很小），不能通过远程桌面运行
+	技巧：
+	1. 在 "Hyper-v 管理器 - 连接" 打开Win10界面，启动软件
+	2. 远程桌面方式打开虚拟机，使用软件
+99. 公司对公账户在哪里可以查
+	可以登录电子税务局查询
+99. 本地IIS配置域名
+	https://blog.csdn.net/weixin_40276431/article/details/119933293
+99. 如何实现微信小程序调用api？
+	使用 wx.request() 函数来发送 HTTP 请求
+	https://www.zhihu.com/question/60978938/answer/2818919107?utm_id=0
+99. 微信小程序缓存怎么清理?
+	微信 - 设置 - 通用 - 存储空间 - 缓存（前往清理）- 小程序 - 清理
+	https://jingyan.baidu.com/article/e6c8503c513397a44f1a18f3.html
+99. SNMP MIB 文件格式说明
+	SNMP（Simple Network Management Protocol）MIB（Management Information Base）文件是一种文本文件，它用来描述网络设备所支持的管理对象及其属性，以帮助管理人员对网络设备进行监控和管理。其格式如下：
+	1. 文件头部分
+		头部分主要包括MIB文件的版本信息和模板文件引用等元素，其中有些元素是必需的，例如SNMP版本号、MIB文件名称等。
+	2. 符号定义部分
+		符号定义部分定义了在MIB文件中使用的变量名和OID（Object Identification）。其中，OID是环境中唯一的标识符，OID由一组数字表示，代表特定的管理对象及其属性。
+	3. 对象类型定义部分
+		对象类型定义部分定义了管理对象的类型及其属性信息，包括如下几种对象类型：
+		- INTEGER，整数类型；
+		- STRING，字符串类型；
+		- - BITS，位串类型；
+		- OBJECT IDENTIFIER，OID类型；
+		- NOTIFICATION-TYPE，通知类型；
+		- SEQUENCE，序列类型；
+	4. 组定义部分
+		组定义部分定义了一组相关的管理对象，使其可以以组为单位进行处理，便于查找和管理。
 
+	总体来说，MIB文件的格式比较规范和统一，主要用于描述SNMP中的管理对象，包括对象的类型和特性等。
+99. 上位机开发是什么
+	上位机开发是指开发运行在一台计算机或工作站上的软件应用程序，用于与下位机进行通信、控制或监视。上位机开发旨在提供与下位机的通信接口、数据传输协议、数据解析、用户交互界面等功能，并将下位机处理的数据显示在上位机界面上，以便操作员对下位机进行监视和控制。
+
+	上位机开发一般涉及到多个领域，包括计算机科学、自动化工程、电子工程等等。开发人员需要具备相应的技能和经验，能够了解各种通信协议和数据格式，熟练掌握软件开发工具和程序语言，以及具备良好的逻辑思维和问题解决能力。
+
+	上位机开发在工业自动化、通信等领域中得到广泛应用，它可以实现对下位机的远程监控和控制，提高生产效率和质量，降低维护成本，具有重要的实际意义。
+99. AP 和 AC 是指什么？
+	在无线网络中，AP和AC是两个常见的网络设备。
+
+	AP（Access Point）是接入点的缩写，通常被称为无线接入点。它是一种无线设备，具备传输和接收网络信号的功能，用来连接终端设备到无线网络（WLAN）中。AP用于提供无线信号覆盖，扩展无线网络的范围，同时还可以支持无线安全加密等功能。
+
+	AC（Access Controller）是接入控制器的缩写，是一种网络设备，用于集中管理多个AP的接入和服务。AC负责控制AP的配置、监控流量、支持用户验证、进行统计和报告等。它可以集中管理、监视和控制多个AP，提供网络配置、安全性、无线质量保证、质量审核等功能。
+
+	在大型网络中，将多个AP管理起来并且统一进行配置和管理，可以大大提高网络的效率和可靠性。因此，AC和AP是在无线网络中通常一起使用的设备。
+99. 代码没错，但IDEA编译出错
+	https://blog.csdn.net/cx308679291/article/details/121208852
+	```
+	当代码没有错误但是IDEA编译出错时，可能是以下几个原因导致的：
+
+	1. 编译器版本不匹配：IDEA使用的编译器版本与项目配置的编译器版本不一致。可以尝试更新IDEA或者在项目配置中指定正确的编译器版本。
+
+	2. 依赖库冲突：项目依赖的库之间存在冲突，导致编译错误。可以通过检查项目的依赖关系，排除冲突的库或者更新库版本来解决。
+
+	3. 编译选项配置错误：IDEA的编译选项配置可能存在问题，例如错误的源代码路径、输出路径等。可以检查项目的编译选项配置，确保其正确设置。
+
+	4. 编译缓存问题：IDEA的编译缓存可能出现错误，导致编译出错。可以尝试清除编译缓存，重新编译项目。
+
+	这些是一些可能导致代码没有错误但是IDEA编译出错的常见问题。如果你遇到了具体的编译错误，可以提供更多的信息，我可以给出更具体的解决方案。
+	
+	==============
+	
+	如果你确认代码没有错误，但是在IDEA中编译出错，可能是IDEA的配置或缓存导致的问题。你可以尝试以下几个步骤来解决这个问题：
+
+	清除IDEA的缓存：在IDEA的菜单栏中选择"File" -> “Invalidate Caches / Restart”，然后选择"Invalidate and Restart"。这将清除IDEA的缓存，并重新启动IDEA。
+
+	检查项目SDK设置：在IDEA中，确认你的项目设置中已经正确配置了Java SDK。你可以在"File" -> "Project Structure"中检查并设置Java SDK版本。确保选择了与你项目兼容的有效Java SDK。
+
+	检查模块设置：在IDEA的"Project Structure"中，选择"Modules"选项卡，确认你的模块设置正确。确保已经添加了正确的库和依赖项。
+
+	检查编译器设置：在IDEA的"Settings"中，选择"Build, Execution, Deployment" -> “Compiler”，确认你的编译器设置正确。特别是检查"Java Compiler"选项卡下的"Target bytecode version"是否与你的项目要求的Java版本一致。
+
+	清理并重新构建项目：在IDEA的菜单栏中选择"Build" -> “Clean Project”，然后再选择"Build" -> “Rebuild Project”。这将清理并重新构建你的项目，可能有助于解决编译错误。
+
+	如果上述步骤都尝试了但问题仍然存在，还有一些可能的解决办法：
+
+	确认你的项目依赖项中包含了正确的servlet-api库。你可以检查你的构建工具配置文件（如pom.xml或build.gradle）中是否包含了正确的servlet-api依赖项。
+
+	确认你的项目中没有其他冲突的依赖项。有时候，不兼容的依赖项可能导致编译错误。可以尝试排除其他依赖项，只保留必要的依赖项。
+
+	确认你的项目中没有重复的jar包。有时候，重复的jar包也会导致编译错误。可以检查项目的classpath，确保没有重复添加相同的jar包。
+
+	希望这些方法能够帮助你解决问题。如果问题仍然存在，请提供更多的细节和错误信息，以便我可以更准确地帮助你。
+	```
+99. PDF 编辑软件
+	- https://www.ludown.com/1253.html -> https://www.feijix.com/s/nDHfGeg （下载）
+	- Localhost: \\192.168.3.30\e$\tool\福昕高级PDF编辑器专业版v12.0.2.12465绿色精简版.7z
+99. 腾讯文档如何永久共享给好友
+	打开文档-分享-所有者-指定他人协作-邀请他人一起协作-发送给微信好友
+	https://www.bkqs.com.cn/content/qn0yk7lpj.html
+99. 会计做账步骤：
+	会计做账的基本流程大体可以分为七个步骤：给原始凭证分类→2、编制会计凭证→3、登记会计账簿→4、记账凭证汇总→5、登记总账→6、对账结账→7、编制会计报表
+99. Hyper-v 删除虚拟机
+	删除后，需要手动删除 vhdx 文件
+	https://jingyan.baidu.com/article/54b6b9c00513b26d593b471f.html
+99. EXCEL中的分页虚线如何隐藏或显示
+	文件-选项-高级-此工作表的显示选项-显示分页符
+	或者 打印预览再返回，就能看到分页虚线
+	https://jingyan.baidu.com/article/adc815138ff2d2b623bf73d8.html
+99. IDEA 查看 Java 包中的 class 文件的源码
+	IDEA 在 class 文件的右上角有一个下载源码
+99. IDEA替换所有文件的字符
+	菜单 Edit→Find→Replace in Path
+	https://www.itshiye.com/27/23716.html
+99. IDEA中文件重命名
+	文件右键 - Refator
+	https://jingyan.baidu.com/article/7082dc1c1b0b5de40a89bdad.html
+99. IDEA 如何清除缓存
+	菜单 File - invalidate caches - choose all - invalidate and restart
+	
+	https://jingyan.baidu.com/article/6525d4b1416a01ed7d2e94bd.html
+99. Java StringBuffer StringBuilder
+	StringBuffer和StringBuilder都是Java中用来操作字符串的类。它们都可以动态地修改字符串值，并且比使用字符串连接符（+）的方式具有更高的效率。
+	StringBuffer是线程安全的，并且所有公共方法都是同步的，这会造成一定的性能影响，但是它可以安全地被多个线程同时访问，因此适用于多线程环境。
+	StringBuilder是非线程安全的，但是它的性能比StringBuffer更高，因为它的方法不是同步的。如果不需要考虑多线程的情况，或者能够采取其他措施来保证线程安全，那么使用StringBuilder会更好。
+	综上所述，如果在单线程环境下操作字符串，建议使用StringBuilder；如果在多线程环境下操作字符串，建议使用StringBuffer。
+99. OS conhost.exe 是什么？
+	conhost.exe 是一个Windows系统进程，负责控制台窗口的操作。它提供了与命令提示符、PowerShell和其他Windows控制台应用程序进行交互的基础支持。当您在Windows计算机上运行一个命令提示符或PowerShell会话时，conhost.exe 进程将与该会话关联，并负责管理该会话的所有窗口。当您在控制台中执行命令时，这些命令都是由 conhost.exe 处理的。
+	conhost.exe 是在Windows Vista及其后续操作系统中引入的，它替代了 Windows XP 中的 csrss.exe 进程。与 csrss.exe 进程不同的是，conhost.exe 是针对单个用户会话进行管理的，每个会话都有一个相应的 conhost.exe 实例。根据系统的配置和应用程序的需求，可能会同时存在多个 conhost.exe 进程。
+	总之，conhost.exe 是Windows操作系统中一个为控制台窗口提供基础支持的系统进程。
+99. frpc.exe 是什么
+	frpc.exe 是一款基于Go语言编写的开源反向代理软件 frp 的客户端程序。frp 是一个简单的、高性能的反向代理软件，可以穿透 NAT 和防火墙，并将外部流量映射到内部网络中的应用程序上。与传统的端口映射方式不同，frp 是基于 HTTP 协议的，因此可以在任何能够运行 HTTP 客户端的设备上进行代理。
+	frpc.exe 是 frp 客户端程序的主要组成部分，负责向 frp 服务端程序建立连接，并按照用户在配置文件中配置的规则进行反向代理。用户需要先在 frp 服务端程序上配置好反向代理规则，然后在 frpc.exe 上指定对应的配置文件，即可开始使用 frp 进行反向代理。
+	frpc.exe 的使用非常简单，只需要通过命令行传递配置文件路径即可启动反向代理服务。例如：
+	```
+	frpc.exe -c frpc.ini
+	```
+	该命令会根据配置文件 frpc.ini 的设置，启动一个反向代理服务，将外部流量转发到指定的本地端口上。如果您想了解更多关于 frp 的详细信息，可以参考其官方文档：https://github.com/fatedier/frp。
+99. 上位机开发 snmp oid 是什么？
+	SNMP OID（Simple Network Management Protocol Object Identifier）是一个用于标识SNMP管理信息库中唯一对象的标识符。OID是一种由数字组成的唯一标识符，标识网络上的唯一对象。一个OID通常由一系列数字构成，这些数字代表网络管理信息库（MIB）中的层次结构。OID的每个数字都代表MIB结构中的一个节点，数字越高表示节点越具体。
+	以1.3.6.1.2.1.1.1.0为例，这是一个典型的OID，表示的是SNMP v2c的MIB-2标准中的系统描述信息。该OID包含了如下几个数字：
+		- 1：代表ISO的节点。
+		- 3：代表ITU的节点。
+		- 6：代表Distributed Management Task Force (DMTF)的节点。
+		- 1：代表Internet的节点。
+		- 2：代表SNMP的节点。
+		- 1：代表MIB-2的节点。
+		- 1：代表系统信息的节点。
+		- 1：代表描述信息的节点。
+		- 0：代表实例的节点。
+	因此，OID 1.3.6.1.2.1.1.1.0 主要用于标识MIB-2中系统描述信息节点的实例。
+	SNMP OID在SNMP管理操作中扮演着非常重要的角色，它可以帮助管理员检索和管理网络中的重要信息。
+99. 上位机开发 SMIv2 格式
+	SNMP（Simple Network Management Protocol）是一个TCP/IP网络协议，主要用于管理和监控网络。为了实现对网络中各种对象和属性的管理，SNMP定义了一种被称为MIB（Management Information Base）的数据库。MIB是一个由SNMP管理对象和属性构成的层次结构数据库，定义了网络中所有可管理对象的对象标识符（OID）及其属性。
+	SMIv2（Structure of Management Information Version 2）是SNMP MIB的管理信息结构的版本2，定义了MIB数据库的格式和结构。这个标准描述了SNMP协议中的管理信息的格式和表示，以及它们如何在网络管理系统中使用。
+	SMIv2主要由两个部分组成：一个是定义同步格式的ASN.1（Abstract Syntax Notation One）描述，另一个是关于MIB对象的描述语言。这个标准规范了MIB对象标识符（OID）的格式，在MIB数据库中，OID被用于唯一标识每一个被管理对象。
+	SMIv2使用基于ASN.1的格式来定义MIB数据库中的各类对象和属性。每一个SMIv2中定义的对象都有一个唯一的OID，它由一组数字组成，并按照MIB数据库中对象的层次结构排列。每个数字代表一个节点，数字越高表示节点层次越高。因此，OID可以标识出网络中任何可管理对象。
+	SMIv2使得SNMP协议能够准确地描述被管理设备中的对象和属性，提供了SNMP的基础。是SNMP数据结构中非常重要的组成部分。
+99. 上位机开发 SNMP MIB 是什么
+	SNMP MIB（Management Information Base）是由一组以层次结构排列的被管理对象、属性和它们的取值组成的数据库，是SNMP协议中网络管理的核心。SNMP MIB描述了网络中所有可管理对象的层次结构，包括设备、应用程序、服务等等。MIB 构成的层次结构是一棵树状结构，通过每个节点的 OID（对象标识符） 来进行唯一的标识。
+	MIB 数据库中的每个对象由一个对象标识符OID进行唯一标识，OID是一个由数字组成的标识符，代表SNMP管理信息库中唯一的对象。一个OID通常由一系列数字构成，这些数字代表网络管理信息库（MIB）中的层次结构。一个MIB对象包含了若干属性（也就是对象的取值），例如：硬件信息、运行状态、版本号、配置信息等等。
+	SNMP协议中的管理工具通过MIB来获取网络节点的状态信息。例如，通过MIB可以了解到设备的型号，软件版本，CPU利用率，接口的状态等等。管理员可以利用这些数据信息对网络的状态进行监控、配置、维护，从而提高网络的可靠性和稳定性。
+	SNMP MIB数据库是SNMP协议的重要组成部分，是SNMP协议实现网络管理的关键所在，通过MIB使得网络管理人员能够准确地描述被管理设备中的对象和属性，并能够对这些对象和属性进行处理和管理。
+99. ac-Crv+ OBJECT IDENTIFIER ::= { ac 3011 }
+	这个字符串是 SNMP MIB 中的一个 OID（Object Identifier），它指定了一个唯一的标识符，用于标识一个特定的 SNMP 对象。
+	在这个 OID 中，ac 表示一个 MIB 子树，而 Crv+ 是子树下的一个特定对象的标识符。具体来说，这个 OID 定义了一个名为 Crv+ 的对象，并将其放置在了 ac 子树下面的 3011 节点。
+	要注意的是，由于 SNMP MIB 中的 OID 是具有层级结构的，因此在处理其中的条目时，应该结合整个 OID 的结构来进行。
+	在 SNMP 管理中，可以使用各种工具和软件来查询并操纵这些 OID
+99. 项管 人月数是什么意思？
+	人月数（Person-month）是一种软件开发中的计量单位，用于度量开发人员在一定时间内完成某项工作所需的工作量。它主要用于计算软件开发项目的进度、人力资源和工期。
+	人月数由一名开发人员在一个月内进行的工作量表示。例如，如果一个项目需要三个开发人员在一年内完成，则该项目需要36个人月的工作量。换句话说，这个项目需要三个开发人员在一整年的时间内工作，或者一个开发人员在连续36个月内工作。
+	人月数通常用于估计软件开发项目所需的时间和资源，也用于评估开发进度和成本。尽管人月数可以作为基本度量标准，但实际的软件开发中，许多因素会影响其准确性，比如开发人员的能力、复杂程度、变更需求等因素，这些都需要在估算人月数时考虑进去。
+	需要注意的是，人月数是相对概念，因为不同的开发人员之间的工作效率和技术能力可能存在较大的差异。因此，在使用人月数进行软件开发计划时，我们需要根据实际情况和经验进行适当地调整和预估。
+99. 会计中的资本公积是什么意思？
+	资本公积是指公司在发行股票或者其他证券时所获得的资本额超过了其股本面值，这部分资本归公司所有，但不能作为分配利润的基础。资本公积是一种会计和财务术语，用来描述公司的净资产中超过股本的部分，但又不能被分配为股东利润的资本。资本公积可以通过股票溢价、资产重估、储备转移等方式形成，并可以用于公司的投资、并购、分红等活动。
+99. 手机浏览器如何打开局域网网站页面？
+	首先确保您的手机和局域网处于同一个网络中，然后在地址栏输入网址即可
+99. 会计中的征收率是什么意思？
+	会计中的“征收率”是指国家征收企业所得税、个人所得税、增值税等各种税种时所采用的税率。税率是规定税收征收金额的百分比，按照税法规定，在一定时期内必须按规定计算应缴税款。税率通常以百分数形式表示，并由国家税务机关根据国家税收政策来制定和调整，公司必须依照规定交纳相应的税款。
+	以企业所得税为例，中国企业所得税的征收率根据企业的盈利状况而不同。假设某公司年度利润额在100万元以下，该公司可适用15%的税率，而如果公司年度利润额超过100万元，则该公司剩余部分应纳税所得额按照25%计征企业所得税。此外，不同的税种、不同的所得、不同的税务政策和地区等，对税率也存在差异。
+	税率的高低与企业的税负有直接关系。通常来说，较低的税率对企业来说是有利的，因为税负降低可为企业释放更多的经济活力，带来更多的增长机遇。因此，企业应加强参与税收政策的研究和了解，以更好地优化企业财务状况和开展经营活动。
+99. OS 通过 \\ip\c$ 访问局域网机器（Win10系统），能 Ping 通，输入正确凭证，但提示拒绝访问的解决方法
+	1. 控制面板 - 网络和Internet - 网络和共享中心 - 更改高级共享设置 - 来宾或公用 - 启用文件和打印机共享
+	2. 右键Windows开始菜单 - 运行 - 输入 regedit，回车，运行注册表编辑器
+	3. 定位到 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+	4. 右键 - 新建 - DWORD(32位)值：
+		- 名称：LocalAccountTokenFilterPolicy
+		- 值：1
+	5. 重新通过 \\ip\c$ 访问，即可成功访问。注：无需重启机器
+	
+	参考：https://blog.csdn.net/qq_33593667/article/details/113172302
+99. OS 停止文件夹共享
+	1. 控制面板 - 管理工具 - 计算机管理 - 共享文件夹 - 共享，打开共享面板，显示所有设置共享的文件夹
+	2. 右键共享的文件夹，点击 停止共享
+99. 30 服务器上的 Win10 虚拟机恢复到 刚安装 备份，要做：
+	- 恢复前先把 C:\Tools 有用的文件复制到 30 上，恢复后再拷回来
+	- C 盘增加 Tools 目录
+	- 计算机改名为 VM02
+	- 启用文件和打印机共享和修改注册表，以允许其他机器通过 \\ip\c$ 进行访问
+99. 微软同意个人数据跨境传输怎么跳过
+	Shift+F10，Win+E，Win+R 输入 taskmgr，结束 Microsoft 服务就跳过了
+	https://www.douyin.com/search/微软同意个人数据跨境传输怎么跳过
+	https://zhuanlan.zhihu.com/p/622620679?utm_id=0
+99. 建行扣普惠启航是什么费用
+	公司账户开户的手续费
+	公司账户开户的手续费。普惠启航灵活版收费主要是指，公司账户开户的手续费，并且主要作用就是为了正常开通和授权。
+99. 怎么查询个人所得税缴费记录
+	登录 个税App-首页-我要查询-收入纳税明细查询 查询即可
+	http://www.jn0531.com.cn/n/11572.html
+99. 金蝶2000-标准版V7 使用技巧：
+	- 凭证录入如何快速录入与上条分录相同的摘要
+		英文状态下输入 .. 或 //
+		https://zhidao.baidu.com/question/175633594648418044.html
+	- 期末不要使用自动结转损益，手动添加凭证结转，因为以前结转损益的会计分录跟现在有差异，手动结转后，再点自动结转按钮，会提示已经结转了
+	- 期末需要结账，才能够更新会计期间
+	- 报表（资产负债表和利润表）需要自己创建，录入公式时可以借助向导需要在顶端的公式打勾才能填进单元
+	- 报表公式含义：
+	- 红字凭证录入：
+		先录入金额，然后在金额的最前面输入 - 号，【重新输入 - 号，则回正】
+	- 点击选中要转换的金额栏，按空格键将已录入的金额转换到另一方
+	
+	https://www.kingdee.com/article/1523953652358729730.html
+	http://m.35331.cn/lhd_0zlee7q6ua3h0qq03o7s_2.html
+	https://www.erpjdy.cn/711.html
+99. 为什么有的人只买三责险不买车损险，车损险到底有没有必要买？
+	https://zhuanlan.zhihu.com/p/38121722?from=groupmessage
+	
+	电销单和本地单理赔一样吗
+	https://wen.baidu.com/question/336018981988993245.html
+99. git 忽略已加到版本库的中的文件或文件夹
+	git update-index --assume-unchanged <filepath>
+	https://blog.csdn.net/xujianjun229/article/details/127486997
+	https://zhuanlan.zhihu.com/p/521744518
+99. Win10 任务栏中的word右键时不能显示最近文档
+	```
+	Windows图标+R
+	输入
+	%APPDATA%\Microsoft\Windows\Recent\AutomaticDestinations    “即最近"
+	%APPDATA%\Microsoft\Windows\Recent\CustomDestinations      "即已固定"
+	运行
+	进入”最近使用”删除文件夹内的相关文件，并重启!
+	
+	实操说明：
+	只删AutomaticDestinations没有效果，又删了CustomDestinations才起作用
+	https://blog.csdn.net/weixin_33716154/article/details/92196285
+	```
+99. 腾讯云如何取消操作二次身份验证？
+	账号中心 - 安全设置 - 账号保护 - 关闭 操作保护
+	
+	用邮箱登录腾讯云提示没权限，只能用绑定的微信刷码登录？
+	微信刷码登录后，账号中心 - 安全设置 - 账号保护 - 关闭 登录保护
+	
+	https://console.cloud.tencent.com/developer/security
+99. 会计（金蝶2000-标准版V7）做账流程：
+	【记录代码 - ok】
+	1. 准备好原始凭据（发票、银行电子流水单、银行电子回单）
+	2. 如果有新的科目，先录入
+	3. 录入凭证
+		- 凭证字用 记 就好
+		- 如果有新增固定资产，要在固定资产管理功能中录入固定资产信息并增加凭证
+		- 如果有固定资产折旧，要在固定资产管理功能中计提折旧，会自动新增凭证
+		- 先不用录入结转本期损益凭证
+	4. 录入完凭证，点击 凭证汇总 检查数据是否正确
+		- 如果数据有误，点击 凭证查询 找出所有的凭证，修改数据有误的凭证
+	5. 凭证数据无误，点击 凭证过账 将凭证入账
+	6. 凭证过账后，转到 报表-试算平衡表 检查本期发生额数据是否正确
+		- 如果不正确，关闭 试算平衡表 返回主页面，按 Ctrl+F11 将凭证反过账，重新修改凭证
+	7. 检查数据正确，转到 期末处理 页，点击 结转损益，自动生成 结转本期损益 的凭证
+	8. 回到 凭证 功能页面，点击  凭证查询 找到新增的 结转本期损益 的凭证，查看并修改
+		- 因为以前的结转损益的科目的借贷方向可能跟现在不一样，所以需要检查和调整
+	9. 修改 结转本期损益 的凭证后，重新点击 凭证过账 将此凭证入账
+	10. 转到 期末处理 功能页面，点击 期末结账 结束本会计期间的做账，并开启下个期间
+	11. 打开 报表-自定义报表 页面，查看 资产负债表 和 利润表
+		- 金蝶2000-标准版V7 没有内置  资产负债表 和 利润表，需要自己创建，创建流程、计算、结果等另行记录
+99. 新开 Edge 窗口,总是带着组标签页,如何取消?
+	这是因为另外一个 Edge 窗口有固定组，把它们取消重建就可以
+99. Excel2019 如何设置在局域网内多人编辑？
+	文件 - 选项 - 自定义功能区 - 右侧点击审阅 - 右侧下面点击新建组 - 左侧下拉选择不在功能区中的命令 - 找到 共享工作簿（旧版） - 添加到右侧 - 确定
+	https://jingyan.baidu.com/article/c74d60005c266e4e6b595d1c.html
+99. 设置多用户同时登录Windows远程桌面，并设置只允许两个连接
+	gpedit.msc - 计算机配置 - Windows组件 - 远程桌面服务 - 远程桌面会话主机 - 连接 - 禁用 "将远程桌面服务用户限制到单独的远程桌面服务会话" - 设置 "允许的RD最大连接数"
+	https://www.bkqs.com.cn/content/znky07236.html
+	https://zhuanlan.zhihu.com/p/577544449?utm_id=0
+99. 画流程图：Draw.io 便携版（开源免费）
+	- 在线绘图：https://app.diagrams.net/
+	- Download Url: 
+		- https://github.com/jgraph/drawio-desktop/releases/tag/v21.6.5
+		- https://github.com/jgraph/drawio-desktop/releases/download/v21.6.5/draw.io-21.6.5-windows-no-installer.exe
+	- 官网：https://drawio-app.com/
+	- 参考：https://zhuanlan.zhihu.com/p/570969501
+99. Chrome 如何强制刷新网页？
+	1. 先试一下 Ctrl + Shift + R，如果无效，则继续下面：
+	2. 按 F12 打开 开发者工具
+	3. 右键单击地址栏上的 刷新 按钮，选择 "强制刷新缓存并重新加载"
+		- 可能要先正常刷新一次页面，然后右键才会出现选择项
+99. Navicat Premium  的 "查询" 保存在本地的位置在哪里？
+	（192.168.3.30）右键 - 连接信息 - 设置位置，如：
+	C:\Users\Jacky\Documents\Navicat\MySQL\servers\192.168.3.30
+	https://www.cnblogs.com/fuqian/p/16949200.html
+99. PPT 保存时提示某些字体无法保存怎么办
+	选项 - 保存 - 取消勾选 嵌入字体
+	https://www.php.cn/faq/476792.html
+99. bat 执行 npm run build 后 后面的命令没有执行
+	用call打头即可比如 call npm run build
+	https://blog.csdn.net/cd_yourheart/article/details/109091253（批处理call和start）
+99. vscode 如何格式化代码？
+	```
+	在VS Code中，可以使用以下方法格式化代码：
+
+	1. 使用键盘快捷键：按下`Shift + Alt + F`，VS Code将自动格式化当前活动文件的代码。如果你只想格式化选定的代码块，可以先选中代码块，然后按下快捷键。
+
+	2. 使用右键菜单：在编辑器中右键单击，然后选择“格式化文档”或“格式化选择的代码”选项。前者将格式化整个文件，后者将只格式化选择的代码块。
+
+	3. 使用命令面板：按下`Ctrl + Shift + P`（Windows/Linux）或`Cmd + Shift + P`（Mac），然后输入“格式化文档”或“格式化选择的代码”来执行相应的命令。
+
+	4. 使用保存时自动格式化：在VS Code的设置中，可以启用“editor.formatOnSave”选项，这样当你保存文件时，VS Code会自动格式化代码。
+
+	请注意，代码格式化的效果取决于你所使用的编程语言和相关的插件。确保你已经安装了适合你的编程语言的格式化插件，并根据需要进行配置。
+	```
+99. Edge 的集锦和书签有什么区别
+	```
+	在Microsoft Edge浏览器中，"集锦"和"书签"是两个不同的功能，它们的区别如下：
+
+	1. 集锦（Collections）：集锦是Edge浏览器中的一个功能，它允许用户将网页、图片、笔记等内容进行收集和整理，类似于一个个人的内容收藏夹。用户可以通过集锦功能将感兴趣的内容保存起来，随时查看和编辑。集锦可以包含多个项目，每个项目可以包含多个网页、图片或笔记。集锦功能适用于整理和保存相关主题的内容，方便用户随时查看和分享。
+
+	2. 书签（Bookmarks）：书签是一种常见的浏览器功能，用于保存用户经常访问的网页链接。用户可以将感兴趣的网页添加到书签中，以便以后快速访问。书签通常以链接的形式存在，用户可以在浏览器的书签栏、书签菜单或者新建的文件夹中组织和管理书签。书签功能适用于保存和管理常用的网页链接，方便用户快速访问。
+
+	总的来说，集锦功能更注重内容的整理和收集，可以保存网页、图片和笔记等多种类型的内容；而书签功能更注重快速访问常用的网页链接。用户可以根据自己的需求和习惯，选择使用集锦或者书签功能来管理和保存自己感兴趣的内容和网页链接。
+	```
+99. Edge 的 Inprivate 窗口是什么窗口
+	```
+	InPrivate窗口是Microsoft Edge浏览器的隐私浏览模式。当您在InPrivate窗口中浏览网页时，Edge浏览器会在您关闭该窗口时自动删除浏览记录、临时文件、Cookie和其他临时数据，以保护您的隐私。
+
+	InPrivate窗口提供以下隐私保护功能：
+
+	1. 不会保存浏览历史记录：在InPrivate窗口中浏览的网页不会被记录到浏览器的历史记录中，这意味着其他人无法在您关闭窗口后查看您的浏览历史。
+
+	2. 不会保存Cookie和表单数据：InPrivate窗口不会保存网站设置的Cookie信息，也不会保存您在表单中输入的数据，以保护您的个人信息。
+
+	3. 不会保存临时文件：InPrivate窗口中下载的文件和浏览过的图片等临时文件会在关闭窗口时自动删除，避免在您的计算机上留下痕迹。
+
+	4. 不会保留登录信息：在InPrivate窗口中登录的网站，会话信息会在关闭窗口时自动删除，您需要重新登录才能再次访问。
+
+	需要注意的是，虽然InPrivate窗口可以提供一定程度的隐私保护，但仍然无法完全保证您的隐私安全。其他人仍然可以通过其他方式来跟踪您的在线活动，例如网络提供商、网站运营商等。因此，在需要更高级别的隐私保护时，您可能需要采取其他措施，例如使用虚拟专用网络（VPN）或使用专门的隐私保护工具。
+	```
+99. 【上位机开发】串口开发中的RTS和DTR是什么？
+	在串口开发中，RTS和DTR是两个控制信号，在串口通信时用于控制数据传输。它们都是为了控制数据流而存在的。
+
+	RTS（Ready To Send）指示数据发送准备就绪，即告诉外设接收器，数据准备好了，可以发送了。RTS信号是由控制设备发出的。
+
+	DTR（Data Terminal Ready）表示数据终端准备就绪，即告诉外设发送器，数据终端（即计算机）准备好了接收数据。DTR信号是由计算机发出的。
+
+	在使用RS232串口开发时，当RS232C接口的DTR和RTS信号于IBM AT或兼容机的串行口相互连接时，就可用于控制信号的流传。两机之间的RS232C接口线有4 根控制线,分别为RTS（1号 ），DTR（2号 ），DCD（3号 ），CTS（4号 ）。一个计算机RS232C端口具有2根缺省的控制线DTR和RTS，但在电气上连接计算机端的两根发射线（TX和RX）后，还可由计算机软件设置DTR,RTS,DCD以及CTS四个控制线的高低电平状态。
+99. QPS 是指什么？
+	QPS是Queries Per Second的缩写，中文意思为每秒查询率。它是一个衡量计算机系统性能和吞吐量的指标，用于表示一个系统每秒可以执行多少个查询操作。在计算机系统的设计和调优中，QPS常常被用作测试系统的性能和瓶颈的衡量标准之一。通常情况下，QPS越高，说明系统的性能越好。
+
+	QPS的具体值取决于系统的硬件设备、软件设计、数据处理方式、并发量等多个因素。在实际应用中，需要针对不同的业务需求和场景，优化设计和调整系统参数，以获得更好的QPS值。同时，也需要注意控制查询负载，防止系统运行超载和崩溃。
+99. 系统启动时提示 Checking Media
+	当系统启动时出现 "Checking Media" 的提示通常意味着系统正在检查启动介质。这可能是由于以下几个原因：
+	1. 检测硬盘驱动器：系统可能正在检测并识别连接到计算机的硬盘驱动器。这是启动过程中的一部分，确保系统可以访问正确的启动介质。
+	2. 检测光驱或USB驱动器：如果系统配置中包含光驱或USB驱动器，则系统可能会检查这些驱动器以确定是否存在引导介质（如安装光盘或启动USB设备）。如果您没有插入任何引导介质，您可以在启动时按下相应的按键（通常是 F12 或 F2），以进入系统设置并更改启动顺序或禁用不需要的启动设备。
+	3. 硬件问题：尽管较少见，但也有可能是由于硬件问题导致系统出现此提示。这可能包括硬盘驱动器故障、数据线连接问题等。您可以尝试检查硬盘驱动器的连接，确保其连接牢固。如果出现硬件故障的迹象，可能需要更换硬盘驱动器或寻求专业的硬件维修。
+
+	
+	如果 "Checking Media" 的提示长时间停留在屏幕上或没有进一步的进展，您可以尝试以下操作：
+	1. 重新启动计算机：有时，重新启动计算机可以解决临时的启动问题。
+	2. 检查启动设备：确保没有插入任何不需要的启动介质（如光盘或USB设备），并且启动顺序正确配置。
+	3. 检查硬件连接：检查硬盘驱动器的数据线是否连接正常，确保其连接牢固。
+	4. 恢复或修复操作系统：如果问题仍然存在，可能需要尝试恢复或修复操作系统。您可以使用操作系统安装介质启动计算机，并尝试进行修复或恢复操作系统。
+99. 安装软件时,提示错误:由于找不到 vcruntime140.dll,无法继续执行代码
+	需要安装 Visual C++ 包，下载链接：
+	X86：https://aka.ms/vs/17/release/vc_redist.x86.exe
+	X64：https://aka.ms/vs/17/release/vc_redist.x64.exe
+	本地：D:\Tools\Visual Studio\VC++Runtime
+	
+	参考：
+	https://baijiahao.baidu.com/s?id=1774024775139814595&wfr=spider&for=pc
+99. 30个Axure使用技巧
+	https://rmh.pdnews.cn/Pc/ArtInfoApi/article?id=10785979
+99. Axure 8 变量使用
+	菜单 专案 - 全局变数
+	https://pythonjishu.com/fsldkuqiwxjfvvp/
+99. Axure 8 返回上一页
+	动作：打开链接 - 当前窗口 - 选择 返回上一页
+	https://jingyan.baidu.com/article/cbcede0701a0a943f50b4d65.html
+99. Notepad++ 设置 tab 键
+	菜单 设置 - 首选项 - 语言 - 制表符宽度
+	http://www.taodudu.cc/news/show-5207768.html?action=onClick（Notepad++使用技巧）
+99. Notepad++ 颜色字体配置
+	1. 打开 设置（菜单）- 语言格式设置 窗口
+	2. 选择主题：Obsidian
+	3. 语言：Global Styles
+	4. 样式：Global override
+	5. 色彩样式：前景色 RGB(224,226,228); 背景色 RGB(255,255,255)
+	6. 字体：Courier New; 字体大小：18
+	7. 勾选：使用全局字体，使用全局字体大小
+99. 批处理 %~d0 是什么
+	%0代指批处理文件自身 %~d0 是指批处理所在的盘符 %~dp0 是盘符加路径 cd %~dp0 就是进入批处理所在目录了
+99. Css padding四个值的顺序
+	上、右、下、左
+99. linux下docker的目录结构
+	https://www.keepnight.com/archives/336/
+	https://blog.csdn.net/bobozai86/article/details/106985129
+99. 好用免费的 OCR
+	IRONOCR 
+	https://ironsoftware.com/csharp/ocr/examples/tune-tesseract-for-speed-in-dotnet/
+99. 查看centos7系统资源使用情况
+	https://blog.csdn.net/weixin_42547092/article/details/126278308
+99. 如何在该 VM 上没有快照时删除 Hyper-V AVHDX 文件
+	将 AVHDX 文件删除/合并到原始 VM
+	https://www.abackup.com/enterprise-backup/hyper-v-avhdx-file-but-no-snapshot-1016.html#toc.0.18122106658541504
+99. 电脑蓝屏 (终止码：DPC_WATCHDOG_VIOLATION) 解决方案：
+	https://blog.csdn.net/lihaiyuan_0324/article/details/127668998
+99. 有道云笔记
+	Shift + Alt + D 输出日期+时间
+	
+		
 	
 	
 	

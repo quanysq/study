@@ -11,10 +11,15 @@ SECRET_KEY = "Tnksvc1GUgoFYpUqI83z9Naxu6g6Piju"
 def main():
     token = get_access_token()
     url = "https://aip.baidubce.com/rest/2.0/ocr/v1/vat_invoice?access_token=" + token
-    pdf_file = "D:\Work\GaoShen\发票.pdf";
+    # pdf_file = "D:\Work\GaoShen\发票.pdf";
+    # pdf_file = "D:\Work\GaoShen\doc\百度AI\餐饮发票.pdf";
+    # pdf_file = "D:\Work\GaoShen\doc\百度AI\服务费.pdf";
+    # pdf_file = "D:\Work\GaoShen\doc\百度AI\收入.png";
+    pdf_file = "D:\Work\GaoShen\doc\百度AI\收入-红冲.png";
     pdf_code = get_file_content_as_base64(pdf_file)
     print(pdf_code)
-    payload = {"pdf_file": pdf_code}
+    # payload = {"pdf_file": pdf_code}
+    payload = {"image": pdf_code}
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'
