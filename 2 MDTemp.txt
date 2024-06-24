@@ -1429,14 +1429,6 @@
 	2. 检查启动设备：确保没有插入任何不需要的启动介质（如光盘或USB设备），并且启动顺序正确配置。
 	3. 检查硬件连接：检查硬盘驱动器的数据线是否连接正常，确保其连接牢固。
 	4. 恢复或修复操作系统：如果问题仍然存在，可能需要尝试恢复或修复操作系统。您可以使用操作系统安装介质启动计算机，并尝试进行修复或恢复操作系统。
-99. 安装软件时,提示错误:由于找不到 vcruntime140.dll,无法继续执行代码
-	需要安装 Visual C++ 包，下载链接：
-	X86：https://aka.ms/vs/17/release/vc_redist.x86.exe
-	X64：https://aka.ms/vs/17/release/vc_redist.x64.exe
-	本地：D:\Tools\Visual Studio\VC++Runtime
-	
-	参考：
-	https://baijiahao.baidu.com/s?id=1774024775139814595&wfr=spider&for=pc
 99. 30个Axure使用技巧
 	https://rmh.pdnews.cn/Pc/ArtInfoApi/article?id=10785979
 99. Axure 8 变量使用
@@ -1458,6 +1450,8 @@
 	7. 勾选：使用全局字体，使用全局字体大小
 99. 批处理 %~d0 是什么
 	%0代指批处理文件自身 %~d0 是指批处理所在的盘符 %~dp0 是盘符加路径 cd %~dp0 就是进入批处理所在目录了
+99. 批处理bat脚本获取并且处理当前日期与时间信息
+	https://www.jb51.net/jiaoben/321350lpg.htm
 99. Css padding四个值的顺序
 	上、右、下、左
 99. linux下docker的目录结构
@@ -1466,6 +1460,7 @@
 99. 好用免费的 OCR
 	IRONOCR 
 	https://ironsoftware.com/csharp/ocr/examples/tune-tesseract-for-speed-in-dotnet/
+	本地项目：D:\Work\GaoShen\code\temp\WinFormsApp
 99. 查看centos7系统资源使用情况
 	https://blog.csdn.net/weixin_42547092/article/details/126278308
 99. 如何在该 VM 上没有快照时删除 Hyper-V AVHDX 文件
@@ -1475,8 +1470,138 @@
 	https://blog.csdn.net/lihaiyuan_0324/article/details/127668998
 99. 有道云笔记
 	Shift + Alt + D 输出日期+时间
+99. Excel 公式：
+	=IF(LEN(B1)=0,TEXT(A1,"YYYY-MM"),A1) 
+	如果B1单元格为空，提取 A1 的年月，否则为A1内容，注：A1 内容为日期
+99. Excel 批量把日期格式转为文本格式,且修改后显示的仍然是原来的
+	公式：=TEXT(D2,"yyyy-MM-dd HH:mm:ss")
+99. Excel 连接两个单元格内容
+	公式：=A1&B1
+	```
+	在Excel中，连接两个单元格的内容可以通过以下方法实现：
+
+	使用关联符号。在目标单元格中输入=A1&B1（假设要连接A1和B1两个单元格的内容），然后按下回车键。
+	使用&运算符。例如，=B2&C2可以直接连接B2和C2两个单元格的内容。
+	使用CONCAT函数。这适用于Excel 2016及更高版本，输入=CONCAT(B2, C2)可以实现同样的效果。
+	使用[TEXTJOIN](){"sa":"re_dqa_zy","icon":1}函数。这是一个更灵活的选项，允许在连接的内容之间添加分隔符，例如，=TEXTJOIN("-", 1, B2:D2)会将B2到D2单元格的内容用连字符连接起来。
+	使用CONCATENATE函数。这是一个较旧的函数，适用于较旧版本的Excel，输入=CONCATENATE(B2, C2)可以实现连接。
+	使用`PHONETIC函数。这个函数的特点是它可以忽略纯数字，适用于特定情况，例如=PHONETIC(B2:D2)`。
+	使用智能填充（CTRL+E）。这种方法适用于有特定格式要求的场景，在首行输入想要的结果作为案例，然后选中需要填充的单元格区域，按CTRL+E，下方所有空白单元格都能按第一个单元格内容格式进行合并。
+	根据具体需求和Excel版本的不同，可以选择最适合的方法来连接两个单元格的内容。
+	```
+99. Mysql 存储过程中有 DDL 语句（比如创建临时表，删除临时表），不会回滚数据
+	TODO 待进一步研究
+99. UniApp 编译后在华为手机安装提示有病毒
+	https://ask.dcloud.net.cn/article/37501
+	https://ask.dcloud.net.cn/question/149518
+	https://wen.baidu.com/question/1393593966193059860.html
+	首先，DCloud的代码是没有病毒的！不用怀疑！！！！公安部、教育部、工商总局都在用DCloud的引擎做app，他们的应用从来没有被报过毒
+99. Notepad++ 展开/折叠代码块，键盘指令
+	```
+	适用情况
+    在文件有大量代码块但是自己需求只看代码块注释和流程的时候，需要一键折叠代码块观察整体文件布局内容
+
+	全部操作（键盘指令）
+	Alt+ 0        折叠（折叠）所有方块
+	Alt+ 1        折叠所有1级
+	Alt+ 2        折叠所有2级
+
+	Alt+ Shift+ 0        展开所有
+	Alt+ Shift+ 1        展开1级
+	Alt+ Shift+ 2        展开2级
+
+	单个代码块操作（键盘指令）
+	Ctrl+Alt+ F        折叠（折叠）所有方块
+
+	Ctrl+Alt+ Shift+ F        展开所有
+
+	https://blog.csdn.net/xichen0v0/article/details/134671196
+	```
+99. idea 2022 格式化代码
+	> Ctrl + Alt + L (Windows/Linux)
+99. vscode 设置格式化
+	文件 - 首选项 - 设置 - 搜索 "format" - 进行配置
+	http://www.mobiletrain.org/about/BBS/140019.html
+99. 汽车年审
+	了解了基本流程：
+	https://m.yoojia.com/pages/dongtai/index?id=228953002&from_src=biji_tab&_swebfr=220011
+	https://www.66law.cn/laws/329448.aspx
+99. mysql 假设 A 表和B表是主从表，现在需要取从表 B 表的第1条记录的 a 字段的值更新取主表 A 表的 b 字段中，应该如何做?
+	```
+	UPDATE basinfo_invoice a SET
+	a.invoiceContent = (SELECT b.details FROM basinfo_invoicedetail b WHERE b.invoiceGuid=a.invoiceGuid LIMIT 1)
+	WHERE a.companyGuid=@comGuid
+		AND a.invoiceContent IS NULL;	
+	```
+99. 在 Excel 中删除单引号的 6 种方法
+	https://baijiahao.baidu.com/s?id=1777802880219897520&wfr=spider&for=pc
+	或者直接以粘贴值的方式将单元格复制到别的地方
+99. excel只要前几位
+	```
+	在Excel中，如果您想要提取单元格中数据的前几位数字，可以使用LEFT函数。LEFT函数的语法为“=LEFT（文本，数字）”，其中“文本”是您想要提取数字的单元格引用，“数字”是指定提取的位数。例如，如果您想要提取A1单元格中的数据的前3位数字，可以选中一个目标单元格，输入“=LEFT（A1，3）”，然后按下“Enter键”。12
+
+	此外，如果您想要提取单元格中数据的中间几位数字，可以使用MID函数，或者使用RIGHT函数来提取数据的后几位数字。
+	```
+99. Excel粘贴值的快捷键
+	Ctrl+Alt+V
+	此外，如果想要在选择性粘贴时仅粘贴数值，可以使用Ctrl+V后，依次按Ctrl和V，或者使用Ctrl+Shift+V快捷键来粘贴为数值
+99. Excel 假设要计算 B 列的合计值，但是过滤掉 A 列的单元格长度大于 4 的单元格
+	1. 在 C 输入以下公司，将 A 列的单元格长度大于 4 的B单元格的值重置为 0
+		> =IF(LEN(A1)=4,B1,0)
+	2. 应用到所有 B 列单元格数据
+	3. 再使用 SUM 函数求合计
+99. Element el-table 统一设置表格标题居中显示
+	```
+	:header-cell-style="{ 'text-align': 'center' }"
 	
-		
+	<el-table 
+		v-loading="loading" 
+		:data="comList" 
+		border
+		:header-cell-style="{ 'text-align': 'center' }">
+		<el-table-column label="企业名称" align="left" prop="name" width="200" />
+		<el-table-column label="社会信用代码" align="left" prop="license" width="170" />
+		<el-table-column label="纳税身份" align="center" prop="taxIdentity" width="100" />
+		<el-table-column label="地址" align="left" prop="address" />
+		<el-table-column label="联系人" align="center" prop="contacts" width="100" />
+		<el-table-column label="职位" align="center" prop="position" width="100" />
+		<el-table-column label="电话" align="center" prop="phone" width="100" />
+		<el-table-column label="操作" align="center" width="120" class-name="small-padding fixed-width">
+		  <template slot-scope="scope">
+			<el-button
+			  size="mini"
+			  type="text"
+			  icon="el-icon-edit"
+			  @click="handleUpdate(scope.row)"
+			>详情</el-button>
+		  </template>
+		</el-table-column>
+	</el-table>
+	```
+99. 三根电线颜色怎么区分
+	火线（L）：通常为红色、黄色或绿色。在某些情况下，火线也可能是黑色或棕色，这取决于地区和制造商
+	零线（N）：通常为蓝色。
+	地线（E）：通常为黄绿双色。
+	https://baijiahao.baidu.com/s?id=1790666315427253842&wfr=spider&for=pc
+99. js前端登录加密解决方案
+	https://www.jb51.net/javascript/3152325ol.htm
+99. js 字符串数值 .toFixed(2) 出错怎么办
+	```
+	var val = "123.3";
+	
+	(val * 1).toFixed(2)
+	```
+99. VS2022 还原 Nuget 包
+	1. 右键项目
+	2. 管理 Nuget 程序包
+	3. 如果缺失包，在顶端有提示，点击提示条中的 还原 按钮
+	
+	https://learn.microsoft.com/zh-cn/nuget/consume-packages/package-restore-troubleshooting
+99. UniApp HBuilderX 编译警告：Browserslist: caniuse-lite is outdated. Please run
+	不影响编译，解决可参考：
+	https://blog.csdn.net/Mrs_chens/article/details/108445230
+99. 
+	
 	
 	
 	
