@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.Xml;
 using System.Text;
@@ -22,9 +23,25 @@ namespace MRHelper
 {
     public partial class FrmZqReportHandler : Form
     {
+        // 声明 BackgroundWorker 对象
+        private BackgroundWorker m_BackgroundWorker;
+
         public FrmZqReportHandler()
         {
             InitializeComponent();
+
+            m_BackgroundWorker = new BackgroundWorker();            // 实例化 BackgroundWorker 对象
+            m_BackgroundWorker.WorkerReportsProgress = true;        // 设置可以通告进度
+            m_BackgroundWorker.WorkerSupportsCancellation = false;  // 设置不可以取消
+
+            // 声明 DoWork 事件
+            m_BackgroundWorker.DoWork += new DoWorkEventHandler(DoWork);
+
+            // 声明 ProgressChanged 事件
+            m_BackgroundWorker.ProgressChanged += new ProgressChangedEventHandler(UpdateProgress);
+
+            // 声明 RunWorkerCompleted 事件
+            m_BackgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(CompletedWork);
         }
 
         private void btnSelectFile_Click(object sender, EventArgs e)
@@ -46,27 +63,18 @@ namespace MRHelper
                 else
                 {
                     txtFile.Text = fileDialog.FileName;
-                    var excelDataList = ReadExcel(txtFile.Text.Trim());
 
-                    int c1 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
-
-                    var bankCash = CalcCashByBankAccountCode(excelDataList);
-
-                    DueCashZero(bankCash, ref excelDataList);
-                    DueCashGreaterThanZero(bankCash, ref excelDataList);
-
-                    int c2 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
-
-                    DueCashLessThanZero(bankCash, ref excelDataList);
-
-                    int c3 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
-
-                    // 导出
-                    var fileUrl = ExportData(txtFile.Text.Trim(), ref excelDataList);
+                    // 如果后台线程空闲，则启动后台操作
+                    if (!m_BackgroundWorker.IsBusy) {
+                        // 启动后台操作，触发 DoWork 事件
+                        // 参数可传可不传，暂时没什么有什么作用
+                        m_BackgroundWorker.RunWorkerAsync(this);
+                    }
                 }
             }
         }
 
+        #region 业务处理
         /// <summary>
         /// 读取 Excel 表内容
         /// </summary>
@@ -75,10 +83,18 @@ namespace MRHelper
         private List<ZqReportEntity> ReadExcel(string filePath)
         {
             var importData = ExcelUtil.ImportExcel<ZqReportEntity>(filePath).Result;
-            var list = importData.Data.ToList();
-            if (list != null && list.Count > 0)
+
+            if (importData.Data == null)
             {
-                return list;
+                MessageBox.Show(importData.Exception.Message);
+            } 
+            else
+            {
+                var list = importData.Data.ToList();
+                if (list != null && list.Count > 0)
+                {
+                    return list;
+                }
             }
             return null;
         }
@@ -276,7 +292,7 @@ namespace MRHelper
                 // 2. 找出当前银行账号的银行账户名称下面的所有金额大于0的渠道，排除掉已经被冻结的
                 var orgList2 = excelDataList.Where(x => x.BankAccountName == bankAccountName && x.Cash > 0 && x.FreezeStatus != "冻结").ToList();
 
-                if (orgList2.Count == 0) return;
+                if (orgList2.Count == 0) continue;
 
                 // 3. 找到与银行账号负数金额（差异金额）相近的渠道信息冻结
                 var orgData = orgList2
@@ -323,6 +339,114 @@ namespace MRHelper
             string fileUrl = ExcelUtil.ExportExcelByTemplate(exportDto, filePath, templatePath).Result;
             return fileUrl;
         }
+        #endregion
 
+        #region BackgroundWorker
+        void DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bw = sender as BackgroundWorker;
+            FrmZqReportHandler win = e.Argument as FrmZqReportHandler;
+
+            string orgFile = txtFile.Text.Trim();
+            bw.ReportProgress(1, orgFile);
+
+            // 1. 读取文件内容
+            var excelDataList = ReadExcel(orgFile);
+            int c0 = excelDataList.Count;
+            bw.ReportProgress(10, c0);
+
+            // 2. 查询原始数据有无标记为冻结状态的数据
+            int c1 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            bw.ReportProgress(15, c1);
+
+            // 3. 按银行账号统计本期金额
+            var bankCash = CalcCashByBankAccountCode(excelDataList);
+            int c2 = bankCash.Count;
+            bw.ReportProgress(20, c2);
+
+            // 4. 处理银行账号账期金额总额等于 0 的业务
+            DueCashZero(bankCash, ref excelDataList);
+            bw.ReportProgress(30);
+
+            // 4.1 处理完毕银行账号账期金额总额等于 0 的业务
+            int c3 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            bw.ReportProgress(35, c3);
+
+            // 5. 准备处理银行账号账期金额总额大于 0 且有负数总额的业务
+            DueCashGreaterThanZero(bankCash, ref excelDataList);
+            bw.ReportProgress(50);
+
+            // 5.1 处理完毕银行账号账期金额总额大于 0 且有负数总额的业务
+            int c4 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            bw.ReportProgress(55, c4);
+
+            // 6. 准备处理银行账号账期金额总额小于 0 的业务
+            DueCashLessThanZero(bankCash, ref excelDataList);
+            bw.ReportProgress(60);
+
+            // 6.1 处理完毕银行账号账期金额总额小于 0 的业务
+            int c5 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            bw.ReportProgress(65, c5);
+
+            // 7. 导出
+            var fileUrl = ExportData(orgFile, ref excelDataList);
+            bw.ReportProgress(100, fileUrl);
+        }
+
+        void UpdateProgress(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+            pgBar.Value = progress;
+
+            if (progress == 1)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 选择文件: [{e.UserState}]\r\n");
+            }
+            else if (progress == 10)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 读取文件内容，共有 {e.UserState} 条数据 {Environment.NewLine}");
+            }
+            else if (progress == 15)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 查询原始数据有无标记为冻结状态的数据，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
+            }
+            else if (progress == 20)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 按银行账号统计本期金额，共有 {e.UserState} 个银行账号\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备处理银行账号账期金额总额等于 0 的业务，将其下面的全部渠道标记为冻结……\r\n");
+            }
+            else if (progress == 35)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕银行账号账期金额总额等于 0 的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备处理银行账号账期金额总额大于 0 且有负数总额的业务，将其下面与负数总额相近的渠道标记为冻结……\r\n");
+            }
+            else if (progress == 55)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕银行账号账期金额总额大于 0 且有负数总额的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备处理银行账号账期金额总额小于 0 的业务……\r\n");
+            }
+            else if (progress == 65)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕银行账号账期金额总额小于 0 的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备导出处理后的数据到 Excel……\r\n");
+            }
+            else if (progress == 100)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 导出处理后的数据到 Excel 完毕，处理后的文件是 [{e.UserState}]\r\n");
+            }
+        }
+
+        void CompletedWork(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理过程中出现错误：[{e.Error}]\r\n");
+            }
+            else
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕");
+            }
+        }
+        #endregion
     }
 }
