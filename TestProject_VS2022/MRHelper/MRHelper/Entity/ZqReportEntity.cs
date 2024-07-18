@@ -55,6 +55,12 @@ namespace MRHelper.Entity
         public string BankAccountCode { get; set; }
 
         /// <summary>
+        /// 法人代表
+        /// </summary>
+        [ImporterHeader(Name = "法人代表")]
+        public string Legaler { get; set; }
+
+        /// <summary>
         /// 本期金额
         /// </summary>
         [ImporterHeader(Name = "本期金额")]

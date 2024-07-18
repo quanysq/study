@@ -119,7 +119,7 @@ namespace MRHelper
         }
 
         /// <summary>
-        /// 处理 账期金额总额等于0时 的业务
+        /// 处理 银行账期金额总额等于0时 的业务
         /// 该银行账号下的所有渠道信息标记为冻结
         /// </summary>
         /// <param name="bankCash"></param>
@@ -143,7 +143,7 @@ namespace MRHelper
         }
 
         /// <summary>
-        /// 处理 账期金额总额总额大于0且有负数 的业务
+        /// 处理 银行账期金额总额总额大于0且有负数 的业务
         /// 当该银行账号下的某一渠道的账期金额与负数总额相近，冻结其渠道
         /// 如果没有符合条件的单一渠道，将多个渠道的金额排列组合相加，找出跟负数总额相近的金额的组合的渠道，冻结
         /// 相近的意思是：
@@ -207,7 +207,7 @@ namespace MRHelper
         /// 在 账期金额总额总额大于0且有负数 的渠道中，找出组合金额大于银行账号负数总额的渠道组合
         /// </summary>
         /// <param name="list"></param>
-        /// <param name="bankAccountCode"></param>
+        /// <param name="bankAccountCode">银行账号 / 法人代表</param>
         /// <param name="bankCashFs"></param>
         /// <returns></returns>
         private ZqReport4CCCashEntity FindChannel(List<ZqReportEntity> list, string bankAccountCode, decimal bankCashFs)
@@ -324,6 +324,115 @@ namespace MRHelper
             }
         }
 
+
+        /// <summary>
+        /// 按法人代表统计本期金额
+        /// </summary>
+        /// <param name="excelDataList"></param>
+        private List<ZqReport4BankCashEntity> CalcCashByLegaler(ref List<ZqReportEntity> excelDataList)
+        {
+            var bankCash = (from p in excelDataList
+                            where (p.Legaler != null && p.Legaler.Length > 0)
+                            group p by p.Legaler into g
+                            select new ZqReport4BankCashEntity
+                            {
+                                BankAccountCode = g.Key,
+                                CashAll = g.Sum(p => p.Cash),
+                                CashFs = g.Sum(p => p.Cash < 0 ? p.Cash : 0),
+                            }).ToList<ZqReport4BankCashEntity>();
+
+            return bankCash;
+        }
+
+        /// <summary>
+        /// 处理 法人账期金额总额小于等于0时 的业务
+        /// 该法人下的所有渠道信息标记为冻结
+        /// </summary>
+        /// <param name="legalCash"></param>
+        /// <param name="excelDataList"></param>
+        private void DueCashZero4Legaler(List<ZqReport4BankCashEntity> legalCash, ref List<ZqReportEntity> excelDataList)
+        {
+            var list = legalCash.Where(x => x.CashAll <= 0).ToList<ZqReport4BankCashEntity>();
+
+            if (list.Count == 0) return;
+
+            foreach (var item in list)
+            {
+                var orgList = excelDataList.Where(x => x.Legaler == item.BankAccountCode && x.FreezeType == 0);
+                foreach (var orgItem in orgList)
+                {
+                    orgItem.FreezeType = 50;
+                    orgItem.FreezeStatus = "冻结";
+                    orgItem.FreezeReason = $"法人 [{orgItem.Legaler}] 本期金额总额小于或等于 0";
+                }
+            }
+        }
+
+        /// <summary>
+        /// 处理 法人账期金额总额总额大于0且有负数 的业务
+        /// 当该法人下的某一渠道的账期金额与负数总额相近，冻结其渠道
+        /// 如果没有符合条件的单一渠道，将多个渠道的金额排列组合相加，找出跟负数总额相近的金额的组合的渠道，冻结
+        /// 相近的意思是：
+        /// 1. 金额大于负数总额
+        /// 2. 金额减去负数总额的值最小的那个渠道（或者某些渠道之和）
+        /// </summary>
+        /// <param name="legalCash"></param>
+        /// <param name="excelDataList"></param>
+        private void DueCashGreaterThanZero4Legaler(List<ZqReport4BankCashEntity> legalCash, ref List<ZqReportEntity> excelDataList)
+        {
+            var list = legalCash.Where(x => x.CashAll > 0 && x.CashFsAbs > 0).ToList<ZqReport4BankCashEntity>();
+
+            if (list.Count == 0) return;
+
+            foreach (var item in list)
+            {
+                var orgData = excelDataList
+                    .Where(x => x.Legaler == item.BankAccountCode && x.Cash > item.CashFsAbs && x.FreezeType == 0)
+                    .OrderBy(x => x.Cash)
+                    .FirstOrDefault();
+
+                if (orgData == null)
+                {
+                    // 找到法人下面所有金额大于0的渠道信息
+                    var orgList = excelDataList.Where(x => x.Legaler == item.BankAccountCode && x.Cash > 0).OrderByDescending(x => x.Cash).ToList();
+
+                    /* 测试是否按照金额从小到大排序
+                    StringBuilder sb = new StringBuilder(1024);
+                    foreach (var org in orgList)
+                    {
+                        sb.AppendLine($"渠道编号 [{org.ChannelCode}]：{org.Cash}");
+                    }
+                    var ss = sb.ToString();
+                    */
+
+                    // 找到与银行账号负数金额相近的渠道信息冻结
+                    ZqReport4CCCashEntity ccCashObj = FindChannel(orgList, item.BankAccountCode, item.CashFsAbs);
+
+                    string channelCodeStr = string.Join(",", ccCashObj.ChannelCodeList);
+                    foreach (var channelCode in ccCashObj.ChannelCodeList)
+                    {
+                        var orgRealList = excelDataList.Where(x => x.Legaler == ccCashObj.BankAccountCode && x.ChannelCode == channelCode);
+                        foreach (var orgItem in orgRealList)
+                        {
+                            if (orgItem.FreezeType == 0)
+                            {
+                                orgItem.FreezeType = 41;
+                                orgItem.FreezeStatus = "冻结";
+                                orgItem.FreezeReason = $"法人 [{orgItem.Legaler}] 本期金额总额大于 0 且有负数，渠道组合 [{channelCodeStr}] 的金额是 [{ccCashObj.CCCash}]，与法人本期负数总额相近 [{item.CashFsAbs}]";
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    orgData.FreezeType = 40;
+                    orgData.FreezeStatus = "冻结";
+                    orgData.FreezeReason = $"法人 [{orgData.Legaler}] 本期金额总额大于 0 且有负数，渠道编码 [{orgData.ChannelCode}] 的金额是 [{orgData.Cash}], 与其法人本期负数总额相近 [{item.CashFsAbs}]";
+                }
+            }
+        }
+
+
         /// <summary>
         /// 导出数据
         /// </summary>
@@ -335,6 +444,24 @@ namespace MRHelper
             string fileName = string.Format("{0}_处理后_{1}.xlsx", Path.GetFileNameWithoutExtension(orgFilePath), DateTime.Now.ToString("yyyyMMddHHmmssfff"));
             string filePath = Path.Combine(savePath, fileName);
             string templatePath = @"ExcelTemplate/ZqReportTemplate.xlsx";
+
+            string fileUrl = ExcelUtil.ExportExcelByTemplate(exportDto, filePath, templatePath).Result;
+            return fileUrl;
+        }
+
+        /// <summary>
+        /// 导出汇总数据
+        /// </summary>
+        /// <param name="orgFilePath"></param>
+        /// <param name="excelDataList"></param>
+        /// <returns></returns>
+        private string ExportCollectData(string orgFilePath, string fileFirstName, ref List<ZqReport4BankCashEntity> collectDataList)
+        {
+            var exportDto = new ZqCollectExportDto(collectDataList);
+            string savePath = Directory.GetParent(orgFilePath).FullName;
+            string fileName = string.Format("{0}_汇总金额_{1}.xlsx", fileFirstName, DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            string filePath = Path.Combine(savePath, fileName);
+            string templatePath = @"ExcelTemplate/ZqCollectTemplate.xlsx";
 
             string fileUrl = ExcelUtil.ExportExcelByTemplate(exportDto, filePath, templatePath).Result;
             return fileUrl;
@@ -388,9 +515,33 @@ namespace MRHelper
             int c5 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
             bw.ReportProgress(65, c5);
 
-            // 7. 导出
+            // 7. 按法人代表统计本期金额
+            var legalCash = CalcCashByLegaler(ref excelDataList);
+            var c6 = legalCash.Count();
+            bw.ReportProgress(70, c6);
+
+            // 8. 准备处理法人代表账期金额总额小于等于 0 的业务
+            DueCashZero4Legaler(legalCash, ref excelDataList);
+            bw.ReportProgress(80);
+
+            // 8.1 处理完毕法人代表账期金额总额小于等于 0 的业务
+            int c7 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            bw.ReportProgress(85, c7);
+
+            // 9. 准备处理法人代表账期金额总额小于等于 0 的业务
+            DueCashGreaterThanZero4Legaler(legalCash, ref excelDataList);
+            bw.ReportProgress(90);
+
+            // 9.1 处理完毕法人代表账期金额总额小于等于 0 的业务
+            int c8 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            bw.ReportProgress(95, c8);
+
+            // 10. 导出最终文件
+            var bankCollectFile = ExportCollectData(orgFile, "银行账号", ref bankCash);
+            var legalCollectFile = ExportCollectData(orgFile, "法人代表", ref legalCash);
             var fileUrl = ExportData(orgFile, ref excelDataList);
-            bw.ReportProgress(100, fileUrl);
+            var exportFile = $"{bankCollectFile}, {legalCollectFile}, {fileUrl}";
+            bw.ReportProgress(100, exportFile);
         }
 
         void UpdateProgress(object sender, ProgressChangedEventArgs e)
@@ -428,7 +579,22 @@ namespace MRHelper
             else if (progress == 65)
             {
                 txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕银行账号账期金额总额小于 0 的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
-                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备导出处理后的数据到 Excel……\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备处理法人代表相关的业务需求……\r\n");
+            }
+            else if (progress == 70)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 按法人代表统计本期金额，共有 {e.UserState} 个法人代表\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备处理法人代表账期金额总额小于等于 0 的业务，将其下面的全部渠道标记为冻结……\r\n");
+            }
+            else if (progress == 85)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕法人代表账期金额总额小于等于 0 的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备处理法人代表账期金额总额大于 0 且有负数总额的业务，将其下面与负数总额相近的渠道标记为冻结……\r\n");
+            }
+            else if (progress == 95)
+            {
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕法人代表账期金额总额大于 0 的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备导出处理后的文件，一共有 3 个文件……\r\n");
             }
             else if (progress == 100)
             {

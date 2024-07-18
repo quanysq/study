@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace MRHelper.ExcelExportDTO
 {
-    // 可以在这个 Dto 类中，对数据作进一步处理，比如添加报表制作人等等属性
+    // 可以在这些 Dto 类中，对数据作进一步处理，比如添加报表制作人等等属性
+
+    /// <summary>
+    /// 主数据处理后导出 DTO
+    /// </summary>
     public class ZqReportExportDto
     {
         // 说明：
@@ -21,6 +25,24 @@ namespace MRHelper.ExcelExportDTO
         }
 
         public ZqReportExportDto(List<ZqReportEntity> dataDetails)
+        {
+            ExportDtoList = dataDetails;
+        }
+    }
+
+    /// <summary>
+    /// 银行账号/法人代表账期汇总金额导出 DTO
+    /// </summary>
+    public class ZqCollectExportDto
+    {
+        public List<ZqReport4BankCashEntity> ExportDtoList { get; set; }
+
+        public ZqCollectExportDto()
+        {
+
+        }
+
+        public ZqCollectExportDto(List<ZqReport4BankCashEntity> dataDetails)
         {
             ExportDtoList = dataDetails;
         }

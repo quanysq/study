@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace MRHelper.Entity
 {
     /// <summary>
-    /// 银行账号渠道组合金额实体类
+    /// 银行账号 / 法人代表 渠道组合金额实体类
     /// </summary>
     public class ZqReport4CCCashEntity
     {
         private List<string> channelCodeList = new List<string>();
 
         /// <summary>
-        /// 银行账号
+        /// 银行账号 / 法人代表
         /// </summary>
         public string BankAccountCode { get; set; }
 
