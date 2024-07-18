@@ -1600,6 +1600,8 @@
 99. UniApp HBuilderX 编译警告：Browserslist: caniuse-lite is outdated. Please run
 	不影响编译，解决可参考：
 	https://blog.csdn.net/Mrs_chens/article/details/108445230
+99. Vue packge.json文件 & packge-loack.json文件
+	https://www.jianshu.com/p/1f3c5a260b39
 99. 
 	
 	

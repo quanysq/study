@@ -10,11 +10,20 @@ SECRET_KEY = "Tnksvc1GUgoFYpUqI83z9Naxu6g6Piju"
 
 def main():
     token = get_access_token()
-    url = "https://aip.baidubce.com/rest/2.0/ocr/v1/doc_analysis_office?access_token=" + token
-    image_file = "D:\Work\GaoShen\微信图片_20230524115735.jpg";
+
+    # 办公文档识别
+    # url = "https://aip.baidubce.com/rest/2.0/ocr/v1/doc_analysis_office?access_token=" + token
+
+    # 通用文字识别（高精度版）
+    url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + token
+
+    # "D:\Work\GaoShen\微信图片_20230524115735.jpg";
+    # "D:\Learn\study\Python\BaiduAI\page_1_0.jpg";
+    image_file = "D:\Learn\study\Python\BaiduAI\Page_1_1_0.png";
     image_code = get_file_content_as_base64(image_file)
     print(image_code)
-    payload = {"image": image_code}
+    # payload = {"image": image_code}
+    payload = {"image": image_code, "paragraph": "false", "probability": "false"}
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json'

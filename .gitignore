@@ -288,3 +288,8 @@ Setup*/release/*.msi
 Setup*/release/*.exe
 Setup*/prod/*.msi
 Setup*/prod/*.exe
+
+**/UniApp
+**/BaiduAI/*.jpg
+**/BaiduAI/*.png
+**/zhangyxyx
