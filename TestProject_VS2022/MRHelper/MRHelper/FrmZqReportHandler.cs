@@ -486,34 +486,36 @@ namespace MRHelper
             int c1 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
             bw.ReportProgress(15, c1);
 
-            // 3. 按银行账号统计本期金额
-            var bankCash = CalcCashByBankAccountCode(excelDataList);
-            int c2 = bankCash.Count;
-            bw.ReportProgress(20, c2);
+            // 注掉银行需求，只保留法人需求 2024-07-18
 
-            // 4. 处理银行账号账期金额总额等于 0 的业务
-            DueCashZero(bankCash, ref excelDataList);
-            bw.ReportProgress(30);
+            //// 3. 按银行账号统计本期金额
+            //var bankCash = CalcCashByBankAccountCode(excelDataList);
+            //int c2 = bankCash.Count;
+            //bw.ReportProgress(20, c2);
 
-            // 4.1 处理完毕银行账号账期金额总额等于 0 的业务
-            int c3 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
-            bw.ReportProgress(35, c3);
+            //// 4. 处理银行账号账期金额总额等于 0 的业务
+            //DueCashZero(bankCash, ref excelDataList);
+            //bw.ReportProgress(30);
 
-            // 5. 准备处理银行账号账期金额总额大于 0 且有负数总额的业务
-            DueCashGreaterThanZero(bankCash, ref excelDataList);
-            bw.ReportProgress(50);
+            //// 4.1 处理完毕银行账号账期金额总额等于 0 的业务
+            //int c3 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            //bw.ReportProgress(35, c3);
 
-            // 5.1 处理完毕银行账号账期金额总额大于 0 且有负数总额的业务
-            int c4 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
-            bw.ReportProgress(55, c4);
+            //// 5. 准备处理银行账号账期金额总额大于 0 且有负数总额的业务
+            //DueCashGreaterThanZero(bankCash, ref excelDataList);
+            //bw.ReportProgress(50);
 
-            // 6. 准备处理银行账号账期金额总额小于 0 的业务
-            DueCashLessThanZero(bankCash, ref excelDataList);
-            bw.ReportProgress(60);
+            //// 5.1 处理完毕银行账号账期金额总额大于 0 且有负数总额的业务
+            //int c4 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            //bw.ReportProgress(55, c4);
 
-            // 6.1 处理完毕银行账号账期金额总额小于 0 的业务
-            int c5 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
-            bw.ReportProgress(65, c5);
+            //// 6. 准备处理银行账号账期金额总额小于 0 的业务
+            //DueCashLessThanZero(bankCash, ref excelDataList);
+            //bw.ReportProgress(60);
+
+            //// 6.1 处理完毕银行账号账期金额总额小于 0 的业务
+            //int c5 = excelDataList.Where(x => x.FreezeStatus == "冻结").Count();
+            //bw.ReportProgress(65, c5);
 
             // 7. 按法人代表统计本期金额
             var legalCash = CalcCashByLegaler(ref excelDataList);
@@ -537,10 +539,11 @@ namespace MRHelper
             bw.ReportProgress(95, c8);
 
             // 10. 导出最终文件
-            var bankCollectFile = ExportCollectData(orgFile, "银行账号", ref bankCash);
+            //var bankCollectFile = ExportCollectData(orgFile, "银行账号", ref bankCash); // 注掉银行需求，只保留法人需求 2024-07-18
             var legalCollectFile = ExportCollectData(orgFile, "法人代表", ref legalCash);
             var fileUrl = ExportData(orgFile, ref excelDataList);
-            var exportFile = $"{bankCollectFile}, {legalCollectFile}, {fileUrl}";
+            //var exportFile = $"{bankCollectFile}, {legalCollectFile}, {fileUrl}"; // 注掉银行需求，只保留法人需求 2024-07-18
+            var exportFile = $"{legalCollectFile}, {fileUrl}";
             bw.ReportProgress(100, exportFile);
         }
 
@@ -594,7 +597,7 @@ namespace MRHelper
             else if (progress == 95)
             {
                 txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 处理完毕法人代表账期金额总额大于 0 的业务，当前共有 {e.UserState} 条数据被标记为冻结\r\n");
-                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备导出处理后的文件，一共有 3 个文件……\r\n");
+                txtPg.AppendText($"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")} 准备导出处理后的文件，一共有 2 个文件……\r\n");
             }
             else if (progress == 100)
             {

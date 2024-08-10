@@ -1602,6 +1602,8 @@
 	https://blog.csdn.net/Mrs_chens/article/details/108445230
 99. Vue packge.json文件 & packge-loack.json文件
 	https://www.jianshu.com/p/1f3c5a260b39
+99. vue for 循环动态数组生成 el-checked，点击页面上的复选框，值改变了，页面上的复选框没有变的问题
+	主要是响应式的原因，要用 map 来将数据从数据库深拷贝到 data 定义的对象
 99. 
 	
 	
