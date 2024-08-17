@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace MRHelper.ExcelExportDTO
 {
-    // 可以在这些 Dto 类中，对数据作进一步处理，比如添加报表制作人等等属性
-
     /// <summary>
     /// 主数据处理后导出 DTO
     /// </summary>

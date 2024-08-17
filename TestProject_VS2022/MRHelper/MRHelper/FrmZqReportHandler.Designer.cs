@@ -31,6 +31,8 @@
             btnSelectFile = new Button();
             txtFile = new TextBox();
             groupBox1 = new GroupBox();
+            chkLegaler = new CheckBox();
+            chkBankAccountCode = new CheckBox();
             groupBox2 = new GroupBox();
             txtPg = new TextBox();
             pgBar = new ProgressBar();
@@ -40,7 +42,7 @@
             // 
             // btnSelectFile
             // 
-            btnSelectFile.Location = new Point(679, 33);
+            btnSelectFile.Location = new Point(678, 58);
             btnSelectFile.Name = "btnSelectFile";
             btnSelectFile.Size = new Size(75, 23);
             btnSelectFile.TabIndex = 5;
@@ -50,40 +52,68 @@
             // 
             // txtFile
             // 
-            txtFile.Location = new Point(6, 33);
+            txtFile.Location = new Point(7, 58);
             txtFile.Name = "txtFile";
             txtFile.Size = new Size(667, 23);
             txtFile.TabIndex = 4;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(chkLegaler);
+            groupBox1.Controls.Add(chkBankAccountCode);
             groupBox1.Controls.Add(txtFile);
             groupBox1.Controls.Add(btnSelectFile);
             groupBox1.Location = new Point(12, 25);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(760, 72);
+            groupBox1.Size = new Size(760, 93);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "请选择 Excel 文件";
+            // 
+            // chkLegaler
+            // 
+            chkLegaler.AutoSize = true;
+            chkLegaler.Checked = true;
+            chkLegaler.CheckState = CheckState.Checked;
+            chkLegaler.Location = new Point(124, 29);
+            chkLegaler.Name = "chkLegaler";
+            chkLegaler.Size = new Size(111, 21);
+            chkLegaler.TabIndex = 7;
+            chkLegaler.Text = "按法人代表统计";
+            chkLegaler.UseVisualStyleBackColor = true;
+            chkLegaler.CheckedChanged += chkLegaler_CheckedChanged;
+            // 
+            // chkBankAccountCode
+            // 
+            chkBankAccountCode.AutoSize = true;
+            chkBankAccountCode.Checked = true;
+            chkBankAccountCode.CheckState = CheckState.Checked;
+            chkBankAccountCode.Location = new Point(7, 29);
+            chkBankAccountCode.Name = "chkBankAccountCode";
+            chkBankAccountCode.Size = new Size(111, 21);
+            chkBankAccountCode.TabIndex = 6;
+            chkBankAccountCode.Text = "按银行账号统计";
+            chkBankAccountCode.UseVisualStyleBackColor = true;
+            chkBankAccountCode.CheckedChanged += chkBankAccountCode_CheckedChanged;
             // 
             // groupBox2
             // 
             groupBox2.Controls.Add(txtPg);
             groupBox2.Controls.Add(pgBar);
-            groupBox2.Location = new Point(13, 106);
+            groupBox2.Location = new Point(13, 135);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(759, 343);
+            groupBox2.Size = new Size(759, 314);
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "处理进度";
             // 
             // txtPg
             // 
-            txtPg.Location = new Point(6, 60);
+            txtPg.Location = new Point(7, 60);
             txtPg.Multiline = true;
             txtPg.Name = "txtPg";
             txtPg.ScrollBars = ScrollBars.Both;
-            txtPg.Size = new Size(746, 277);
+            txtPg.Size = new Size(746, 245);
             txtPg.TabIndex = 1;
             // 
             // pgBar
@@ -118,5 +148,7 @@
         private GroupBox groupBox2;
         private TextBox txtPg;
         private ProgressBar pgBar;
+        private CheckBox chkBankAccountCode;
+        private CheckBox chkLegaler;
     }
 }
