@@ -1,0 +1,36 @@
+[
+  {
+    "Name": "Person",
+    "Properties": [
+      {
+        "Name": "FirstName",
+        "Type": "string"
+      },
+      {
+        "Name": "LastName",
+        "Type": "string"
+      },
+      {
+        "Name": "Age",
+        "Type": "int"
+      }
+    ]
+  },
+  {
+    "Name": "Car",
+    "Properties": [
+      {
+        "Name": "Make",
+        "Type": "string"
+      },
+      {
+        "Name": "Model",
+        "Type": "string"
+      },
+      {
+        "Name": "Year",
+        "Type": "int"
+      }
+    ]
+  }
+]

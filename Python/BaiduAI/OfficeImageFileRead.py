@@ -15,7 +15,10 @@ def main():
     # url = "https://aip.baidubce.com/rest/2.0/ocr/v1/doc_analysis_office?access_token=" + token
 
     # 通用文字识别（高精度版）
-    url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + token
+    # url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + token
+
+    # 通用文字识别（高精度版）
+    # url = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + token
 
     # "D:\Work\GaoShen\微信图片_20230524115735.jpg";
     # "D:\Learn\study\Python\BaiduAI\page_1_0.jpg";

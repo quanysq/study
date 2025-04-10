@@ -28,10 +28,13 @@ namespace OpenBrowser
             OpenBrowser(chromePath, "chrome");
         }
 
+        /// <summary>
+        /// 打开浏览器和历史记录
+        /// </summary>
+        /// <param name="browserPath">浏览器路径</param>
+        /// <param name="browserType">浏览器类型</param>
         private static void OpenBrowser(string browserPath, string browserType)
         {
-            
-
             // 启动 Edge 浏览器
             var historyNum = GetBrowserHistoryNum(browserType);
             Console.WriteLine($"{browserType} 浏览器要打开的最近关闭的历史记录的数量是 [{historyNum}]");
@@ -51,6 +54,7 @@ namespace OpenBrowser
                 InputSimulator simulator = new InputSimulator();
                 for (var i = 1; i <= historyNum; i++)
                 {
+                    // 模拟按 Ctrl+Shift+T 键打开历史记录
                     List<VirtualKeyCode> modifierKeycodes = new List<VirtualKeyCode>();
                     modifierKeycodes.Add(VirtualKeyCode.CONTROL);
                     modifierKeycodes.Add(VirtualKeyCode.SHIFT);
@@ -60,10 +64,15 @@ namespace OpenBrowser
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="browserName"></param>
+        /// <returns></returns>
         private static int GetBrowserHistoryNum(string browserName)
         {
             int historyNum = 0;
-            string filePath = browserName == "edge" ? "./EdgeHisNum.txt" : "ChromeHisNum.txt";
+            string filePath = browserName == "edge" ? "EdgeHisNum.txt" : "ChromeHisNum.txt";
             using (StreamReader sr = new StreamReader(filePath))
             {
                 historyNum = int.Parse(sr.ReadToEnd());
